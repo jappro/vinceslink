@@ -718,28 +718,33 @@
         width: 100%;
         max-width: 450px;
         height: 400px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
         border-radius: 30px;
-        border: 2px dashed rgba(255, 255, 255, 0.3);
+        border: 2px dashed rgba(255, 255, 255, 0.4);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        gap: 15px;
         padding: 40px;
         backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
     }
 
-    .cart-placeholder svg {
-        width: 120px;
-        height: 120px;
-        opacity: 0.6;
+    /* For actual shopping cart image */
+    .cart-placeholder img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
     }
 
-    .cart-placeholder p {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 16px;
+    .cart-placeholder-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
         text-align: center;
+        font-weight: 500;
     }
 
     .marketplace-content h2 {
@@ -778,49 +783,51 @@
         color: var(--white);
     }
 
-    /* iPhone 14 Pro Mockup */
+    /* iPhone 14 Pro Mockup - Sleek Design */
     .phone-mockup {
         position: relative;
         width: 100%;
-        max-width: 400px;
+        max-width: 380px;
         margin: 0 auto;
+        filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.4));
     }
 
     .phone-frame {
-        background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-        border-radius: 55px;
-        padding: 12px;
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
+        border-radius: 50px;
+        padding: 10px;
         position: relative;
+        border: 3px solid #3a3a3c;
     }
 
+    /* Dynamic Island */
     .phone-notch {
         position: absolute;
-        top: 22px;
+        top: 18px;
         left: 50%;
         transform: translateX(-50%);
-        width: 126px;
-        height: 37px;
-        background: #000;
-        border-radius: 25px;
+        width: 120px;
+        height: 35px;
+        background: #000000;
+        border-radius: 20px;
         z-index: 10;
-        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
     }
 
     .phone-screen {
-        background: var(--white);
-        border-radius: 47px;
+        background: #FFFFFF;
+        border-radius: 42px;
         overflow: hidden;
         position: relative;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
     }
 
     .phone-header {
-        background: var(--white);
-        padding: 60px 20px 20px;
+        background: #FFFFFF;
+        padding: 55px 20px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #f0f0f0;
     }
 
     .phone-logo {
@@ -830,30 +837,37 @@
     }
 
     .phone-logo img {
-        height: 30px;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
     }
 
     .phone-logo span {
         font-weight: 700;
         color: var(--primary-blue);
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .phone-tabs {
         display: flex;
-        gap: 15px;
-        padding: 15px 20px;
-        background: var(--white);
+        gap: 12px;
+        padding: 12px 20px;
+        background: #FFFFFF;
         overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .phone-tabs::-webkit-scrollbar {
+        display: none;
     }
 
     .phone-tab {
-        padding: 8px 20px;
-        background: var(--light-gray);
+        padding: 8px 18px;
+        background: #f5f5f5;
         border-radius: 20px;
         font-size: 13px;
         font-weight: 600;
-        color: var(--text-dark);
+        color: #666;
         white-space: nowrap;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -861,23 +875,37 @@
 
     .phone-tab.active {
         background: var(--primary-blue);
-        color: var(--white);
+        color: #FFFFFF;
     }
 
     .phone-content {
         padding: 20px;
         background: #f8f9fa;
-        min-height: 500px;
-        max-height: 500px;
+        height: 520px;
         overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+    .phone-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .phone-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .phone-content::-webkit-scrollbar-thumb {
+        background: #cccccc;
+        border-radius: 10px;
     }
 
     .featured-banner {
         position: relative;
-        border-radius: 15px;
+        border-radius: 16px;
         overflow: hidden;
         margin-bottom: 20px;
-        height: 150px;
+        height: 160px;
+        background: #e8e8e8;
     }
 
     .featured-banner img {
@@ -886,12 +914,25 @@
         object-fit: cover;
     }
 
+    /* Placeholder for featured banner when no image */
+    .featured-banner-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
     .featured-badge {
         position: absolute;
-        bottom: 15px;
-        left: 15px;
+        bottom: 12px;
+        left: 12px;
         display: flex;
-        gap: 10px;
+        gap: 8px;
     }
 
     .badge {
@@ -903,6 +944,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        backdrop-filter: blur(10px);
     }
 
     .badge.verified {
@@ -916,60 +958,60 @@
     .product-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
+        gap: 12px;
         margin-bottom: 20px;
     }
 
     .product-item {
-        background: var(--white);
-        border-radius: 12px;
-        padding: 15px;
+        background: #FFFFFF;
+        border-radius: 14px;
+        padding: 12px;
         text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f0f0f0;
     }
 
     .product-item:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
+    /* Image placeholder container */
     .product-image-wrapper {
         width: 100%;
-        height: 80px;
+        height: 75px;
         background: #FFFFFF;
         border-radius: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         overflow: hidden;
+        border: 1px solid #f5f5f5;
     }
 
     .product-image-wrapper img {
-        max-width: 70%;
-        max-height: 70%;
+        max-width: 85%;
+        max-height: 85%;
         object-fit: contain;
     }
 
-    .product-placeholder-icon {
-        font-size: 36px;
-    }
-
     .product-item h4 {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
         color: #1a1a1a;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        line-height: 1.3;
     }
 
     .product-item .price {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 700;
         color: var(--primary-blue);
     }
@@ -979,23 +1021,77 @@
         background: var(--bg-color);
         padding: 100px 0;
         position: relative;
+        overflow: hidden;
     }
 
+    /* Smooth transition from marketplace */
     .about-section::before {
-        content: 'VINCESLINK';
+        content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 180px;
-        font-weight: 900;
-        color: rgba(0, 25, 168, 0.03);
+        top: -150px;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background: linear-gradient(to bottom,
+            #00A0F0 0%,
+            rgba(0, 160, 240, 0.5) 50%,
+            transparent 100%
+        );
         z-index: 0;
-        letter-spacing: 20px;
     }
 
-    body.dark-mode .about-section::before {
-        color: rgba(255, 255, 255, 0.03);
+    /* Wave watermark background for readability */
+    .about-section::after {
+        content: '';
+        position: absolute;
+        top: 10%;
+        left: -10%;
+        width: 120%;
+        height: 80%;
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(0, 25, 168, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(32, 178, 170, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 60% 80%, rgba(0, 25, 168, 0.02) 0%, transparent 50%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Wave pattern overlay */
+    .about-wave-pattern {
+        position: absolute;
+        top: 20%;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        background: 
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 35px,
+                rgba(0, 25, 168, 0.015) 35px,
+                rgba(0, 25, 168, 0.015) 70px
+            );
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    body.dark-mode .about-section::after {
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(32, 178, 170, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.015) 0%, transparent 50%);
+    }
+
+    body.dark-mode .about-wave-pattern {
+        background: 
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 35px,
+                rgba(255, 255, 255, 0.02) 35px,
+                rgba(255, 255, 255, 0.02) 70px
+            );
     }
 
     .about-container {
@@ -1088,14 +1184,42 @@
 
     /* ==================== FAQ SECTION ==================== */
     .faq-section {
-        background: linear-gradient(to bottom, var(--bg-color) 0%, var(--light-gray) 100%);
+        background: var(--bg-color);
         padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Smooth transition from about section */
+    .faq-section::before {
+        content: '';
+        position: absolute;
+        top: -100px;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: linear-gradient(to bottom,
+            var(--bg-color) 0%,
+            rgba(248, 249, 250, 0.5) 50%,
+            var(--light-gray) 100%
+        );
+        z-index: 0;
+    }
+
+    body.dark-mode .faq-section::before {
+        background: linear-gradient(to bottom,
+            var(--bg-color) 0%,
+            rgba(51, 51, 51, 0.5) 50%,
+            var(--light-gray) 100%
+        );
     }
 
     .faq-container {
         max-width: 1000px;
         margin: 0 auto;
         padding: 0 40px;
+        position: relative;
+        z-index: 1;
     }
 
     .faq-title {
@@ -1210,27 +1334,51 @@
         line-height: 1.9;
     }
 
+    /* Chips Layout for Legal Links */
     .legal-links {
         display: flex;
         justify-content: center;
-        gap: 30px;
+        gap: 15px;
         margin-top: 50px;
         flex-wrap: wrap;
     }
 
-    .legal-link {
-        color: var(--primary-blue);
+    .legal-chip {
+        background: var(--light-gray);
+        color: var(--text-dark);
         text-decoration: none;
         font-weight: 600;
-        font-size: 15px;
+        font-size: 14px;
+        padding: 12px 24px;
+        border-radius: 50px;
         transition: all 0.3s ease;
-        padding-bottom: 3px;
-        border-bottom: 2px solid transparent;
+        border: 2px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    .legal-link:hover {
-        color: var(--teal);
-        border-bottom-color: var(--teal);
+    .legal-chip:hover {
+        background: var(--primary-blue);
+        color: var(--white);
+        border-color: var(--primary-blue);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 25, 168, 0.3);
+    }
+
+    .legal-chip svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    body.dark-mode .legal-chip {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+    }
+
+    body.dark-mode .legal-chip:hover {
+        background: var(--primary-blue);
+        border-color: var(--primary-blue);
     }
 
     /* ==================== CONTACT SECTION ==================== */
@@ -1843,14 +1991,11 @@
             </div>
 
 ```
-        <!-- Shopping Cart Illustration Placeholder -->
+        <!-- Shopping Cart Illustration - Add your image here -->
+        <!-- Image dimensions: 900px x 800px (recommended) -->
         <div class="cart-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            <p>Shopping cart illustration<br/>placeholder</p>
+            <!-- <img src="images/shopping-cart.png" alt="Shopping Cart"> -->
+            <p class="cart-placeholder-text">Shopping cart illustration<br/>Recommended size: 900 x 800px</p>
         </div>
     </div>
 
@@ -1879,81 +2024,88 @@
                 </div>
 
                 <div class="phone-content">
+                    <!-- Featured Banner - Add your image here -->
+                    <!-- Image dimensions: 660px x 320px (recommended) -->
                     <div class="featured-banner">
-                        <img src="images/marketplace/IMG_9001.jpeg" alt="Featured">
+                        <!-- <img src="images/marketplace/featured-banner.jpg" alt="Featured"> -->
+                        <div class="featured-banner-placeholder">
+                            Featured Banner<br/>660 x 320px
+                        </div>
                         <div class="featured-badge">
                             <span class="badge verified">✓ Verified</span>
                             <span class="badge secured">🔒 Secured</span>
                         </div>
                     </div>
 
+                    <!-- Product Grid - Bento Grid Style -->
+                    <!-- Product image dimensions: 200px x 200px (recommended) -->
                     <div class="product-grid">
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">📱</span>
+                                <!-- <img src="images/products/wireless-charger.png" alt="Wireless Charger"> -->
                             </div>
                             <h4>Wireless Charger</h4>
                             <p class="price">₦8,500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🔌</span>
+                                <!-- <img src="images/products/fast-charger.png" alt="Fast Charger"> -->
                             </div>
                             <h4>Fast Charger</h4>
                             <p class="price">₦6,200</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🎧</span>
+                                <!-- <img src="images/products/wireless-headset.png" alt="Wireless Headset"> -->
                             </div>
                             <h4>Wireless Headset</h4>
                             <p class="price">₦15,000</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🍎</span>
+                                <!-- <img src="images/products/apple.png" alt="Apple"> -->
                             </div>
                             <h4>Apple</h4>
                             <p class="price">₦500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🔗</span>
+                                <!-- <img src="images/products/usb-c-cable.png" alt="USB-C Cable"> -->
                             </div>
                             <h4>USB-C Cable</h4>
                             <p class="price">₦3,500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🎵</span>
+                                <!-- <img src="images/products/earpods.png" alt="EarPods"> -->
                             </div>
                             <h4>EarPods</h4>
                             <p class="price">₦12,000</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">💄</span>
+                                <!-- <img src="images/products/cream-jar.png" alt="Cream Jar"> -->
                             </div>
                             <h4>Cream Jar</h4>
                             <p class="price">₦7,800</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🍷</span>
+                                <!-- <img src="images/products/wine.png" alt="Bottle of Wine"> -->
                             </div>
                             <h4>Bottle of Wine</h4>
                             <p class="price">₦18,500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">💾</span>
+                                <!-- <img src="images/products/flash-drive.png" alt="Flash Drive"> -->
                             </div>
                             <h4>Flash Drive 32GB</h4>
                             <p class="price">₦4,200</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <span class="product-placeholder-icon">🔋</span>
+                                <!-- <img src="images/products/power-bank.png" alt="Power Bank"> -->
                             </div>
                             <h4>Power Bank</h4>
                             <p class="price">₦9,500</p>
@@ -1971,6 +2123,7 @@
 <!-- About Section -->
 
 <section id="about" class="about-section">
+    <div class="about-wave-pattern"></div>
     <div class="about-container">
         <h2 class="section-title" style="text-align: center;">ABOUT VINCESLINK</h2>
         <div class="about-grid">
@@ -2101,10 +2254,28 @@
         </div>
     </div>
 
+    <!-- Chip-style Legal Links -->
     <div class="legal-links">
-        <a href="javascript:void(0)" onclick="showTermsPopup()" class="legal-link">Terms & Conditions</a>
-        <a href="javascript:void(0)" onclick="showPrivacyPopup()" class="legal-link">Privacy Policy</a>
-        <a href="#contact" class="legal-link">Contact Support</a>
+        <a href="javascript:void(0)" onclick="showTermsPopup()" class="legal-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            Terms & Conditions
+        </a>
+        <a href="javascript:void(0)" onclick="showPrivacyPopup()" class="legal-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Privacy Policy
+        </a>
+        <a href="#contact" class="legal-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Contact Support
+        </a>
     </div>
 </div>
 ```
