@@ -1333,7 +1333,8 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo-section">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Vinceslink Logo" class="logo-img" id="navLogo">
+            <!-- 📷 LOGO IMAGE: Replace 'images/logo.png' with your logo file -->
+            <img src="images/logo.png" alt="Vinceslink Logo" class="logo-img">
             <span class="brand-text">vinceslink</span>
         </div>
         <button class="menu-toggle" id="menuToggle">
@@ -1387,8 +1388,48 @@
         </div>
 
         <!-- Product Carousel -->
+        <!-- 📷 CAROUSEL IMAGES: Add your 6 product images in the images/carousel/ folder -->
+        <!-- Images needed:
+             1. images/carousel/charger.jpg (or .png)
+             2. images/carousel/headset.jpg
+             3. images/carousel/fanice.jpg
+             4. images/carousel/cosmetics.jpg
+             5. images/carousel/land.jpg
+             6. images/carousel/house.jpg
+        -->
         <div class="carousel-wrapper">
-            <div class="carousel-container" id="productCarousel"></div>
+            <div class="carousel-container" id="productCarousel">
+                <div class="product-card-carousel">
+                    <img src="images/carousel/charger.jpg" alt="PF-014 Charger" class="product-image-carousel">
+                    <h4 class="product-name">PF-014 Charger</h4>
+                    <p class="product-category">Gadgets</p>
+                </div>
+                <div class="product-card-carousel">
+                    <img src="images/carousel/headset.jpg" alt="P-31 Headset" class="product-image-carousel">
+                    <h4 class="product-name">P-31 Headset</h4>
+                    <p class="product-category">Gadgets</p>
+                </div>
+                <div class="product-card-carousel">
+                    <img src="images/carousel/fanice.jpg" alt="Fanice" class="product-image-carousel">
+                    <h4 class="product-name">Fanice</h4>
+                    <p class="product-category">Super Store</p>
+                </div>
+                <div class="product-card-carousel">
+                    <img src="images/carousel/cosmetics.jpg" alt="Cosmetics" class="product-image-carousel">
+                    <h4 class="product-name">Cosmetics</h4>
+                    <p class="product-category">Super Store</p>
+                </div>
+                <div class="product-card-carousel">
+                    <img src="images/carousel/land.jpg" alt="Land" class="product-image-carousel">
+                    <h4 class="product-name">Land</h4>
+                    <p class="product-category">Realty</p>
+                </div>
+                <div class="product-card-carousel">
+                    <img src="images/carousel/house.jpg" alt="House" class="product-image-carousel">
+                    <h4 class="product-name">House</h4>
+                    <p class="product-category">Realty</p>
+                </div>
+            </div>
             <div class="carousel-dots" id="carouselDots"></div>
         </div>
     </div>
@@ -1423,23 +1464,29 @@
             <h2 class="section-title">OUR BUSINESS DIVISIONS</h2>
         </div>
 
+        <!-- 📷 BUSINESS CARD IMAGES: Add your 3 business division images -->
+        <!-- Images needed:
+             1. images/business/gadgets.jpg - Gadget Hub image
+             2. images/business/superstore.jpg - Super Store image
+             3. images/business/realty.jpg - Real Estate image
+        -->
         <div class="business-cards">
             <div class="business-card">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Gadget Hub" class="business-card-image" id="gadgetImage">
+                <img src="images/business/gadgets.jpg" alt="Gadget Hub" class="business-card-image">
                 <h3>Vinceslink<br>Gadget Hub</h3>
                 <p>Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
                 <a href="#marketplace" class="business-card-btn">View products</a>
             </div>
 
             <div class="business-card">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Super Store" class="business-card-image" id="storeImage">
+                <img src="images/business/superstore.jpg" alt="Super Store" class="business-card-image">
                 <h3>Vinceslink<br>Super Store</h3>
                 <p>Daily essentials and premium groceries delivered to your doorstep.</p>
                 <a href="#marketplace" class="business-card-btn">Shop Essentials</a>
             </div>
 
             <div class="business-card">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Realty" class="business-card-image" id="realtyImage">
+                <img src="images/business/realty.jpg" alt="Realty" class="business-card-image">
                 <h3>Vinceslink<br>Realty</h3>
                 <p>Trusted real estate solutions for buying, selling, and investing.</p>
                 <a href="#marketplace" class="business-card-btn">Book Consultation</a>
@@ -1464,13 +1511,18 @@
         </div>
 
         <!-- Phone Mockup -->
+        <!-- 📷 MARKETPLACE PHONE IMAGES: Add your marketplace product images -->
+        <!-- Images needed in images/marketplace/ folder:
+             1. featured-banner.jpg - Main featured banner
+             2. product1.jpg through product6.jpg - 6 small product images
+        -->
         <div class="phone-mockup">
             <div class="phone-frame">
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
                     <div class="phone-header">
                         <div class="phone-logo">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="VL" id="phoneLogo">
+                            <img src="images/logo.png" alt="VL">
                             <span>VINCESLINK</span>
                         </div>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
@@ -1487,7 +1539,48 @@
                         <div class="phone-tab">Profile</div>
                     </div>
 
-                    <div class="phone-content" id="phoneContent"></div>
+                    <div class="phone-content">
+                        <div class="featured-banner">
+                            <img src="images/marketplace/featured-banner.jpg" alt="Featured">
+                            <div class="featured-badge">
+                                <span class="badge verified">✓ Verified</span>
+                                <span class="badge secured">🔒 Secured</span>
+                            </div>
+                        </div>
+
+                        <div class="product-grid">
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="images/marketplace/product1.jpg" alt="Product 1">
+                                <h4>Wireless Ch...</h4>
+                                <p class="price">$39</p>
+                            </div>
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="images/marketplace/product2.jpg" alt="Product 2">
+                                <h4>Wireless E...</h4>
+                                <p class="price">$99</p>
+                            </div>
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="images/marketplace/product3.jpg" alt="Product 3">
+                                <h4>Apple</h4>
+                                <p class="price">$1.29</p>
+                            </div>
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="images/marketplace/product4.jpg" alt="Product 4">
+                                <h4>Wireless C...</h4>
+                                <p class="price">$39</p>
+                            </div>
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="images/marketplace/product5.jpg" alt="Product 5">
+                                <h4>USB-C</h4>
+                                <p class="price">$19</p>
+                            </div>
+                            <div class="product-item" onclick="showComingSoon()">
+                                <img src="images/marketplace/product6.jpg" alt="Product 6">
+                                <h4>Cream Jar</h4>
+                                <p class="price">$24</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1530,8 +1623,10 @@
                 </p>
             </div>
 
+            <!-- 📷 FOUNDER IMAGE: Add Vincent's photo -->
+            <!-- Image needed: images/founder.jpg -->
             <div class="founder-card">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Vincent - Founder" class="founder-img" id="founderImg">
+                <img src="images/founder.jpg" alt="Vincent - Founder" class="founder-img">
                 <h3>Vincent</h3>
                 <p class="founder-title">Founder & CEO</p>
                 <p class="founder-bio">
@@ -1771,72 +1866,6 @@
         alert('Privacy Policy\n\nVinceslink is committed to protecting your privacy. We collect and process personal information only as necessary to provide our services. Your data is stored securely and never sold to third parties.\n\nFor full details, please contact us at vinceslink@gmail.com');
     }
 
-    // ==================== LOAD IMAGES ====================
-    const navLogo = document.getElementById('navLogo');
-    const phoneLogo = document.getElementById('phoneLogo');
-    
-    fetch('/mnt/user-data/uploads/E2C5989C-3BC2-416B-8A54-18BCE97A2D01.png')
-        .then(r => r.blob())
-        .then(blob => {
-            const url = URL.createObjectURL(blob);
-            navLogo.src = url;
-            phoneLogo.src = url;
-        })
-        .catch(() => {
-            navLogo.src = 'logo.png';
-            phoneLogo.src = 'logo.png';
-        });
-
-    // Load founder image
-    const founderImg = document.getElementById('founderImg');
-    fetch('/mnt/user-data/uploads/IMG_8977.jpeg')
-        .then(r => r.blob())
-        .then(blob => founderImg.src = URL.createObjectURL(blob))
-        .catch(() => {
-            const canvas = document.createElement('canvas');
-            canvas.width = 400;
-            canvas.height = 400;
-            const ctx = canvas.getContext('2d');
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, '#0019A8');
-            gradient.addColorStop(1, '#20B2AA');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
-            ctx.font = 'bold 80px Inter';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Vincent', canvas.width / 2, canvas.height / 2);
-            founderImg.src = canvas.toDataURL();
-        });
-
-    // Load business card images
-    const gadgetImage = document.getElementById('gadgetImage');
-    const storeImage = document.getElementById('storeImage');
-    const realtyImage = document.getElementById('realtyImage');
-
-    function createPlaceholder(element, text, color) {
-        const canvas = document.createElement('canvas');
-        canvas.width = 800;
-        canvas.height = 600;
-        const ctx = canvas.getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, color);
-        gradient.addColorStop(1, '#0019A8');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'white';
-        ctx.font = 'bold 64px Inter';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-        element.src = canvas.toDataURL();
-    }
-
-    createPlaceholder(gadgetImage, 'Gadgets', '#20B2AA');
-    createPlaceholder(storeImage, 'Essentials', '#FF8C42');
-    createPlaceholder(realtyImage, 'Properties', '#0019A8');
-
     // ==================== MOBILE MENU ====================
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
@@ -1865,45 +1894,24 @@
         });
     });
 
-    // ==================== PRODUCT CAROUSEL ====================
-    const carouselProducts = [
-        { name: 'PF-014 Charger', category: 'Gadgets', color: '#0019A8' },
-        { name: 'P-31 Headset', category: 'Gadgets', color: '#20B2AA' },
-        { name: 'Fanice', category: 'Super Store', color: '#FF8C42' },
-        { name: 'Cosmetics', category: 'Super Store', color: '#FF69B4' },
-        { name: 'Land', category: 'Realty', color: '#228B22' },
-        { name: 'House', category: 'Realty', color: '#8B4513' }
-    ];
-
+    // ==================== CAROUSEL ====================
     const carousel = document.getElementById('productCarousel');
     const dotsContainer = document.getElementById('carouselDots');
+    const carouselItems = carousel.querySelectorAll('.product-card-carousel');
 
-    carouselProducts.forEach((product, index) => {
-        const card = document.createElement('div');
-        card.className = 'product-card-carousel';
-        const canvas = document.createElement('canvas');
-        canvas.width = 400;
-        canvas.height = 400;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = product.color;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'white';
-        ctx.font = 'bold 48px Inter';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(product.name, canvas.width / 2, canvas.height / 2);
-        card.innerHTML = `
-            <img src="${canvas.toDataURL()}" alt="${product.name}" class="product-image-carousel">
-            <h4 class="product-name">${product.name}</h4>
-            <p class="product-category">${product.category}</p>
-        `;
-        carousel.appendChild(card);
+    // Create dots
+    carouselItems.forEach((item, index) => {
         const dot = document.createElement('div');
         dot.className = 'dot';
         if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            const scrollAmount = index * (carousel.offsetWidth / Math.min(carouselItems.length, 3));
+            carousel.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+        });
         dotsContainer.appendChild(dot);
     });
 
+    // Auto scroll
     let scrollPosition = 0;
     setInterval(() => {
         scrollPosition += 245;
@@ -1916,71 +1924,6 @@
             dot.classList.toggle('active', i === index);
         });
     }, 3000);
-
-    // ==================== MARKETPLACE PHONE ====================
-    const phoneContent = document.getElementById('phoneContent');
-    const marketplaceProducts = [
-        { name: 'Wireless Ch...', price: '$39', emoji: '🎧' },
-        { name: 'Wireless E...', price: '$99', emoji: '🎧' },
-        { name: 'Apple', price: '$1.29', emoji: '🍎' },
-        { name: 'Wireless C...', price: '$39', emoji: '📱' },
-        { name: 'USB-C', price: '$19', emoji: '🔌' },
-        { name: 'Cream Jar', price: '$24', emoji: '🧴' }
-    ];
-
-    const banner = document.createElement('div');
-    banner.className = 'featured-banner';
-    const bannerCanvas = document.createElement('canvas');
-    bannerCanvas.width = 800;
-    bannerCanvas.height = 400;
-    const bannerCtx = bannerCanvas.getContext('2d');
-    const bannerGradient = bannerCtx.createLinearGradient(0, 0, bannerCanvas.width, bannerCanvas.height);
-    bannerGradient.addColorStop(0, '#1a1a1a');
-    bannerGradient.addColorStop(1, '#4A90E2');
-    bannerCtx.fillStyle = bannerGradient;
-    bannerCtx.fillRect(0, 0, bannerCanvas.width, bannerCanvas.height);
-    bannerCtx.fillStyle = 'white';
-    bannerCtx.font = 'bold 72px Inter';
-    bannerCtx.textAlign = 'center';
-    bannerCtx.textBaseline = 'middle';
-    bannerCtx.fillText('Featured', bannerCanvas.width / 2, bannerCanvas.height / 2);
-    banner.innerHTML = `
-        <img src="${bannerCanvas.toDataURL()}" alt="Featured">
-        <div class="featured-badge">
-            <span class="badge verified">✓ Verified</span>
-            <span class="badge secured">🔒 Secured</span>
-        </div>
-    `;
-    phoneContent.appendChild(banner);
-
-    const productGrid = document.createElement('div');
-    productGrid.className = 'product-grid';
-    marketplaceProducts.forEach(product => {
-        const item = document.createElement('div');
-        item.className = 'product-item';
-        item.onclick = showComingSoon;
-        const itemCanvas = document.createElement('canvas');
-        itemCanvas.width = 200;
-        itemCanvas.height = 200;
-        const itemCtx = itemCanvas.getContext('2d');
-        itemCtx.fillStyle = '#f0f0f0';
-        itemCtx.fillRect(0, 0, itemCanvas.width, itemCanvas.height);
-        itemCtx.font = '80px Arial';
-        itemCtx.textAlign = 'center';
-        itemCtx.textBaseline = 'middle';
-        itemCtx.fillText(product.emoji, itemCanvas.width / 2, itemCanvas.height / 2);
-        item.innerHTML = `
-            <img src="${itemCanvas.toDataURL()}" alt="${product.name}">
-            <h4>${product.name}</h4>
-            <p class="price">${product.price}</p>
-        `;
-        productGrid.appendChild(item);
-    });
-    phoneContent.appendChild(productGrid);
-
-    document.querySelectorAll('.phone-tab').forEach(tab => {
-        tab.addEventListener('click', showComingSoon);
-    });
 
     // ==================== FAQ ACCORDION ====================
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -2002,6 +1945,11 @@
         const email = document.getElementById('newsletterEmail').value;
         alert('Thank you for subscribing! 🎉\n\nYou will receive updates at: ' + email);
         this.reset();
+    });
+
+    // ==================== PHONE TABS ====================
+    document.querySelectorAll('.phone-tab').forEach(tab => {
+        tab.addEventListener('click', showComingSoon);
     });
 
     // ==================== MODALS ====================
