@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Vinceslink Shopping Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .coming-soon-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+
+```
+    .coming-soon-content {
+        text-align: center;
+        max-width: 600px;
+        background: var(--white);
+        padding: 60px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .coming-soon-logo {
+        margin-bottom: 30px;
+    }
+
+    .coming-soon-logo img {
+        height: 100px;
+        width: auto;
+    }
+
+    .coming-soon-content h1 {
+        font-size: 42px;
+        color: var(--primary-blue);
+        margin-bottom: 20px;
+        font-weight: 800;
+    }
+
+    .coming-soon-content h2 {
+        font-size: 28px;
+        color: var(--teal);
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .coming-soon-content p {
+        font-size: 16px;
+        color: var(--text-light);
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    .features-list {
+        text-align: left;
+        margin: 30px 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .features-list li {
+        padding: 12px 0;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .features-list li::before {
+        content: "✓";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: var(--teal);
+        color: var(--white);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .notify-form {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .notify-input {
+        flex: 1;
+        padding: 15px 20px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+
+    .notify-btn {
+        background: var(--primary-blue);
+        color: var(--white);
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .notify-btn:hover {
+        background: #0025D1;
+        transform: translateY(-2px);
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        color: var(--primary-blue);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+    .back-link:hover {
+        color: var(--teal);
+    }
+
+    @media (max-width: 768px) {
+        .coming-soon-content {
+            padding: 40px 25px;
+        }
+
+        .coming-soon-content h1 {
+            font-size: 32px;
+        }
+
+        .coming-soon-content h2 {
+            font-size: 22px;
+        }
+
+        .notify-form {
+            flex-direction: column;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="coming-soon-container">
+        <div class="coming-soon-content">
+            <div class="coming-soon-logo">
+                <img src="logo.png" alt="Vinceslink" id="comingSoonLogo">
+            </div>
+
+```
+        <h1>Coming Soon!</h1>
+        <h2>Vinceslink Shopping Center</h2>
+        
+        <p>
+            We're building something amazing! Our e-commerce platform is under development and will be 
+            launching soon with an incredible shopping experience.
+        </p>
+
+        <ul class="features-list">
+            <li>Seamless online shopping</li>
+            <li>Secure payment options</li>
+            <li>Fast delivery services</li>
+            <li>Order tracking system</li>
+            <li>Exclusive online deals</li>
+            <li>User-friendly interface</li>
+        </ul>
+
+        <p style="margin-top: 30px; font-size: 14px;">
+            Want to be notified when we launch? Enter your email below:
+        </p>
+
+        <form class="notify-form" id="notifyForm">
+            <input type="email" class="notify-input" placeholder="Enter your email" id="notifyEmail" required>
+            <button type="submit" class="notify-btn">Notify Me</button>
+        </form>
+
+        <p style="margin-top: 30px; color: var(--text-light); font-size: 14px;">
+            In the meantime, you can contact us directly to place orders:<br>
+            <strong>+234 907 868 3552</strong>
+        </p>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+</div>
+
+<script>
+    // Load logo
+    const logo = document.getElementById('comingSoonLogo');
+    logo.onerror = function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 400;
+        canvas.height = 400;
+        const ctx = canvas.getContext('2d');
+        
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#0019A8');
+        gradient.addColorStop(1, '#20B2AA');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 72px Inter';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('VL', canvas.width / 2, canvas.height / 2);
+        
+        this.src = canvas.toDataURL();
+    };
+    logo.src = 'logo.png';
+
+    // Notify form
+    document.getElementById('notifyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('notifyEmail').value;
+        alert('Thank you! We\'ll notify you at ' + email + ' when we launch! 🎉');
+        this.reset();
+    });
+</script>
+```
+
+</body>
+</html>
