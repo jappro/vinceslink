@@ -7,7 +7,7 @@
     <title>Vinceslink - Everyday Essentials, Smart Gadgets & Trusted Properties</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 ```
 <style>
@@ -39,6 +39,7 @@
         --text-dark: #f0f0f0;
         --text-light: #b0b0b0;
         --light-gray: #2d2d2d;
+        --white: #1a1a1a;
     }
 
     html {
@@ -58,7 +59,7 @@
     .navbar {
         background: var(--card-bg);
         padding: 15px 0;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         position: sticky;
         top: 0;
         z-index: 1000;
@@ -90,6 +91,7 @@
         font-weight: 710;
         color: var(--primary-blue);
         letter-spacing: 0.6px;
+        font-family: 'Poppins', sans-serif;
     }
 
     .nav-links {
@@ -125,6 +127,7 @@
         color: var(--text-dark);
         font-weight: 500;
         font-size: 15px;
+        user-select: none;
     }
 
     .services-toggle svg {
@@ -140,10 +143,10 @@
         top: 100%;
         left: 0;
         background: var(--card-bg);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         border-radius: 12px;
         padding: 15px 0;
-        min-width: 200px;
+        min-width: 220px;
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
@@ -167,43 +170,46 @@
     .services-submenu a:hover {
         background: var(--light-gray);
         color: var(--primary-blue);
+        padding-left: 30px;
     }
 
     /* Sign Up Button */
     .signup-btn {
         background: linear-gradient(135deg, var(--primary-blue), #0025D1);
-        color: var(--white) !important;
-        padding: 10px 25px;
+        color: #FFFFFF !important;
+        padding: 12px 30px;
         border-radius: 50px;
         font-weight: 600;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 25, 168, 0.3);
     }
 
     .signup-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 25, 168, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 25, 168, 0.4);
     }
 
     /* Dark Mode Toggle */
     .theme-toggle {
-        width: 50px;
-        height: 26px;
+        width: 55px;
+        height: 28px;
         background: var(--light-gray);
         border-radius: 50px;
         position: relative;
         cursor: pointer;
         transition: background 0.3s ease;
-        border: 2px solid var(--text-light);
+        border: 2px solid rgba(0, 25, 168, 0.2);
     }
 
     .theme-toggle.active {
         background: var(--primary-blue);
+        border-color: var(--primary-blue);
     }
 
     .theme-toggle-btn {
-        width: 22px;
-        height: 22px;
-        background: var(--white);
+        width: 24px;
+        height: 24px;
+        background: var(--card-bg);
         border-radius: 50%;
         position: absolute;
         top: 50%;
@@ -214,10 +220,11 @@
         align-items: center;
         justify-content: center;
         font-size: 12px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     .theme-toggle.active .theme-toggle-btn {
-        left: 24px;
+        left: 27px;
     }
 
     .menu-toggle {
@@ -258,6 +265,7 @@
         color: var(--primary-blue);
         margin-bottom: 20px;
         letter-spacing: 2px;
+        font-family: 'Poppins', sans-serif;
     }
 
     .hero-subtitle {
@@ -451,8 +459,9 @@
         background: linear-gradient(to bottom, 
             var(--bg-color) 0%, 
             var(--bg-color) 5%,
-            #E0F7F5 25%, 
-            var(--teal) 55%, 
+            rgba(224, 247, 245, 0.5) 20%,
+            rgba(32, 178, 170, 0.3) 45%, 
+            rgba(32, 178, 170, 0.6) 70%,
             var(--primary-blue) 100%
         );
         padding: 100px 0;
@@ -499,6 +508,7 @@
         margin-bottom: 60px;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-family: 'Poppins', sans-serif;
     }
 
     .business-cards {
@@ -510,11 +520,12 @@
     .business-card {
         background: var(--card-bg);
         border-radius: 24px;
-        padding: 35px;
+        padding: 0;
         text-align: center;
         transition: all 0.4s ease;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     }
 
     .business-card::before {
@@ -532,26 +543,42 @@
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
     }
 
-    .business-card h3 {
-        font-size: 30px;
-        font-weight: 800;
-        color: var(--text-dark);
-        margin-bottom: 25px;
-    }
-
+    /* FIXED: Business Image with Overlaid Text */
     .business-image-wrapper {
         position: relative;
         width: 100%;
-        height: 350px;
-        border-radius: 16px;
+        height: 400px;
         overflow: hidden;
-        margin-bottom: 25px;
     }
 
     .business-card-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    /* Business Name Overlay on Image */
+    .business-name-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 20px;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+
+    .business-name-overlay h3 {
+        font-size: 30px;
+        font-weight: 800;
+        color: #FFFFFF;
+        margin: 0;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        font-family: 'Poppins', sans-serif;
     }
 
     /* Smooth Gradient on Business Images */
@@ -564,10 +591,9 @@
         bottom: 0;
         background: linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0) 0%,
             rgba(255, 255, 255, 0) 70%,
-            rgba(255, 255, 255, 0.2) 100%
+            rgba(255, 255, 255, 0.1) 100%
         );
         pointer-events: none;
     }
@@ -575,14 +601,17 @@
     [data-theme="dark"] .business-image-wrapper::after {
         background: linear-gradient(
             to bottom,
-            rgba(26, 26, 26, 0.2) 0%,
-            rgba(26, 26, 26, 0) 30%,
+            rgba(26, 26, 26, 0) 0%,
             rgba(26, 26, 26, 0) 70%,
-            rgba(26, 26, 26, 0.2) 100%
+            rgba(26, 26, 26, 0.1) 100%
         );
     }
 
-    .business-card p {
+    .business-card-content {
+        padding: 30px 35px 35px;
+    }
+
+    .business-card-content p {
         color: var(--text-light);
         line-height: 1.9;
         margin-bottom: 25px;
@@ -661,7 +690,11 @@
         }
 
         .business-image-wrapper {
-            height: 300px;
+            height: 350px;
+        }
+
+        .business-name-overlay h3 {
+            font-size: 26px;
         }
     }
 
@@ -679,10 +712,19 @@
             width: 220px;
             height: 220px;
         }
-    }
 
-    /* Rest of the styles (marketplace, about, FAQ, etc.) remain the same as previous version */
-    /* I'll add placeholder here - need to continue in next part */
+        .business-image-wrapper {
+            height: 300px;
+        }
+
+        .business-name-overlay {
+            padding: 20px 15px;
+        }
+
+        .business-name-overlay h3 {
+            font-size: 22px;
+        }
+    }
 </style>
 ```
 
@@ -814,7 +856,7 @@
     </div>
 </section>
 
-<!-- Refined Business Divisions Section -->
+<!-- FIXED Business Divisions Section -->
 <section id="services" class="business-section">
     <div class="business-container">
         <!-- Breadcrumb -->
@@ -827,31 +869,46 @@
         <h2 class="section-title">OUR BUSINESS DIVISIONS</h2>
 
         <div class="business-cards">
+            <!-- Gadget Hub Card -->
             <div class="business-card">
-                <h3>Vinceslink<br>Gadget Hub</h3>
                 <div class="business-image-wrapper">
                     <img src="images/business/IMG_8993.jpeg" alt="Gadget Hub" class="business-card-image">
+                    <div class="business-name-overlay">
+                        <h3>Vinceslink<br>Gadget Hub</h3>
+                    </div>
                 </div>
-                <p>Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
-                <a href="#marketplace" class="business-card-btn">View products</a>
+                <div class="business-card-content">
+                    <p>Your one-stop destination for smart gadgets and cutting-edge electronics.</p>
+                    <a href="#marketplace" class="business-card-btn">View products</a>
+                </div>
             </div>
 
+            <!-- Super Store Card -->
             <div class="business-card">
-                <h3>Vinceslink<br>Super Store</h3>
                 <div class="business-image-wrapper">
                     <img src="images/business/IMG_8991.jpeg" alt="Super Store" class="business-card-image">
+                    <div class="business-name-overlay">
+                        <h3>Vinceslink<br>Super Store</h3>
+                    </div>
                 </div>
-                <p>Daily essentials and premium groceries delivered to your doorstep.</p>
-                <a href="#marketplace" class="business-card-btn">Shop Essentials</a>
+                <div class="business-card-content">
+                    <p>Daily essentials and premium groceries delivered to your doorstep.</p>
+                    <a href="#marketplace" class="business-card-btn">Shop Essentials</a>
+                </div>
             </div>
 
+            <!-- Realty Card -->
             <div class="business-card">
-                <h3>Vinceslink<br>Realty</h3>
                 <div class="business-image-wrapper">
                     <img src="images/business/IMG_8998.jpeg" alt="Realty" class="business-card-image">
+                    <div class="business-name-overlay">
+                        <h3>Vinceslink<br>Realty</h3>
+                    </div>
                 </div>
-                <p>Trusted real estate solutions for buying, selling, and investing.</p>
-                <a href="#marketplace" class="business-card-btn">Book Consultation</a>
+                <div class="business-card-content">
+                    <p>Trusted real estate solutions for buying, selling, and investing.</p>
+                    <a href="#marketplace" class="business-card-btn">Book Consultation</a>
+                </div>
             </div>
         </div>
     </div>
@@ -914,6 +971,17 @@
         }
     });
 
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        });
+    });
+
     // ==================== CAROUSEL ====================
     const carousel = document.getElementById('productCarousel');
     const dotsContainer = document.getElementById('carouselDots');
@@ -948,7 +1016,6 @@
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                navLinks.classList.remove('active');
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
