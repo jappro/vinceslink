@@ -430,7 +430,7 @@
         transform: translateY(-2px);
     }
 
-    /* ==================== PRODUCT CAROUSEL ==================== */
+    /* ==================== PRODUCT CAROUSEL - ENHANCED ==================== */
     .carousel-wrapper {
         max-width: 1400px;
         margin: 0 auto;
@@ -441,12 +441,12 @@
 
     .carousel-container {
         display: flex;
-        gap: 30px;
+        gap: 35px;
         overflow-x: auto;
         scroll-behavior: smooth;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 15px;
+        padding: 20px;
     }
 
     .carousel-container::-webkit-scrollbar {
@@ -454,10 +454,10 @@
     }
 
     .product-card-carousel {
-        min-width: 280px;
+        min-width: 300px;
         background: var(--card-bg);
         border-radius: 20px;
-        padding: 25px;
+        padding: 30px 25px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         text-align: center;
         transition: all 0.3s ease;
@@ -465,12 +465,12 @@
 
     .product-card-carousel:hover {
         transform: translateY(-10px);
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     }
 
     .product-image-carousel {
-        width: 230px;
-        height: 230px;
+        width: 250px;
+        height: 250px;
         object-fit: cover;
         border-radius: 16px;
         margin-bottom: 20px;
@@ -556,7 +556,7 @@
         color: var(--white);
     }
 
-    /* Business Cards - Matching UI Design */
+    /* Business Cards - Color Blocking / Split Background Style */
     .business-cards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -565,29 +565,30 @@
     }
 
     .business-card {
-        background: var(--card-bg);
+        background: var(--white);
         border-radius: 24px;
         overflow: hidden;
         position: relative;
-        height: 500px;
+        height: 520px;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     }
 
     body.dark-mode .business-card {
-        background: rgba(42, 42, 42, 0.9);
+        background: #2a2a2a;
     }
 
     .business-card:hover {
         transform: translateY(-12px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     }
 
     .business-card-image-wrapper {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 320px;
         overflow: hidden;
+        border-radius: 24px 24px 0 0;
     }
 
     .business-card-image {
@@ -601,42 +602,45 @@
         transform: scale(1.05);
     }
 
-    /* Overlay content on images */
-    .business-card-content {
+    /* Title overlay on image */
+    .business-card-title {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
+        padding: 30px;
         background: linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 0, 0, 0.5) 60%,
-            rgba(0, 0, 0, 0.8) 100%
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.4) 60%,
+            transparent 100%
         );
+    }
+
+    .business-card-title h3 {
+        font-size: 28px;
+        font-weight: 800;
+        color: white;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    /* Color blocking bottom section */
+    .business-card-content {
+        position: relative;
+        padding: 30px;
+        background: var(--dark-gray);
+        height: 200px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 40px 30px;
-        color: white;
     }
 
-    .business-card-content h3 {
-        font-size: 32px;
-        font-weight: 800;
-        color: white;
-        text-align: left;
-        line-height: 1.2;
-        margin-bottom: 0;
+    body.dark-mode .business-card-content {
+        background: #1a1a1a;
     }
 
-    .business-card-footer {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .business-card-footer p {
+    .business-card-content p {
         color: rgba(255, 255, 255, 0.9);
         line-height: 1.6;
         margin: 0;
@@ -904,7 +908,7 @@
         border-radius: 16px;
         overflow: hidden;
         margin-bottom: 20px;
-        height: 160px;
+        height: 180px;
         background: #e8e8e8;
     }
 
@@ -912,19 +916,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
-
-    /* Placeholder for featured banner when no image */
-    .featured-banner-placeholder {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
     }
 
     .featured-badge {
@@ -978,10 +969,10 @@
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
-    /* Image placeholder container */
+    /* Larger image containers */
     .product-image-wrapper {
         width: 100%;
-        height: 75px;
+        height: 85px;
         background: #FFFFFF;
         border-radius: 10px;
         margin-bottom: 8px;
@@ -994,8 +985,8 @@
     }
 
     .product-image-wrapper img {
-        max-width: 85%;
-        max-height: 85%;
+        max-width: 90%;
+        max-height: 90%;
         object-fit: contain;
     }
 
@@ -1678,20 +1669,50 @@
             position: fixed;
             top: 75px;
             right: -100%;
-            width: 80%;
-            max-width: 320px;
+            width: 85%;
+            max-width: 350px;
             background: var(--nav-bg);
             flex-direction: column;
             align-items: flex-start;
-            padding: 30px;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
+            padding: 40px 30px;
+            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             height: calc(100vh - 75px);
             overflow-y: auto;
+            z-index: 999;
         }
 
         .nav-links.active {
             right: 0;
+        }
+
+        .nav-links li {
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links.active li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+        .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+        .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+        .nav-links.active li:nth-child(5) { transition-delay: 0.3s; }
+        .nav-links.active li:nth-child(6) { transition-delay: 0.35s; }
+        .nav-links.active li:nth-child(7) { transition-delay: 0.4s; }
+        .nav-links.active li:nth-child(8) { transition-delay: 0.45s; }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 0;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .nav-item {
@@ -1702,11 +1723,26 @@
             position: static;
             box-shadow: none;
             margin-top: 10px;
-            padding-left: 15px;
+            padding-left: 20px;
+            background: rgba(0, 25, 168, 0.05);
+            border-radius: 8px;
+        }
+
+        .signup-btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .dark-mode-toggle {
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
         }
 
         .menu-toggle {
             display: flex;
+            z-index: 1000;
         }
 
         .hero-title {
@@ -1741,12 +1777,16 @@
             flex-direction: column;
         }
 
-        .business-card-content h3 {
-            font-size: 24px;
+        .business-card-title h3 {
+            font-size: 22px;
         }
 
         .business-card {
-            height: 400px;
+            height: 480px;
+        }
+
+        .business-card-image-wrapper {
+            height: 280px;
         }
     }
 
@@ -1991,11 +2031,10 @@
             </div>
 
 ```
-        <!-- Shopping Cart Illustration - Add your image here -->
-        <!-- Image dimensions: 900px x 800px (recommended) -->
+        <!-- Shopping Cart Illustration -->
         <div class="cart-placeholder">
-            <!-- <img src="images/shopping-cart.png" alt="Shopping Cart"> -->
-            <p class="cart-placeholder-text">Shopping cart illustration<br/>Recommended size: 900 x 800px</p>
+            <img src="images/shopping-cart.png" alt="Shopping Cart" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.cart-placeholder-text').style.display='none';">
+            <p class="cart-placeholder-text">Shopping cart illustration<br/>900 x 800px</p>
         </div>
     </div>
 
@@ -2024,88 +2063,83 @@
                 </div>
 
                 <div class="phone-content">
-                    <!-- Featured Banner - Add your image here -->
-                    <!-- Image dimensions: 660px x 320px (recommended) -->
+                    <!-- Featured Banner -->
                     <div class="featured-banner">
-                        <!-- <img src="images/marketplace/featured-banner.jpg" alt="Featured"> -->
-                        <div class="featured-banner-placeholder">
-                            Featured Banner<br/>660 x 320px
-                        </div>
+                        <img src="images/marketplace/featured-banner.jpg" alt="Featured">
                         <div class="featured-badge">
                             <span class="badge verified">✓ Verified</span>
                             <span class="badge secured">🔒 Secured</span>
                         </div>
                     </div>
 
-                    <!-- Product Grid - Bento Grid Style -->
-                    <!-- Product image dimensions: 200px x 200px (recommended) -->
+                    <!-- Product Grid - Ready for images -->
                     <div class="product-grid">
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/wireless-charger.png" alt="Wireless Charger"> -->
+                                <img src="images/products/wireless-charger.png" alt="Wireless Charger">
                             </div>
                             <h4>Wireless Charger</h4>
                             <p class="price">₦8,500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/fast-charger.png" alt="Fast Charger"> -->
+                                <img src="images/products/fast-charger.png" alt="Fast Charger">
                             </div>
                             <h4>Fast Charger</h4>
                             <p class="price">₦6,200</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/wireless-headset.png" alt="Wireless Headset"> -->
+                                <img src="images/products/wireless-headset.png" alt="Wireless Headset">
                             </div>
                             <h4>Wireless Headset</h4>
                             <p class="price">₦15,000</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/apple.png" alt="Apple"> -->
+                                <img src="images/products/apple.png" alt="Apple">
                             </div>
                             <h4>Apple</h4>
                             <p class="price">₦500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/usb-c-cable.png" alt="USB-C Cable"> -->
+                                <img src="images/products/usb-c-cable.png" alt="USB-C Cable">
                             </div>
                             <h4>USB-C Cable</h4>
                             <p class="price">₦3,500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/earpods.png" alt="EarPods"> -->
+                                <img src="images/products/earpods.png" alt="EarPods">
                             </div>
                             <h4>EarPods</h4>
                             <p class="price">₦12,000</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/cream-jar.png" alt="Cream Jar"> -->
+                                <img src="images/products/cream-jar.png" alt="Cream Jar">
                             </div>
                             <h4>Cream Jar</h4>
                             <p class="price">₦7,800</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/wine.png" alt="Bottle of Wine"> -->
+                                <img src="images/products/wine.png" alt="Bottle of Wine">
                             </div>
                             <h4>Bottle of Wine</h4>
                             <p class="price">₦18,500</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/flash-drive.png" alt="Flash Drive"> -->
+                                <img src="images/products/flash-drive.png" alt="Flash Drive">
                             </div>
                             <h4>Flash Drive 32GB</h4>
                             <p class="price">₦4,200</p>
                         </div>
                         <div class="product-item" onclick="showComingSoon()">
                             <div class="product-image-wrapper">
-                                <!-- <img src="images/products/power-bank.png" alt="Power Bank"> -->
+                                <img src="images/products/power-bank.png" alt="Power Bank">
                             </div>
                             <h4>Power Bank</h4>
                             <p class="price">₦9,500</p>
@@ -2552,19 +2586,32 @@
         dotsContainer.appendChild(dot);
     });
 
-    // Auto scroll
+    // Enhanced auto scroll with smooth transitions
     let scrollPosition = 0;
+    let isScrolling = false;
+    
     setInterval(() => {
-        scrollPosition += 310;
-        if (scrollPosition >= carousel.scrollWidth - carousel.clientWidth) {
-            scrollPosition = 0;
+        if (!isScrolling) {
+            scrollPosition += 335; // Card width + gap
+            if (scrollPosition >= carousel.scrollWidth - carousel.clientWidth) {
+                scrollPosition = 0;
+            }
+            carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+            const index = Math.round(scrollPosition / 335);
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         }
-        carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-        const index = Math.round(scrollPosition / 310);
-        document.querySelectorAll('.dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-    }, 3000);
+    }, 3500); // Slower, more elegant timing
+
+    // Pause auto-scroll on hover
+    carousel.addEventListener('mouseenter', () => {
+        isScrolling = true;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        isScrolling = false;
+    });
 
     // ==================== FAQ TOGGLE ====================
     function toggleFAQ() {
