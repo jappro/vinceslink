@@ -2960,13 +2960,24 @@
     // Services Dropdown Toggle for Mobile
     const servicesDropdown = document.getElementById('servicesDropdown');
     const servicesLink = document.getElementById('servicesLink');
+    const dropdownIcon = servicesLink ? servicesLink.querySelector('.dropdown-icon') : null;
 
     if (servicesLink && servicesDropdown) {
         servicesLink.addEventListener('click', (e) => {
-            // Only prevent default and toggle on mobile
+            // Only prevent default and toggle on mobile/tablet
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
-                servicesDropdown.classList.toggle('active');
+                e.stopPropagation();
+                
+                // Toggle the active class
+                const isActive = servicesDropdown.classList.toggle('active');
+                
+                // Update arrow icon
+                if (dropdownIcon) {
+                    dropdownIcon.textContent = isActive ? '▲' : '▼';
+                }
+                
+                console.log('Services dropdown:', isActive ? 'OPENED' : 'CLOSED');
             }
         });
     }
