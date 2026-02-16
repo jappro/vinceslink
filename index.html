@@ -34,12 +34,7 @@
         color: var(--text-dark);
         line-height: 1.6;
         overflow-x: hidden;
-    }
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background-color: var(--light-gray);
-        color: var(--text-dark);
-        line-height: 1.6;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body.dark-mode {
@@ -48,6 +43,7 @@
         --text-dark: #FFFFFF;
         --text-light: #B0B0B0;
         --dark-gray: #FFFFFF;
+        background-color: #1A1A1A;
     }
 
     /* Navigation Styles */
@@ -236,6 +232,7 @@
         gap: 5px;
         cursor: pointer;
         padding: 5px;
+        z-index: 1001;
     }
 
     .hamburger span {
@@ -244,6 +241,18 @@
         background-color: var(--text-dark);
         border-radius: 2px;
         transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
     }
 
     /* Hero Section */
@@ -1585,6 +1594,83 @@
     }
 
     /* Footer */
+    body.dark-mode .faq-section {
+        background-color: #2C2C2C;
+    }
+
+    body.dark-mode .faq-title {
+        color: var(--primary-orange);
+    }
+
+    body.dark-mode .faq-subtitle {
+        color: #B0B0B0;
+    }
+
+    body.dark-mode .faq-item {
+        background-color: #1A1A1A;
+    }
+
+    body.dark-mode .faq-question {
+        color: #FFFFFF;
+    }
+
+    body.dark-mode .faq-answer p {
+        color: #B0B0B0;
+    }
+
+    body.dark-mode .faq-link {
+        background-color: #2C2C2C;
+        color: #FFFFFF;
+    }
+
+    body.dark-mode .faq-link:hover {
+        background-color: var(--primary-blue);
+    }
+
+    body.dark-mode .contact-section {
+        background-color: #1A1A1A;
+    }
+
+    body.dark-mode .contact-title {
+        color: #FFFFFF;
+    }
+
+    body.dark-mode .newsletter-title {
+        color: var(--primary-teal);
+    }
+
+    body.dark-mode .newsletter-text {
+        color: #B0B0B0;
+    }
+
+    body.dark-mode .newsletter-input {
+        background-color: #2C2C2C;
+        border-color: #444;
+        color: #FFFFFF;
+    }
+
+    body.dark-mode .newsletter-input::placeholder {
+        color: #777;
+    }
+
+    body.dark-mode .contact-card {
+        background-color: #2C2C2C;
+    }
+
+    body.dark-mode .contact-card-title {
+        color: var(--primary-teal);
+    }
+
+    body.dark-mode .contact-card-link,
+    body.dark-mode .contact-card-text {
+        color: #B0B0B0;
+    }
+
+    body.dark-mode .social-title {
+        color: #FFFFFF;
+    }
+
+    /* Footer */
     .footer {
         background: linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 100%);
         color: white;
@@ -2125,9 +2211,9 @@
         <li class="services-dropdown" id="servicesDropdown">
             <a href="#services" id="servicesLink">Services <span class="dropdown-icon">▼</span></a>
             <ul class="dropdown-menu">
-                <li><a href="#gadgets">Gadget Hub</a></li>
-                <li><a href="#superstore">Super Store</a></li>
-                <li><a href="#realty">Real Estate</a></li>
+                <li><a href="https://jappro.github.io/vinceslink/gadget" target="_blank">Gadget Hub</a></li>
+                <li><a href="https://jappro.github.io/vinceslink/superstore" target="_blank">Super Store</a></li>
+                <li><a href="https://jappro.github.io/vinceslink/realty" target="_blank">Real Estate</a></li>
             </ul>
         </li>
         <li><a href="#shop">Shop Now</a></li>
@@ -2814,25 +2900,76 @@
 </div>
 
 <script>
+    // Global Modal Functions (accessible from onclick)
+    function showComingSoon() {
+        const modal = document.getElementById('comingSoonModal');
+        if (modal) modal.classList.add('show');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('comingSoonModal');
+        if (modal) modal.classList.remove('show');
+    }
+
+    function showTermsModal() {
+        const modal = document.getElementById('termsModal');
+        if (modal) modal.classList.add('show');
+    }
+
+    function closeTermsModal() {
+        const modal = document.getElementById('termsModal');
+        if (modal) modal.classList.remove('show');
+        localStorage.setItem('termsAccepted', 'denied');
+    }
+
+    function acceptTerms() {
+        const modal = document.getElementById('termsModal');
+        if (modal) modal.classList.remove('show');
+        localStorage.setItem('termsAccepted', 'true');
+    }
+
+    function toggleFAQ(button) {
+        const faqItem = button.parentElement;
+        const wasActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Toggle current item if it wasn't active
+        if (!wasActive) {
+            faqItem.classList.add('active');
+        }
+    }
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        
     // Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
     // Services Dropdown Toggle for Mobile
     const servicesDropdown = document.getElementById('servicesDropdown');
     const servicesLink = document.getElementById('servicesLink');
 
-    servicesLink.addEventListener('click', (e) => {
-        // Only prevent default and toggle on mobile
-        if (window.innerWidth <= 1024) {
-            e.preventDefault();
-            servicesDropdown.classList.toggle('active');
-        }
-    });
+    if (servicesLink && servicesDropdown) {
+        servicesLink.addEventListener('click', (e) => {
+            // Only prevent default and toggle on mobile
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                servicesDropdown.classList.toggle('active');
+            }
+        });
+    }
 
     // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
@@ -2840,16 +2977,27 @@
     const themeText = document.getElementById('themeText');
     const body = document.body;
 
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            themeIcon.textContent = '☀️';
-            themeText.textContent = 'Light';
-        } else {
-            themeIcon.textContent = '🌙';
-            themeText.textContent = 'Dark';
-        }
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            }
+        });
+    }
+
+    // Sign Up Button - Show Coming Soon
+    const signUpBtn = document.querySelector('.signup-btn');
+    if (signUpBtn) {
+        signUpBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showComingSoon();
+        });
+    }
 
     // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
@@ -2993,82 +3141,81 @@
                     block: 'start'
                 });
                 // Close mobile menu after clicking
-                navMenu.classList.remove('active');
+                if (navMenu) navMenu.classList.remove('active');
+                if (hamburger) hamburger.classList.remove('active');
             }
         });
     });
 
-    // Coming Soon Modal Functions
-    function showComingSoon() {
-        const modal = document.getElementById('comingSoonModal');
-        modal.classList.add('show');
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('comingSoonModal');
-        modal.classList.remove('show');
-    }
-
     // Coming Soon Button
-    document.getElementById('comingSoonBtn').addEventListener('click', showComingSoon);
+    const comingSoonBtn = document.getElementById('comingSoonBtn');
+    if (comingSoonBtn) {
+        comingSoonBtn.addEventListener('click', showComingSoon);
+    }
 
     // Close modal when clicking outside
-    document.getElementById('comingSoonModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
-
-    // FAQ Accordion Toggle
-    function toggleFAQ(button) {
-        const faqItem = button.parentElement;
-        const wasActive = faqItem.classList.contains('active');
-        
-        // Close all FAQ items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
+    const comingSoonModal = document.getElementById('comingSoonModal');
+    if (comingSoonModal) {
+        comingSoonModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
-        
-        // Toggle current item if it wasn't active
-        if (!wasActive) {
-            faqItem.classList.add('active');
-        }
     }
 
-    // Terms & Conditions Modal Functions
-    function showTermsModal() {
-        const modal = document.getElementById('termsModal');
-        modal.classList.add('show');
-    }
+    }); // End of DOMContentLoaded
 
-    function closeTermsModal() {
-        const modal = document.getElementById('termsModal');
-        modal.classList.remove('show');
-        localStorage.setItem('termsAccepted', 'denied');
-    }
-
-    function acceptTerms() {
-        const modal = document.getElementById('termsModal');
-        modal.classList.remove('show');
-        localStorage.setItem('termsAccepted', 'true');
-    }
-
-    // Show Terms on first visit
-    window.addEventListener('load', function() {
-        const termsAccepted = localStorage.getItem('termsAccepted');
-        if (!termsAccepted) {
-            setTimeout(function() {
-                showTermsModal();
-            }, 1000);
-        }
+    // ===== TERMS POPUP ON FIRST VISIT - BULLETPROOF VERSION =====
+    
+    // Method 1: Immediate check after DOM loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAndShowTerms();
     });
+
+    // Method 2: Window load as backup
+    window.addEventListener('load', function() {
+        checkAndShowTerms();
+    });
+
+    // Method 3: Delayed trigger as final backup
+    setTimeout(function() {
+        checkAndShowTerms();
+    }, 2000);
+
+    // Single function to check and show terms
+    function checkAndShowTerms() {
+        const termsAccepted = localStorage.getItem('termsAccepted');
+        console.log('[Terms Check] Status:', termsAccepted);
+        
+        // Show if never decided
+        if (!termsAccepted || termsAccepted === 'null' || termsAccepted === null) {
+            console.log('[Terms Check] Showing modal...');
+            
+            setTimeout(function() {
+                const modal = document.getElementById('termsModal');
+                if (modal) {
+                    modal.classList.add('show');
+                    console.log('[Terms Check] Modal displayed!');
+                } else {
+                    console.log('[Terms Check] ERROR: Modal not found!');
+                }
+            }, 500);
+        } else {
+            console.log('[Terms Check] Already decided, skipping.');
+        }
+    }
 
     // Close terms modal when clicking outside
-    document.getElementById('termsModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeTermsModal();
+    setTimeout(function() {
+        const termsModal = document.getElementById('termsModal');
+        if (termsModal) {
+            termsModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeTermsModal();
+                }
+            });
         }
-    });
+    }, 100);
 </script>
 
 </body>
