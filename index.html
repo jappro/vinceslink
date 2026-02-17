@@ -120,11 +120,7 @@
     .dropdown-icon {
         margin-left: 5px;
         font-size: 12px;
-        transition: transform 0.3s ease;
-    }
-
-    .services-dropdown.active .dropdown-icon {
-        transform: rotate(180deg);
+        transition: all 0.3s ease;
     }
 
     .dropdown-menu {
@@ -2960,8 +2956,7 @@
     // Services Dropdown Toggle for Mobile
     const servicesDropdown = document.getElementById('servicesDropdown');
     const servicesLink = document.getElementById('servicesLink');
-    const dropdownIcon = servicesLink ? servicesLink.querySelector('.dropdown-icon') : null;
-
+    
     if (servicesLink && servicesDropdown) {
         servicesLink.addEventListener('click', (e) => {
             // Only prevent default and toggle on mobile/tablet
@@ -2973,6 +2968,7 @@
                 const isActive = servicesDropdown.classList.toggle('active');
                 
                 // Update arrow icon
+                const dropdownIcon = servicesLink.querySelector('.dropdown-icon');
                 if (dropdownIcon) {
                     dropdownIcon.textContent = isActive ? '▲' : '▼';
                 }
