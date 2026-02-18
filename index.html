@@ -63,17 +63,17 @@
     .logo-section {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 12px;
     }
 
     .logo-img {
         width: 50px;
-        height: auto;
+        height: 50px;
         object-fit: contain;
     }
 
     .logo-text {
-        font-size: 33px;
+        font-size: 28px;
         font-weight: 700;
         color: var(--primary-blue);
     }
@@ -137,13 +137,24 @@
         transform: translateY(-10px);
         transition: all 0.3s ease;
         z-index: 100;
+        display: block;
     }
 
     .services-dropdown:hover .dropdown-menu,
     .services-dropdown.active .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+    /* Desktop: Hover to show dropdown */
+    @media (min-width: 1025px) {
+        .services-dropdown:hover .dropdown-menu {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+            max-height: 500px !important;
+        }
     }
 
     .dropdown-menu li {
@@ -183,11 +194,11 @@
     .signup-btn {
         background-color: var(--primary-orange);
         color: white;
-        padding: 10px 26px;
-        border-radius: 23px;
+        padding: 12px 28px;
+        border-radius: 25px;
         text-decoration: none;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 14px;
         transition: all 0.3s ease;
         border: none;
         cursor: pointer;
@@ -200,15 +211,15 @@
     }
 
     .theme-toggle {
-        padding: 8px 18px;
-        border-radius: 23px;
+        padding: 10px 20px;
+        border-radius: 25px;
         border: 2px solid var(--text-light);
         background-color: transparent;
         display: flex;
         align-items: center;
         gap: 8px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
         color: var(--text-dark);
         transition: all 0.3s ease;
@@ -613,11 +624,11 @@
     }
 
     .cart-illustration {
-        max-width: 410px;
+        max-width: 400px;
     }
 
     .cart-image {
-        width: 110%;
+        width: 100%;
         height: auto;
         filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
     }
@@ -2252,14 +2263,14 @@
         </a>
     </div>
 </section>
-    
+
 <!-- Product Carousel Section -->
 <section class="carousel-section">
     <div class="carousel-container">
         <div class="carousel-track" id="carouselTrack">
             <!-- Product Card 1: Fast Charger -->
             <div class="product-card">
-                <img src="images/carousel/IMG_8970.jpeg" alt="Fast 9A Charger" class="product-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Fast 9A Charger" class="product-image">
                 <div class="product-info">
                     <h3 class="product-name">PF-014 Fast 9A Charger</h3>
                     <p class="product-category">Gadgets • Chargers</p>
@@ -2268,7 +2279,7 @@
 
             <!-- Product Card 2: Headset -->
             <div class="product-card">
-                <img src="images/carousel/IMG_8969.jpeg" alt="P-31 Headset HD Sound" class="product-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="P-31 Headset HD Sound" class="product-image">
                 <div class="product-info">
                     <h3 class="product-name">P-31 Headset HD Sound</h3>
                     <p class="product-category">Gadgets • Audio</p>
@@ -2277,7 +2288,7 @@
 
             <!-- Product Card 3: Ice Cream -->
             <div class="product-card">
-                <img src="images/carousel/IMG_8971.jpeg" alt="FanIce Ice Cream" class="product-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="FanIce Ice Cream" class="product-image">
                 <div class="product-info">
                     <h3 class="product-name">FanIce Ice Cream</h3>
                     <p class="product-category">Super Store • Frozen</p>
@@ -2286,7 +2297,7 @@
 
             <!-- Product Card 4: Cosmetics -->
             <div class="product-card">
-                <img src="images/carousel/IMG_8997.png" alt="Premium Cosmetics" class="product-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Premium Cosmetics" class="product-image">
                 <div class="product-info">
                     <h3 class="product-name">Premium Cosmetics</h3>
                     <p class="product-category">Super Store • Beauty</p>
@@ -2295,7 +2306,7 @@
 
             <!-- Product Card 5: Land Property -->
             <div class="product-card">
-                <img src="images/carousel/IMG_8976.png" alt="Land Property" class="product-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Land Property" class="product-image">
                 <div class="product-info">
                     <h3 class="product-name">Prime Land Property</h3>
                     <p class="product-category">Real Estate • Land</p>
@@ -2304,7 +2315,7 @@
 
             <!-- Product Card 6: House -->
             <div class="product-card">
-                <img src="images/carousel/IMG_9152.jpeg" alt="Residential House" class="product-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Residential House" class="product-image">
                 <div class="product-info">
                     <h3 class="product-name">Modern Residential House</h3>
                     <p class="product-category">Real Estate • Housing</p>
@@ -2331,7 +2342,7 @@
         <!-- Card 1: Gadget Hub -->
         <div class="business-card">
             <div class="card-image-wrapper">
-                <img src="images/business/IMG_8993.jpeg" alt="Vinceslink Gadget Hub" class="card-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Vinceslink Gadget Hub" class="card-image">
                 <div class="card-overlay">
                     <h3 class="card-title">Vinceslink<br>Gadget Hub</h3>
                 </div>
@@ -2345,7 +2356,7 @@
         <!-- Card 2: Super Store -->
         <div class="business-card">
             <div class="card-image-wrapper">
-                <img src="images/business/IMG_8991.jpeg" alt="Vinceslink Super Store" class="card-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Vinceslink Super Store" class="card-image">
                 <div class="card-overlay">
                     <h3 class="card-title">Vinceslink<br>Super Store</h3>
                 </div>
@@ -2359,7 +2370,7 @@
         <!-- Card 3: Realty -->
         <div class="business-card">
             <div class="card-image-wrapper">
-                <img src="images/business/IMG_9153.jpeg" alt="Vinceslink Realty" class="card-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Vinceslink Realty" class="card-image">
                 <div class="card-overlay">
                     <h3 class="card-title">Vinceslink<br>Realty</h3>
                 </div>
@@ -2386,7 +2397,7 @@
                 🛍️ COMING SOON 😊
             </button>
             <div class="cart-illustration">
-                <img src="images/marketplace/649F50C0-1AF1-4851-B690-E1F0AAA96A97.png" alt="Shopping Cart" class="cart-image">
+                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Shopping Cart" class="cart-image">
             </div>
         </div>
 
@@ -2444,7 +2455,7 @@
 
                         <!-- Featured Banner -->
                         <div class="featured-banner">
-                            <img src="images/marketplace/IMG_9001.jpeg" alt="Featured" class="featured-image">
+                            <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Featured" class="featured-image">
                             <div class="featured-badges">
                                 <span class="badge-verified">✓ Verified</span>
                                 <span class="badge-secured">🔒 Secured</span>
@@ -2458,72 +2469,72 @@
                         <div class="products-grid">
                             <!-- Product 1 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9134.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Wireless Charger</p>
-                                <p class="product-price">₦8,500</p>
+                                <p class="product-price">$8,500</p>
                             </div>
 
                             <!-- Product 2 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9135.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Fast Charger</p>
-                                <p class="product-price">₦6,200</p>
+                                <p class="product-price">$6,200</p>
                             </div>
 
                             <!-- Product 3 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9136.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Wireless Headset</p>
-                                <p class="product-price">₦15,000</p>
+                                <p class="product-price">$15,000</p>
                             </div>
 
                             <!-- Product 4 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9137.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Apple</p>
-                                <p class="product-price">₦500</p>
+                                <p class="product-price">$500</p>
                             </div>
 
                             <!-- Product 5 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9138.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">USB-C Cable</p>
-                                <p class="product-price">₦3,500</p>
+                                <p class="product-price">$3,500</p>
                             </div>
 
                             <!-- Product 6 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9140.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">EarPods</p>
-                                <p class="product-price">₦12,000</p>
+                                <p class="product-price">$12,000</p>
                             </div>
 
                             <!-- Product 7 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9141.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Cream Jar</p>
-                                <p class="product-price">₦7,800</p>
+                                <p class="product-price">$7,800</p>
                             </div>
 
                             <!-- Product 8 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9142.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Bottle of Wine</p>
-                                <p class="product-price">₦18,500</p>
+                                <p class="product-price">$18,500</p>
                             </div>
 
                             <!-- Product 9 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9143.png" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Flash Drive 32GB</p>
-                                <p class="product-price">₦10,500</p>
+                                <p class="product-price">$4,200</p>
                             </div>
 
                             <!-- Product 10 -->
                             <div class="product-item" onclick="showComingSoon()">
-                                <img src="images/marketplace/IMG_9147.jpeg" alt="Product" class="product-img">
+                                <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Product" class="product-img">
                                 <p class="product-name">Power Bank</p>
-                                <p class="product-price">₦9,500</p>
+                                <p class="product-price">$9,500</p>
                             </div>
                         </div>
                     </div>
@@ -2570,7 +2581,7 @@
             <div class="about-right">
                 <div class="founder-card">
                     <div class="founder-image-wrapper">
-                        <img src="images/Founder.jpg.JPG" alt="Vincent - Founder" class="founder-image">
+                        <img src="docs/F35EFCDC-2774-41AF-9877-8C1BFC818509.png" alt="Vincent - Founder" class="founder-image">
                     </div>
                     <h3 class="founder-name">Vincent Nwankwuda</h3>
                     <p class="founder-title">Founder & CEO</p>
@@ -2957,25 +2968,48 @@
     const servicesDropdown = document.getElementById('servicesDropdown');
     const servicesLink = document.getElementById('servicesLink');
     
+    console.log('Services elements found:', {
+        dropdown: !!servicesDropdown,
+        link: !!servicesLink
+    });
+    
     if (servicesLink && servicesDropdown) {
         servicesLink.addEventListener('click', (e) => {
-            // Only prevent default and toggle on mobile/tablet
-            if (window.innerWidth <= 1024) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Toggle the active class
-                const isActive = servicesDropdown.classList.toggle('active');
-                
-                // Update arrow icon
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Services link clicked!');
+            
+            // Toggle the active class on all screen sizes
+            const isActive = servicesDropdown.classList.toggle('active');
+            
+            console.log('Dropdown classes:', servicesDropdown.className);
+            console.log('Is active:', isActive);
+            
+            // Update arrow icon
+            const dropdownIcon = servicesLink.querySelector('.dropdown-icon');
+            if (dropdownIcon) {
+                dropdownIcon.textContent = isActive ? '▲' : '▼';
+                console.log('Arrow updated to:', isActive ? '▲' : '▼');
+            } else {
+                console.log('Dropdown icon not found!');
+            }
+            
+            console.log('Services dropdown:', isActive ? 'OPENED' : 'CLOSED');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!servicesDropdown.contains(e.target)) {
+                servicesDropdown.classList.remove('active');
                 const dropdownIcon = servicesLink.querySelector('.dropdown-icon');
                 if (dropdownIcon) {
-                    dropdownIcon.textContent = isActive ? '▲' : '▼';
+                    dropdownIcon.textContent = '▼';
                 }
-                
-                console.log('Services dropdown:', isActive ? 'OPENED' : 'CLOSED');
             }
         });
+    } else {
+        console.log('Services dropdown elements not found!');
     }
 
     // Theme Toggle
@@ -3154,6 +3188,43 @@
         });
     });
 
+    // Scroll Spy - Highlight active navigation item based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+    function highlightNavOnScroll() {
+        const scrollY = window.pageYOffset;
+        
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100; // Offset for navbar height
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+        
+        // Remove active from all if at top of page
+        if (scrollY < 100) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            // Add active to Home
+            const homeLink = document.querySelector('a[href="#home"]');
+            if (homeLink) homeLink.classList.add('active');
+        }
+    }
+
+    // Listen to scroll events
+    window.addEventListener('scroll', highlightNavOnScroll);
+    
+    // Run once on load to set initial state
+    highlightNavOnScroll();
+
     // Coming Soon Button
     const comingSoonBtn = document.getElementById('comingSoonBtn');
     if (comingSoonBtn) {
@@ -3228,18 +3299,3 @@ setTimeout(function() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
