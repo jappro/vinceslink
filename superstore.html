@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vinceslink Super Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── CSS VARIABLES ── */
+    :root {
+      --bg:           #ffffff;
+      --bg-alt:       #f5f6f8;
+      --bg-alt2:      #f0f4f8;
+      --text:         #111111;
+      --text-muted:   #666666;
+      --card:         #ffffff;
+      --card-border:  #e2e4e9;
+      --chip-bg:      #f0f1f4;
+      --chip-text:    #333;
+      --nav-bg:       rgba(255,255,255,0.92);
+      --shadow:       0 2px 16px rgba(0,0,0,0.07);
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 32px rgba(0,0,0,0.13);
+
+  /* Brand palette */
+  --blue:         #1A73E8;
+  --blue-light:   #e8f0fe;
+  --teal:         #00897B;
+  --teal-light:   #e0f2f1;
+  --orange:       #E8710A;
+  --orange-light: #fff3e0;
+  --pink:         #e91e8c;
+  --pink-light:   #fce4ec;
+  --wine:         #7b1fa2;
+  --wine-light:   #f3e5f5;
+  --green:        #2e7d32;
+  --green-light:  #e8f5e9;
+}
+
+body.dark-mode {
+  --bg:          #0f1115;
+  --bg-alt:      #16181d;
+  --bg-alt2:     #1a1d24;
+  --text:        #f0f0f0;
+  --text-muted:  #9a9a9a;
+  --card:        #1a1c21;
+  --card-border: #2a2d35;
+  --chip-bg:     #22252c;
+  --chip-text:   #ddd;
+  --nav-bg:      rgba(15,17,21,0.94);
+  --shadow:      0 2px 16px rgba(0,0,0,0.35);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-hover:0 12px 32px rgba(0,0,0,0.5);
+  --blue-light:  #1a2a4a;
+  --teal-light:  #0a2520;
+  --orange-light:#3a2010;
+  --pink-light:  #2a0a1a;
+  --wine-light:  #2a1040;
+  --green-light: #0a2510;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.35s, color 0.35s;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 0 24px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; color: var(--text);
+  font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+.nav-back:hover { opacity: 0.7; }
+.nav-back svg { width: 20px; height: 20px; }
+.nav-brand {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1rem; letter-spacing: 0.04em; color: var(--text);
+}
+.nav-brand span { color: var(--teal); }
+.dark-toggle {
+  background: var(--chip-bg); border: 1px solid var(--card-border);
+  border-radius: 20px; padding: 5px 12px; cursor: pointer;
+  font-size: 0.78rem; color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.dark-toggle:hover { background: var(--card-border); }
+
+/* ── HERO ── */
+.hero {
+  padding: 64px 48px 48px;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,137,123,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 56px; align-items: center;
+}
+.hero-img-wrap {
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  aspect-ratio: 4/3;
+  background: var(--bg-alt);
+  outline: 2px dashed var(--card-border);
+  outline-offset: -10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--card-border); font-size: 0.75rem;
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+.hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.hero-text { display: flex; flex-direction: column; gap: 16px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--teal-light); color: var(--teal);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+  width: fit-content;
+}
+.hero-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1;
+  color: var(--text);
+}
+.hero-subtitle {
+  font-family: 'Syne', sans-serif; font-weight: 600;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--teal);
+}
+.hero-desc {
+  font-size: 0.97rem; color: var(--text-muted); line-height: 1.75;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.btn-primary {
+  padding: 12px 26px; background: var(--blue); color: #fff;
+  border: none; border-radius: 8px; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.9rem; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: #1558b0; transform: scale(1.03); }
+.btn-secondary {
+  padding: 12px 26px; background: var(--teal); color: #fff;
+  border: none; border-radius: 8px; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.9rem; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-secondary:hover { background: #00695c; transform: scale(1.03); }
+
+/* ── BENTO GRID ── */
+.bento-section {
+  padding: 0 48px 64px;
+  background: var(--bg);
+}
+.bento-inner { max-width: 1100px; margin: 0 auto; }
+.bento-label {
+  font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 16px;
+}
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+.bento-tile {
+  border-radius: 18px; padding: 28px 24px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 180px; cursor: pointer;
+  transition: transform 0.22s, box-shadow 0.22s;
+  text-decoration: none;
+}
+.bento-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+.bento-tile.large  { grid-column: span 1; min-height: 200px; }
+.bento-tile.medium { grid-column: span 1; min-height: 170px; }
+.bento-tile.small  { grid-column: span 1; min-height: 155px; }
+
+/* Row 1: 2 large tiles */
+.bento-tile:nth-child(1) { grid-column: span 2; }
+.bento-tile:nth-child(2) { grid-column: span 1; }
+/* Row 2: 3 medium tiles */
+.bento-tile:nth-child(3) { grid-column: span 1; }
+.bento-tile:nth-child(4) { grid-column: span 1; }
+.bento-tile:nth-child(5) { grid-column: span 1; }
+
+/* Category tile colors */
+.tile-provisions  { background: linear-gradient(135deg, #fff8e8 0%, #ffe8b0 100%); }
+.tile-articles    { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
+.tile-cosmetics   { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); }
+.tile-wines       { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
+.tile-medicine    { background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); }
+
+body.dark-mode .tile-provisions { background: linear-gradient(135deg, #2a2010 0%, #3a2e10 100%); }
+body.dark-mode .tile-articles   { background: linear-gradient(135deg, #0d1f3a 0%, #1a2a4a 100%); }
+body.dark-mode .tile-cosmetics  { background: linear-gradient(135deg, #2a0a1a 0%, #3a1028 100%); }
+body.dark-mode .tile-wines      { background: linear-gradient(135deg, #1e0a30 0%, #2a1040 100%); }
+body.dark-mode .tile-medicine   { background: linear-gradient(135deg, #0a2520 0%, #102a28 100%); }
+
+.tile-name {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.2rem; color: var(--text); margin-bottom: 4px;
+}
+.tile-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+.tile-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px; border: none;
+  font-family: 'DM Sans', sans-serif; font-weight: 600;
+  font-size: 0.8rem; cursor: pointer;
+  text-decoration: none; width: fit-content;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.tile-btn:hover { opacity: 0.85; transform: scale(0.97); }
+
+.tile-provisions .tile-btn { background: var(--orange);  color: #fff; }
+.tile-articles   .tile-btn { background: var(--blue);    color: #fff; }
+.tile-cosmetics  .tile-btn { background: var(--pink);    color: #fff; }
+.tile-wines      .tile-btn { background: var(--wine);    color: #fff; }
+.tile-medicine   .tile-btn { background: var(--teal);    color: #fff; }
+
+.tile-icon {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 2.8rem; opacity: 0.18;
+}
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  height: 1px; background: var(--card-border);
+  margin: 0 48px;
+}
+
+/* ── HOT DEALS ── */
+.hot-deals {
+  padding: 64px 48px;
+  background: var(--bg-alt);
+}
+.hot-deals-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--orange-light); color: var(--orange);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text); margin-bottom: 6px;
+}
+.section-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 28px; }
+
+/* ── PRODUCT GRID ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Hot deals: 4-col for the 8 items */
+.hot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.product-card {
+  background: var(--card);
+  border: 1.5px solid var(--card-border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.22s, box-shadow 0.22s;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+.hot-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--orange); color: #fff;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
+  z-index: 2;
+}
+
+.product-img {
+  width: 100%; aspect-ratio: 1;
+  background: var(--bg-alt);
+  outline: 2px dashed var(--card-border);
+  outline-offset: -8px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  font-size: 0.65rem; color: var(--card-border); letter-spacing: 0.04em;
+}
+.product-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-img .img-ph { position: absolute; font-size: 0.65rem; color: var(--card-border); }
+
+.product-body { padding: 12px 12px 14px; display: flex; flex-direction: column; flex: 1; gap: 4px; }
+.product-name {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.85rem; color: var(--text); line-height: 1.3;
+}
+.product-desc { font-size: 0.73rem; color: var(--text-muted); line-height: 1.45; }
+.product-pricing { display: flex; align-items: center; gap: 7px; margin-top: 6px; }
+.price-current { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; }
+.price-old { font-size: 0.73rem; color: var(--text-muted); text-decoration: line-through; }
+.shop-btn {
+  margin-top: 10px; padding: 8px 0; border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; width: 100%;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.shop-btn:hover  { opacity: 0.85; transform: scale(0.98); }
+.shop-btn:active { transform: scale(0.95); }
+
+/* ── CATEGORY SECTION WRAPPER ── */
+.cat-section {
+  padding: 64px 48px;
+}
+.cat-section.alt { background: var(--bg-alt); }
+.cat-section-inner { max-width: 1200px; margin: 0 auto; }
+
+/* ── DISCLAIMER ── */
+.disclaimer {
+  margin-top: 20px; padding: 12px 16px;
+  background: var(--teal-light); border-left: 3px solid var(--teal);
+  border-radius: 8px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.55;
+}
+
+/* ── STORE LOCATION ── */
+.store-section {
+  padding: 72px 48px 80px;
+  background: var(--bg-alt2);
+}
+.store-inner { max-width: 1000px; margin: 0 auto; }
+.store-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 640px) { .store-grid { grid-template-columns: 1fr; } }
+
+.store-card {
+  background: var(--card); border: 1.5px solid var(--card-border);
+  border-radius: 16px; padding: 24px; box-shadow: var(--shadow);
+}
+.store-card-label {
+  font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.store-address { font-size: 0.9rem; line-height: 1.7; color: var(--text); margin-bottom: 16px; }
+.store-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.store-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 16px; border-radius: 8px; text-decoration: none;
+  font-size: 0.8rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  transition: opacity 0.2s;
+}
+.store-btn:hover { opacity: 0.85; }
+.store-btn.primary { background: var(--teal); color: #fff; }
+.store-btn.outline { background: transparent; color: var(--teal); border: 1.5px solid var(--teal); }
+
+.store-hours-list { display: flex; flex-direction: column; gap: 8px; }
+.store-hours-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.84rem; color: var(--text-muted);
+  padding-bottom: 8px; border-bottom: 1px solid var(--card-border);
+}
+.store-hours-row:last-child { border-bottom: none; padding-bottom: 0; }
+.store-hours-row strong { color: var(--text); font-weight: 500; }
+
+.map-container {
+  border-radius: 16px; overflow: hidden;
+  border: 1.5px solid var(--card-border); box-shadow: var(--shadow-card); height: 300px;
+}
+.map-container iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 999; display: flex; align-items: center; justify-content: center;
+  padding: 20px; opacity: 0; pointer-events: none;
+  transition: opacity 0.25s; backdrop-filter: blur(4px);
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--card); border: 1.5px solid var(--card-border);
+  border-radius: 18px; padding: 36px 28px 28px;
+  max-width: 380px; width: 100%; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  transform: translateY(20px) scale(0.97); transition: transform 0.25s;
+  position: relative;
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+.modal-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 1.3rem; padding: 4px;
+}
+.modal-close:hover { color: var(--text); }
+.modal-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--teal-light);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.6rem; }
+.modal h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text); margin-bottom: 10px; }
+.modal p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 22px; }
+.wa-modal-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: #25D366; color: #fff; border-radius: 10px;
+  padding: 13px 20px; text-decoration: none;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+  transition: opacity 0.2s; width: 100%;
+}
+.wa-modal-btn:hover { opacity: 0.88; }
+.modal-note { font-size: 0.72rem; color: var(--text-muted); margin-top: 14px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg); border-top: 1px solid var(--card-border);
+  padding: 20px 24px 28px; text-align: center;
+  font-size: 0.78rem; color: var(--text-muted);
+}
+footer a { color: var(--teal); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── FLOATING WA ── */
+.wa-float-wrapper {
+  position: fixed; bottom: 28px; right: 28px;
+  z-index: 500; cursor: grab; user-select: none;
+  animation: waFadeIn 0.7s ease 0.5s both;
+}
+.wa-float-wrapper:active { cursor: grabbing; }
+.wa-float-wrapper.dragging { animation: none; transition: none; }
+.wa-float {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.15);
+  text-decoration: none;
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), background 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.wa-float i { font-size: 1.75rem; line-height: 1; pointer-events: none; }
+.wa-float:hover {
+  background: #1ebe5d; transform: scale(1.13);
+  box-shadow: 0 10px 32px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.18);
+}
+.wa-float:active { transform: scale(1.05); }
+.wa-float-wrapper.did-drag .wa-float { pointer-events: none; }
+.wa-float-tooltip {
+  position: absolute; right: calc(100% + 12px); top: 50%;
+  transform: translateY(-50%); background: var(--text); color: var(--bg);
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500;
+  white-space: nowrap; padding: 6px 12px; border-radius: 6px;
+  pointer-events: none; opacity: 0; transition: opacity 0.2s;
+}
+.wa-float-tooltip::after {
+  content: ''; position: absolute; left: 100%; top: 50%;
+  transform: translateY(-50%); border: 5px solid transparent;
+  border-left-color: var(--text);
+}
+.wa-float:hover .wa-float-tooltip { opacity: 1; }
+
+/* ── ANIMATIONS ── */
+@keyframes waFadeIn {
+  from { opacity: 0; transform: scale(0.6) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-text > * { animation: fadeInUp 0.55s ease both; }
+.hero-eyebrow  { animation-delay: 0.05s; }
+.hero-title    { animation-delay: 0.12s; }
+.hero-subtitle { animation-delay: 0.18s; }
+.hero-desc     { animation-delay: 0.25s; }
+.hero-btns     { animation-delay: 0.32s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { padding: 48px 24px 36px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .bento-section { padding: 0 24px 48px; }
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+  .bento-tile:nth-child(1) { grid-column: span 2; }
+  .bento-tile:nth-child(2) { grid-column: span 2; }
+  .hot-deals { padding: 48px 24px; }
+  .cat-section { padding: 48px 24px; }
+  .store-section { padding: 48px 24px 64px; }
+}
+@media (max-width: 540px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-tile:nth-child(1),
+  .bento-tile:nth-child(2) { grid-column: span 1; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
+
+/* ── CATEGORY COLOR ACCENTS ── */
+.cat-provisions  .price-current { color: var(--orange); }
+.cat-provisions  .shop-btn      { background: var(--orange); color: #fff; }
+.cat-cosmetics   .price-current { color: var(--pink); }
+.cat-cosmetics   .shop-btn      { background: var(--pink); color: #fff; }
+.cat-wines       .price-current { color: var(--wine); }
+.cat-wines       .shop-btn      { background: var(--wine); color: #fff; }
+.cat-articles    .price-current { color: var(--blue); }
+.cat-articles    .shop-btn      { background: var(--blue); color: #fff; }
+.cat-medicine    .price-current { color: var(--teal); }
+.cat-medicine    .shop-btn      { background: var(--teal); color: #fff; }
+.hot-deals       .price-current { color: var(--orange); }
+.hot-deals       .shop-btn      { background: var(--orange); color: #fff; }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <a href="https://jappro.github.io/vinceslink/" class="nav-back" title="Back to Vinceslink">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    Back
+  </a>
+  <span class="nav-brand">VINCES<span>LINK</span></span>
+  <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="hero-superstore">
+  <div class="hero-inner">
+    <!-- LEFT: Image -->
+    <div class="hero-img-wrap" id="heroImgWrap">
+      <img src="images/superstore/hero.jpg" alt="Vinceslink Super Store Interior"
+           onerror="this.style.display='none'; document.getElementById('heroImgWrap').querySelector('.img-ph-text').style.display='block'"/>
+      <span class="img-ph-text" style="display:none; font-size:0.8rem; color:var(--card-border); letter-spacing:0.05em; text-transform:uppercase;">Store Image</span>
+    </div>
+    <!-- RIGHT: Text -->
+    <div class="hero-text">
+      <div class="hero-eyebrow">🛒 Head Office</div>
+      <h1 class="hero-title">Vinceslink<br/>Super Store</h1>
+      <p class="hero-subtitle">Everything You Need. All in One Place.</p>
+      <p class="hero-desc">
+        Vinceslink Super Store (Head Office) brings together a diverse range of everyday essentials — from provisions and cosmetics to beverages, household articles, and selected health products. We serve our community with quality, affordability, and trusted service.
+      </p>
+      <div class="hero-btns">
+        <a href="#category-grid" class="btn-primary" onclick="smoothScroll(event,'category-grid')">
+          🗂 Explore Categories
+        </a>
+        <a href="#store-location" class="btn-secondary" onclick="smoothScroll(event,'store-location')">
+          Visit Store ›
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO GRID -->
+
+<section class="bento-section" id="category-grid">
+  <div class="bento-inner">
+    <div class="bento-label">Browse by Category</div>
+    <div class="bento-grid">
+
+  <a href="#provisions-section" class="bento-tile tile-provisions" onclick="smoothScroll(event,'provisions-section')">
+    <span class="tile-icon">🍚</span>
+    <div class="tile-name">Provisions</div>
+    <div class="tile-desc">Food staples and daily kitchen essentials.</div>
+    <span class="tile-btn">Shop Provisions ›</span>
+  </a>
+
+  <a href="#articles-section" class="bento-tile tile-articles" onclick="smoothScroll(event,'articles-section')">
+    <span class="tile-icon">🪣</span>
+    <div class="tile-name">Articles</div>
+    <div class="tile-desc">Household and utility items for everyday use.</div>
+    <span class="tile-btn">Shop Articles ›</span>
+  </a>
+
+  <a href="#cosmetics-section" class="bento-tile tile-cosmetics" onclick="smoothScroll(event,'cosmetics-section')">
+    <span class="tile-icon">💄</span>
+    <div class="tile-name">Cosmetics</div>
+    <div class="tile-desc">Beauty and personal care products.</div>
+    <span class="tile-btn">Shop Cosmetics ›</span>
+  </a>
+
+  <a href="#wines-section" class="bento-tile tile-wines" onclick="smoothScroll(event,'wines-section')">
+    <span class="tile-icon">🍷</span>
+    <div class="tile-name">Wines & Beverages</div>
+    <div class="tile-desc">Wines, drinks, and refreshments.</div>
+    <span class="tile-btn">Shop Wines ›</span>
+  </a>
+
+  <a href="#medicine-section" class="bento-tile tile-medicine" onclick="smoothScroll(event,'medicine-section')">
+    <span class="tile-icon">💊</span>
+    <div class="tile-name">Medicine</div>
+    <div class="tile-desc">Selected over-the-counter health essentials.</div>
+    <span class="tile-btn">Shop Medicine ›</span>
+  </a>
+
+</div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HOT DEALS -->
+
+<section class="hot-deals" id="hot-deals">
+  <div class="hot-deals-inner">
+    <div class="section-eyebrow">🔥 This Week</div>
+    <h2 class="section-title">Hot Picks This Week</h2>
+    <p class="section-subtitle">Curated favourites from across all our categories — quality, value, and trust.</p>
+    <div class="hot-grid" id="hot-grid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROVISIONS -->
+
+<section class="cat-section cat-provisions" id="provisions-section">
+  <div class="cat-section-inner">
+    <div class="section-eyebrow" style="background:var(--orange-light);color:var(--orange);">🍚 Provisions</div>
+    <h2 class="section-title">Provisions</h2>
+    <p class="section-subtitle">Everyday kitchen essentials and food supplies.</p>
+    <div class="product-grid" id="provisions-grid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ARTICLES -->
+
+<section class="cat-section alt cat-articles" id="articles-section">
+  <div class="cat-section-inner">
+    <div class="section-eyebrow" style="background:var(--blue-light);color:var(--blue);">🪣 Articles</div>
+    <h2 class="section-title">Articles</h2>
+    <p class="section-subtitle">Household and utility items for everyday living.</p>
+    <div class="product-grid" id="articles-grid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- COSMETICS -->
+
+<section class="cat-section cat-cosmetics" id="cosmetics-section">
+  <div class="cat-section-inner">
+    <div class="section-eyebrow" style="background:var(--pink-light);color:var(--pink);">💄 Beauty</div>
+    <h2 class="section-title">Cosmetics</h2>
+    <p class="section-subtitle">Beauty and personal care products for every skin type.</p>
+    <div class="product-grid" id="cosmetics-grid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WINES & BEVERAGES -->
+
+<section class="cat-section alt cat-wines" id="wines-section">
+  <div class="cat-section-inner">
+    <div class="section-eyebrow" style="background:var(--wine-light);color:var(--wine);">🍷 Drinks</div>
+    <h2 class="section-title">Wines &amp; Beverages</h2>
+    <p class="section-subtitle">Wines, drinks, and refreshments for every occasion.</p>
+    <div class="product-grid" id="wines-grid"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MEDICINE -->
+
+<section class="cat-section cat-medicine" id="medicine-section">
+  <div class="cat-section-inner">
+    <div class="section-eyebrow" style="background:var(--teal-light);color:var(--teal);">💊 Health</div>
+    <h2 class="section-title">Medicine</h2>
+    <p class="section-subtitle">Selected over-the-counter health essentials.</p>
+    <div class="product-grid" id="medicine-grid"></div>
+    <div class="disclaimer">
+      ⚠️ Health products are sold as general over-the-counter items. For medical concerns, please consult a qualified healthcare professional before use.
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STORE LOCATION -->
+
+<section class="store-section" id="store-location">
+  <div class="store-inner">
+    <div class="section-eyebrow" style="background:var(--teal-light);color:var(--teal);">🏬 Head Office</div>
+    <h2 class="section-title">Visit Our Super Store</h2>
+    <p class="section-subtitle">Come experience quality, affordability, and trusted service in person.</p>
+
+<div class="store-grid">
+  <div class="store-card">
+    <div class="store-card-label">📍 Store Address</div>
+    <p class="store-address">
+      No. 91 Ishaka Road,<br/>
+      Ijako, Ogun State,<br/>
+      Postal Code: 112103<br/>
+      Nigeria
+    </p>
+    <div class="store-btns">
+      <a href="https://www.google.com/maps?q=No.+91+Ishaka+Road,+Ijako,+Ogun+State,+Nigeria"
+         target="_blank" rel="noopener noreferrer" class="store-btn primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14"><path d="M3 12h18M12 3l9 9-9 9"/></svg>
+        Get Directions
+      </a>
+      <a href="tel:+2349078683552" class="store-btn outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11.5a19.79 19.79 0 01-3-8.59A2 2 0 012.48 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.46a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call Store
+      </a>
+    </div>
+  </div>
+
+  <div class="store-card">
+    <div class="store-card-label">🕘 Opening Hours</div>
+    <div class="store-hours-list">
+      <div class="store-hours-row"><strong>Monday – Saturday</strong><span>9:00 AM – 7:00 PM</span></div>
+      <div class="store-hours-row"><strong>Sunday</strong><span>12:00 PM – 6:00 PM</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="map-container">
+  <iframe
+    src="https://www.google.com/maps?q=Ijako,+Ogun+State,+Nigeria&output=embed"
+    allowfullscreen loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Vinceslink Super Store Location">
+  </iframe>
+</div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <p>© 2026 Vinceslink Super Store. All rights reserved. &nbsp;|&nbsp;
+    <a href="https://jappro.github.io/vinceslink/">← Back to Main Site</a>
+    &nbsp;|&nbsp;
+    <a href="https://jappro.github.io/vinceslink/gadget">Gadget Hub</a>
+    &nbsp;|&nbsp; Built with 🤍 by <a href="https://jappro.github.io/portfolio/">Japheth</a>
+  </p>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+
+<div class="wa-float-wrapper" id="waFloat">
+  <a href="https://wa.me/message/5XF6PFQZNCLTA1?text=Hello%2C%20I%27d%20like%20to%20make%20an%20inquiry%20about%20products%20in%20Vinceslink%20Super%20Store."
+     target="_blank" rel="noopener noreferrer"
+     class="wa-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-float-tooltip">Chat with us</span>
+  </a>
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="shopModal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('shopModal').classList.remove('open')" aria-label="Close">✕</button>
+    <div class="modal-icon">🛍️</div>
+    <h3>Online Store Coming Soon!</h3>
+    <p>Our e-commerce platform is launching soon. For now, place your order directly via WhatsApp and our team will assist you immediately.</p>
+    <a href="https://wa.me/message/5XF6PFQZNCLTA1"
+       target="_blank" rel="noopener noreferrer" class="wa-modal-btn">
+      <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
+      Order on WhatsApp
+    </a>
+    <p class="modal-note">Our team typically responds within minutes during business hours.</p>
+  </div>
+</div>
+
+<script>
+  /* ── DARK MODE ── */
+  const toggleBtn = document.getElementById('darkToggle');
+  function applyDark(isDark) {
+    document.body.classList.toggle('dark-mode', isDark);
+    toggleBtn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+  }
+  function toggleDark() {
+    const isDark = !document.body.classList.contains('dark-mode');
+    localStorage.setItem('vinceslink-dark', isDark ? '1' : '0');
+    applyDark(isDark);
+  }
+  (function () {
+    if (localStorage.getItem('vinceslink-dark') === '1') applyDark(true);
+  })();
+
+  /* ── SMOOTH SCROLL ── */
+  function smoothScroll(e, id) {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 70;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  /* ── MODAL ── */
+  function openModal() { document.getElementById('shopModal').classList.add('open'); }
+  function closeModal(e) {
+    if (e.target === document.getElementById('shopModal'))
+      document.getElementById('shopModal').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('shopModal').classList.remove('open');
+  });
+
+  /* ── PRODUCT DATA ── */
+  const data = {
+    hot: [
+      { name: 'Premium Rice (50kg)', desc: 'High-quality long-grain rice', cat: 'Provisions' },
+      { name: 'Body Lotion',         desc: 'Smooth, nourishing body lotion', cat: 'Cosmetics' },
+      { name: 'Red Wine Bottle',     desc: 'Rich full-bodied red wine', cat: 'Wines' },
+      { name: 'Plastic Bucket',      desc: 'Durable household bucket', cat: 'Articles' },
+      { name: 'Vegetable Oil',       desc: 'Pure refined vegetable oil', cat: 'Provisions' },
+      { name: 'Cough Syrup',         desc: 'Fast-acting relief formula', cat: 'Medicine' },
+      { name: 'Perfume Spray',       desc: 'Long-lasting fragrance', cat: 'Cosmetics' },
+      { name: 'Energy Drink',        desc: 'Refreshing energy boost', cat: 'Beverages' },
+    ],
+    provisions: [
+      'Premium Rice (50kg)','Spaghetti Pack','Vegetable Oil','Tomato Paste',
+      'Seasoning Cubes','Powdered Milk','Sugar (1kg)','Wheat Flour',
+      'Beans (Brown)','Oats Cereal','Sardines','Noodles Pack',
+      'Green Tea','Coffee Sachets','Cornflakes','Custard Powder',
+      'Frozen Chicken','Macaroni','Groundnut Oil','Canned Sweet Corn',
+    ],
+    cosmetics: [
+      'Body Lotion','Face Cream','Hair Cream','Perfume Spray','Deodorant',
+      'Shampoo','Conditioner','Lipstick','Face Powder','Body Wash',
+      'Skincare Oil','Face Cleanser','Sunscreen','Makeup Kit','Bath Soap Pack',
+    ],
+    wines: [
+      'Red Wine Bottle','White Wine','Champagne','Malt Drink','Energy Drink',
+      'Orange Juice','Bottled Water (Pack)','Yogurt Drink','Cola Drink','Lemonade',
+    ],
+    articles: [
+      'Plastic Bucket','Storage Bowl Set','Kitchen Knife','Cutting Board','Mop',
+      'Broom','Laundry Basket','Trash Bin','Extension Box','Wall Clock',
+      'Floor Mat','Dish Rack','Cooking Spoon Set','Plastic Chair','Water Dispenser',
+      'Storage Container','Light Bulb','Table Cover','Plates Set','Cups Set',
+    ],
+    medicine: [
+      'Pain Relief Tablets','Multivitamin Capsules','Cough Syrup','Antiseptic Liquid',
+      'Thermometer','Medical Gloves','Vitamin C Tablets','First Aid Kit',
+    ],
+  };
+
+  /* ── BUILD CARDS ── */
+  function makeCard(name, desc, imgKey, index, isHot) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    const badge = isHot ? '<span class="hot-badge">🔥 Hot</span>' : '';
+    card.innerHTML = `
+      ${badge}
+      <div class="product-img">
+        <img src="images/superstore/${imgKey}/${imgKey}-${index}.jpg"
+             alt="${name}"
+             onerror="this.style.display='none';this.parentElement.querySelector('.img-ph').style.display='block'"
+             style="display:block" loading="lazy"/>
+        <span class="img-ph" style="display:none;">Image</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">${name}</div>
+        <div class="product-desc">${desc || 'Quality product.'}</div>
+        <div class="product-pricing">
+          <span class="price-current">&#8358;0.00</span>
+          <span class="price-old">&#8358;0.00</span>
+        </div>
+        <button class="shop-btn" onclick="openModal()">Shop Now</button>
+      </div>`;
+    return card;
+  }
+
+  /* Hot deals */
+  const hotGrid = document.getElementById('hot-grid');
+  data.hot.forEach((p, i) => hotGrid.appendChild(makeCard(p.name, p.desc, 'hot', i + 1, true)));
+
+  /* Category grids */
+  const grids = {
+    provisions: { id: 'provisions-grid', key: 'provisions' },
+    cosmetics:  { id: 'cosmetics-grid',  key: 'cosmetics'  },
+    wines:      { id: 'wines-grid',      key: 'wines'      },
+    articles:   { id: 'articles-grid',   key: 'articles'   },
+    medicine:   { id: 'medicine-grid',   key: 'medicine'   },
+  };
+
+  Object.entries(grids).forEach(([cat, cfg]) => {
+    const grid = document.getElementById(cfg.id);
+    data[cat].forEach((name, i) => {
+      grid.appendChild(makeCard(name, '', cfg.key, i + 1, false));
+    });
+  });
+
+  /* ── DRAGGABLE WA BUTTON ── */
+  (function () {
+    const wrapper = document.getElementById('waFloat');
+    let isDragging = false, didDrag = false;
+    let startX, startY, initLeft, initTop;
+
+    function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+    function initPosition() {
+      const rect = wrapper.getBoundingClientRect();
+      wrapper.style.right = wrapper.style.bottom = 'auto';
+      wrapper.style.left = rect.left + 'px';
+      wrapper.style.top  = rect.top  + 'px';
+    }
+
+    wrapper.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      initPosition(); isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      initLeft = parseFloat(wrapper.style.left);
+      initTop  = parseFloat(wrapper.style.top);
+      wrapper.classList.add('dragging'); e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) didDrag = true;
+      wrapper.style.left = clamp(initLeft + dx, 0, window.innerWidth  - wrapper.offsetWidth)  + 'px';
+      wrapper.style.top  = clamp(initTop  + dy, 0, window.innerHeight - wrapper.offsetHeight) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false; wrapper.classList.remove('dragging');
+      if (didDrag) { wrapper.classList.add('did-drag'); setTimeout(() => wrapper.classList.remove('did-drag'), 300); }
+      save();
+    });
+
+    wrapper.addEventListener('touchstart', e => {
+      initPosition(); isDragging = true; didDrag = false;
+      const t = e.touches[0]; startX = t.clientX; startY = t.clientY;
+      initLeft = parseFloat(wrapper.style.left); initTop = parseFloat(wrapper.style.top);
+      wrapper.classList.add('dragging');
+    }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      const dx = t.clientX - startX, dy = t.clientY - startY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) didDrag = true;
+      wrapper.style.left = clamp(initLeft + dx, 0, window.innerWidth  - wrapper.offsetWidth)  + 'px';
+      wrapper.style.top  = clamp(initTop  + dy, 0, window.innerHeight - wrapper.offsetHeight) + 'px';
+      if (didDrag) e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false; wrapper.classList.remove('dragging');
+      if (didDrag) { wrapper.classList.add('did-drag'); setTimeout(() => wrapper.classList.remove('did-drag'), 300); }
+      save();
+    });
+
+    function save() {
+      localStorage.setItem('wa-ss-left', wrapper.style.left);
+      localStorage.setItem('wa-ss-top',  wrapper.style.top);
+    }
+    function load() {
+      const l = localStorage.getItem('wa-ss-left');
+      const t = localStorage.getItem('wa-ss-top');
+      if (l && t) {
+        wrapper.style.right = wrapper.style.bottom = 'auto';
+        wrapper.style.left = clamp(parseFloat(l), 0, window.innerWidth  - wrapper.offsetWidth)  + 'px';
+        wrapper.style.top  = clamp(parseFloat(t), 0, window.innerHeight - wrapper.offsetHeight) + 'px';
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      if (wrapper.style.left) {
+        wrapper.style.left = clamp(parseFloat(wrapper.style.left), 0, window.innerWidth  - wrapper.offsetWidth)  + 'px';
+        wrapper.style.top  = clamp(parseFloat(wrapper.style.top),  0, window.innerHeight - wrapper.offsetHeight) + 'px';
+      }
+    });
+
+    load();
+  })();
+</script>
+
+</body>
+</html>
