@@ -45,24 +45,24 @@ body.dark-mode {
   --bg:          #333333;
   --bg-alt:      #363636;
   --text:        #F5F7FA;
-  --text-muted:  #a0b0c0;
-  --card:        #34495e;
-  --card-border: #3d5570;
-  --chip-bg:     #2e4460;
-  --chip-text:   #d0dce8;
-  --nav-bg:      rgba(44,62,80,0.96);
-  --shadow:      0 2px 16px rgba(0,0,0,0.30);
-  --shadow-card: 0 4px 24px rgba(0,0,0,0.35);
-  --shadow-hover:0 12px 32px rgba(0,51,204,0.25);
-  --chargers-light: #1a2a50;
-  --sounds-light: #2a1a40;
-  --powerbanks-light: #3a2510;
-  --cables-light: #102a18;
-  --others-light: #0a3040;
+  --text-muted:  #a8b0c0;
+  --card:        #1f1f1f;
+  --card-border: #1f1f1f;
+  --chip-bg:     #2a2a2a;
+  --chip-text:   #d0d8e8;
+  --nav-bg:      rgba(33,33,33,0.97);
+  --shadow:      0 2px 16px rgba(0,0,0,0.40);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.50);
+  --shadow-hover:0 12px 32px rgba(0,51,204,0.22);
+  --chargers-light: #0d1a40;
+  --sounds-light: #1e1030;
+  --powerbanks-light: #2a1a08;
+  --cables-light: #0a1e10;
+  --others-light: #041e28;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -251,19 +251,26 @@ nav {
 .categories-wrapper { background: var(--bg); }
 
 .category-section {
-  padding: 56px 0 48px;
+  padding: 60px 0 52px;
   border-bottom: 1px solid var(--card-border);
 }
 .category-section:last-child { border-bottom: none; }
 .category-section.alt-bg { background: var(--bg-alt); }
 
 .section-header {
-  padding: 0 24px 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.product-track {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .section-title-wrap { display: flex; align-items: center; gap: 12px; }
@@ -358,7 +365,7 @@ nav {
 
 .product-img {
   width: 100%;
-  height: 160px;
+  aspect-ratio: 1;
   background: var(--bg-alt);
   outline: 2px dashed var(--card-border);
   outline-offset: -8px;
@@ -382,11 +389,11 @@ nav {
 }
 
 .product-body {
-  padding: 14px;
+  padding: 12px 12px 14px;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 6px;
+  gap: 4px;
 }
 
 .product-name {
@@ -397,9 +404,9 @@ nav {
   color: var(--text);
 }
 .product-desc {
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.55;
+  line-height: 1.58;
 }
 
 .product-pricing {
@@ -425,10 +432,10 @@ nav {
   border: none;
   border-radius: 8px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   transition: opacity 0.2s, transform 0.15s;
   width: 100%;
 }
@@ -641,6 +648,32 @@ nav {
 }
 .map-container iframe { width: 100%; height: 100%; border: none; display: block; }
 
+/* ── FADE IN ON SCROLL ── */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+              transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger each card inside a visible section */
+.fade-in-section.is-visible .product-card {
+  animation: cardFadeUp 0.45s cubic-bezier(0.22,1,0.36,1) both;
+}
+.fade-in-section.is-visible .product-card:nth-child(1) { animation-delay: 0.05s; }
+.fade-in-section.is-visible .product-card:nth-child(2) { animation-delay: 0.10s; }
+.fade-in-section.is-visible .product-card:nth-child(3) { animation-delay: 0.15s; }
+.fade-in-section.is-visible .product-card:nth-child(4) { animation-delay: 0.20s; }
+.fade-in-section.is-visible .product-card:nth-child(n+5) { animation-delay: 0.25s; }
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ── FOOTER ── */
 footer {
   background: var(--bg);
@@ -680,7 +713,7 @@ footer a:hover { text-decoration: underline; }
   .section-header { padding: 0 16px 20px; }
   .product-track { padding: 4px 16px 16px; }
   .chips-section { padding: 12px 16px; }
-  .product-img { height: 140px; }
+  /* product-img uses aspect-ratio:1 — no fixed height needed */
 }
 
 /* ── FLOATING WHATSAPP BUTTON ── */
@@ -1105,7 +1138,8 @@ footer a:hover { text-decoration: underline; }
   /* ── HORIZONTAL SCROLL ARROWS ── */
   function scrollTrack(trackId, dir) {
     const track = document.getElementById(trackId);
-    track.scrollBy({ left: dir * 440, behavior: 'smooth' });
+    // Scroll exactly one visible page width per click
+    track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
   }
 
   /* ── CHIP SCROLL + ACTIVE STATE ── */
@@ -1150,6 +1184,18 @@ footer a:hover { text-decoration: underline; }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') document.getElementById('shopModal').classList.remove('open');
   });
+
+  /* ── FADE IN ON SCROLL ── */
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObserver.unobserve(entry.target); // fire once only
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in-section').forEach(el => fadeObserver.observe(el));
 
   /* ── DRAGGABLE WHATSAPP BUTTON ── */
   (function () {
