@@ -184,33 +184,38 @@ nav {
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-muted); margin-bottom: 16px;
 }
+/* ── BENTO GRID ── */
 .bento-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
+/* Row 1: Provisions (large ~60%) + Articles (large ~40%) */
+.bento-row1 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 16px;
+}
+.bento-row1 .bento-tile { min-height: 220px; }
+
+/* Row 2: Cosmetics + Wines & Beverages + Medicine (equal thirds) */
+.bento-row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.bento-row2 .bento-tile { min-height: 175px; }
+
 .bento-tile {
-  border-radius: 18px; padding: 28px 24px;
+  border-radius: 18px;
+  padding: 28px 24px;
   position: relative; overflow: hidden;
   display: flex; flex-direction: column; justify-content: flex-end;
-  min-height: 180px; cursor: pointer;
+  cursor: pointer;
   transition: transform 0.22s, box-shadow 0.22s;
   text-decoration: none;
 }
 .bento-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-
-.bento-tile.large  { grid-column: span 1; min-height: 200px; }
-.bento-tile.medium { grid-column: span 1; min-height: 170px; }
-.bento-tile.small  { grid-column: span 1; min-height: 155px; }
-
-/* Row 1: 2 large tiles */
-.bento-tile:nth-child(1) { grid-column: span 2; }
-.bento-tile:nth-child(2) { grid-column: span 1; }
-/* Row 2: 3 medium tiles */
-.bento-tile:nth-child(3) { grid-column: span 1; }
-.bento-tile:nth-child(4) { grid-column: span 1; }
-.bento-tile:nth-child(5) { grid-column: span 1; }
 
 /* Category tile colors */
 .tile-provisions  { background: linear-gradient(135deg, #fff8e8 0%, #ffe8b0 100%); }
@@ -276,23 +281,47 @@ body.dark-mode .tile-medicine   { background: linear-gradient(135deg, #0a2520 0%
 }
 .section-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 28px; }
 
-/* ── PRODUCT GRID ── */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-}
-@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+/* ── PRODUCT SCROLL TRACK ── */
+.product-scroll-wrapper { position: relative; }
 
-/* Hot deals: 4-col for the 8 items */
-.hot-grid {
+.product-track {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 200px;
   gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 4px 16px;
 }
-@media (max-width: 900px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
+.product-track::-webkit-scrollbar { display: none; }
+.product-track .product-card { scroll-snap-align: start; }
+
+/* Desktop: wider cards */
+@media (min-width: 1024px) {
+  .product-track { grid-auto-columns: 210px; }
+}
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 601px) {
+  .product-track { grid-auto-columns: 190px; }
+}
+/* Mobile */
+@media (max-width: 600px) {
+  .product-track { grid-auto-columns: 160px; gap: 12px; }
+}
+
+.scroll-controls { display: flex; gap: 8px; }
+.scroll-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1.5px solid var(--card-border);
+  background: var(--card); color: var(--text);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; box-shadow: var(--shadow); flex-shrink: 0;
+}
+.scroll-btn:hover { opacity: 0.75; }
+.scroll-btn svg { width: 16px; height: 16px; }
 
 .product-card {
   background: var(--card);
@@ -507,19 +536,23 @@ footer a:hover { text-decoration: underline; }
   .hero { padding: 48px 24px 36px; }
   .hero-inner { grid-template-columns: 1fr; gap: 32px; }
   .bento-section { padding: 0 24px 48px; }
-  .bento-grid { grid-template-columns: 1fr 1fr; }
-  .bento-tile:nth-child(1) { grid-column: span 2; }
-  .bento-tile:nth-child(2) { grid-column: span 2; }
+  .bento-row1 { grid-template-columns: 1fr 1fr; }
+  .bento-row1 .bento-tile { min-height: 180px; }
+  .bento-row2 { grid-template-columns: 1fr 1fr 1fr; }
   .hot-deals { padding: 48px 24px; }
   .cat-section { padding: 48px 24px; }
   .store-section { padding: 48px 24px 64px; }
 }
-@media (max-width: 540px) {
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-tile:nth-child(1),
-  .bento-tile:nth-child(2) { grid-column: span 1; }
+@media (max-width: 600px) {
+  .bento-row1 { grid-template-columns: 1fr; }
+  .bento-row2 { grid-template-columns: 1fr 1fr; }
+  .bento-row2 .bento-tile:last-child { grid-column: span 2; }
   .hero-btns { flex-direction: column; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .bento-row2 { grid-template-columns: 1fr; }
+  .bento-row2 .bento-tile:last-child { grid-column: span 1; }
 }
 
 /* ── CATEGORY COLOR ACCENTS ── */
@@ -535,6 +568,7 @@ footer a:hover { text-decoration: underline; }
 .cat-medicine    .shop-btn      { background: var(--teal); color: #fff; }
 .hot-deals       .price-current { color: var(--orange); }
 .hot-deals       .shop-btn      { background: var(--orange); color: #fff; }
+```
 
   </style>
 </head>
@@ -590,40 +624,46 @@ footer a:hover { text-decoration: underline; }
     <div class="bento-label">Browse by Category</div>
     <div class="bento-grid">
 
-  <a href="#provisions-section" class="bento-tile tile-provisions" onclick="smoothScroll(event,'provisions-section')">
-    <span class="tile-icon">🍚</span>
-    <div class="tile-name">Provisions</div>
-    <div class="tile-desc">Food staples and daily kitchen essentials.</div>
-    <span class="tile-btn">Shop Provisions ›</span>
-  </a>
+  <!-- ROW 1: Large tiles — Provisions (3fr) + Articles (2fr) -->
+  <div class="bento-row1">
+    <a href="#provisions-section" class="bento-tile tile-provisions" onclick="smoothScroll(event,'provisions-section')">
+      <span class="tile-icon">🍚</span>
+      <div class="tile-name">Provisions</div>
+      <div class="tile-desc">Bagged noodles, rice, canned food, and more.</div>
+      <span class="tile-btn">Shop Provisions ›</span>
+    </a>
 
-  <a href="#articles-section" class="bento-tile tile-articles" onclick="smoothScroll(event,'articles-section')">
-    <span class="tile-icon">🪣</span>
-    <div class="tile-name">Articles</div>
-    <div class="tile-desc">Household and utility items for everyday use.</div>
-    <span class="tile-btn">Shop Articles ›</span>
-  </a>
+    <a href="#articles-section" class="bento-tile tile-articles" onclick="smoothScroll(event,'articles-section')">
+      <span class="tile-icon">🪣</span>
+      <div class="tile-name">Articles</div>
+      <div class="tile-desc">Booksplates, seasoning, and more...</div>
+      <span class="tile-btn">Shop Articles ›</span>
+    </a>
+  </div>
 
-  <a href="#cosmetics-section" class="bento-tile tile-cosmetics" onclick="smoothScroll(event,'cosmetics-section')">
-    <span class="tile-icon">💄</span>
-    <div class="tile-name">Cosmetics</div>
-    <div class="tile-desc">Beauty and personal care products.</div>
-    <span class="tile-btn">Shop Cosmetics ›</span>
-  </a>
+  <!-- ROW 2: Medium + Medium + Small — Cosmetics, Wines, Medicine -->
+  <div class="bento-row2">
+    <a href="#cosmetics-section" class="bento-tile tile-cosmetics" onclick="smoothScroll(event,'cosmetics-section')">
+      <span class="tile-icon">💄</span>
+      <div class="tile-name">Cosmetics</div>
+      <div class="tile-desc">Perfume, creams..</div>
+      <span class="tile-btn">Shop Cosmetics ›</span>
+    </a>
 
-  <a href="#wines-section" class="bento-tile tile-wines" onclick="smoothScroll(event,'wines-section')">
-    <span class="tile-icon">🍷</span>
-    <div class="tile-name">Wines & Beverages</div>
-    <div class="tile-desc">Wines, drinks, and refreshments.</div>
-    <span class="tile-btn">Shop Wines ›</span>
-  </a>
+    <a href="#wines-section" class="bento-tile tile-wines" onclick="smoothScroll(event,'wines-section')">
+      <span class="tile-icon">🍷</span>
+      <div class="tile-name">Wines &amp; Beverages</div>
+      <div class="tile-desc">Bottled water, &amp; more...</div>
+      <span class="tile-btn">Shop Wines ›</span>
+    </a>
 
-  <a href="#medicine-section" class="bento-tile tile-medicine" onclick="smoothScroll(event,'medicine-section')">
-    <span class="tile-icon">💊</span>
-    <div class="tile-name">Medicine</div>
-    <div class="tile-desc">Selected over-the-counter health essentials.</div>
-    <span class="tile-btn">Shop Medicine ›</span>
-  </a>
+    <a href="#medicine-section" class="bento-tile tile-medicine" onclick="smoothScroll(event,'medicine-section')">
+      <span class="tile-icon">💊</span>
+      <div class="tile-name">Medicine</div>
+      <div class="tile-desc">Cough syrup.</div>
+      <span class="tile-btn">Shop Medicine ›</span>
+    </a>
+  </div>
 
 </div>
 
@@ -639,7 +679,13 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow">🔥 This Week</div>
     <h2 class="section-title">Hot Picks This Week</h2>
     <p class="section-subtitle">Curated favourites from across all our categories — quality, value, and trust.</p>
-    <div class="hot-grid" id="hot-grid"></div>
+    <div class="product-scroll-wrapper">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
+        <button class="scroll-btn" onclick="scrollTrack('hot-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="scroll-btn" onclick="scrollTrack('hot-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="product-track" id="hot-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -652,7 +698,13 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow" style="background:var(--orange-light);color:var(--orange);">🍚 Provisions</div>
     <h2 class="section-title">Provisions</h2>
     <p class="section-subtitle">Everyday kitchen essentials and food supplies.</p>
-    <div class="product-grid" id="provisions-grid"></div>
+    <div class="product-scroll-wrapper">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
+        <button class="scroll-btn" onclick="scrollTrack('provisions-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="scroll-btn" onclick="scrollTrack('provisions-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="product-track" id="provisions-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -665,7 +717,13 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow" style="background:var(--blue-light);color:var(--blue);">🪣 Articles</div>
     <h2 class="section-title">Articles</h2>
     <p class="section-subtitle">Household and utility items for everyday living.</p>
-    <div class="product-grid" id="articles-grid"></div>
+    <div class="product-scroll-wrapper">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
+        <button class="scroll-btn" onclick="scrollTrack('articles-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="scroll-btn" onclick="scrollTrack('articles-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="product-track" id="articles-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -678,7 +736,13 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow" style="background:var(--pink-light);color:var(--pink);">💄 Beauty</div>
     <h2 class="section-title">Cosmetics</h2>
     <p class="section-subtitle">Beauty and personal care products for every skin type.</p>
-    <div class="product-grid" id="cosmetics-grid"></div>
+    <div class="product-scroll-wrapper">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
+        <button class="scroll-btn" onclick="scrollTrack('cosmetics-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="scroll-btn" onclick="scrollTrack('cosmetics-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="product-track" id="cosmetics-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -691,7 +755,13 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow" style="background:var(--wine-light);color:var(--wine);">🍷 Drinks</div>
     <h2 class="section-title">Wines &amp; Beverages</h2>
     <p class="section-subtitle">Wines, drinks, and refreshments for every occasion.</p>
-    <div class="product-grid" id="wines-grid"></div>
+    <div class="product-scroll-wrapper">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
+        <button class="scroll-btn" onclick="scrollTrack('wines-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="scroll-btn" onclick="scrollTrack('wines-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="product-track" id="wines-grid"></div>
+    </div>
   </div>
 </section>
 
@@ -704,7 +774,13 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow" style="background:var(--teal-light);color:var(--teal);">💊 Health</div>
     <h2 class="section-title">Medicine</h2>
     <p class="section-subtitle">Selected over-the-counter health essentials.</p>
-    <div class="product-grid" id="medicine-grid"></div>
+    <div class="product-scroll-wrapper">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
+        <button class="scroll-btn" onclick="scrollTrack('medicine-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="scroll-btn" onclick="scrollTrack('medicine-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="product-track" id="medicine-grid"></div>
+    </div>
     <div class="disclaimer">
       ⚠️ Health products are sold as general over-the-counter items. For medical concerns, please consult a qualified healthcare professional before use.
     </div>
@@ -837,6 +913,13 @@ footer a:hover { text-decoration: underline; }
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.getElementById('shopModal').classList.remove('open');
   });
+
+  /* ── HORIZONTAL SCROLL ARROWS ── */
+  function scrollTrack(trackId, dir) {
+    const track = document.getElementById(trackId);
+    // scroll by ~2 card widths worth
+    track.scrollBy({ left: dir * 450, behavior: 'smooth' });
+  }
 
   /* ── PRODUCT DATA ── */
   const data = {
