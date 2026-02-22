@@ -184,45 +184,105 @@ nav {
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-muted); margin-bottom: 16px;
 }
-/* ── BENTO GRID ── */
-.bento-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-/* Row 1: Provisions (large ~60%) + Articles (large ~40%) */
+
+.bento-grid { display: flex; flex-direction: column; gap: 16px; }
+
+/* Row 1: Provisions (wide ~60%) + Articles (~40%) — tall tiles */
 .bento-row1 {
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: 16px;
 }
-.bento-row1 .bento-tile { min-height: 220px; }
+.bento-row1 .bento-tile { height: 220px; }
 
-/* Row 2: Cosmetics + Wines & Beverages + Medicine (equal thirds) */
+/* Row 2: Cosmetics + Wines + Medicine — equal, shorter */
 .bento-row2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
 }
-.bento-row2 .bento-tile { min-height: 175px; }
+.bento-row2 .bento-tile { height: 180px; }
 
+/* Tile base — text left, image right */
 .bento-tile {
   border-radius: 18px;
-  padding: 28px 24px;
+  padding: 24px 20px;
   position: relative; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: row;
+  align-items: center; justify-content: space-between;
+  gap: 12px;
   cursor: pointer;
   transition: transform 0.22s, box-shadow 0.22s;
   text-decoration: none;
 }
 .bento-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 
-/* Category tile colors */
-.tile-provisions  { background: linear-gradient(135deg, #fff8e8 0%, #ffe8b0 100%); }
-.tile-articles    { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
-.tile-cosmetics   { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); }
-.tile-wines       { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
-.tile-medicine    { background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); }
+/* Left: text stack */
+.tile-content {
+  display: flex; flex-direction: column;
+  justify-content: flex-end; gap: 5px;
+  flex: 1; min-width: 0; z-index: 1;
+  align-self: flex-end;
+  padding-bottom: 4px;
+}
+.tile-name {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.15rem; color: var(--text); line-height: 1.2;
+}
+.tile-desc {
+  font-size: 0.79rem; color: var(--text-muted);
+  line-height: 1.45; margin-bottom: 10px;
+}
+.tile-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px; border: none;
+  font-family: 'DM Sans', sans-serif; font-weight: 600;
+  font-size: 0.79rem; cursor: pointer;
+  text-decoration: none; width: fit-content;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.tile-btn:hover { opacity: 0.85; transform: scale(0.97); }
+
+/* Right: image slot */
+.tile-img-wrap {
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+/* Row 1 image: taller */
+.bento-row1 .tile-img-wrap { width: 155px; height: 175px; }
+/* Row 2 image: shorter */
+.bento-row2 .tile-img-wrap { width: 120px; height: 140px; }
+
+.tile-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+/* Dashed placeholder shown when no image */
+.tile-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+  border: 2px dashed rgba(0,0,0,0.18);
+  border-radius: 10px;
+  font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: rgba(0,0,0,0.28); text-align: center; padding: 8px;
+}
+body.dark-mode .tile-img-placeholder {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.25);
+}
+.tile-img-placeholder .ph-icon { font-size: 1.6rem; opacity: 0.35; }
+
+/* Tile background gradients */
+.tile-provisions { background: linear-gradient(135deg, #fff8e8 0%, #ffe8b0 100%); }
+.tile-articles   { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
+.tile-cosmetics  { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); }
+.tile-wines      { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
+.tile-medicine   { background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); }
 
 body.dark-mode .tile-provisions { background: linear-gradient(135deg, #2a2010 0%, #3a2e10 100%); }
 body.dark-mode .tile-articles   { background: linear-gradient(135deg, #0d1f3a 0%, #1a2a4a 100%); }
@@ -230,31 +290,11 @@ body.dark-mode .tile-cosmetics  { background: linear-gradient(135deg, #2a0a1a 0%
 body.dark-mode .tile-wines      { background: linear-gradient(135deg, #1e0a30 0%, #2a1040 100%); }
 body.dark-mode .tile-medicine   { background: linear-gradient(135deg, #0a2520 0%, #102a28 100%); }
 
-.tile-name {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 1.2rem; color: var(--text); margin-bottom: 4px;
-}
-.tile-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
-.tile-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 16px; border-radius: 8px; border: none;
-  font-family: 'DM Sans', sans-serif; font-weight: 600;
-  font-size: 0.8rem; cursor: pointer;
-  text-decoration: none; width: fit-content;
-  transition: opacity 0.2s, transform 0.15s;
-}
-.tile-btn:hover { opacity: 0.85; transform: scale(0.97); }
-
-.tile-provisions .tile-btn { background: var(--orange);  color: #fff; }
-.tile-articles   .tile-btn { background: var(--blue);    color: #fff; }
-.tile-cosmetics  .tile-btn { background: var(--pink);    color: #fff; }
-.tile-wines      .tile-btn { background: var(--wine);    color: #fff; }
-.tile-medicine   .tile-btn { background: var(--teal);    color: #fff; }
-
-.tile-icon {
-  position: absolute; top: 20px; right: 20px;
-  font-size: 2.8rem; opacity: 0.18;
-}
+.tile-provisions .tile-btn { background: var(--orange); color: #fff; }
+.tile-articles   .tile-btn { background: var(--blue);   color: #fff; }
+.tile-cosmetics  .tile-btn { background: var(--pink);   color: #fff; }
+.tile-wines      .tile-btn { background: var(--wine);   color: #fff; }
+.tile-medicine   .tile-btn { background: var(--teal);   color: #fff; }
 
 /* ── SECTION DIVIDER ── */
 .section-divider {
@@ -281,14 +321,27 @@ body.dark-mode .tile-medicine   { background: linear-gradient(135deg, #0a2520 0%
 }
 .section-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 28px; }
 
-/* ── PRODUCT SCROLL TRACK ── */
+/* ── HOT DEALS GRID (vertical, bigger cards) ── */
+.hot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.hot-grid .product-card .product-img { aspect-ratio: 4/3; }
+.hot-grid .product-card .product-name { font-size: 0.95rem; }
+.hot-grid .product-card .product-desc { font-size: 0.8rem; }
+
+/* ── CATEGORY PRODUCT SCROLL TRACK (2-row × horizontal) ── */
 .product-scroll-wrapper { position: relative; }
 
 .product-track {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-auto-flow: column;
-  grid-auto-columns: 200px;
+  grid-auto-columns: calc((100% - 3 * 16px) / 4); /* 4 cols desktop */
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -299,17 +352,15 @@ body.dark-mode .tile-medicine   { background: linear-gradient(135deg, #0a2520 0%
 .product-track::-webkit-scrollbar { display: none; }
 .product-track .product-card { scroll-snap-align: start; }
 
-/* Desktop: wider cards */
-@media (min-width: 1024px) {
-  .product-track { grid-auto-columns: 210px; }
+@media (max-width: 900px) {
+  .product-track {
+    grid-auto-columns: calc((100% - 1 * 16px) / 2); /* 2 cols tablet */
+  }
 }
-/* Tablet */
-@media (max-width: 1023px) and (min-width: 601px) {
-  .product-track { grid-auto-columns: 190px; }
-}
-/* Mobile */
-@media (max-width: 600px) {
-  .product-track { grid-auto-columns: 160px; gap: 12px; }
+@media (max-width: 480px) {
+  .product-track {
+    grid-auto-columns: calc(100%); /* 1 col mobile */
+  }
 }
 
 .scroll-controls { display: flex; gap: 8px; }
@@ -380,11 +431,105 @@ body.dark-mode .tile-medicine   { background: linear-gradient(135deg, #0a2520 0%
 .cat-section-inner { max-width: 1200px; margin: 0 auto; }
 
 /* ── DISCLAIMER ── */
-.disclaimer {
-  margin-top: 20px; padding: 12px 16px;
-  background: var(--teal-light); border-left: 3px solid var(--teal);
-  border-radius: 8px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.55;
+/* ── MEDICINE DISCLAIMER — LIQUID GLASS ── */
+.disclaimer-card {
+  margin-top: 36px;
+  position: relative;
+  border-radius: 24px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  overflow: hidden;
+
+  /* Glass base */
+  background: linear-gradient(
+    135deg,
+    rgba(0, 137, 123, 0.13) 0%,
+    rgba(38, 166, 154, 0.07) 40%,
+    rgba(255,255,255,0.18) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+
+  /* Glass border */
+  border: 1px solid rgba(0, 137, 123, 0.22);
+  box-shadow:
+    0 8px 32px rgba(0, 137, 123, 0.12),
+    0 2px 8px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    inset 0 -1px 0 rgba(0,0,0,0.04);
 }
+
+/* Glossy top sheen */
+.disclaimer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.32) 0%,
+    rgba(255,255,255,0.0) 100%
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+}
+
+/* Teal glow orb bottom-right */
+.disclaimer-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(0,137,123,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+body.dark-mode .disclaimer-card {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 137, 123, 0.18) 0%,
+    rgba(38, 166, 154, 0.09) 40%,
+    rgba(255,255,255,0.05) 100%
+  );
+  border-color: rgba(0, 137, 123, 0.30);
+  box-shadow:
+    0 8px 32px rgba(0, 137, 123, 0.18),
+    0 2px 8px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+body.dark-mode .disclaimer-card::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0.0) 100%
+  );
+}
+
+.disclaimer-icon-wrap {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: rgba(0, 137, 123, 0.15);
+  border: 1px solid rgba(0, 137, 123, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+}
+.disclaimer-body { flex: 1; position: relative; z-index: 1; }
+.disclaimer-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.93rem;
+  color: var(--text); margin-bottom: 6px;
+}
+.disclaimer-text {
+  font-size: 0.82rem; color: var(--text-muted);
+  line-height: 1.68;
+}
+.disclaimer-text strong { color: var(--teal); font-weight: 600; }
 
 /* ── STORE LOCATION ── */
 .store-section {
@@ -537,16 +682,22 @@ footer a:hover { text-decoration: underline; }
   .hero-inner { grid-template-columns: 1fr; gap: 32px; }
   .bento-section { padding: 0 24px 48px; }
   .bento-row1 { grid-template-columns: 1fr 1fr; }
-  .bento-row1 .bento-tile { min-height: 180px; }
-  .bento-row2 { grid-template-columns: 1fr 1fr 1fr; }
+  .bento-row1 .bento-tile { height: 190px; }
+  .bento-row1 .tile-img-wrap { width: 120px; height: 150px; }
+  .bento-row2 .bento-tile { height: 165px; }
+  .bento-row2 .tile-img-wrap { width: 95px; height: 125px; }
   .hot-deals { padding: 48px 24px; }
   .cat-section { padding: 48px 24px; }
   .store-section { padding: 48px 24px 64px; }
 }
 @media (max-width: 600px) {
   .bento-row1 { grid-template-columns: 1fr; }
+  .bento-row1 .bento-tile { height: auto; min-height: 150px; }
+  .bento-row1 .tile-img-wrap { width: 110px; height: 130px; }
   .bento-row2 { grid-template-columns: 1fr 1fr; }
   .bento-row2 .bento-tile:last-child { grid-column: span 2; }
+  .bento-row2 .bento-tile { height: 155px; }
+  .bento-row2 .tile-img-wrap { width: 100px; height: 120px; }
   .hero-btns { flex-direction: column; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
 }
@@ -568,7 +719,6 @@ footer a:hover { text-decoration: underline; }
 .cat-medicine    .shop-btn      { background: var(--teal); color: #fff; }
 .hot-deals       .price-current { color: var(--orange); }
 .hot-deals       .shop-btn      { background: var(--orange); color: #fff; }
-```
 
   </style>
 </head>
@@ -624,45 +774,89 @@ footer a:hover { text-decoration: underline; }
     <div class="bento-label">Browse by Category</div>
     <div class="bento-grid">
 
-  <!-- ROW 1: Large tiles — Provisions (3fr) + Articles (2fr) -->
+  <!-- ROW 1: Provisions (wide) + Articles -->
   <div class="bento-row1">
+
     <a href="#provisions-section" class="bento-tile tile-provisions" onclick="smoothScroll(event,'provisions-section')">
-      <span class="tile-icon">🍚</span>
-      <div class="tile-name">Provisions</div>
-      <div class="tile-desc">Bagged noodles, rice, canned food, and more.</div>
-      <span class="tile-btn">Shop Provisions ›</span>
+      <div class="tile-content">
+        <div class="tile-name">Provisions</div>
+        <div class="tile-desc">Bagged noodles, rice,<br/>canned food, and more.</div>
+        <span class="tile-btn">Shop Provisions ›</span>
+      </div>
+      <div class="tile-img-wrap">
+        <img src="images/superstore/bento/provisions.png" alt="Provisions"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="tile-img-placeholder" style="display:none">
+          <span class="ph-icon">🍚</span>Add Image
+        </div>
+      </div>
     </a>
 
     <a href="#articles-section" class="bento-tile tile-articles" onclick="smoothScroll(event,'articles-section')">
-      <span class="tile-icon">🪣</span>
-      <div class="tile-name">Articles</div>
-      <div class="tile-desc">Booksplates, seasoning, and more...</div>
-      <span class="tile-btn">Shop Articles ›</span>
+      <div class="tile-content">
+        <div class="tile-name">Articles</div>
+        <div class="tile-desc">Booksplates, seasoning,<br/>and more...</div>
+        <span class="tile-btn">Shop Articles ›</span>
+      </div>
+      <div class="tile-img-wrap">
+        <img src="images/superstore/bento/articles.png" alt="Articles"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="tile-img-placeholder" style="display:none">
+          <span class="ph-icon">🪣</span>Add Image
+        </div>
+      </div>
     </a>
+
   </div>
 
-  <!-- ROW 2: Medium + Medium + Small — Cosmetics, Wines, Medicine -->
+  <!-- ROW 2: Cosmetics + Wines & Beverages + Medicine -->
   <div class="bento-row2">
+
     <a href="#cosmetics-section" class="bento-tile tile-cosmetics" onclick="smoothScroll(event,'cosmetics-section')">
-      <span class="tile-icon">💄</span>
-      <div class="tile-name">Cosmetics</div>
-      <div class="tile-desc">Perfume, creams..</div>
-      <span class="tile-btn">Shop Cosmetics ›</span>
+      <div class="tile-content">
+        <div class="tile-name">Cosmetics</div>
+        <div class="tile-desc">Perfume, creams..</div>
+        <span class="tile-btn">Shop Cosmetics ›</span>
+      </div>
+      <div class="tile-img-wrap">
+        <img src="images/superstore/bento/cosmetics.png" alt="Cosmetics"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="tile-img-placeholder" style="display:none">
+          <span class="ph-icon">💄</span>Add Image
+        </div>
+      </div>
     </a>
 
     <a href="#wines-section" class="bento-tile tile-wines" onclick="smoothScroll(event,'wines-section')">
-      <span class="tile-icon">🍷</span>
-      <div class="tile-name">Wines &amp; Beverages</div>
-      <div class="tile-desc">Bottled water, &amp; more...</div>
-      <span class="tile-btn">Shop Wines ›</span>
+      <div class="tile-content">
+        <div class="tile-name">Wines &amp; Beverages</div>
+        <div class="tile-desc">Bottled water, &amp; more...</div>
+        <span class="tile-btn">Shop Wines ›</span>
+      </div>
+      <div class="tile-img-wrap">
+        <img src="images/superstore/bento/wines.png" alt="Wines and Beverages"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="tile-img-placeholder" style="display:none">
+          <span class="ph-icon">🍷</span>Add Image
+        </div>
+      </div>
     </a>
 
     <a href="#medicine-section" class="bento-tile tile-medicine" onclick="smoothScroll(event,'medicine-section')">
-      <span class="tile-icon">💊</span>
-      <div class="tile-name">Medicine</div>
-      <div class="tile-desc">Cough syrup.</div>
-      <span class="tile-btn">Shop Medicine ›</span>
+      <div class="tile-content">
+        <div class="tile-name">Medicine</div>
+        <div class="tile-desc">Cough syrup.</div>
+        <span class="tile-btn">Shop Medicine ›</span>
+      </div>
+      <div class="tile-img-wrap">
+        <img src="images/superstore/bento/medicine.png" alt="Medicine"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="tile-img-placeholder" style="display:none">
+          <span class="ph-icon">💊</span>Add Image
+        </div>
+      </div>
     </a>
+
   </div>
 
 </div>
@@ -679,13 +873,7 @@ footer a:hover { text-decoration: underline; }
     <div class="section-eyebrow">🔥 This Week</div>
     <h2 class="section-title">Hot Picks This Week</h2>
     <p class="section-subtitle">Curated favourites from across all our categories — quality, value, and trust.</p>
-    <div class="product-scroll-wrapper">
-      <div style="display:flex; justify-content:flex-end; margin-bottom:10px; gap:8px;">
-        <button class="scroll-btn" onclick="scrollTrack('hot-grid',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button class="scroll-btn" onclick="scrollTrack('hot-grid', 1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
-      </div>
-      <div class="product-track" id="hot-grid"></div>
-    </div>
+    <div class="hot-grid" id="hot-grid"></div>
   </div>
 </section>
 
@@ -781,8 +969,16 @@ footer a:hover { text-decoration: underline; }
       </div>
       <div class="product-track" id="medicine-grid"></div>
     </div>
-    <div class="disclaimer">
-      ⚠️ Health products are sold as general over-the-counter items. For medical concerns, please consult a qualified healthcare professional before use.
+    <div class="disclaimer-card">
+      <div class="disclaimer-icon-wrap">💊</div>
+      <div class="disclaimer-body">
+        <div class="disclaimer-title">Health &amp; Safety Notice</div>
+        <p class="disclaimer-text">
+          All medicine products available here are <strong>general over-the-counter items</strong> intended for common use.
+          They are not a substitute for professional medical advice, diagnosis, or treatment.
+          If you have a medical concern, please <strong>consult a qualified healthcare professional</strong> before purchase or use.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -917,8 +1113,9 @@ footer a:hover { text-decoration: underline; }
   /* ── HORIZONTAL SCROLL ARROWS ── */
   function scrollTrack(trackId, dir) {
     const track = document.getElementById(trackId);
-    // scroll by ~2 card widths worth
-    track.scrollBy({ left: dir * 450, behavior: 'smooth' });
+    // scroll by 2 visible card widths
+    const scrollAmount = track.offsetWidth / 2;
+    track.scrollBy({ left: dir * scrollAmount * 2, behavior: 'smooth' });
   }
 
   /* ── PRODUCT DATA ── */
