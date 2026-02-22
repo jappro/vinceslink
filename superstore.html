@@ -209,27 +209,62 @@ nav {
 .bento-row2 .bento-tile { height: 200px; }
 
 /* Tile base — text left, image right */
+/* Tile base — text left (in-flow), image absolutely fills right + bleeds into text zone */
 .bento-tile {
   border-radius: 18px;
-  padding: 20px 0 20px 20px; /* no right padding — image bleeds to edge */
+  padding: 20px;
   position: relative; overflow: hidden;
   display: flex; flex-direction: row;
-  align-items: stretch; justify-content: space-between;
-  gap: 0;
+  align-items: flex-end;
   cursor: pointer;
   transition: transform 0.22s, box-shadow 0.22s;
   text-decoration: none;
 }
 .bento-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.bento-tile:hover .tile-img-wrap img { transform: scale(1.04); }
 
-/* Left: text stack — sits at bottom */
+/* Image — absolutely positioned, right-anchored, bleeds top/right/bottom
+   Width > 50% so it intentionally overlaps into the text zone */
+.tile-img-wrap {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  border-radius: 0 18px 18px 0;
+  z-index: 0; /* behind text */
+}
+
+/* Provisions — image bleeds ~55% from right */
+.bento-row1 .bento-tile:nth-child(1) .tile-img-wrap { width: 55%; }
+/* Articles */
+.bento-row1 .bento-tile:nth-child(2) .tile-img-wrap { width: 58%; }
+/* Cosmetics */
+.bento-row2 .bento-tile:nth-child(1) .tile-img-wrap { width: 55%; }
+/* Wines */
+.bento-row2 .bento-tile:nth-child(2) .tile-img-wrap { width: 55%; }
+/* Medicine — narrowest tile, image covers most */
+.bento-row2 .bento-tile:nth-child(3) .tile-img-wrap { width: 62%; }
+
+.tile-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+/* Text content — in-flow on the left, sits above image via z-index.
+   Has a solid tile-coloured background only behind the text block
+   so text is always readable, even when image bleeds behind it. */
 .tile-content {
   display: flex; flex-direction: column;
   justify-content: flex-end; gap: 5px;
-  flex: 1; min-width: 0; z-index: 1;
-  padding-bottom: 4px;
-  padding-right: 8px;
+  position: relative; z-index: 2;
+  /* Solid pill of tile colour behind text only */
+  padding: 10px 14px 10px 0;
+  flex-shrink: 0;
+  width: 52%; /* text stays in left 52% — image bleeds under the rest */
 }
+
+/* Solid background patch sits behind text words only */
 .tile-name {
   font-family: 'Syne', sans-serif; font-weight: 800;
   font-size: 1.1rem; color: var(--text); line-height: 1.2;
@@ -238,6 +273,40 @@ nav {
   font-size: 0.85rem; color: var(--text-muted);
   line-height: 1.45; margin-bottom: 10px;
 }
+
+/* Each text element gets a tight bg matching the tile gradient colour */
+.tile-name, .tile-desc {
+  display: inline;
+  /* box-decoration-break makes bg wrap each line individually */
+  background-color: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-radius: 3px;
+  padding: 1px 6px 1px 0;
+}
+/* Per-tile text background colours matching the tile */
+.tile-provisions .tile-name,
+.tile-provisions .tile-desc  { background-color: #fff8e8; }
+.tile-articles   .tile-name,
+.tile-articles   .tile-desc  { background-color: #e3f2fd; }
+.tile-cosmetics  .tile-name,
+.tile-cosmetics  .tile-desc  { background-color: #fce4ec; }
+.tile-wines      .tile-name,
+.tile-wines      .tile-desc  { background-color: #f3e5f5; }
+.tile-medicine   .tile-name,
+.tile-medicine   .tile-desc  { background-color: #e0f2f1; }
+
+body.dark-mode .tile-provisions .tile-name,
+body.dark-mode .tile-provisions .tile-desc  { background-color: #2a2010; }
+body.dark-mode .tile-articles   .tile-name,
+body.dark-mode .tile-articles   .tile-desc  { background-color: #0d1f3a; }
+body.dark-mode .tile-cosmetics  .tile-name,
+body.dark-mode .tile-cosmetics  .tile-desc  { background-color: #2a0a1a; }
+body.dark-mode .tile-wines      .tile-name,
+body.dark-mode .tile-wines      .tile-desc  { background-color: #1e0a30; }
+body.dark-mode .tile-medicine   .tile-name,
+body.dark-mode .tile-medicine   .tile-desc  { background-color: #0a2520; }
+
 .tile-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 14px; border-radius: 8px; border: none;
@@ -245,37 +314,10 @@ nav {
   font-size: 0.78rem; cursor: pointer;
   text-decoration: none; width: fit-content;
   transition: opacity 0.2s, transform 0.15s;
+  position: relative; z-index: 2; /* always above image */
+  margin-top: 4px;
 }
 .tile-btn:hover { opacity: 0.85; transform: scale(0.97); }
-
-/* Right: image — bleeds to top, right, bottom edges */
-.tile-img-wrap {
-  flex-shrink: 0;
-  overflow: hidden;
-  display: flex; align-items: stretch;
-  position: relative;
-  /* no border-radius on right so it bleeds to tile corners */
-  border-radius: 0 18px 18px 0;
-  align-self: stretch;
-}
-
-/* Provisions (row1 tile 1) — widest tile, biggest image */
-.bento-row1 .bento-tile:nth-child(1) .tile-img-wrap { width: 185px; }
-/* Articles (row1 tile 2) — narrower tile */
-.bento-row1 .bento-tile:nth-child(2) .tile-img-wrap { width: 150px; }
-
-/* Cosmetics (row2 tile 1) */
-.bento-row2 .bento-tile:nth-child(1) .tile-img-wrap { width: 110px; }
-/* Wines (row2 tile 2 — widest in row2) */
-.bento-row2 .bento-tile:nth-child(2) .tile-img-wrap { width: 130px; }
-/* Medicine (row2 tile 3 — narrowest tile) */
-.bento-row2 .bento-tile:nth-child(3) .tile-img-wrap { width: 80px; }
-
-.tile-img-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  object-position: center top; /* anchor image to top */
-}
 /* Dashed placeholder shown when no image */
 .tile-img-placeholder {
   width: 100%; height: 100%;
