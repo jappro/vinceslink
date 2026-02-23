@@ -201,9 +201,44 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 28px; margin-bottom: 28px;
 }
-.props-grid-bottom {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+/* Horizontal scroll track for bottom cards */
+.props-scroll-outer {
+  position: relative;
+  margin-bottom: 0;
+}
+.props-scroll-track {
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 12px;
+  cursor: grab;
+}
+.props-scroll-track:active { cursor: grabbing; }
+.props-scroll-track::-webkit-scrollbar { display: none; }
+.props-scroll-track .prop-card {
+  flex: 0 0 calc(33.33% - 14px); /* 3 visible on desktop */
+  scroll-snap-align: start;
+  min-width: 0;
+}
+.props-scroll-track.scroll-locked {
+  overflow-x: hidden;
+  cursor: default;
+}
+/* Expand panel below scroll track */
+.scroll-expand-wrap {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
+  opacity: 0;
+}
+.scroll-expand-wrap.open { max-height: 900px; opacity: 1; }
+@media (max-width: 900px) {
+  .props-scroll-track .prop-card { flex: 0 0 calc(50% - 10px); }
+}
+@media (max-width: 600px) {
+  .props-scroll-track .prop-card { flex: 0 0 85vw; }
 }
 
 /* ── PROPERTY CARD ── */
@@ -222,7 +257,7 @@ nav {
 .prop-card.sold-card { opacity: 0.92; }
 .prop-img-wrap {
   position: relative;
-  width: 100%; padding-top: 78%;
+  width: 100%; padding-top: 92%;
   background: #dde3ed; overflow: hidden;
 }
 .prop-img-wrap img {
@@ -232,7 +267,7 @@ nav {
   transition: transform 0.4s ease;
 }
 .prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
-.prop-img-wrap.small { padding-top: 80%; }
+.prop-img-wrap.small { padding-top: 88%; }
 
 /* Badge */
 .live-badge {
@@ -284,36 +319,39 @@ nav {
 .props-grid-bottom .prop-desc { font-size: 0.82rem; margin-bottom: 14px; }
 
 /* Card buttons */
-.prop-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.prop-btns { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
 .btn-explore {
-  flex: 1; padding: 8px 12px; background: var(--blue); color: white;
-  border-radius: 50px; font-size: 0.78rem; font-weight: 600;
+  padding: 9px 16px; background: var(--blue); color: white;
+  border-radius: 50px; font-size: 0.82rem; font-weight: 600;
   border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
   transition: background 0.2s; text-align: center;
   display: flex; align-items: center; justify-content: center; gap: 5px;
+  white-space: nowrap;
 }
 .btn-explore:hover { background: var(--blue-dark); }
 .btn-book-now {
-  flex: 1; padding: 8px 12px; background: var(--orange); color: white;
-  border-radius: 50px; font-size: 0.78rem; font-weight: 600;
+  padding: 7px 13px; background: var(--orange); color: white;
+  border-radius: 50px; font-size: 0.74rem; font-weight: 600;
   border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 .btn-book-now:hover { background: var(--orange-dark); }
 .btn-details {
-  flex: 1; padding: 8px 12px;
+  padding: 9px 16px;
   background: transparent; color: var(--blue);
   border: 1.5px solid var(--blue);
-  border-radius: 50px; font-size: 0.78rem; font-weight: 600;
+  border-radius: 50px; font-size: 0.82rem; font-weight: 600;
   cursor: pointer; font-family: 'DM Sans', sans-serif;
   transition: background 0.2s, color 0.2s;
   display: flex; align-items: center; justify-content: center; gap: 5px;
+  white-space: nowrap;
 }
 .btn-details:hover { background: var(--blue-light); }
 .btn-sold-muted {
-  width: 100%; padding: 8px 12px;
+  width: 100%; padding: 7px 13px;
   background: #F1F3F7; color: var(--text-muted);
-  border-radius: 50px; font-size: 0.78rem; font-weight: 500;
+  border-radius: 50px; font-size: 0.74rem; font-weight: 500;
   border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
   transition: background 0.2s;
 }
@@ -411,7 +449,7 @@ nav {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
-.sold-grid .prop-img-wrap { padding-top: 78%; }
+.sold-grid .prop-img-wrap { padding-top: 92%; }
 
 /* ── TOAST ── */
 .toast {
@@ -626,7 +664,7 @@ footer strong { color: rgba(255,255,255,0.85); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .props-grid-bottom { grid-template-columns: repeat(3, 1fr); }
+  /* scroll track handles its own sizing */
   nav { padding: 0 24px; }
   .nav-links { gap: 20px; }
 }
@@ -644,7 +682,7 @@ footer strong { color: rgba(255,255,255,0.85); }
   nav { padding: 0 16px; }
   .nav-links { display: none; }
   .hamburger-btn { display: flex; }
-  .nav-cta { display: none; }
+  .nav-cta { display: inline-flex; font-size: 0.78rem; padding: 8px 14px; }
   .props-grid-bottom { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
@@ -756,8 +794,9 @@ footer strong { color: rgba(255,255,255,0.85); }
 
 </div><!-- /top-grid -->
 
-<!-- Bottom row: 4 smaller cards -->
-<div class="props-grid-bottom" id="bottom-grid">
+<!-- Bottom row: horizontal scroll track (P3-P5, and P6-P8 after View More) -->
+<div class="props-scroll-outer" id="scroll-outer">
+<div class="props-scroll-track" id="bottom-grid">
 
   <!-- PROPERTY 3 -->
   <div class="prop-card fade-up" data-id="p3">
@@ -810,69 +849,13 @@ footer strong { color: rgba(255,255,255,0.85); }
     </div>
   </div>
 
-  <!-- EXPANDED PANEL (spans all 3 columns) -->
-  <div class="expanded-wrap" id="expand-bottom"></div>
+</div><!-- /bottom-grid scroll track -->
 
-</div><!-- /bottom-grid -->
+<!-- Expand panel below the scroll track — for bottom cards -->
+<div class="scroll-expand-wrap" id="expand-bottom"></div>
 
-<!-- Extra 3 properties — hidden until View More clicked -->
-<div class="props-grid-extra" id="extra-grid" style="display:none; grid-template-columns: repeat(3,1fr); gap:20px; margin-top:20px;">
-
-  <!-- PROPERTY 6 -->
-  <div class="prop-card fade-up" data-id="p6">
-    <div class="prop-img-wrap small">
-      <img src="images/realty/prop-6.jpg" alt="Property 6"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p6', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 6')">Book Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROPERTY 7 -->
-  <div class="prop-card fade-up" data-id="p7">
-    <div class="prop-img-wrap small">
-      <img src="images/realty/prop-7.jpg" alt="Property 7"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p7', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 7')">Book Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROPERTY 8 -->
-  <div class="prop-card fade-up" data-id="p8">
-    <div class="prop-img-wrap small">
-      <img src="images/realty/prop-8.jpg" alt="Property 8"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p8', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 8')">Book Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXPANDED PANEL for extra row -->
-  <div class="expanded-wrap" id="expand-extra" style="grid-column:1/-1;"></div>
-
-</div><!-- /extra-grid -->
+<!-- Extra cards P6-P8 — injected into scroll track by JS on View More -->
+</div><!-- /scroll-outer -->
 
   </div>
 </section>
@@ -947,7 +930,7 @@ footer strong { color: rgba(255,255,255,0.85); }
       <h2 class="section-title">Book a Consultation</h2>
     </div>
     <p class="consult-sub">Fill out the form below to get in touch with us and schedule a consultation to discuss your real estate needs.</p>
-    
+
 <div class="consult-card fade-up">
   <!-- Form -->
   <div class="consult-form-wrap">
@@ -1161,12 +1144,11 @@ footer strong { color: rgba(255,255,255,0.85); }
         <img src="${t}" alt="Thumbnail ${i+1}" onerror="this.parentElement.style.opacity='0.3'"/>
        </div>`
     ).join('');
-
     return `
       <div class="expanded-inner">
         <div class="exp-left">
           <div class="exp-main-img" id="exp-main-${id}">
-            <img src="${d.thumbs[0]}" alt="Main image" id="exp-main-img-${id}" onerror="this.style.display='none'"/>
+            <img src="${d.thumbs[0]}" alt="Main image" onerror="this.style.display='none'"/>
           </div>
           <div class="exp-thumbs">${thumbsHTML}</div>
         </div>
@@ -1192,42 +1174,53 @@ footer strong { color: rgba(255,255,255,0.85); }
   function toggleExpand(id, btn) {
     const card = btn.closest('.prop-card');
     const inTop = card.closest('#top-grid') !== null;
-    const inExtra = card.closest('#extra-grid') !== null;
-    const panelId = inTop ? 'expand-top' : inExtra ? 'expand-extra' : 'expand-bottom';
-    const panel = document.getElementById(panelId);
 
-    // If same card — collapse
+    // Same card — collapse
     if (currentOpen === id) {
       collapseAll();
       return;
     }
-
-    // Close any open first
     collapseAll(false);
 
-    // Build and open
-    panel.innerHTML = buildExpandHTML(id);
-    requestAnimationFrame(() => {
-      panel.classList.add('open');
-      setTimeout(() => {
-        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
-    });
+    if (inTop) {
+      // Top grid: use old expand-top panel (spans both columns)
+      const panel = document.getElementById('expand-top');
+      panel.innerHTML = buildExpandHTML(id);
+      requestAnimationFrame(() => {
+        panel.classList.add('open');
+        setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+      });
+    } else {
+      // Scroll track cards — lock scroll, show expand below track
+      const panel = document.getElementById('expand-bottom');
+      const track = document.getElementById('bottom-grid');
+      panel.innerHTML = buildExpandHTML(id);
+      track.classList.add('scroll-locked');
+      requestAnimationFrame(() => {
+        panel.classList.add('open');
+        setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+      });
+    }
 
     currentOpen = id;
-
-    // Swap button to "Details"
     btn.innerHTML = '<i class="fas fa-compress-alt"></i> Details';
     btn.classList.add('btn-details');
     btn.classList.remove('btn-explore');
   }
 
   function collapseAll(reset = true) {
-    document.querySelectorAll('.expanded-wrap').forEach(p => {
-      p.classList.remove('open');
-      setTimeout(() => { if (!p.classList.contains('open')) p.innerHTML = ''; }, 600);
+    // Close expand panels
+    ['expand-top','expand-bottom'].forEach(pid => {
+      const p = document.getElementById(pid);
+      if (p) {
+        p.classList.remove('open');
+        setTimeout(() => { if (!p.classList.contains('open')) p.innerHTML = ''; }, 600);
+      }
     });
-    // Restore all explore buttons
+    // Unlock scroll track
+    const track = document.getElementById('bottom-grid');
+    if (track) track.classList.remove('scroll-locked');
+    // Restore buttons
     document.querySelectorAll('.btn-details').forEach(b => {
       b.innerHTML = '<i class="fas fa-expand-alt"></i> View Property';
       b.classList.remove('btn-details');
@@ -1308,26 +1301,48 @@ footer strong { color: rgba(255,255,255,0.85); }
     }, 4000);
   }
 
-  /* ── VIEW MORE TOGGLE ── */
+  /* ── VIEW MORE — inject P6-P8 into scroll track ── */
   let extraVisible = false;
+
+  function makeScrollCard(id) {
+    const d = propData[id];
+    const num = id.replace('p','');
+    return `<div class="prop-card fade-up visible" data-id="${id}">
+      <div class="prop-img-wrap small">
+        <img src="images/realty/prop-${num}.jpg" alt="Property ${num}"/>
+        <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">${d.price}</div>
+        <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> ${d.location}</div>
+        <p class="prop-desc">You should write two lines description here for this property listing.</p>
+        <div class="prop-btns">
+          <button class="btn-explore" onclick="toggleExpand('${id}', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+          <button class="btn-book-now" onclick="scrollToConsult('Property ${num}')">Book Now</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
   function toggleViewMore() {
-    const grid = document.getElementById('extra-grid');
+    const track = document.getElementById('bottom-grid');
     const btn = document.getElementById('viewMoreBtn');
     extraVisible = !extraVisible;
     if (extraVisible) {
-      grid.style.display = 'grid';
-      btn.textContent = 'View Less ‹';
-      // Trigger fade-in for new cards
+      // Inject P6, P7, P8 as extra cards in the scroll track
+      ['p6','p7','p8'].forEach(id => {
+        track.insertAdjacentHTML('beforeend', makeScrollCard(id));
+      });
+      btn.innerHTML = 'View Less &nbsp;‹';
       setTimeout(() => {
-        grid.querySelectorAll('.fade-up').forEach(el => {
-          el.classList.add('visible');
-        });
-        grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 60);
+        // Scroll track to end to reveal new cards
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      }, 80);
     } else {
-      grid.style.display = 'none';
-      btn.innerHTML = 'View More &nbsp;›';
+      // Remove injected cards
       collapseAll();
+      track.querySelectorAll('[data-id="p6"],[data-id="p7"],[data-id="p8"]').forEach(c => c.remove());
+      btn.innerHTML = 'View More &nbsp;›';
     }
   }
 
