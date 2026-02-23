@@ -60,19 +60,14 @@ nav {
 }
 .nav-logo {
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--blue);
+  overflow: hidden; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
 }
-.nav-logo svg { width: 24px; height: 24px; fill: white; }
+.nav-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .nav-brand-name {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 1.1rem; color: var(--blue); letter-spacing: -0.01em;
-}
-.nav-brand-sub {
-  font-size: 0.65rem; color: var(--text-muted); font-weight: 400;
-  letter-spacing: 0.02em;
+  font-family: 'DM Sans', sans-serif; font-weight: 600;
+  font-size: 1.05rem; color: var(--text); letter-spacing: 0;
 }
 .nav-links {
   display: flex; align-items: center; gap: 36px;
@@ -112,16 +107,16 @@ nav {
 .hero-bg img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
-  display: block; opacity: 0.75;
+  display: block; opacity: 0.92;
 }
 /* Left-to-right dark gradient overlay */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
     to right,
-    rgba(10,22,40,0.92) 0%,
-    rgba(10,22,40,0.72) 40%,
-    rgba(10,22,40,0.18) 70%,
+    rgba(10,22,40,0.58) 0%,
+    rgba(10,22,40,0.35) 45%,
+    rgba(10,22,40,0.08) 72%,
     rgba(10,22,40,0.0) 100%
   );
 }
@@ -227,7 +222,7 @@ nav {
 .prop-card.sold-card { opacity: 0.92; }
 .prop-img-wrap {
   position: relative;
-  width: 100%; padding-top: 56.25%; /* 16:9 */
+  width: 100%; padding-top: 65%;
   background: #dde3ed; overflow: hidden;
 }
 .prop-img-wrap img {
@@ -237,7 +232,7 @@ nav {
   transition: transform 0.4s ease;
 }
 .prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
-.prop-img-wrap.small { padding-top: 62%; }
+.prop-img-wrap.small { padding-top: 72%; }
 
 /* Badge */
 .live-badge {
@@ -268,7 +263,7 @@ nav {
 }
 
 /* Card body */
-.prop-body { padding: 22px 22px 20px; }
+.prop-body { padding: 26px 24px 24px; }
 .prop-price {
   font-family: 'Syne', sans-serif; font-weight: 800;
   font-size: 1.35rem; color: var(--text);
@@ -578,15 +573,14 @@ footer strong { color: rgba(255,255,255,0.85); }
 <nav>
   <a href="#" class="nav-brand">
     <div class="nav-logo">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <img src="images/copy_35B30140-AB4E-4E82-BAC2-9E39BF61C95E.png" alt="Vinceslink Logo"/>
     </div>
     <div class="nav-brand-text">
       <span class="nav-brand-name">Vinceslink Realty</span>
-      <span class="nav-brand-sub">In partnership with KGL Realty Pro Ltd.</span>
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#home">Home</a></li>
     <li><a href="#available">Available Properties</a></li>
     <li><a href="#sold">Sold Properties</a></li>
     <li><a href="#consultation">Book Consultation</a></li>
@@ -626,7 +620,7 @@ footer strong { color: rgba(255,255,255,0.85); }
   <div class="section-inner">
     <div class="section-head">
       <h2 class="section-title">Available Properties</h2>
-      <button class="btn-view-more">View More &nbsp;›</button>
+      <button class="btn-view-more" id="viewMoreBtn" onclick="toggleViewMore()">View More &nbsp;›</button>
     </div>
 
 <!-- Top row: 2 large cards -->
@@ -746,6 +740,48 @@ footer strong { color: rgba(255,255,255,0.85); }
   <div class="expanded-wrap" id="expand-bottom"></div>
 
 </div><!-- /bottom-grid -->
+
+<!-- Extra 2 properties — hidden until View More clicked -->
+<div class="props-grid-extra" id="extra-grid" style="display:none; grid-template-columns: repeat(4,1fr); gap:20px; margin-top:20px;">
+
+  <!-- PROPERTY 7 -->
+  <div class="prop-card fade-up" data-id="p7" style="grid-column: span 2;">
+    <div class="prop-img-wrap">
+      <img src="images/realty/prop-7.jpg" alt="Property 7"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p7', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 7')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 8 -->
+  <div class="prop-card fade-up" data-id="p8" style="grid-column: span 2;">
+    <div class="prop-img-wrap">
+      <img src="images/realty/prop-8.jpg" alt="Property 8"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p8', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 8')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPANDED PANEL for extra row -->
+  <div class="expanded-wrap" id="expand-extra" style="grid-column:1/-1;"></div>
+
+</div><!-- /extra-grid -->
 
   </div>
 </section>
@@ -971,6 +1007,18 @@ footer strong { color: rgba(255,255,255,0.85); }
       paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
       address: 'Full property address, City, State, Nigeria',
       thumbs: ['images/realty/prop-6a.jpg','images/realty/prop-6b.jpg','images/realty/prop-6c.jpg']
+    },
+    p7: {
+      price: '₦00,000,000', location: 'Location', meta: [],
+      paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-7a.jpg','images/realty/prop-7b.jpg','images/realty/prop-7c.jpg']
+    },
+    p8: {
+      price: '₦00,000,000', location: 'Location', meta: [],
+      paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-8a.jpg','images/realty/prop-8b.jpg','images/realty/prop-8c.jpg']
     }
   };
 
@@ -1019,7 +1067,8 @@ footer strong { color: rgba(255,255,255,0.85); }
   function toggleExpand(id, btn) {
     const card = btn.closest('.prop-card');
     const inTop = card.closest('#top-grid') !== null;
-    const panelId = inTop ? 'expand-top' : 'expand-bottom';
+    const inExtra = card.closest('#extra-grid') !== null;
+    const panelId = inTop ? 'expand-top' : inExtra ? 'expand-extra' : 'expand-bottom';
     const panel = document.getElementById(panelId);
 
     // If same card — collapse
@@ -1115,6 +1164,29 @@ footer strong { color: rgba(255,255,255,0.85); }
 
     document.getElementById('consult-form').style.display = 'none';
     document.getElementById('form-success').classList.add('show');
+  }
+
+  /* ── VIEW MORE TOGGLE ── */
+  let extraVisible = false;
+  function toggleViewMore() {
+    const grid = document.getElementById('extra-grid');
+    const btn = document.getElementById('viewMoreBtn');
+    extraVisible = !extraVisible;
+    if (extraVisible) {
+      grid.style.display = 'grid';
+      btn.textContent = 'View Less ‹';
+      // Trigger fade-in for new cards
+      setTimeout(() => {
+        grid.querySelectorAll('.fade-up').forEach(el => {
+          el.classList.add('visible');
+        });
+        grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 60);
+    } else {
+      grid.style.display = 'none';
+      btn.innerHTML = 'View More &nbsp;›';
+      collapseAll();
+    }
   }
 
   /* ── FADE IN ON SCROLL ── */
