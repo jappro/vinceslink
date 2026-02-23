@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vinceslink Realty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --blue:        #0033CC;
+      --blue-dark:   #002299;
+      --blue-light:  #e6ebff;
+      --orange:      #FF8A3D;
+      --orange-dark: #e0732a;
+      --white:       #ffffff;
+      --bg:          #F5F7FA;
+      --bg-card:     #ffffff;
+      --text:        #0A1628;
+      --text-mid:    #2C3E50;
+      --text-muted:  #6B7280;
+      --border:      #E5E9F0;
+      --green:       #16A34A;
+      --red:         #DC2626;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md:   0 4px 24px rgba(0,0,0,0.09);
+      --shadow-lg:   0 12px 48px rgba(0,0,0,0.13);
+      --radius:      16px;
+      --radius-sm:   10px;
+    }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  height: 72px;
+  display: flex; align-items: center;
+  padding: 0 48px;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav-logo {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo svg { width: 24px; height: 24px; fill: white; }
+.nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-brand-name {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.1rem; color: var(--blue); letter-spacing: -0.01em;
+}
+.nav-brand-sub {
+  font-size: 0.65rem; color: var(--text-muted); font-weight: 400;
+  letter-spacing: 0.02em;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.9rem; font-weight: 500; color: var(--text-mid);
+  text-decoration: none; transition: color 0.2s;
+  position: relative;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-links a.active { color: var(--blue); }
+.nav-links a.active::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--blue); border-radius: 2px;
+}
+.nav-cta {
+  padding: 10px 24px; background: var(--orange); color: white;
+  border-radius: 50px; font-size: 0.88rem; font-weight: 600;
+  text-decoration: none; transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--orange-dark); transform: scale(1.03); }
+.nav-right { display: flex; align-items: center; gap: 32px; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; width: 100%;
+  min-height: 88vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: #1a2744;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block; opacity: 0.75;
+}
+/* Left-to-right dark gradient overlay */
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(10,22,40,0.92) 0%,
+    rgba(10,22,40,0.72) 40%,
+    rgba(10,22,40,0.18) 70%,
+    rgba(10,22,40,0.0) 100%
+  );
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 64px; width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 6px 16px; border-radius: 50px;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.6s ease both;
+}
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); display: inline-block; }
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700; font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: white; margin-bottom: 24px;
+  max-width: 560px;
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+.hero-cred {
+  font-size: 1rem; color: rgba(255,255,255,0.78);
+  line-height: 1.75; max-width: 480px;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+.hero-cred strong { color: white; font-weight: 500; }
+.hero-btns {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+.btn-hero-primary {
+  padding: 15px 32px; background: var(--blue); color: white;
+  border-radius: 50px; font-size: 0.95rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-hero-primary:hover { background: var(--blue-dark); transform: scale(1.03); }
+.btn-hero-secondary {
+  padding: 15px 32px; background: var(--orange); color: white;
+  border-radius: 50px; font-size: 0.95rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-hero-secondary:hover { background: var(--orange-dark); transform: scale(1.03); }
+
+/* ── SECTION COMMON ── */
+.section { padding: 88px 48px; }
+.section-inner { max-width: 1280px; margin: 0 auto; }
+.section-head {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 48px;
+  gap: 16px; flex-wrap: wrap; align-items: center;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--text); letter-spacing: -0.02em; line-height: 1.1;
+}
+.btn-view-more {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border: 1.5px solid var(--blue);
+  border-radius: 50px; color: var(--blue); font-size: 0.88rem;
+  font-weight: 600; text-decoration: none; cursor: pointer;
+  background: transparent; font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.btn-view-more:hover { background: var(--blue); color: white; }
+
+/* ── AVAILABLE PROPERTIES ── */
+.available-section { background: var(--bg); }
+.props-grid-top {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 28px; margin-bottom: 28px;
+}
+.props-grid-bottom {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ── PROPERTY CARD ── */
+.prop-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid var(--border);
+}
+.prop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.prop-card.sold-card { opacity: 0.92; }
+.prop-img-wrap {
+  position: relative;
+  width: 100%; padding-top: 56.25%; /* 16:9 */
+  background: #dde3ed; overflow: hidden;
+}
+.prop-img-wrap img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s ease;
+}
+.prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
+.prop-img-wrap.small { padding-top: 62%; }
+
+/* Badge */
+.live-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(22,163,74,0.92); color: white;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  padding: 5px 12px; border-radius: 50px;
+  backdrop-filter: blur(6px);
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 0 0 rgba(255,255,255,0.6);
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+  70%  { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+.sold-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background: var(--red); color: white;
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px; border-radius: 6px;
+}
+
+/* Card body */
+.prop-body { padding: 22px 22px 20px; }
+.prop-price {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.35rem; color: var(--text);
+  margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.prop-card.sold-card .prop-price { color: var(--text-mid); }
+.prop-location {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--green); font-size: 0.88rem; font-weight: 500;
+  margin-bottom: 10px;
+}
+.prop-location i { font-size: 0.78rem; }
+.prop-desc {
+  font-size: 0.88rem; color: var(--text-muted);
+  line-height: 1.6; margin-bottom: 18px;
+}
+/* Small card desc */
+.props-grid-bottom .prop-desc { font-size: 0.82rem; margin-bottom: 14px; }
+
+/* Card buttons */
+.prop-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-explore {
+  flex: 1; padding: 11px 16px; background: var(--blue); color: white;
+  border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-explore:hover { background: var(--blue-dark); }
+.btn-book-now {
+  flex: 1; padding: 11px 16px; background: var(--orange); color: white;
+  border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+}
+.btn-book-now:hover { background: var(--orange-dark); }
+.btn-details {
+  flex: 1; padding: 11px 16px;
+  background: transparent; color: var(--blue);
+  border: 1.5px solid var(--blue);
+  border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s, color 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-details:hover { background: var(--blue-light); }
+.btn-sold-muted {
+  width: 100%; padding: 11px 16px;
+  background: #F1F3F7; color: var(--text-muted);
+  border-radius: 50px; font-size: 0.85rem; font-weight: 500;
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+}
+.btn-sold-muted:hover { background: #E5E9F0; }
+
+/* Small card btn text */
+.props-grid-bottom .btn-explore,
+.props-grid-bottom .btn-book-now { font-size: 0.78rem; padding: 9px 12px; }
+
+/* ── EXPANDED PROPERTY VIEW ── */
+.expanded-wrap {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
+  opacity: 0;
+  grid-column: 1 / -1;
+}
+.expanded-wrap.open {
+  max-height: 900px; opacity: 1;
+}
+.expanded-inner {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  margin: 4px 0 8px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; overflow: hidden;
+}
+/* Left */
+.exp-left { padding: 28px; border-right: 1px solid var(--border); }
+.exp-main-img {
+  width: 100%; aspect-ratio: 16/10;
+  border-radius: var(--radius-sm); overflow: hidden;
+  background: #dde3ed; margin-bottom: 14px;
+}
+.exp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.exp-thumbs { display: flex; gap: 10px; }
+.exp-thumb {
+  flex: 1; aspect-ratio: 4/3;
+  border-radius: 8px; overflow: hidden;
+  background: #dde3ed; cursor: pointer;
+  border: 2px solid transparent; transition: border-color 0.2s;
+}
+.exp-thumb:hover { border-color: var(--blue); }
+.exp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Right */
+.exp-right { padding: 32px 32px 28px; display: flex; flex-direction: column; }
+.exp-price {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.7rem; color: var(--text);
+  letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.exp-location {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--green); font-size: 0.9rem; font-weight: 500;
+  margin-bottom: 6px;
+}
+/* Units/title row for special properties */
+.exp-meta {
+  display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.exp-meta-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--blue-light); color: var(--blue);
+  font-size: 0.78rem; font-weight: 600; padding: 4px 12px;
+  border-radius: 50px; letter-spacing: 0.02em;
+}
+.exp-divider { height: 1px; background: var(--border); margin: 16px 0; }
+.exp-desc { flex: 1; overflow-y: auto; }
+.exp-desc p {
+  font-size: 0.93rem; color: var(--text-mid);
+  line-height: 1.78; margin-bottom: 16px;
+}
+.exp-desc p:last-child { margin-bottom: 0; }
+.exp-address {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.85rem; color: var(--text-muted);
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.exp-address i { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
+.exp-bottom {
+  display: flex; justify-content: flex-end; margin-top: 20px;
+}
+.btn-show-less {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border: 1.5px solid var(--border);
+  border-radius: 50px; color: var(--blue); font-size: 0.85rem;
+  font-weight: 600; background: white; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.btn-show-less:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); }
+
+/* ── SOLD SECTION ── */
+.sold-section { background: var(--bg); }
+.sold-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 14px 22px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.88rem; color: var(--text-mid); font-weight: 500;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast i { color: var(--text-muted); font-size: 1rem; }
+
+/* ── BOOK CONSULTATION ── */
+.consult-section { background: var(--white); }
+.consult-sub {
+  font-size: 1rem; color: var(--text-muted);
+  margin-bottom: 44px; max-width: 560px; line-height: 1.65;
+}
+.consult-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+/* Form side */
+.consult-form-wrap { padding: 44px 44px 40px; }
+.form-group { margin-bottom: 22px; }
+.form-group label {
+  display: block; font-size: 0.85rem; font-weight: 600;
+  color: var(--text-mid); margin-bottom: 8px;
+}
+.form-group label .req { color: var(--red); margin-left: 2px; }
+.form-group label .opt {
+  font-weight: 400; color: var(--text-muted); font-size: 0.78rem;
+}
+.input-wrap {
+  display: flex; align-items: center;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  background: white; overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-wrap:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0,51,204,0.08);
+}
+.input-icon {
+  width: 44px; display: flex; align-items: center; justify-content: center;
+  color: var(--border); font-size: 0.9rem; flex-shrink: 0;
+}
+.input-wrap input, .input-wrap select, .input-wrap textarea {
+  flex: 1; border: none; outline: none; padding: 12px 14px 12px 0;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  color: var(--text); background: transparent;
+}
+.input-wrap select { cursor: pointer; }
+.input-wrap textarea { resize: none; height: 100px; padding-top: 12px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.budget-prefix {
+  padding: 12px 0 12px 14px;
+  font-size: 0.9rem; color: var(--text-muted); font-weight: 500;
+}
+.btn-submit {
+  width: 100%; padding: 15px;
+  background: var(--blue); color: white;
+  border: none; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; transition: background 0.2s, transform 0.15s;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+.btn-submit:hover { background: var(--blue-dark); transform: scale(1.01); }
+/* Image side */
+.consult-img-wrap {
+  position: relative; overflow: hidden;
+  min-height: 500px;
+}
+.consult-img-wrap img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* Success message */
+.form-success {
+  display: none; text-align: center; padding: 48px 24px;
+}
+.form-success.show { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #dcfce7; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: var(--green);
+}
+.success-title {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 1.2rem; color: var(--text);
+}
+.success-sub { font-size: 0.9rem; color: var(--text-muted); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text); color: rgba(255,255,255,0.5);
+  padding: 28px 48px; text-align: center;
+  font-size: 0.82rem;
+}
+footer strong { color: rgba(255,255,255,0.85); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+              transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .props-grid-bottom { grid-template-columns: repeat(2, 1fr); }
+  nav { padding: 0 24px; }
+  .nav-links { gap: 20px; }
+}
+@media (max-width: 900px) {
+  .section { padding: 64px 24px; }
+  .props-grid-top { grid-template-columns: 1fr; }
+  .sold-grid { grid-template-columns: 1fr; }
+  .expanded-inner { grid-template-columns: 1fr; }
+  .exp-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .consult-card { grid-template-columns: 1fr; }
+  .consult-img-wrap { min-height: 280px; }
+  .hero-inner { padding: 0 28px; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .props-grid-bottom { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+  .consult-form-wrap { padding: 28px 20px; }
+  .section { padding: 52px 16px; }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Vinceslink Realty</span>
+      <span class="nav-brand-sub">In partnership with KGL Realty Pro Ltd.</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#available">Available Properties</a></li>
+    <li><a href="#sold">Sold Properties</a></li>
+    <li><a href="#consultation">Book Consultation</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#consultation" class="nav-cta">Sign Up</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="images/realty/hero-bg.jpg" alt="Luxury Property"/>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span></span> Premium Real Estate
+    </div>
+    <h1>Find Your Dream Property</h1>
+    <p class="hero-cred">
+      Vinceslink Realty operates in partnership with <strong>KGL Realty Pro Ltd.</strong>,
+      connecting verified buyers with officially listed properties and ensuring
+      structured, transparent transactions.
+    </p>
+    <div class="hero-btns">
+      <a href="#available" class="btn-hero-primary">Explore Properties</a>
+      <a href="#consultation" class="btn-hero-secondary">Book Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── AVAILABLE PROPERTIES ── -->
+
+<section class="section available-section" id="available">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Available Properties</h2>
+      <button class="btn-view-more">View More &nbsp;›</button>
+    </div>
+
+<!-- Top row: 2 large cards -->
+<div class="props-grid-top" id="top-grid">
+
+  <!-- PROPERTY 1 — Full data -->
+  <div class="prop-card fade-up" data-id="p1">
+    <div class="prop-img-wrap">
+      <img src="images/realty/prop-1.jpg" alt="Property 1"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦250,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Ketu Ajelogo, Alapere – Lagos</div>
+      <p class="prop-desc">4-Bedroom Luxury Terrace Duplex with BQ – premium finishes, serene environment, close to the airport and Lagos hotspots.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p1', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Luxury Duplex – Ketu Ajelogo')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 2 -->
+  <div class="prop-card fade-up" data-id="p2">
+    <div class="prop-img-wrap">
+      <img src="images/realty/prop-2.jpg" alt="Property 2"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p2', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 2')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPANDED PANEL (spans both columns) -->
+  <div class="expanded-wrap" id="expand-top"></div>
+
+</div><!-- /top-grid -->
+
+<!-- Bottom row: 4 smaller cards -->
+<div class="props-grid-bottom" id="bottom-grid">
+
+  <!-- PROPERTY 3 -->
+  <div class="prop-card fade-up" data-id="p3">
+    <div class="prop-img-wrap small">
+      <img src="images/realty/prop-3.jpg" alt="Property 3"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p3', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 3')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 4 -->
+  <div class="prop-card fade-up" data-id="p4">
+    <div class="prop-img-wrap small">
+      <img src="images/realty/prop-4.jpg" alt="Property 4"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p4', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 4')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 5 -->
+  <div class="prop-card fade-up" data-id="p5">
+    <div class="prop-img-wrap small">
+      <img src="images/realty/prop-5.jpg" alt="Property 5"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p5', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 5')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPERTY 6 -->
+  <div class="prop-card fade-up" data-id="p6">
+    <div class="prop-img-wrap small">
+      <img src="images/realty/prop-6.jpg" alt="Property 6"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('p6', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('Property 6')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPANDED PANEL (spans all 4 columns) -->
+  <div class="expanded-wrap" id="expand-bottom"></div>
+
+</div><!-- /bottom-grid -->
+
+  </div>
+</section>
+
+<!-- ── SOLD PROPERTIES ── -->
+
+<section class="section sold-section" id="sold">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Sold Properties</h2>
+    </div>
+    <div class="sold-grid">
+
+  <!-- SOLD 1 -->
+  <div class="prop-card sold-card fade-up" data-id="s1">
+    <div class="prop-img-wrap">
+      <img src="images/realty/sold-1.jpg" alt="Sold Property 1"/>
+      <div class="sold-badge">SOLD</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLD 2 -->
+  <div class="prop-card sold-card fade-up" data-id="s2">
+    <div class="prop-img-wrap">
+      <img src="images/realty/sold-2.jpg" alt="Sold Property 2"/>
+      <div class="sold-badge">SOLD</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLD 3 -->
+  <div class="prop-card sold-card fade-up" data-id="s3">
+    <div class="prop-img-wrap">
+      <img src="images/realty/sold-3.jpg" alt="Sold Property 3"/>
+      <div class="sold-badge">SOLD</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">₦00,000,000</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+      <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
+      <div class="prop-btns">
+        <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+</section>
+
+<!-- ── BOOK CONSULTATION ── -->
+
+<section class="section consult-section" id="consultation">
+  <div class="section-inner">
+    <div class="section-head" style="margin-bottom:12px;">
+      <h2 class="section-title">Book a Consultation</h2>
+    </div>
+    <p class="consult-sub">Fill out the form below to get in touch with us and schedule a consultation to discuss your real estate needs.</p>
+
+<div class="consult-card fade-up">
+  <!-- Form -->
+  <div class="consult-form-wrap">
+    <div id="consult-form">
+      <div class="form-group">
+        <label>Full Name <span class="req">*</span></label>
+        <div class="input-wrap">
+          <div class="input-icon"><i class="fas fa-user"></i></div>
+          <input type="text" placeholder="" id="f-name" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone Number <span class="req">*</span></label>
+        <div class="input-wrap">
+          <div class="input-icon"><i class="fas fa-phone"></i></div>
+          <input type="tel" placeholder="" id="f-phone" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Alt. Phone Number <span class="opt">(Optional)</span></label>
+        <div class="input-wrap">
+          <div class="input-icon"><i class="fas fa-phone"></i></div>
+          <input type="tel" placeholder=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address <span class="req">*</span></label>
+        <div class="input-wrap">
+          <div class="input-icon"><i class="fas fa-envelope"></i></div>
+          <input type="email" placeholder="" id="f-email" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Interested Property <span class="req">*</span></label>
+          <div class="input-wrap">
+            <div class="input-icon"><i class="fas fa-home"></i></div>
+            <select id="f-property">
+              <option value="" disabled selected>Select Property of Interest</option>
+              <option>Luxury Duplex – Ketu Ajelogo</option>
+              <option>Property 2</option>
+              <option>Property 3</option>
+              <option>Property 4</option>
+              <option>Property 5</option>
+              <option>Property 6</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Budget <span class="opt">(Optional)</span></label>
+          <div class="input-wrap">
+            <span class="budget-prefix">₦</span>
+            <input type="text" placeholder=""/>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <div class="input-wrap">
+          <textarea placeholder="Your message..."></textarea>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">Book Consultation</button>
+    </div>
+    <!-- Success state -->
+    <div class="form-success" id="form-success">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Consultation request sent successfully.</div>
+      <p class="success-sub">Our team will reach out to you shortly to confirm your appointment.</p>
+    </div>
+  </div>
+  <!-- Image -->
+  <div class="consult-img-wrap">
+    <img src="images/realty/consult-bg.jpg" alt="Luxury Interior"/>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+
+<footer>
+  <strong>Vinceslink Realty</strong> &nbsp;·&nbsp; In partnership with KGL Realty Pro Ltd.
+  &nbsp;·&nbsp; © 2025 All rights reserved.
+  &nbsp;·&nbsp; <a href="../index.html" style="color:rgba(255,255,255,0.5);text-decoration:none;">Back to Vinceslink</a>
+</footer>
+
+<!-- ── TOAST ── -->
+
+<div class="toast" id="toast">
+  <i class="fas fa-info-circle"></i> This property has already been sold.
+</div>
+
+<script>
+  /* ── PROPERTY DATA ── */
+  const propData = {
+    p1: {
+      price: '₦250,000,000',
+      location: 'Ketu Ajelogo, Alapere – Lagos',
+      meta: [
+        { icon: 'fas fa-building', label: 'Units Left: 2' },
+        { icon: 'fas fa-certificate', label: 'Title: C of O' }
+      ],
+      paragraphs: [
+        'Touch down in Lagos and step straight into comfort, class, and convenience. This premium 4-bedroom terrace duplex with BQ is the perfect spot for anyone flying in for Detty December and looking for a home that matches the Lagos energy.',
+        'Situated in Ketu Ajelogo, Alapere, you\'ll enjoy quick access to all the major December hotspots: ✈️ International Airport, 🎶 Maryland & Ikeja nightlife, 🌉 Ikoyi hangouts, 🏝️ Victoria Island beaches & parties.',
+        'From its sleek architecture to the modern interior lighting, premium finishes, spacious layout, and serene environment, you\'ll enjoy a refined stay while still being close to the action.',
+        'Whether you\'re relocating, investing, or simply treating yourself to the Lagos lifestyle, this duplex delivers the perfect balance of luxury, location, and long-term value.'
+      ],
+      address: 'Ketu Ajelogo, Alapere, Lagos, Nigeria',
+      thumbs: ['images/realty/prop-1a.jpg','images/realty/prop-1b.jpg','images/realty/prop-1c.jpg']
+    },
+    p2: {
+      price: '₦00,000,000',
+      location: 'Location',
+      meta: [],
+      paragraphs: [
+        'Description paragraph 1 — Introduce property and estate type. Replace with full property description when database is ready.',
+        'Description paragraph 2 — Interior features (living room, lighting, layout). Replace with actual details when database is ready.',
+        'Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing. Replace with actual details when database is ready.',
+        'Description paragraph 4 — Lifestyle value (security, accessibility, prestige). Replace with actual details when database is ready.'
+      ],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-2a.jpg','images/realty/prop-2b.jpg','images/realty/prop-2c.jpg']
+    },
+    p3: {
+      price: '₦00,000,000', location: 'Location', meta: [],
+      paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-3a.jpg','images/realty/prop-3b.jpg','images/realty/prop-3c.jpg']
+    },
+    p4: {
+      price: '₦00,000,000', location: 'Location', meta: [],
+      paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-4a.jpg','images/realty/prop-4b.jpg','images/realty/prop-4c.jpg']
+    },
+    p5: {
+      price: '₦00,000,000', location: 'Location', meta: [],
+      paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-5a.jpg','images/realty/prop-5b.jpg','images/realty/prop-5c.jpg']
+    },
+    p6: {
+      price: '₦00,000,000', location: 'Location', meta: [],
+      paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
+      address: 'Full property address, City, State, Nigeria',
+      thumbs: ['images/realty/prop-6a.jpg','images/realty/prop-6b.jpg','images/realty/prop-6c.jpg']
+    }
+  };
+
+  /* ── EXPAND / COLLAPSE ── */
+  let currentOpen = null;
+
+  function buildExpandHTML(id) {
+    const d = propData[id];
+    const metaHTML = d.meta.map(m =>
+      `<div class="exp-meta-chip"><i class="${m.icon}"></i> ${m.label}</div>`
+    ).join('');
+    const parasHTML = d.paragraphs.map(p => `<p>${p}</p>`).join('');
+    const thumbsHTML = d.thumbs.map((t,i) =>
+      `<div class="exp-thumb" onclick="swapMain(this,'${t}')">
+        <img src="${t}" alt="Thumbnail ${i+1}" onerror="this.parentElement.style.opacity='0.3'"/>
+       </div>`
+    ).join('');
+
+    return `
+      <div class="expanded-inner">
+        <div class="exp-left">
+          <div class="exp-main-img" id="exp-main-${id}">
+            <img src="${d.thumbs[0]}" alt="Main image" id="exp-main-img-${id}" onerror="this.style.display='none'"/>
+          </div>
+          <div class="exp-thumbs">${thumbsHTML}</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-price">${d.price}</div>
+          <div class="exp-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> ${d.location}</div>
+          ${metaHTML ? `<div class="exp-meta">${metaHTML}</div>` : '<div style="height:12px"></div>'}
+          <div class="exp-divider"></div>
+          <div class="exp-desc">${parasHTML}</div>
+          <div class="exp-address">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>${d.address}</span>
+          </div>
+          <div class="exp-bottom">
+            <button class="btn-show-less" onclick="collapseAll()">
+              <i class="fas fa-compress-alt"></i> Show Less
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function toggleExpand(id, btn) {
+    const card = btn.closest('.prop-card');
+    const inTop = card.closest('#top-grid') !== null;
+    const panelId = inTop ? 'expand-top' : 'expand-bottom';
+    const panel = document.getElementById(panelId);
+
+    // If same card — collapse
+    if (currentOpen === id) {
+      collapseAll();
+      return;
+    }
+
+    // Close any open first
+    collapseAll(false);
+
+    // Build and open
+    panel.innerHTML = buildExpandHTML(id);
+    requestAnimationFrame(() => {
+      panel.classList.add('open');
+      setTimeout(() => {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    });
+
+    currentOpen = id;
+
+    // Swap button to "Details"
+    btn.innerHTML = '<i class="fas fa-compress-alt"></i> Details';
+    btn.classList.add('btn-details');
+    btn.classList.remove('btn-explore');
+  }
+
+  function collapseAll(reset = true) {
+    document.querySelectorAll('.expanded-wrap').forEach(p => {
+      p.classList.remove('open');
+      setTimeout(() => { if (!p.classList.contains('open')) p.innerHTML = ''; }, 600);
+    });
+    // Restore all explore buttons
+    document.querySelectorAll('.btn-details').forEach(b => {
+      b.innerHTML = '<i class="fas fa-expand-alt"></i> View Property';
+      b.classList.remove('btn-details');
+      b.classList.add('btn-explore');
+    });
+    if (reset) currentOpen = null;
+  }
+
+  function swapMain(thumb, src) {
+    const wrap = thumb.closest('.exp-left');
+    const mainImg = wrap.querySelector('.exp-main-img img');
+    mainImg.src = src;
+  }
+
+  /* ── SCROLL TO CONSULT + PREFILL ── */
+  function scrollToConsult(propName) {
+    document.getElementById('consultation').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const sel = document.getElementById('f-property');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.includes(propName) || propName.includes(sel.options[i].text)) {
+          sel.selectedIndex = i; break;
+        }
+      }
+    }, 600);
+  }
+
+  /* ── TOAST ── */
+  let toastTimer;
+  function showToast() {
+    const t = document.getElementById('toast');
+    clearTimeout(toastTimer);
+    t.classList.add('show');
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  /* ── FORM SUBMIT ── */
+  function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const prop = document.getElementById('f-property').value;
+    if (!name || !phone || !email || !prop) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    // Play subtle confirmation tone
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(520, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.start(); osc.stop(ctx.currentTime + 0.5);
+    } catch(e) {}
+
+    document.getElementById('consult-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  }
+
+  /* ── FADE IN ON SCROLL ── */
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+  /* ── NAV ACTIVE ON SCROLL ── */
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = ['home','available','sold','consultation'];
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current || (current === 'home' && a.getAttribute('href') === '#')) {
+        a.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
