@@ -39,7 +39,8 @@ body {
   background: var(--white);
   color: var(--text);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 1.02rem;
 }
 
 /* ── NAV ── */
@@ -74,7 +75,7 @@ nav {
   list-style: none;
 }
 .nav-links a {
-  font-size: 0.9rem; font-weight: 500; color: var(--text-mid);
+  font-size: 0.95rem; font-weight: 500; color: var(--text-mid);
   text-decoration: none; transition: color 0.2s;
   position: relative;
 }
@@ -145,8 +146,8 @@ nav {
   animation: fadeInUp 0.6s ease 0.1s both;
 }
 .hero-cred {
-  font-size: 1rem; color: rgba(255,255,255,0.78);
-  line-height: 1.75; max-width: 480px;
+  font-size: 1.08rem; color: rgba(255,255,255,0.78);
+  line-height: 1.78; max-width: 480px;
   margin-bottom: 40px;
   animation: fadeInUp 0.6s ease 0.2s both;
 }
@@ -300,23 +301,23 @@ nav {
 /* Card body */
 .prop-body { padding: 28px 26px 28px; }
 .prop-price {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 1.35rem; color: var(--text);
-  margin-bottom: 6px; letter-spacing: -0.01em;
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: 1.28rem; color: var(--text);
+  margin-bottom: 6px; letter-spacing: 0; font-style: normal;
 }
 .prop-card.sold-card .prop-price { color: var(--text-mid); }
 .prop-location {
   display: flex; align-items: center; gap: 6px;
-  color: var(--green); font-size: 0.88rem; font-weight: 500;
+  color: var(--green); font-size: 0.97rem; font-weight: 500;
   margin-bottom: 10px;
 }
 .prop-location i { font-size: 0.78rem; }
 .prop-desc {
-  font-size: 0.88rem; color: var(--text-muted);
-  line-height: 1.6; margin-bottom: 18px;
+  font-size: 1rem; color: var(--text-muted);
+  line-height: 1.72; margin-bottom: 18px;
 }
 /* Small card desc */
-.props-grid-bottom .prop-desc { font-size: 0.82rem; margin-bottom: 14px; }
+.props-grid-bottom .prop-desc { font-size: 0.95rem; margin-bottom: 14px; }
 
 /* Card buttons */
 .prop-btns { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
@@ -397,9 +398,9 @@ nav {
 /* Right */
 .exp-right { padding: 32px 32px 28px; display: flex; flex-direction: column; }
 .exp-price {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 1.7rem; color: var(--text);
-  letter-spacing: -0.02em; margin-bottom: 8px;
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: 1.65rem; color: var(--text);
+  letter-spacing: 0; margin-bottom: 8px;
 }
 .exp-location {
   display: flex; align-items: center; gap: 6px;
@@ -419,13 +420,13 @@ nav {
 .exp-divider { height: 1px; background: var(--border); margin: 16px 0; }
 .exp-desc { flex: 1; overflow-y: auto; }
 .exp-desc p {
-  font-size: 0.93rem; color: var(--text-mid);
-  line-height: 1.78; margin-bottom: 16px;
+  font-size: 0.98rem; color: var(--text-mid);
+  line-height: 1.82; margin-bottom: 18px;
 }
 .exp-desc p:last-child { margin-bottom: 0; }
 .exp-address {
   display: flex; align-items: flex-start; gap: 8px;
-  font-size: 0.85rem; color: var(--text-muted);
+  font-size: 0.92rem; color: var(--text-muted);
   margin-top: 20px; padding-top: 16px;
   border-top: 1px solid var(--border);
 }
@@ -451,6 +452,48 @@ nav {
 }
 .sold-grid .prop-img-wrap { padding-top: 92%; }
 
+/* ── FORM VALIDATION ALERT ── */
+.form-alert {
+  position: fixed; top: 88px; left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: white;
+  border-left: 4px solid var(--red);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.16), 0 2px 8px rgba(220,38,38,0.12);
+  padding: 16px 22px 16px 18px;
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.97rem; color: var(--text-mid); font-weight: 500;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1),
+              transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  z-index: 9999; min-width: 300px; max-width: 92vw;
+  white-space: normal;
+}
+.form-alert.show {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+.form-alert-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #fee2e2; color: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.88rem; flex-shrink: 0;
+}
+.form-alert-text { flex: 1; line-height: 1.55; font-size: 0.95rem; }
+
+/* shake animation on invalid fields */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+.input-wrap.invalid {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+  animation: shake 0.4s ease;
+}
+
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
@@ -470,8 +513,8 @@ nav {
 /* ── BOOK CONSULTATION ── */
 .consult-section { background: var(--white); }
 .consult-sub {
-  font-size: 1rem; color: var(--text-muted);
-  margin-bottom: 44px; max-width: 560px; line-height: 1.65;
+  font-size: 1.08rem; color: var(--text-muted);
+  margin-bottom: 44px; max-width: 560px; line-height: 1.75;
 }
 .consult-card {
   background: var(--bg-card);
@@ -485,7 +528,7 @@ nav {
 .consult-form-wrap { padding: 44px 44px 40px; }
 .form-group { margin-bottom: 22px; }
 .form-group label {
-  display: block; font-size: 0.85rem; font-weight: 600;
+  display: block; font-size: 0.95rem; font-weight: 600;
   color: var(--text-mid); margin-bottom: 8px;
 }
 .form-group label .req { color: var(--red); margin-left: 2px; }
@@ -507,11 +550,36 @@ nav {
   color: var(--border); font-size: 0.9rem; flex-shrink: 0;
 }
 .input-wrap input, .input-wrap select, .input-wrap textarea {
-  flex: 1; border: none; outline: none; padding: 12px 14px 12px 0;
-  font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  flex: 1; border: none; outline: none; padding: 13px 14px 13px 0;
+  font-family: 'DM Sans', sans-serif; font-size: 1rem;
   color: var(--text); background: transparent;
 }
-.input-wrap select { cursor: pointer; }
+.input-wrap select {
+  cursor: pointer;
+  background: white;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--text);
+}
+.input-wrap select option {
+  background: white;
+  color: var(--text);
+  font-size: 1rem;
+}
+/* Custom dropdown arrow */
+.select-wrap {
+  position: relative;
+}
+.select-wrap::after {
+  content: '';
+  position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--text-muted);
+  pointer-events: none;
+}
 .input-wrap textarea { resize: none; height: 100px; padding-top: 12px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .budget-prefix {
@@ -758,7 +826,7 @@ footer strong { color: rgba(255,255,255,0.85); }
   <!-- PROPERTY 1 — Full data -->
   <div class="prop-card fade-up" data-id="p1">
     <div class="prop-img-wrap">
-      <img src="images/business/Realty/721a5bb8-d99f-47c3-958c-8df22bee18a5.jpeg" alt="Property 1"/>
+      <img src="images/realty/prop-1.jpg" alt="Property 1"/>
       <div class="live-badge"><div class="live-dot"></div> Live Property</div>
     </div>
     <div class="prop-body">
@@ -966,9 +1034,10 @@ footer strong { color: rgba(255,255,255,0.85); }
       <div class="form-row">
         <div class="form-group">
           <label>Interested Property <span class="req">*</span></label>
+          <div class="select-wrap">
           <div class="input-wrap">
             <div class="input-icon"><i class="fas fa-home"></i></div>
-            <select id="f-property">
+            <select id="f-property" onchange="handlePropertySelect(this)">
               <option value="" disabled selected>Select Property of Interest</option>
               <option>Luxury Duplex – Ketu Ajelogo</option>
               <option>Property 2</option>
@@ -976,8 +1045,16 @@ footer strong { color: rgba(255,255,255,0.85); }
               <option>Property 4</option>
               <option>Property 5</option>
               <option>Property 6</option>
-              <option>Other</option>
+              <option value="other">Other</option>
             </select>
+          </div>
+          </div><!-- /select-wrap -->
+          <!-- Revealed when "Other" is selected -->
+          <div id="other-prop-wrap" style="display:none; margin-top:10px;">
+            <div class="input-wrap">
+              <div class="input-icon"><i class="fas fa-pencil-alt"></i></div>
+              <input type="text" id="f-property-other" placeholder="Describe what you're looking for…"/>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -1052,6 +1129,13 @@ footer strong { color: rgba(255,255,255,0.85); }
   <a href="https://jappro.github.io/vinceslink/" class="mobile-nav-back">
     <i class="fas fa-arrow-left"></i> Back to Vinceslink
   </a>
+</div>
+
+<!-- ── FORM VALIDATION ALERT ── -->
+
+<div class="form-alert" id="formAlert">
+  <div class="form-alert-icon"><i class="fas fa-exclamation"></i></div>
+  <div class="form-alert-text" id="formAlertText">Please fill in all required fields.</div>
 </div>
 
 <!-- ── TOAST ── -->
@@ -1235,6 +1319,15 @@ footer strong { color: rgba(255,255,255,0.85); }
     mainImg.src = src;
   }
 
+  /* ── PROPERTY SELECT — reveal "Other" input ── */
+  function handlePropertySelect(sel) {
+    const otherWrap = document.getElementById('other-prop-wrap');
+    otherWrap.style.display = sel.value === 'other' ? 'block' : 'none';
+    if (sel.value === 'other') {
+      document.getElementById('f-property-other').focus();
+    }
+  }
+
   /* ── SCROLL TO CONSULT + PREFILL ── */
   function scrollToConsult(propName) {
     document.getElementById('consultation').scrollIntoView({ behavior: 'smooth' });
@@ -1257,14 +1350,62 @@ footer strong { color: rgba(255,255,255,0.85); }
     toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
   }
 
+  /* ── FORM ALERT ── */
+  let formAlertTimer;
+  function showFormAlert(msg) {
+    const el = document.getElementById('formAlert');
+    const txt = document.getElementById('formAlertText');
+    txt.textContent = msg;
+    clearTimeout(formAlertTimer);
+    el.classList.add('show');
+    formAlertTimer = setTimeout(() => {
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(-50%) translateY(-12px)';
+      setTimeout(() => {
+        el.classList.remove('show');
+        el.style.opacity = '';
+        el.style.transform = '';
+      }, 400);
+    }, 3500);
+  }
+
   /* ── FORM SUBMIT ── */
   function submitForm() {
     const name = document.getElementById('f-name').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
     const email = document.getElementById('f-email').value.trim();
-    const prop = document.getElementById('f-property').value;
-    if (!name || !phone || !email || !prop) {
-      alert('Please fill in all required fields.');
+    const propSel = document.getElementById('f-property');
+    const propOther = document.getElementById('f-property-other').value.trim();
+    const prop = propSel.value === 'other' ? (propOther || '') : propSel.value;
+    // If "other" selected but no text typed, treat as empty
+    if (propSel.value === 'other' && !propOther) {
+      const otherWrap = document.getElementById('f-property-other').closest('.input-wrap');
+      otherWrap.classList.add('invalid');
+      setTimeout(() => otherWrap.classList.remove('invalid'), 2500);
+      showFormAlert("Please describe the property you're interested in.");
+      return;
+    }
+    // Validate and highlight empty required fields
+    const fields = [
+      { id: 'f-name',     val: name,  label: 'Full Name' },
+      { id: 'f-phone',    val: phone, label: 'Phone Number' },
+      { id: 'f-email',    val: email, label: 'Email Address' },
+      { id: 'f-property', val: prop,  label: 'Interested Property' },
+    ];
+    let firstEmpty = null;
+    fields.forEach(f => {
+      const wrap = document.getElementById(f.id).closest('.input-wrap');
+      if (!f.val) {
+        wrap.classList.add('invalid');
+        if (!firstEmpty) firstEmpty = f.label;
+        setTimeout(() => wrap.classList.remove('invalid'), 2500);
+      } else {
+        wrap.classList.remove('invalid');
+      }
+    });
+    if (firstEmpty) {
+      showFormAlert('Please fill in: ' + firstEmpty + ' and all required fields.');
       return;
     }
     // Play subtle confirmation tone
