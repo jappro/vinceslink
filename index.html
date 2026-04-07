@@ -200,6 +200,11 @@
         align-items: center;
     }
 
+    /* Hide mobile signup by default */
+    .mobile-signup-wrapper {
+        display: none;
+    }
+
     .login-btn {
         color: var(--text-dark);
         text-decoration: none;
@@ -304,6 +309,7 @@
         color: var(--primary-blue);
         font-style: italic;
         font-weight: 700;
+        font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
     }
 
     .hero-description {
@@ -364,7 +370,7 @@
 
     .hero-img {
         width: 100%;
-        max-width: 850px;
+        max-width: 600px;
         height: auto;
         object-fit: contain;
         filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
@@ -1950,6 +1956,37 @@
             display: flex;
         }
 
+        /* Hide Sign Up button on mobile in navbar */
+        .nav-actions .signup-btn {
+            display: none;
+        }
+
+        /* Show mobile Sign Up inside menu */
+        .mobile-signup-wrapper {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .mobile-signup-btn {
+            display: block;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-signup-btn:hover {
+            background-color: #0028AA;
+        }
+
         .services-dropdown {
             width: 100%;
         }
@@ -2147,11 +2184,10 @@
 
         .hero-image {
             justify-content: center;
-            order: -1;
         }
 
         .hero-img {
-            max-width: 100%;
+            max-width: 90%;
         }
             width: 100%;
             max-width: 300px;
@@ -2315,6 +2351,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="mobile-signup-wrapper"><a href="#signup" class="mobile-signup-btn">Sign Up →</a></li>
     </ul>
 
     <div class="nav-actions">
