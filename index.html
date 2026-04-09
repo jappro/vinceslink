@@ -362,19 +362,26 @@
     }
 
     .hero-image {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* We want the container to fill the available space */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 
-    .hero-img {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-        object-fit: contain;
-        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
-    }
+.hero-img {
+    /* Remove the 600px cap to let it fill the 60% hero slot */
+    width: 100%;
+    height: 100%;
+    /* 'cover' ensures the image fills the box without stretching */
+    object-fit: cover;
+    /* Keeps the focus on the right side where the content is */
+    object-position: center right;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+    transition: transform 0.5s ease;
+}
 
     /* Product Carousel Section */
     .carousel-section {
