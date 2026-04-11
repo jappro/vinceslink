@@ -308,6 +308,11 @@ body {
   position: relative;
 }
 
+.hero {
+  position: relative;
+  overflow: visible; /* ⬅️ CRITICAL */
+}
+
 .bg-blobs {
   position: absolute;
   inset: 0;
@@ -325,6 +330,11 @@ body {
   width: 45%;
 }
 
+.hero-left {
+  position: relative;
+  z-index: 5;
+}
+
 /* TITLE */
 .hero-left h1 {
   font-size: 56px; /* slightly bigger for impact */
@@ -332,6 +342,10 @@ body {
   color: #111;
   line-height: 1.15; /* tighter = more premium */
   letter-spacing: -0.5px;
+}
+
+.hero-left h1 {
+  max-width: 520px;
 }
 
 /* GRADIENT TEXT (YOUR STYLE, REFINED) */
@@ -578,10 +592,23 @@ body {
 
 .hero-img {
   position: relative;
-  z-index: 2;
+  width: 125%;
+  max-width: 800px;
 
+  transform: translateX(-80px); /* ⬅️ pulls into text */
+  
   animation: float 6s ease-in-out infinite;
   filter: drop-shadow(0 40px 60px rgba(0,0,0,0.15));
+  z-index: 3; /* ⬅️ sits above background, below text */
+}
+
+.hero-img {
+  transform: translateX(40px); /* ⬅️ pushes slightly right */
+}
+
+.hero-img {
+  width: 150%;
+  max-width: 1350px;
 }
         
 /* =========================
@@ -601,10 +628,11 @@ body {
 .hero-right {
   position: relative;
   width: 55%;
-  height: 550px;
+  height: 650px; /* ⬅️ increase from 550px */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible; /* ⬅️ IMPORTANT (prevents clipping) */
 }
 
 .hero-right {
@@ -625,6 +653,25 @@ body {
   z-index: 0;
 }
 
+.hero-right::before {
+  content: "";
+  position: absolute;
+  left: -120px;
+  top: 0;
+  width: 220px;
+  height: 100%;
+
+  background: linear-gradient(
+    to right,
+    white 20%,
+    rgba(255,255,255,0.6) 60%,
+    transparent
+  );
+
+  z-index: 4;
+  pointer-events: none;
+}
+        
 .hero-right::after {
   content: "";
   position: absolute;
