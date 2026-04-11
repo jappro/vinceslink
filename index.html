@@ -344,6 +344,21 @@ body {
   max-width: 480px;
 }
 
+.hero {
+  animation: heroFade 1s ease;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+        
 /* =========================
    BUTTON WRAPPER
 ========================= */
@@ -502,6 +517,57 @@ body {
   }
 }
 
+/* =========================
+   TEXT REVEAL
+========================= */
+.fade-item {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.fade-item:nth-child(1) { animation-delay: 0.1s; }
+.fade-item:nth-child(2) { animation-delay: 0.25s; }
+.fade-item:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   FLOATING IMAGE
+========================= */
+.hero-img {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+
+.hero-img {
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.15));
+}
+        
+/* =========================
+   BLOB MOTION
+========================= */
+.blob {
+  animation: blobMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes blobMove {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(40px, -30px); }
+  100% { transform: translate(-20px, 20px); }
+}
+        
 /* RIGHT SIDE */
 .hero-right {
   position: relative;
@@ -2634,50 +2700,46 @@ body {
 <!-- Hero Section -->
 <section class="hero">
 
-<!-- ✅ BACKGROUND BLOBS (FIRST) -->
   <div class="bg-blobs">
     <div class="blob blob-blue"></div>
     <div class="blob blob-purple"></div>
     <div class="blob blob-teal"></div>
   </div>
-   
-  <!-- LEFT CONTENT -->
-   <div class="hero-left">
-    <h1>
+
+  <div class="hero-left">
+    <h1 class="fade-item">
       One Brand.<br />
       <span>Multiple Solutions</span>
     </h1>
 
-    <p>
+    <p class="fade-item">
       Simplifying modern life with everyday essentials, smart gadgets,
-      and trusted real estate solutions – all in one place with Vinceslink
+      and trusted real estate solutions.
     </p>
 
-    <div class="buttons">
-  <button class="btn btn-primary">
-    Explore Ventures
-  </button>
+    <div class="buttons fade-item">
+      <button class="btn btn-primary">
+        Explore Ventures
+      </button>
 
-  <button class="btn btn-glass">
-    <span>Shop Now</span>
-    <span class="arrow">›</span>
-  </button>
- </div>
-</div>
+      <button class="btn btn-glass">
+        <span>Shop Now</span>
+        <span class="arrow">›</span>
+      </button>
+    </div>
+  </div>
 
-  <!-- RIGHT VISUAL -->
+  <!-- ✅ UPDATED RIGHT SIDE -->
   <div class="hero-right">
 
-    <!-- VIDEO LAYER (optional) -->
-    <video class="bg-video" autoplay muted loop playsinline>
-      <source src="assets/hero.mp4" type="video/mp4" />
-    </video>
+    <!-- GLOW BASE -->
+    <div class="system-glow"></div>
 
-    <!-- FLOATING IMAGE -->
+    <!-- ENERGY FLOW -->
+    <div class="energy-wave"></div>
+
+    <!-- IMAGE (ON TOP) -->
     <img src="images/70719BEA-2947-43A7-9FD4-01809707E1D2.png" class="hero-img" />
-
-    <!-- Glow Overlay -->
-    <div class="glow"></div>
 
   </div>
 
@@ -3493,16 +3555,19 @@ body {
         });
     }
 
-        // here section
-        const heroImg = document.querySelector(".images/70719BEA-2947-43A7-9FD4-01809707E1D2.png");
+  // here section
+    const hero = document.querySelector(".hero");
+const img = document.querySelector(".hero-img");
 
-    document.addEventListener("mousemove", (e) => {
-    const x = (window.innerWidth / 2 - e.clientX) / 40;
-    const y = (window.innerHeight / 2 - e.clientY) / 40;
+hero.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
 
-    heroImg.style.transform = translate(${x}px, ${y}px);
-     });
-}
+  img.style.transform = `
+    translate(${x}px, ${y}px)
+    translateY(-10px)
+  `;
+});
                               
     // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
