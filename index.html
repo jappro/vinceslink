@@ -277,7 +277,21 @@
 }
 
 body {
-  background: linear-gradient(135deg, #f5f7fb, #eef2f7);
+  margin: 0;
+  background: #f5f7fb;
+  overflow-x: hidden;
+}
+
+/* MAIN HERO BACKGROUND SYSTEM */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  padding: 80px 8%;
+  overflow: hidden;
+
+  /* Base gradient */
+  background: linear-gradient(135deg, #f5f7fb 0%, #eef2f7 100%);
 }
 
 /* HERO LAYOUT */
@@ -290,6 +304,22 @@ body {
   overflow: hidden;
 }
 
+.hero {
+  position: relative;
+}
+
+.bg-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-left,
+.hero-right {
+  position: relative;
+  z-index: 2;
+}
+        
 /* LEFT SIDE */
 .hero-left {
   width: 45%;
@@ -355,6 +385,72 @@ body {
   justify-content: center;
 }
 
+.hero-right::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(108,140,255,0.25), transparent 70%);
+  filter: blur(100px);
+  z-index: 0;
+}
+
+.hero-right::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(52,211,153,0.2), transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  filter: blur(100px);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.15;
+  pointer-events: none;
+}
+        
+/* Blob Styling */
+.bg-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* BASE BLOB STYLE */
+.blob {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+}
+
+/* INDIVIDUAL COLORS */
+.blob-blue {
+  background: #6c8cff;
+  top: -100px;
+  left: -100px;
+}
+
+.blob-purple {
+  background: #a78bfa;
+  top: 50%;
+  left: 30%;
+}
+
+.blob-teal {
+  background: #34d399;
+  bottom: -100px;
+  right: -100px;
+}
 /* VIDEO BACKGROUND */
 .bg-video {
   position: absolute;
@@ -391,6 +487,17 @@ body {
   100% { transform: translateY(0px) scale(1); }
 }
 
+/* Subtle Movement */
+@keyframes blobMove {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -30px); }
+  100% { transform: translate(0, 0); }
+}
+
+.blob {
+  animation: blobMove 12s ease-in-out infinite;
+}
+        
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
@@ -2400,6 +2507,13 @@ body {
 <!-- Hero Section -->
 <section class="hero">
 
+<!-- ✅ BACKGROUND BLOBS (FIRST) -->
+  <div class="bg-blobs">
+    <div class="blob blob-blue"></div>
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-teal"></div>
+  </div>
+    
   <!-- LEFT CONTENT -->
   <div class="hero-left">
     <h1>
