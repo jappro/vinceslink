@@ -325,27 +325,48 @@ body {
   width: 45%;
 }
 
+/* TITLE */
 .hero-left h1 {
-  font-size: 52px;
+  font-size: 56px; /* slightly bigger for impact */
   font-weight: 700;
   color: #111;
-  line-height: 1.2;
+  line-height: 1.15; /* tighter = more premium */
+  letter-spacing: -0.5px;
 }
 
-.hero-left h1 span {
-  color: #6c8cff;
+/* GRADIENT TEXT (YOUR STYLE, REFINED) */
+.headline-blue {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: italic;
+
+  background: linear-gradient(
+    135deg,
+    #1a3fe0 0%,
+    #4d7cff 55%,
+    #6b95ff 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  letter-spacing: -1.2px; /* slightly reduced for better readability */
 }
 
+/* PARAGRAPH */
 .hero-left p {
-  margin-top: 20px;
+  margin-top: 22px; /* slightly more breathing room */
   color: #555;
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 480px;
+  font-size: 17px; /* improved readability */
+  line-height: 1.65;
+  max-width: 500px;
 }
 
-.hero {
-  animation: heroFade 1s ease;
+/* OPTIONAL: spacing between lines */
+.hero-left h1 span {
+  display: inline-block;
+  margin-top: 6px;
 }
 
 @keyframes heroFade {
@@ -2794,7 +2815,7 @@ body {
   <div class="hero-left">
     <h1 class="fade-item">
       One Brand.<br />
-      <span>Multiple Solutions</span>
+      <span class="headline-blue">Multiple Solutions.</span>
     </h1>
 
     <p class="fade-item">
