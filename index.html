@@ -269,122 +269,143 @@
     }
 
     /* Hero Section - Professional Split Layout */
-    .hero-section {
-        padding: 4rem 5% 2rem;
-        background: linear-gradient(to right, #ffffff 0%, #ffffff 40%, #f8f9fb 40%, #f8f9fb 100%);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 40% 60%;
-        gap: 2rem;
-        align-items: center;
-        min-height: 500px;
-    }
-
-    .hero-content {
-        padding-right: 2rem;
-        z-index: 2;
-    }
-
-    .hero-headline {
-        font-size: 56px;
-        font-weight: 700;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .headline-regular {
-        color: var(--text-dark);
-        font-weight: 700;
-    }
-
-    .headline-italic {
-        color: var(--primary-blue);
-        font-style: italic;
-        font-weight: 700;
-        font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-    }
-
-    .hero-description {
-        font-size: 18px;
-        color: var(--text-light);
-        line-height: 1.7;
-        margin-bottom: 2.5rem;
-        max-width: 500px;
-    }
-
-    .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .hero-btn {
-        padding: 14px 32px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        display: inline-block;
-    }
-
-    .hero-btn-primary {
-        background-color: var(--primary-blue);
-        color: white;
-        border: 2px solid var(--primary-blue);
-    }
-
-    .hero-btn-primary:hover {
-        background-color: #0028AA;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 51, 204, 0.3);
-    }
-
-    .hero-btn-glass {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(0, 51, 204, 0.3);
-        color: var(--primary-blue);
-    }
-
-    .hero-btn-glass:hover {
-        background: rgba(0, 51, 204, 0.05);
-        border-color: var(--primary-blue);
-        transform: translateY(-2px);
-    }
-
-    .hero-image {
-    position: relative;
-    display: flex;
-    align-items: flex-end; /* Anchors the 3D "floor" to the bottom */
-    justify-content: flex-end;
-    width: 100%;
-    height: 100%;
-    /* Match the background exactly to the image's edges or keep it white */
-    background-color: #ffffff; 
-    overflow: hidden;
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
+body {
+  background: linear-gradient(135deg, #f5f7fb, #eef2f7);
+}
+
+/* HERO LAYOUT */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 8%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* LEFT SIDE */
+.hero-left {
+  width: 45%;
+}
+
+.hero-left h1 {
+  font-size: 52px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.2;
+}
+
+.hero-left h1 span {
+  color: #6c8cff;
+}
+
+.hero-left p {
+  margin-top: 20px;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.primary {
+  background: #4a6cff;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(74, 108, 255, 0.3);
+}
+
+.secondary {
+  background: #e8ecff;
+  color: #333;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.hero-right {
+  position: relative;
+  width: 55%;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VIDEO BACKGROUND */
+.bg-video {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: blur(20px);
+}
+
+/* FLOATING IMAGE */
 .hero-img {
+  position: relative;
+  width: 90%;
+  max-width: 520px;
+  animation: float 6s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* GLOW EFFECT */
+.glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(108,140,255,0.25), transparent 70%);
+  filter: blur(60px);
+  z-index: 1;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left, .hero-right {
     width: 100%;
-    height: 100%;
-    /* Switch to 'contain' BUT remove the max-width so it can actually grow */
-    object-fit: contain; 
-    /* This pushes the image to the bottom right corner */
-    object-position: bottom right; 
-    
-    /* Remove any forced max-width that might be hiding in other classes */
-    max-width: none !important; 
-    
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.05));
+  }
+
+  .hero-right {
+    margin-top: 40px;
+    height: 400px;
+  }
 }
 
     /* Product Carousel Section */
@@ -2377,25 +2398,42 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section" id="home">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1 class="hero-headline">
-                <span class="headline-regular">One Brand.</span>
-                <span class="headline-italic">Multiple Solution.</span>
-            </h1>
-            <p class="hero-description">
-                Everyday essentials, smart gadgets, and trusted real estate solutions—all in one place with Vinceslink.
-            </p>
-            <div class="hero-buttons">
-                <a href="#services" class="hero-btn hero-btn-primary">Explore Ventures</a>
-                <a href="#shop" class="hero-btn hero-btn-glass">Shop Now →</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="images/IMG_0334.png" alt="Vinceslink Solutions" class="hero-img">
-        </div>
+<section class="hero">
+
+  <!-- LEFT CONTENT -->
+  <div class="hero-left">
+    <h1>
+      One Brand.<br />
+      <span>Multiple Solutions</span>
+    </h1>
+
+    <p>
+      Simplifying modern life with everyday essentials, smart gadgets,
+      and trusted real estate solutions – all in one place with Vinceslink
+    </p>
+
+    <div class="buttons">
+      <button class="primary">Explore Ventures</button>
+      <button class="secondary">Shop Now →</button>
     </div>
+  </div>
+
+  <!-- RIGHT VISUAL -->
+  <div class="hero-right">
+
+    <!-- VIDEO LAYER (optional) -->
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="assets/hero.mp4" type="video/mp4" />
+    </video>
+
+    <!-- FLOATING IMAGE -->
+    <img src="images/70719BEA-2947-43A7-9FD4-01809707E1D2.png" class="hero-img" />
+
+    <!-- Glow Overlay -->
+    <div class="glow"></div>
+
+  </div>
+
 </section>
 
 <!-- Product Carousel Section -->
@@ -3208,6 +3246,17 @@
         });
     }
 
+        // here section
+        const heroImg = document.querySelector(".images/70719BEA-2947-43A7-9FD4-01809707E1D2.png");
+
+    document.addEventListener("mousemove", (e) => {
+    const x = (window.innerWidth / 2 - e.clientX) / 40;
+    const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+    heroImg.style.transform = translate(${x}px, ${y}px);
+     });
+}
+                              
     // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
     const indicators = document.querySelectorAll('.indicator');
