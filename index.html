@@ -345,34 +345,46 @@ body {
 }
 
 /* BUTTONS */
-.buttons {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
+.hero-buttons {
+display: flex;
+gap: 0.85rem;
+flex-wrap: wrap;
+animation: fadeUp 0.7s 0.22s ease both;
 }
 
-.primary {
-  background: #4a6cff;
-  color: #fff;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
+.hero-btn {
+padding: 13px 28px;
+border-radius: 999px;
+text-decoration: none;
+font-weight: 600;
+font-size: 14.5px;
+transition: all 0.28s ease;
+display: inline-flex;
+align-items: center;
+gap: 5px;
+}
+    
+ .hero-btn-primary {
+background: linear-gradient(135deg, #1a3fe0, #3d6bff);
+color: #fff;
+border: none;
+box-shadow: 0 4px 20px rgba(26,63,224,0.32);
+}
+.hero-btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 28px rgba(26,63,224,0.42);
 }
 
-.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(74, 108, 255, 0.3);
+.hero-btn-glass {
+background: rgba(255,255,255,0.55);
+backdrop-filter: blur(12px);
+border: 1.5px solid rgba(26,63,224,0.28);
+color: #1a3fe0;
 }
-
-.secondary {
-  background: #e8ecff;
-  color: #333;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  cursor: pointer;
+.hero-btn-glass:hover {
+background: rgba(255,255,255,0.85);
+border-color: #1a3fe0;
+transform: translateY(-2px);
 }
 
 /* RIGHT SIDE */
@@ -2513,7 +2525,15 @@ body {
     <div class="blob blob-purple"></div>
     <div class="blob blob-teal"></div>
   </div>
-    
+
+   <!-- Noise grain overlay -->
+  <div class="hero-noise"></div>
+
+  <!-- White fade — keeps LEFT side pure white -->
+  <div class="hero-fade-left"></div>
+
+  <div class="hero-container">
+      
   <!-- LEFT CONTENT -->
   <div class="hero-left">
     <h1>
