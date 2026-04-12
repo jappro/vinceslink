@@ -357,10 +357,10 @@ body {
 /* CLEAN LARGE IMAGE */
 .hero-img {
   position: absolute;
-  width: 175%;
+  width: 165%;
   max-width: none;
 
-  left: -100px;
+  left: -70px;
   top: 58%;
   transform: translateY(-50%);
 
@@ -379,7 +379,7 @@ body {
 ========================= */
 @keyframes float {
   0% { transform: translateY(-50%) translateY(0px); }
-  50% { transform: translateY(-50%) translateY(-14px); }
+  50% { transform: translateY(-50%) translateY(-12px); }
   100% { transform: translateY(-50%) translateY(0px); }
 }
 
@@ -421,14 +421,29 @@ body {
 
   .hero-img {
     position: relative;
-    width: 115%;
+    width: 125%;
     left: 0;
     top: 0;
     transform: none;
-    margin-top: -40px;
+    margin-top: 20px;
+  }
+    
+@media (max-width: 1200px) {
+  .hero-left {
+    width: 50%;
+  }
+
+  .hero-right {
+    width: 50%;
+    height: 600px;
+  }
+
+  .hero-img {
+    width: 145%;
+    left: -40px;
   }
 }
-
+    
     /* Product Carousel Section */
     .carousel-section {
         padding: 2rem 5% 4rem;
