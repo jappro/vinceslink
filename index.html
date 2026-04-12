@@ -152,8 +152,10 @@
     }
 }
         
-    /* Hero Section - Professional Split Layout */
-    * {
+   /* =========================
+   RESET
+========================= */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -166,368 +168,24 @@ body {
   overflow-x: hidden;
 }
 
-/* MAIN HERO BACKGROUND SYSTEM */
+/* =========================
+   HERO BASE
+========================= */
 .hero {
   position: relative;
-  min-height: 100vh;
-  display: flex;
-  padding: 80px 8%;
-  overflow: hidden;
-
-  /* Base gradient */
-  background: linear-gradient(135deg, #f5f7fb 0%, #eef2f7 100%);
-}
-
-/* HERO LAYOUT */
-.hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 8%;
   min-height: 100vh;
-  overflow: hidden;
-}
-
-.hero {
-  position: relative;
-}
-
-.hero {
-  position: relative;
-  overflow: visible; /* ⬅️ CRITICAL */
-}
-
-.bg-blobs {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-left,
-.hero-right {
-  position: relative;
-  z-index: 2;
-}
-        
-/* LEFT SIDE */
-.hero-left {
-  width: 45%;
-}
-
-.hero-left {
-  position: relative;
-  z-index: 5;
-}
-
-/* TITLE */
-.hero-left h1 {
-  font-size: 56px; /* slightly bigger for impact */
-  font-weight: 700;
-  color: #111;
-  line-height: 1.15; /* tighter = more premium */
-  letter-spacing: -0.5px;
-}
-
-.hero-left h1 {
-  max-width: 520px;
-}
-
-/* GRADIENT TEXT (YOUR STYLE, REFINED) */
-.headline-blue {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-style: italic;
-
-  background: linear-gradient(
-    135deg,
-    #1a3fe0 0%,
-    #4d7cff 55%,
-    #6b95ff 100%
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-
-  letter-spacing: -1.2px; /* slightly reduced for better readability */
-}
-
-/* PARAGRAPH */
-.hero-left p {
-  margin-top: 22px; /* slightly more breathing room */
-  color: #555;
-  font-size: 17px; /* improved readability */
-  line-height: 1.65;
-  max-width: 500px;
-}
-
-/* OPTIONAL: spacing between lines */
-.hero-left h1 span {
-  display: inline-block;
-  margin-top: 6px;
-}
-
-@keyframes heroFade {
-  from {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-        
-/* =========================
-   BUTTON WRAPPER
-========================= */
-.buttons {
-  margin-top: 32px;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-
-  animation: fadeUp 0.7s 0.22s ease both;
-}
-        
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
   padding: 80px 8%;
-  overflow: hidden;
-
-  background: linear-gradient(135deg, #f5f7fb, #eef2f7);
-}
-
-/* =========================
-   BASE BUTTON (SHARED)
-========================= */
-.btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  padding: 13px 28px;
-  border-radius: 999px;
-
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-
-  transition: all 0.28s ease;
-  overflow: hidden;
-}
-
-/* =========================
-   🔵 PRIMARY BUTTON
-========================= */
-.btn-primary {
-  background: linear-gradient(135deg, #0019A8, #3b5bff);
-  color: #fff;
-
-  box-shadow: 0 8px 22px rgba(0, 25, 168, 0.25);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-
-  box-shadow: 0 14px 32px rgba(0, 25, 168, 0.35);
-}
-
-.btn-primary:active {
-  transform: scale(0.97);
-}
-
-/* =========================
-   💎 SLEEK LIQUID GLASS BUTTON (REFINED)
-========================= */
-.btn-glass {
-  color: #1a1a1a;
-
-  /* GLASS CORE */
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.45),
-    rgba(255, 255, 255, 0.12)
-  );
-
-  border: 1px solid rgba(255, 255, 255, 0.45);
-
-  /* DEPTH */
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.85),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.25),
-    0 10px 25px rgba(0, 0, 0, 0.06);
-}
-
-/* GLOSS SWEEP */
-.btn-glass::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-
-  background: linear-gradient(
-    100deg,
-    transparent,
-    rgba(255, 255, 255, 0.35),
-    transparent
-  );
-
-  transition: 0.6s;
-}
-
-/* HOVER */
-.btn-glass:hover {
-  transform: translateY(-3px) scale(1.015);
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.55),
-    rgba(255, 255, 255, 0.18)
-  );
-
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 1),
-    0 16px 35px rgba(0, 0, 0, 0.1);
-}
-
-.btn-glass:hover::after {
-  left: 120%;
-}
-
-/* ARROW */
-.btn-glass .arrow {
-  margin-left: 6px;
-  font-size: 1.05em;
-  transition: transform 0.3s ease;
-}
-
-.btn-glass:hover .arrow {
-  transform: translateX(6px);
-}
-
-/* CLICK */
-.btn-glass:active {
-  transform: scale(0.96);
-}
-
-/* =========================
-   FADE UP ANIMATION
-========================= */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   TEXT REVEAL
-========================= */
-.fade-item {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.fade-item:nth-child(1) { animation-delay: 0.1s; }
-.fade-item:nth-child(2) { animation-delay: 0.25s; }
-.fade-item:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   FLOATING IMAGE
-========================= */
-.hero-img {
-  animation: float 6s ease-in-out infinite;
-  will-change: transform;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-14px); }
-  100% { transform: translateY(0px); }
-}
-
-.hero-img {
-  position: absolute;
-
-  width: 140%;          /* ⬅️ BIG */
-  max-width: none;      /* ⬅️ remove constraints */
-
-  left: -120px;         /* ⬅️ pushes into text */
-  top: 50%;
-  transform: translateY(-50%);
-
-  animation: float 6s ease-in-out infinite;
-
-  z-index: 2;
-}
-
-.hero-img {
-  transform: translateX(40px); /* ⬅️ pushes slightly right */
-}
-
-.hero-img {
-  width: 130%;
-  max-width: 1100px;
-}
-        
-/* =========================
-   BLOB MOTION
-========================= */
-.blob {
-  animation: blobMove 18s ease-in-out infinite alternate;
-}
-
-@keyframes blobMove {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(40px, -30px); }
-  100% { transform: translate(-20px, 20px); }
-}
-        
-/* RIGHT SIDE */
-.hero-right {
-  position: relative;
-  width: 55%;
-  height: 700px;
   overflow: visible;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fb 0%, #eef2f7 100%);
 }
 
-.hero-right {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-    
-/* Blob Styling */
+/* =========================
+   BACKGROUND BLOBS
+========================= */
 .bg-blobs {
   position: absolute;
   inset: 0;
@@ -535,7 +193,6 @@ body {
   overflow: hidden;
 }
 
-/* BASE BLOB STYLE */
 .blob {
   position: absolute;
   width: 500px;
@@ -543,9 +200,9 @@ body {
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.6;
+  animation: blobMove 14s ease-in-out infinite;
 }
 
-/* INDIVIDUAL COLORS */
 .blob-blue {
   background: #6c8cff;
   top: -100px;
@@ -564,54 +221,211 @@ body {
   right: -100px;
 }
 
-/* FLOATING IMAGE */
+/* =========================
+   LEFT SIDE
+========================= */
+.hero-left {
+  width: 45%;
+  position: relative;
+  z-index: 5;
+}
+
+/* TITLE */
+.hero-left h1 {
+  font-size: 56px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  max-width: 520px;
+}
+
+/* GRADIENT TEXT */
+.headline-blue {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: italic;
+  background: linear-gradient(135deg, #1a3fe0 0%, #4d7cff 55%, #6b95ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1.2px;
+}
+
+/* TEXT */
+.hero-left p {
+  margin-top: 22px;
+  color: #555;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 500px;
+}
+
+.hero-left h1 span {
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.buttons {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.22s ease both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.28s ease;
+}
+
+/* PRIMARY */
+.btn-primary {
+  background: linear-gradient(135deg, #0019A8, #3b5bff);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0, 25, 168, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(0, 25, 168, 0.35);
+}
+
+/* GLASS */
+.btn-glass {
+  color: #1a1a1a;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.12));
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 
+    inset 0 1px 1px rgba(255,255,255,0.85),
+    inset 0 -1px 1px rgba(255,255,255,0.25),
+    0 10px 25px rgba(0,0,0,0.06);
+}
+
+.btn-glass::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+  transition: 0.6s;
+}
+
+.btn-glass:hover {
+  transform: translateY(-3px);
+}
+
+.btn-glass:hover::after {
+  left: 120%;
+}
+
+.btn-glass .arrow {
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.btn-glass:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* =========================
+   RIGHT SIDE (IMAGE)
+========================= */
+.hero-right {
+  width: 55%;
+  height: 700px;
+  position: relative;
+  overflow: visible;
+}
+
+/* CLEAN LARGE IMAGE */
 .hero-img {
   position: absolute;
+  width: 135%;
+  max-width: none;
 
-  width: 140%;          /* ⬅️ BIG */
-  max-width: none;      /* ⬅️ remove constraints */
-
-  left: -120px;         /* ⬅️ pushes into text */
+  left: -100px;
   top: 50%;
   transform: translateY(-50%);
 
   animation: float 6s ease-in-out infinite;
 
   z-index: 2;
-}
-        
-/* FLOAT ANIMATION */
-@keyframes float {
-  0% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-15px) scale(1.02); }
-  100% { transform: translateY(0px) scale(1); }
+
+  /* CRITICAL: remove fake edges */
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
-/* Subtle Movement */
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes float {
+  0% { transform: translateY(-50%) translateY(0px); }
+  50% { transform: translateY(-50%) translateY(-14px); }
+  100% { transform: translateY(-50%) translateY(0px); }
+}
+
 @keyframes blobMove {
   0% { transform: translate(0, 0); }
   50% { transform: translate(40px, -30px); }
   100% { transform: translate(0, 0); }
 }
 
-.blob {
-  animation: blobMove 12s ease-in-out infinite;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-        
-/* RESPONSIVE */
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
     text-align: center;
   }
 
-  .hero-left, .hero-right {
+  .hero-left,
+  .hero-right {
     width: 100%;
   }
 
   .hero-right {
+    height: auto;
     margin-top: 40px;
-    height: 400px;
+  }
+
+  .hero-img {
+    position: relative;
+    width: 115%;
+    left: 0;
+    top: 0;
+    transform: none;
+    margin-top: -80px;
   }
 }
 
