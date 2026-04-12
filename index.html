@@ -475,15 +475,18 @@ body {
 }
 
 .hero-img {
-  position: relative;
-  width: 130%;
-  max-width: 1100px;
+  position: absolute;
 
-  transform: translateX(-80px); /* ⬅️ pulls into text */
-  
+  width: 140%;          /* ⬅️ BIG */
+  max-width: none;      /* ⬅️ remove constraints */
+
+  left: -120px;         /* ⬅️ pushes into text */
+  top: 50%;
+  transform: translateY(-50%);
+
   animation: float 6s ease-in-out infinite;
-  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.15));
-  z-index: 3; /* ⬅️ sits above background, below text */
+
+  z-index: 2;
 }
 
 .hero-img {
@@ -512,11 +515,12 @@ body {
 .hero-right {
   position: relative;
   width: 55%;
-  height: 650px; /* ⬅️ increase from 550px */
+  height: 700px;
+  overflow: visible;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible; /* ⬅️ IMPORTANT (prevents clipping) */
 }
 
 .hero-right {
@@ -615,10 +619,17 @@ body {
 
 /* FLOATING IMAGE */
 .hero-img {
-  position: relative;
-  width: 90%;
-  max-width: 520px;
+  position: absolute;
+
+  width: 140%;          /* ⬅️ BIG */
+  max-width: none;      /* ⬅️ remove constraints */
+
+  left: -120px;         /* ⬅️ pushes into text */
+  top: 50%;
+  transform: translateY(-50%);
+
   animation: float 6s ease-in-out infinite;
+
   z-index: 2;
 }
 
