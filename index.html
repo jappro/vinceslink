@@ -407,6 +407,7 @@ body {
   .hero {
     flex-direction: column;
     text-align: center;
+    padding: 60px 6%;
   }
 
   .hero-left,
@@ -414,6 +415,29 @@ body {
     width: 100%;
   }
 
+  /* TEXT FIRST */
+  .hero-left h1 {
+    font-size: 38px;
+    line-height: 1.2;
+    max-width: 100%;
+  }
+
+  .headline-blue {
+    letter-spacing: -0.8px;
+  }
+
+  .hero-left p {
+    font-size: 16px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  /* IMAGE CLEAN RESET */
   .hero-right {
     height: auto;
     margin-top: 40px;
@@ -421,28 +445,37 @@ body {
 
   .hero-img {
     position: relative;
-    width: 125%;
+    width: 115%;
     left: 0;
     top: 0;
     transform: none;
 
-    margin-top: 20px; /* ⬅️ THIS is your fix */
+    margin-top: 30px;
   }
 }
     
 @media (max-width: 1200px) {
   .hero-left {
-    width: 50%;
+    width: 52%;
   }
 
   .hero-right {
-    width: 50%;
+    width: 48%;
     height: 600px;
   }
 
   .hero-img {
-    width: 145%;
-    left: -40px;
+    width: 140%;
+    left: -60%;
+    top: 52%;
+  }
+
+  .hero-left h1 {
+    font-size: 52px;
+  }
+
+  .hero-left p {
+    font-size: 17px;
   }
 }
     
