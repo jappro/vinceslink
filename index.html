@@ -683,26 +683,6 @@ body {
   filter: blur(100px);
 }
 
-.hero-right::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(
-    circle at 60% 40%,
-    rgba(108,140,255,0.15),
-    transparent 60%
-  );
-
-  opacity: 0.4;
-  animation: flicker 3s ease-in-out infinite;
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-}
-        
 .hero::after {
   content: "";
   position: absolute;
@@ -748,15 +728,6 @@ body {
   bottom: -100px;
   right: -100px;
 }
-/* VIDEO BACKGROUND */
-.bg-video {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  object-fit: cover;
-  opacity: 0.35;
-  filter: blur(20px);
-}
 
 /* FLOATING IMAGE */
 .hero-img {
@@ -775,55 +746,6 @@ body {
   background: radial-gradient(circle, rgba(108,140,255,0.25), transparent 70%);
   filter: blur(60px);
   z-index: 1;
-}
-
-.system-glow {
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-
-  background: radial-gradient(
-    circle,
-    rgba(0, 25, 168, 0.25),
-    rgba(52, 211, 153, 0.15),
-    transparent 70%
-  );
-
-  filter: blur(80px);
-  z-index: 0;
-
-  animation: glowPulse 4s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%   { opacity: 0.5; transform: scale(1); }
-  50%  { opacity: 0.9; transform: scale(1.08); }
-  100% { opacity: 0.5; transform: scale(1); }
-}
-
-.energy-wave {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(108,140,255,0.25),
-    transparent 70%
-  );
-
-  filter: blur(40px);
-  opacity: 0.6;
-
-  animation: energyFlow 6s linear infinite;
-  z-index: 1;
-}
-
-@keyframes energyFlow {
-  0%   { transform: translateX(-60%) translateY(20%); }
-  100% { transform: translateX(60%) translateY(-20%); }
 }
 
 /* FLOAT ANIMATION */
@@ -2882,19 +2804,9 @@ body {
     </div>
   </div>
 
-  <!-- ✅ UPDATED RIGHT SIDE -->
   <div class="hero-right">
-
-    <!-- GLOW BASE -->
-    <div class="system-glow"></div>
-
-    <!-- ENERGY FLOW -->
-    <div class="energy-wave"></div>
-
-    <!-- IMAGE (ON TOP) -->
-    <img src="images/70719BEA-2947-43A7-9FD4-01809707E1D2.png" class="hero-img" />
-
-  </div>
+  <img src="images/70719BEA-2947-43A7-9FD4-01809707E1D2.png" class="hero-img" />
+</div>
 
 </section>
 
