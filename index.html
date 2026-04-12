@@ -471,10 +471,6 @@ body {
 }
 
 .hero-img {
-  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.15));
-}
-
-.hero-img {
   position: absolute;
 
   width: 140%;          /* ⬅️ BIG */
@@ -541,25 +537,6 @@ body {
   z-index: 0;
 }
 
-.hero-right::before {
-  content: "";
-  position: absolute;
-  left: -120px;
-  top: 0;
-  width: 220px;
-  height: 100%;
-
-  background: linear-gradient(
-    to right,
-    white 20%,
-    rgba(255,255,255,0.6) 60%,
-    transparent
-  );
-
-  z-index: 4;
-  pointer-events: none;
-}
-        
 .hero-right::after {
   content: "";
   position: absolute;
@@ -632,17 +609,7 @@ body {
 
   z-index: 2;
 }
-
-/* GLOW EFFECT */
-.glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(108,140,255,0.25), transparent 70%);
-  filter: blur(60px);
-  z-index: 1;
-}
-
+        
 /* FLOAT ANIMATION */
 @keyframes float {
   0% { transform: translateY(0px) scale(1); }
