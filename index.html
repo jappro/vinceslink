@@ -186,6 +186,29 @@ body {
   background: linear-gradient(135deg, #f5f7fb 0%, #eef2f7 100%);
 }
 
+@media (max-width: 900px) {
+
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-left {
+    order: 1;
+  }
+
+  .buttons {
+    order: 2;
+  }
+
+  .hero-right {
+    order: 3;
+    margin-top: 30px;
+  }
+
+}
+        
 /* =========================
    BACKGROUND BLOBS
 ========================= */
@@ -437,20 +460,14 @@ body {
 
 @media (max-width: 900px) {
 
-  .hero-img {
+.hero-img {
   position: relative !important;
   width: 100%;
-  max-width: 360px;
-
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  transform: none !important;
-
+  max-width: 340px;
   margin: 20px auto 0;
   display: block;
-
-  animation: none; /* 🔥 removes scroll weirdness */
+  transform: none !important;
+  animation: none;
 }
 
   .hero-left,
@@ -478,30 +495,6 @@ body {
     margin-top: 24px;
   }
 
-  /* IMAGE — HARD RESET (FIXED) */
-.hero-right {
-  position: relative;
-  height: auto;
-  margin-top: 30px; /* slightly tighter */
-}
-
-.hero-img {
-  position: relative !important;
-
-  width: 100%;
-  max-width: 360px; /* prevents oversized look on mobile */
-
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  transform: none !important;
-
-  margin: 20px auto 0; /* cleaner spacing */
-  display: block;
-
-  animation: none; /* 🔥 VERY IMPORTANT — stops scroll weirdness */
-}
-    
   /* Product Carousel Section */
     .carousel-section {
         padding: 2rem 5% 4rem;
@@ -517,12 +510,13 @@ body {
 
     .carousel-track {
         display: flex;
+        flex-wrap: nowrap;
         gap: 2rem;
         transition: transform 0.5s ease-in-out;
     }
-
+  
     .product-card {
-        min-width: 350px;
+        min-width: clamp(260px, 28vw, 320px);
         background-color: var(--white);
         border-radius: 20px;
         overflow: hidden;
