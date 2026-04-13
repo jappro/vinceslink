@@ -176,7 +176,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 100vh;
+  min-height: auto;
   padding: 80px 8%;
   overflow: visible;
 
@@ -404,10 +404,13 @@ body {
    RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
+
   .hero {
     flex-direction: column;
-    text-align: center;
-    padding: 60px 6%;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    min-height: auto; /* 🔥 removes that massive empty space */
   }
 
   .hero-left,
@@ -415,46 +418,53 @@ body {
     width: 100%;
   }
 
-  /* TEXT FIRST */
-  .hero-left h1 {
-    font-size: 38px;
-    line-height: 1.2;
-    max-width: 100%;
+  /* TEXT */
+  .hero-left {
+    text-align: center;
   }
 
-  .headline-blue {
-    letter-spacing: -0.8px;
+  .hero-left h1 {
+    font-size: 34px;
+    line-height: 1.2;
   }
 
   .hero-left p {
-    font-size: 16px;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 15px;
+    margin-top: 16px;
   }
 
   .buttons {
     justify-content: center;
+    margin-top: 24px;
   }
 
-  /* IMAGE CLEAN RESET */
+  /* IMAGE — HARD RESET */
   .hero-right {
+    position: relative;
     height: auto;
     margin-top: 40px;
   }
 
   .hero-img {
-    position: relative;
-    width: 115%;
-    left: 0;
-    top: 0;
-    transform: none;
+    position: relative !important;
+    width: 95%;
+    max-width: 420px;
 
-    margin-top: 30px;
+    left: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+
+    margin: 40px auto 0 auto;
+    display: block;
   }
 }
     
 @media (max-width: 1200px) {
+
+  .hero {
+    padding: 80px 6%;
+  }
+    
   .hero-left {
     width: 52%;
   }
@@ -476,6 +486,12 @@ body {
 
   .hero-left p {
     font-size: 17px;
+  }
+}
+
+@media (min-width: 901px) {
+  .hero {
+    min-height: 100vh;
   }
 }
     
