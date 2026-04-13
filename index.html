@@ -2797,40 +2797,76 @@ body {
 
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo-section">
-            <img src="images/copy_35B30140-AB4E-4E82-BAC2-9E39BF61C95E.png" alt="Vinceslink Logo" class="logo-img">
-            <span class="logo-text">vinceslink</span>
-        </div>
+    <!-- NAVBAR WRAPPER (fixed, full width) -->
+<div class="navbar-wrapper">
 
+  <!-- THE FLOATING PILL -->
+  <nav class="navbar" id="navbar">
+
+    <!-- Logo -->
+    <a href="#home" class="logo-section">
+      <img src="images/copy_35B30140-AB4E-4E82-BAC2-9E39BF61C95E.png"
+           alt="Vinceslink Logo" class="logo-img"/>
+      <span class="logo-text">vinceslink</span>
+    </a>
+
+    <!-- Desktop nav links -->
     <ul class="nav-menu" id="navMenu">
-        <li><a href="#home" class="active">Home</a></li>
-        <li class="services-dropdown" id="servicesDropdown">
-            <a href="#services" id="servicesLink">Services <span class="dropdown-icon">▼</span></a>
-            <ul class="dropdown-menu">
-                <li><a href="https://jappro.github.io/vinceslink/gadget" target="_blank">Gadget Hub</a></li>
-                <li><a href="https://jappro.github.io/vinceslink/superstore" target="_blank">Super Store</a></li>
-                <li><a href="https://jappro.github.io/vinceslink/realty" target="_blank">Real Estate</a></li>
-            </ul>
-        </li>
-        <li><a href="#shop">Shop Now</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li class="mobile-signup-wrapper"><a href="#signup" class="mobile-signup-btn">Sign Up →</a></li>
+      <li><a href="#home" class="active">Home</a></li>
+      <li class="services-dropdown" id="servicesDropdown">
+        <a href="#services" id="servicesLink">
+          Services <span class="dropdown-icon">▼</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="https://jappro.github.io/vinceslink/gadget"     target="_blank">Gadget Hub</a></li>
+          <li><a href="https://jappro.github.io/vinceslink/superstore" target="_blank">Super Store</a></li>
+          <li><a href="https://jappro.github.io/vinceslink/realty"     target="_blank">Real Estate</a></li>
+        </ul>
+      </li>
+      <li><a href="#shop">Shop Now</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
 
+    <!-- Right actions inside pill -->
     <div class="nav-actions">
-        <a href="#login" class="login-btn">Log in</a>
-        <a href="#signup" class="signup-btn" title="Coming Soon - E-Commerce Portal">Sign Up</a>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+      <a href="#login" class="login-btn">Log in</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
     </div>
-</nav>
+
+  </nav>
+
+  <!-- SIGN UP — floats outside the pill, top right -->
+  <a href="#signup" class="signup-btn-float" id="signupBtn">Sign Up →</a>
+
+</div><!-- end .navbar-wrapper -->
+
+
+<!-- MOBILE DRAWER (below navbar, glass card) -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="#home" class="active">Home</a></li>
+    <li>
+      <div class="drawer-services-toggle" id="drawerServicesToggle">
+        Services <span class="drawer-arrow">▼</span>
+      </div>
+      <ul class="drawer-sub" id="drawerSub">
+        <li><a href="https://jappro.github.io/vinceslink/gadget"     target="_blank">Gadget Hub</a></li>
+        <li><a href="https://jappro.github.io/vinceslink/superstore" target="_blank">Super Store</a></li>
+        <li><a href="https://jappro.github.io/vinceslink/realty"     target="_blank">Real Estate</a></li>
+      </ul>
+    </li>
+    <li><a href="#shop">Shop Now</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="drawer-divider"></div>
+  <a href="#signup" class="drawer-signup" id="drawerSignup">Sign Up →</a>
+</div>
     
 <!-- Hero Section -->
 <section class="hero">
