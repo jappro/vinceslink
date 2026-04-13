@@ -46,460 +46,475 @@
         background-color: #1A1A1A;
     }
 
-/* ═══════════════════════════════════════════════
-       NAVBAR WRAPPER
-       Fixed to top. Holds both the pill + signup btn.
-    ═══════════════════════════════════════════════ */
-    .navbar-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none; /* wrapper is transparent — children handle clicks */
-    }
+ /* ═══════════════════════════════════════════════════════
+   VINCESLINK NAVBAR CSS — FIXED v2
+   Replace your entire navbar CSS block with this.
+═══════════════════════════════════════════════════════ */
 
-    /* ═══════════════════════════════════════════════
-       THE FLOATING PILL NAVBAR
-    ═══════════════════════════════════════════════ */
-    .navbar {
-      pointer-events: all;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+/* ── Wrapper ────────────────────────────────────────────
+   KEY FIX: Switch from justify-content:center + absolute
+   to a proper flex row. This permanently fixes the zoom
+   collision because pill and Sign Up are now flow siblings.
+──────────────────────────────────────────────────────── */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 14px 2% 14px 4%;   /* left=4%, right=2% — matches your spec */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* pill anchors to the left */
+  gap: 6%;                     /* 5-7% gap between pill and Sign Up */
+  pointer-events: none;
+}
 
-      /* Pill shape */
-      border-radius: 999px;
-      padding: 10px 20px 10px 16px;
+/* ── Floating Pill ────────────────────────────────────── */
+.navbar {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
 
-      /* Liquid glass */
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      box-shadow:
-        0 4px 24px rgba(0, 0, 0, 0.08),
-        0 1px 4px rgba(0, 0, 0, 0.04),
-        inset 0 1px 0 rgba(255,255,255,0.9);
+  border-radius: 999px;
+  padding: 10px 20px 10px 14px;
 
-      /* Width — leaves room for Sign Up btn on right */
-      width: 100%;
-      max-width: 860px;
+  /* Liquid glass */
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 
-      transition: box-shadow 0.3s ease, background 0.3s ease;
-    }
+  /* Pill grows to fill available space, Sign Up takes its natural width */
+  flex: 1;
+  min-width: 0;         /* prevents flex overflow */
+  max-width: 980px;     /* cap on very wide screens */
 
-    /* Slightly more opaque on scroll */
-    .navbar.scrolled {
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        0 2px 8px rgba(0, 0, 0, 0.06),
-        inset 0 1px 0 rgba(255,255,255,0.95);
-    }
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
 
-    /* ── Logo ── */
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
 
-    .logo-img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
+/* ── Logo ─────────────────────────────────────────────── */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
 
-    .logo-text {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--primary-blue);
-      letter-spacing: -0.5px;
-    }
+.logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+}
 
-    /* ── Nav Menu (desktop) ── */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
-      list-style: none;
-      flex: 1;
-      justify-content: center;
-    }
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
 
-    .nav-menu li a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      transition: all 0.25s ease;
-      position: relative;
-      display: block;
-      white-space: nowrap;
-    }
+/* ── Nav Menu (desktop) ──────────────────────────────── */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
 
-    .nav-menu li a:hover {
-      color: var(--primary-blue);
-      background: rgba(0, 51, 204, 0.07);
-    }
+.nav-menu li a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  position: relative;
+  display: block;
+  white-space: nowrap;
+}
 
-    .nav-menu li a.active {
-      color: var(--primary-blue);
-      background: rgba(0, 51, 204, 0.09);
-      font-weight: 600;
-    }
+.nav-menu li a:hover {
+  color: var(--primary-blue);
+  background: rgba(0, 51, 204, 0.07);
+}
 
-    /* ── Services Dropdown ── */
-    .services-dropdown {
-      position: relative;
-    }
+.nav-menu li a.active {
+  color: var(--primary-blue);
+  background: rgba(0, 51, 204, 0.09);
+  font-weight: 600;
+}
 
-    .dropdown-icon {
-      margin-left: 4px;
-      font-size: 10px;
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
+/* ── Services Dropdown ───────────────────────────────── */
+.services-dropdown {
+  position: relative;
+}
 
-    .services-dropdown.active .dropdown-icon {
-      transform: rotate(180deg);
-    }
+.dropdown-icon {
+  margin-left: 4px;
+  font-size: 10px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
 
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%) translateY(-8px);
-      background: rgba(255,255,255,0.90);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.85);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
-      border-radius: 16px;
-      min-width: 180px;
-      padding: 6px;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.25s ease;
-      z-index: 200;
-      list-style: none;
-    }
+.services-dropdown.active .dropdown-icon {
+  transform: rotate(180deg);
+}
 
-    .services-dropdown.active .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+  border-radius: 16px;
+  min-width: 180px;
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  z-index: 200;
+  list-style: none;
+}
 
-    .dropdown-menu li a {
-      display: block;
-      padding: 10px 16px;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--text-dark);
-      text-decoration: none;
-      border-radius: 10px;
-      transition: all 0.2s ease;
-    }
+.services-dropdown.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
 
-    .dropdown-menu li a:hover {
-      background: rgba(0,51,204,0.07);
-      color: var(--primary-blue);
-      padding-left: 20px;
-    }
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
 
-    /* ── Log In (inside pill) ── */
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-shrink: 0;
-    }
+.dropdown-menu li a:hover {
+  background: rgba(0, 51, 204, 0.07);
+  color: var(--primary-blue);
+  padding-left: 20px;
+}
 
-    .login-btn {
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
+/* ── Nav Actions (Log in + Hamburger) ────────────────── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
 
-    .login-btn:hover {
-      color: var(--primary-blue);
-      background: rgba(0,51,204,0.07);
-    }
+.login-btn {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
 
-    /* Hamburger — mobile only */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-      border-radius: 999px;
-      transition: background 0.2s ease;
-      z-index: 1001;
-    }
+.login-btn:hover {
+  color: var(--primary-blue);
+  background: rgba(0, 51, 204, 0.07);
+}
 
-    .hamburger:hover {
-      background: rgba(0,0,0,0.06);
-    }
+/* ── Hamburger ───────────────────────────────────────── */
+.hamburger {
+  display: none;            /* hidden on desktop */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 7px;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
 
-    .hamburger span {
-      width: 22px;
-      height: 2.5px;
-      background: var(--text-dark);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-      display: block;
-    }
+.hamburger:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
 
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5.5px, 5.5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5.5px, -5.5px); }
+.hamburger span {
+  width: 22px;
+  height: 2.5px;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  display: block;
+}
 
-    /* Hide desktop signup inside pill */
-    .signup-btn-desktop { display: none; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5.5px, 5.5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5.5px, -5.5px); }
 
-    /* Hide mobile signup in list by default */
-    .mobile-signup-wrapper { display: none; }
+/* Hide these — not needed */
+.signup-btn-desktop    { display: none; }
+.mobile-signup-wrapper { display: none; }
 
-    /* ═══════════════════════════════════════════════
-       SIGN UP BUTTON — floats OUTSIDE pill, top-right
-       Orange Neomorphism + Glassmorphism
-    ═══════════════════════════════════════════════ */
-    .signup-btn-float {
-      pointer-events: all;
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
+/* ── Sign Up Float Button ────────────────────────────────
+   Now a FLEX SIBLING of .navbar inside .navbar-wrapper.
+   No more position:absolute — zero collision risk at any zoom.
+──────────────────────────────────────────────────────── */
+.signup-btn-float {
+  pointer-events: all;
+  flex-shrink: 0;           /* never squishes */
 
-      /* Orange glass */
-      background: linear-gradient(135deg,
-        rgba(255, 148, 70, 0.85) 0%,
-        rgba(255, 110, 30, 0.90) 100%);
-      backdrop-filter: blur(12px) saturate(160%);
-      -webkit-backdrop-filter: blur(12px) saturate(160%);
-      border: 1px solid rgba(255,180,120,0.60);
+  background: linear-gradient(135deg,
+    rgba(255, 148, 70, 0.90) 0%,
+    rgba(255, 110, 30, 0.95) 100%);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 180, 120, 0.60);
 
-      /* Neomorphism shadow stack */
-      box-shadow:
-        4px 4px 10px rgba(200, 80, 0, 0.30),
-        -2px -2px 6px rgba(255, 200, 140, 0.40),
-        inset 0 1px 0 rgba(255,220,180,0.50),
-        inset 0 -1px 0 rgba(180,60,0,0.15);
+  box-shadow:
+    4px 4px 10px rgba(200, 80, 0, 0.30),
+    -2px -2px 6px rgba(255, 200, 140, 0.40),
+    inset 0 1px 0 rgba(255, 220, 180, 0.55),
+    inset 0 -1px 0 rgba(180, 60, 0, 0.15);
 
-      color: #fff;
-      font-weight: 700;
-      font-size: 13.5px;
-      text-decoration: none;
-      padding: 11px 22px;
-      border-radius: 999px;
-      white-space: nowrap;
-      letter-spacing: 0.2px;
-      transition: all 0.28s ease;
-      cursor: pointer;
-    }
+  color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-decoration: none;
+  padding: 11px 22px;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+  transition: all 0.28s ease;
+  cursor: pointer;
+}
 
-    .signup-btn-float:hover {
-      background: linear-gradient(135deg,
-        rgba(255, 160, 85, 0.95) 0%,
-        rgba(255, 120, 40, 0.98) 100%);
-      box-shadow:
-        6px 6px 16px rgba(200, 80, 0, 0.38),
-        -3px -3px 8px rgba(255, 200, 140, 0.50),
-        inset 0 1px 0 rgba(255,220,180,0.60),
-        inset 0 -1px 0 rgba(180,60,0,0.20);
-      transform: translateY(calc(-50% - 2px));
-    }
+.signup-btn-float:hover {
+  background: linear-gradient(135deg,
+    rgba(255, 160, 85, 0.98) 0%,
+    rgba(255, 120, 40, 1.00) 100%);
+  box-shadow:
+    6px 6px 16px rgba(200, 80, 0, 0.38),
+    -3px -3px 8px rgba(255, 200, 140, 0.50),
+    inset 0 1px 0 rgba(255, 220, 180, 0.60),
+    inset 0 -1px 0 rgba(180, 60, 0, 0.20);
+  transform: translateY(-2px);
+}
 
-    /* ═══════════════════════════════════════════════
-       MOBILE DRAWER MENU
-    ═══════════════════════════════════════════════ */
-    .mobile-drawer {
-      display: none; /* shown via JS class */
-      position: fixed;
-      top: 76px; /* below navbar wrapper */
-      left: 16px;
-      right: 16px;
-      z-index: 999;
+/* ── Mobile Drawer ───────────────────────────────────── */
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 80px;           /* matches wrapper height on mobile */
+  left: 14px;
+  right: 14px;
+  z-index: 999;
 
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.85);
-      border-radius: 24px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
 
-      padding: 8px 8px 12px;
-      overflow: hidden;
+  padding: 8px 8px 12px;
+  overflow: hidden;
 
-      /* Slide down animation */
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-    }
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
 
-    .mobile-drawer.open {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
+.mobile-drawer.opening { display: block; }
 
-    /* Force display:block then animate — two-step trick */
-    .mobile-drawer.opening {
-      display: block;
-    }
+.mobile-drawer.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
 
-    .mobile-drawer ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+.mobile-drawer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .mobile-drawer ul li a {
-      display: block;
-      padding: 13px 18px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-dark);
-      text-decoration: none;
-      border-radius: 14px;
-      transition: all 0.2s ease;
-    }
+.mobile-drawer ul li a {
+  display: block;
+  padding: 13px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
 
-    .mobile-drawer ul li a:hover,
-    .mobile-drawer ul li a.active {
-      background: rgba(0,51,204,0.07);
-      color: var(--primary-blue);
-    }
+.mobile-drawer ul li a:hover,
+.mobile-drawer ul li a.active {
+  background: rgba(0, 51, 204, 0.07);
+  color: var(--primary-blue);
+}
 
-    /* Services inside drawer */
-    .drawer-services-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 13px 18px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-dark);
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
+.drawer-services-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
 
-    .drawer-services-toggle:hover {
-      background: rgba(0,51,204,0.07);
-      color: var(--primary-blue);
-    }
+.drawer-services-toggle:hover {
+  background: rgba(0, 51, 204, 0.07);
+  color: var(--primary-blue);
+}
 
-    .drawer-services-toggle .drawer-arrow {
-      font-size: 11px;
-      transition: transform 0.3s ease;
-    }
+.drawer-services-toggle .drawer-arrow {
+  font-size: 11px;
+  transition: transform 0.3s ease;
+}
 
-    .drawer-services-open .drawer-arrow {
-      transform: rotate(180deg);
-    }
+.drawer-services-open .drawer-arrow {
+  transform: rotate(180deg);
+}
 
-    .drawer-sub {
-      list-style: none;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding-left: 10px;
-    }
+.drawer-sub {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 10px;
+}
 
-    .drawer-sub.open {
-      max-height: 200px;
-    }
+.drawer-sub.open { max-height: 200px; }
 
-    .drawer-sub li a {
-      padding: 10px 18px !important;
-      font-size: 14px !important;
-      color: var(--text-light) !important;
-    }
+.drawer-sub li a {
+  padding: 10px 18px !important;
+  font-size: 14px !important;
+  color: var(--text-light) !important;
+}
 
-    .drawer-sub li a:hover {
-      color: var(--primary-blue) !important;
-      background: rgba(0,51,204,0.05) !important;
-    }
+.drawer-sub li a:hover {
+  color: var(--primary-blue) !important;
+  background: rgba(0, 51, 204, 0.05) !important;
+}
 
-    /* Divider */
-    .drawer-divider {
-      height: 1px;
-      background: rgba(0,0,0,0.07);
-      margin: 6px 10px;
-      border-radius: 1px;
-    }
+.drawer-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.07);
+  margin: 6px 10px;
+  border-radius: 1px;
+}
 
-    /* Orange Sign Up at bottom of drawer */
-    .drawer-signup {
-      display: block;
-      margin: 10px 8px 2px;
-      padding: 14px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      color: #fff;
-      border-radius: 16px;
-      letter-spacing: 0.2px;
+.drawer-signup {
+  display: block;
+  margin: 10px 8px 2px;
+  padding: 14px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 16px;
+  letter-spacing: 0.2px;
+  background: linear-gradient(135deg,
+    rgba(255, 148, 70, 0.95) 0%,
+    rgba(255, 110, 30, 0.98) 100%);
+  border: 1px solid rgba(255, 180, 120, 0.55);
+  box-shadow:
+    4px 4px 12px rgba(200, 80, 0, 0.28),
+    -2px -2px 6px rgba(255, 200, 140, 0.35),
+    inset 0 1px 0 rgba(255, 220, 180, 0.45);
+  transition: all 0.25s ease;
+}
 
-      background: linear-gradient(135deg,
-        rgba(255,148,70,0.92) 0%,
-        rgba(255,110,30,0.96) 100%);
-      border: 1px solid rgba(255,180,120,0.55);
-      box-shadow:
-        4px 4px 12px rgba(200,80,0,0.28),
-        -2px -2px 6px rgba(255,200,140,0.35),
-        inset 0 1px 0 rgba(255,220,180,0.45);
-      transition: all 0.25s ease;
-    }
+.drawer-signup:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    6px 6px 18px rgba(200, 80, 0, 0.35),
+    -3px -3px 8px rgba(255, 200, 140, 0.45),
+    inset 0 1px 0 rgba(255, 220, 180, 0.55);
+}
 
-    .drawer-signup:hover {
-      transform: translateY(-1px);
-      box-shadow:
-        6px 6px 18px rgba(200,80,0,0.35),
-        -3px -3px 8px rgba(255,200,140,0.45),
-        inset 0 1px 0 rgba(255,220,180,0.55);
-    }
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   Tablet + Mobile: ≤1024px → hamburger mode
+   This also catches desktop at 120%+ zoom automatically.
+═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .navbar-wrapper {
+    padding: 12px 14px 12px 14px; /* equal sides on mobile */
+    gap: 10px;
+  }
 
-    /* ═══════════════════════════════════════════════
-       RESPONSIVE — MOBILE
-    ═══════════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .nav-menu      { display: none; }
-      .hamburger     { display: flex; }
-      .navbar        { max-width: 100%; padding: 8px 8px 8px 14px; }
-      .navbar-wrapper { padding: 12px 16px; }
-      .signup-btn-float { right: 16px; font-size: 13px; padding: 10px 18px; }
-      /* On mobile pill is narrower — push signup btn outside wrapper */
-      .navbar { max-width: calc(100% - 110px); }
-    }
+  .navbar {
+    flex: 1;
+    max-width: none;
+    padding: 10px 14px 10px 14px;
+  }
 
-    @media (max-width: 480px) {
-      .signup-btn-float { padding: 9px 15px; font-size: 12.5px; }
-      .logo-text { font-size: 18px; }
-    }
+  /* Hide desktop menu links */
+  .nav-menu { display: none; }
+
+  /* Show hamburger */
+  .hamburger { display: flex; }
+
+  /* Hide float Sign Up on mobile — it lives in the drawer */
+  .signup-btn-float { display: none; }
+
+  .mobile-drawer { top: 76px; }
+}
+
+/* ── Tablet mid-range (768px–1024px) ─────────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navbar-wrapper { padding: 13px 16px; }
+  .navbar { padding: 10px 18px; }
+  .logo-text { font-size: 20px; }
+}
+
+/* ── Small mobile (≤480px) ───────────────────────────── */
+@media (max-width: 480px) {
+  .navbar-wrapper { padding: 10px 12px; }
+  .logo-text { font-size: 17px; }
+  .logo-img  { width: 30px; height: 30px; }
+  .login-btn { font-size: 13px; padding: 6px 10px; }
+  .mobile-drawer { top: 72px; left: 10px; right: 10px; }
+}
         
    /* =========================
    RESET
