@@ -237,7 +237,7 @@ body {
   color: #111;
   line-height: 1.1;
   letter-spacing: -0.5px;
-  max-width: 520px;
+  max-width: 600px;
 }
 
 /* GRADIENT TEXT */
@@ -349,7 +349,6 @@ body {
 ========================= */
 .hero-right {
   width: 55%;
-  height: 700px;
   position: relative;
   overflow: visible;
 }
@@ -357,18 +356,19 @@ body {
 /* CLEAN LARGE IMAGE */
 .hero-img {
   position: absolute;
-  width: 165%;
+  width: 150%;
   max-width: none;
 
-  left: -120px;
-  top: 56%;
+  right: -10%;
+  left: auto;
+
+  top: 52%;
   transform: translateY(-50%);
 
   animation: float 6s ease-in-out infinite;
 
   z-index: 2;
 
-  /* CRITICAL: remove fake edges */
   filter: none !important;
   box-shadow: none !important;
   border: none !important;
@@ -403,15 +403,52 @@ body {
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
 
   .hero {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px;
-    min-height: auto; /* 🔥 removes that massive empty space */
+    padding: 70px 6%;
   }
+
+  .hero-left {
+    width: 55%;
+  }
+
+  .hero-right {
+    width: 45%;
+  }
+
+  .hero-img {
+    width: 120%;
+    right: -5%;
+    top: 52%;
+  }
+
+  .hero-left h1 {
+    font-size: 52px;
+  }
+
+  .hero-left p {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .hero-img {
+  position: relative !important;
+  width: 100%;
+  max-width: 360px;
+
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+
+  margin: 20px auto 0;
+  display: block;
+
+  animation: none; /* 🔥 removes scroll weirdness */
+}
 
   .hero-left,
   .hero-right {
@@ -438,57 +475,30 @@ body {
     margin-top: 24px;
   }
 
-  /* IMAGE — HARD RESET */
-  .hero-right {
-    position: relative;
-    height: auto;
-    margin-top: 40px;
-  }
-
-  .hero-img {
-    position: relative !important;
-    width: 95%;
-    max-width: 420px;
-
-    left: 0 !important;
-    top: 0 !important;
-    transform: none !important;
-
-    margin: 40px auto 0 auto;
-    display: block;
-  }
-}
-    
-@media (max-width: 1200px) {
-
-  .hero {
-    padding: 80px 6%;
-  }
-    
-  .hero-left {
-    width: 52%;
-  }
-
-  .hero-right {
-    width: 48%;
-    height: 600px;
-  }
-
-  .hero-img {
-    width: 140%;
-    left: -60%;
-    top: 52%;
-  }
-
-  .hero-left h1 {
-    font-size: 52px;
-  }
-
-  .hero-left p {
-    font-size: 17px;
-  }
+  /* IMAGE — HARD RESET (FIXED) */
+.hero-right {
+  position: relative;
+  height: auto;
+  margin-top: 30px; /* slightly tighter */
 }
 
+.hero-img {
+  position: relative !important;
+
+  width: 100%;
+  max-width: 360px; /* prevents oversized look on mobile */
+
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+
+  margin: 20px auto 0; /* cleaner spacing */
+  display: block;
+
+  animation: none; /* 🔥 VERY IMPORTANT — stops scroll weirdness */
+}
+    
   /* Product Carousel Section */
     .carousel-section {
         padding: 2rem 5% 4rem;
