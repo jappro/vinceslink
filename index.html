@@ -47,108 +47,111 @@
     }
 
 /* =========================================
-   💎 LIQUID GLASS FLOATING NAVBAR
+   💎 LIQUID GLASS CAPSULE SYSTEM
    ========================================= */
-:root {
-    --glass-bg: rgba(255, 255, 255, 0.45);
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-glow: rgba(255, 255, 255, 0.8);
-}
 
-.header-container {
+.navbar {
     position: fixed;
-    top: 20px;
+    top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
     display: flex;
-    justify-content: center; /* Centers the main capsule */
+    justify-content: center; /* Center the capsule */
     align-items: center;
-    padding: 0 5%;
+    padding: 20px 5%;
+    background: transparent; /* Remove solid background */
     z-index: 1000;
 }
 
-.navbar-capsule {
+.navbar-inner-capsule {
     display: flex;
     align-items: center;
-    gap: 40px;
-    padding: 10px 30px;
-    border-radius: 100px; /* Pill shape */
+    padding: 8px 32px;
+    gap: 3rem;
+    border-radius: 100px;
     
-    /* The Liquid Glass Effect */
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    /* THE LIQUID GLASS CORE */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     
-    /* Specular Edge Highlight (Neomorphism style) */
-    border: 1px solid var(--glass-border);
+    /* THE REFRACTIVE EDGE (Source BTN style) */
+    border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 
-        inset 0 1px 2px var(--glass-glow), 
-        0 10px 30px rgba(0, 0, 0, 0.05);
-    
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        inset 0 1px 1px rgba(255, 255, 255, 0.8), /* Top Specular Highlight */
+        0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 /* SATELLITE SIGN UP BUTTON */
 .signup-satellite {
     position: absolute;
     right: 5%;
+    background: #FF8A3D; /* Your orange */
+    color: white;
     padding: 12px 28px;
     border-radius: 50px;
-    background: linear-gradient(135deg, #FF8A3D, #FF6B1A);
-    color: white;
-    font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 10px 20px rgba(255, 107, 26, 0.2);
-    transition: 0.3s;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    
+    /* Matching glass rim for the button */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(255, 138, 61, 0.25);
 }
 
 .signup-satellite:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 25px rgba(255, 107, 26, 0.3);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(255, 138, 61, 0.35);
 }
 
-/* DROPDOWN GLASS STYLE */
+/* NAVIGATION LINKS */
+.nav-menu li a {
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.nav-menu li a:hover {
+    opacity: 0.6;
+}
+
+/* GLASS DROPDOWN */
 .dropdown-menu {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 10px;
-    margin-top: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 0;
+    margin-top: 15px; /* Gap for floating feel */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 /* =========================================
-   📱 MOBILE ADAPTATION
+   📱 MOBILE ADAPTIVE GLASS
    ========================================= */
+
 @media (max-width: 1024px) {
-    .navbar-capsule {
-        width: 90%;
+    .navbar-inner-capsule {
+        width: 100%; /* Expands to fill width on mobile */
         justify-content: space-between;
+        padding: 8px 20px;
         gap: 0;
     }
 
     .nav-menu {
-        display: none; /* Add JS to toggle this class */
+        display: none; /* Add your JS toggle to show/hide */
     }
 
     .signup-satellite {
-        display: none; /* Hide satellite on mobile */
+        display: none; /* Hide satellite button on mobile/tablet */
     }
 
-    /* Show Log in next to Hamburger inside capsule */
-    .nav-actions {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .hamburger span {
-        background-color: #333;
-        width: 22px;
-        height: 2px;
-        margin: 4px 0;
+    /* Move Sign Up into the mobile menu if needed */
+    .mobile-signup-wrapper {
         display: block;
+        padding: 15px 20px;
     }
 }
         
