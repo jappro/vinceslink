@@ -696,12 +696,15 @@
 /* IMAGE */
 .hero-img {
   width: 100%;
-  max-width: 520px;
+  max-width: 572px;        /* was 520px — +10% */
   height: auto;
-
   display: block;
-
+  margin-top: 40px;        /* nudges image down on desktop */
   animation: float 6s ease-in-out infinite;
+
+  /* Fix 1: ensure no inherited bg tint bleeds onto image */
+  background: transparent;
+  mix-blend-mode: normal;
 }
 
 /* =========================
@@ -746,6 +749,13 @@
   .hero-left p {
     font-size: 17px;
   }
+
+  .hero-img {
+    max-width: 546px;      /* was 520px — +5% */
+    margin-top: 0;         /* no nudge on tablet */
+    background: transparent;
+    mix-blend-mode: normal;
+  }
 }
 
 /* =========================
@@ -767,8 +777,20 @@
   }
 
   .hero-img {
-    max-width: 340px;
+    max-width: 357px;      /* was 340px — +5% */
+    margin-top: 0;
     animation: none;
+
+    /* Fix 1: these two lines kill the mobile shadow/wash */
+    background: transparent;
+    mix-blend-mode: normal;
+    filter: none;          /* removes any inherited filter tint */
+    opacity: 1;            /* ensures full opacity, no fade */
+  }
+
+  /* Also ensure hero-right has no background color bleeding */
+  .hero-right {
+    background: transparent;
   }
 
   .hero-left h1 {
