@@ -3731,20 +3731,6 @@ if (drawerSignup) {
     showComingSoon();
   });
 }
-
-  // hero section
-    const hero = document.querySelector(".hero");
-const img = document.querySelector(".hero-img");
-
-hero.addEventListener("mousemove", (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-  img.style.transform = `
-    translate(${x}px, ${y}px)
-    translateY(-10px)
-  `;
-});
                               
     // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
