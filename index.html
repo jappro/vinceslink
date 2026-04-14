@@ -725,34 +725,29 @@ body {
   transform: translateX(6px);
 }
 
-/* =========================
-   RIGHT SIDE (IMAGE)
-========================= */
 .hero-right {
-  width: 55%;
-  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative; /* keep this */
   overflow: visible;
 }
 
-/* CLEAN LARGE IMAGE */
 .hero-img {
-  position: absolute;
-  width: 150%;
-  max-width: none;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
 
-  right: -10%;
-  left: auto;
-
-  top: 52%;
-  transform: translateY(-50%);
+  position: relative; /* critical fix */
+  transform: none;
 
   animation: float 6s ease-in-out infinite;
 
   z-index: 2;
 
-  filter: none !important;
-  box-shadow: none !important;
-  border: none !important;
+  display: block;
 }
 
 /* =========================
