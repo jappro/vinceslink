@@ -553,6 +553,44 @@
 }
 
 /* =========================
+   BACKGROUND BLOBS
+========================= */
+.bg-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  animation: blobMove 14s ease-in-out infinite;
+}
+
+.blob-blue {
+  background: #6c8cff;
+  top: -100px;
+  left: -100px;
+}
+
+.blob-purple {
+  background: #a78bfa;
+  top: 50%;
+  left: 30%;
+}
+
+.blob-teal {
+  background: #34d399;
+  bottom: -100px;
+  right: -100px;
+}
+        
+/* =========================
    BUTTONS
 ========================= */
 .buttons {
@@ -592,6 +630,23 @@
   100% { transform: translateY(0px); }
 }
 
+@keyframes blobMove {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -30px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+        
 /* =========================
    TABLET
 ========================= */
