@@ -47,14 +47,15 @@
     }
 
  /* ═══════════════════════════════════════════════════════
-   VINCESLINK NAVBAR CSS — FIXED v2
-   Replace your entire navbar CSS block with this.
+   VINCESLINK NAVBAR CSS — v3 (zoom-stable centering)
+   ONLY the wrapper + navbar positioning changed.
+   Everything else is identical to your current CSS.
 ═══════════════════════════════════════════════════════ */
 
-/* ── Wrapper ────────────────────────────────────────────
-   KEY FIX: Switch from justify-content:center + absolute
-   to a proper flex row. This permanently fixes the zoom
-   collision because pill and Sign Up are now flow siblings.
+/* ── Wrapper ─────────────────────────────────────────────
+   Full-width fixed bar. Centers the inner group.
+   padding: vertical only — horizontal centering is
+   handled by the inner .navbar-inner container below.
 ──────────────────────────────────────────────────────── */
 .navbar-wrapper {
   position: fixed;
@@ -62,15 +63,33 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 14px 2% 14px 4%;   /* left=4%, right=2% — matches your spec */
+  padding: 14px 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* pill anchors to the left */
-  gap: 6%;                     /* 5-7% gap between pill and Sign Up */
+  justify-content: center;   /* centers the inner group */
   pointer-events: none;
 }
 
-/* ── Floating Pill ────────────────────────────────────── */
+/* ── Inner group — pill + Sign Up as one centered unit ──
+   This is the KEY: a fixed max-width container that holds
+   both elements. At any zoom level, this group stays
+   centered and the internal proportions stay consistent.
+
+   NOTE: You need to wrap your <nav> and .signup-btn-float
+   inside a new <div class="navbar-inner"> in your HTML.
+   See HTML instruction at the bottom of this file.
+──────────────────────────────────────────────────────── */
+.navbar-inner {
+  pointer-events: none;
+  width: 100%;
+  max-width: 1280px;          /* matches most site content widths */
+  padding: 0 24px;            /* fixed px — never shifts with zoom */
+  display: flex;
+  align-items: center;
+  gap: 16px;                  /* fixed gap between pill and Sign Up */
+}
+
+/* ── Floating Pill ───────────────────────────────────── */
 .navbar {
   pointer-events: all;
   display: flex;
@@ -81,7 +100,6 @@
   border-radius: 999px;
   padding: 10px 20px 10px 14px;
 
-  /* Liquid glass */
   background: rgba(255, 255, 255, 0.60);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -91,10 +109,8 @@
     0 1px 4px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
 
-  /* Pill grows to fill available space, Sign Up takes its natural width */
-  flex: 1;
-  min-width: 0;         /* prevents flex overflow */
-  max-width: 980px;     /* cap on very wide screens */
+  flex: 1;                    /* pill fills available space */
+  min-width: 0;
 
   transition: box-shadow 0.3s ease, background 0.3s ease;
 }
@@ -226,7 +242,7 @@
   padding-left: 20px;
 }
 
-/* ── Nav Actions (Log in + Hamburger) ────────────────── */
+/* ── Nav Actions ─────────────────────────────────────── */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -252,7 +268,7 @@
 
 /* ── Hamburger ───────────────────────────────────────── */
 .hamburger {
-  display: none;            /* hidden on desktop */
+  display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
@@ -262,9 +278,7 @@
   flex-shrink: 0;
 }
 
-.hamburger:hover {
-  background: rgba(0, 0, 0, 0.06);
-}
+.hamburger:hover { background: rgba(0, 0, 0, 0.06); }
 
 .hamburger span {
   width: 22px;
@@ -279,17 +293,13 @@
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5.5px, -5.5px); }
 
-/* Hide these — not needed */
 .signup-btn-desktop    { display: none; }
 .mobile-signup-wrapper { display: none; }
 
-/* ── Sign Up Float Button ────────────────────────────────
-   Now a FLEX SIBLING of .navbar inside .navbar-wrapper.
-   No more position:absolute — zero collision risk at any zoom.
-──────────────────────────────────────────────────────── */
+/* ── Sign Up Float Button ────────────────────────────── */
 .signup-btn-float {
   pointer-events: all;
-  flex-shrink: 0;           /* never squishes */
+  flex-shrink: 0;
 
   background: linear-gradient(135deg,
     rgba(255, 148, 70, 0.90) 0%,
@@ -297,7 +307,6 @@
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid rgba(255, 180, 120, 0.60);
-
   box-shadow:
     4px 4px 10px rgba(200, 80, 0, 0.30),
     -2px -2px 6px rgba(255, 200, 140, 0.40),
@@ -332,7 +341,7 @@
 .mobile-drawer {
   display: none;
   position: fixed;
-  top: 80px;           /* matches wrapper height on mobile */
+  top: 80px;
   left: 14px;
   right: 14px;
   z-index: 999;
@@ -346,7 +355,6 @@
 
   padding: 8px 8px 12px;
   overflow: hidden;
-
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -362,11 +370,7 @@
   pointer-events: all;
 }
 
-.mobile-drawer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.mobile-drawer ul { list-style: none; padding: 0; margin: 0; }
 
 .mobile-drawer ul li a {
   display: block;
@@ -409,9 +413,7 @@
   transition: transform 0.3s ease;
 }
 
-.drawer-services-open .drawer-arrow {
-  transform: rotate(180deg);
-}
+.drawer-services-open .drawer-arrow { transform: rotate(180deg); }
 
 .drawer-sub {
   list-style: none;
@@ -472,47 +474,39 @@
 }
 
 /* ═══════════════════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-   Tablet + Mobile: ≤1024px → hamburger mode
-   This also catches desktop at 120%+ zoom automatically.
+   RESPONSIVE
 ═══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .navbar-wrapper {
-    padding: 12px 14px 12px 14px; /* equal sides on mobile */
+  .navbar-wrapper { padding: 12px 0; }
+
+  .navbar-inner {
+    padding: 0 14px;
     gap: 10px;
   }
 
   .navbar {
     flex: 1;
     max-width: none;
-    padding: 10px 14px 10px 14px;
+    padding: 10px 14px;
   }
 
-  /* Hide desktop menu links */
-  .nav-menu { display: none; }
-
-  /* Show hamburger */
-  .hamburger { display: flex; }
-
-  /* Hide float Sign Up on mobile — it lives in the drawer */
-  .signup-btn-float { display: none; }
-
-  .mobile-drawer { top: 76px; }
+  .nav-menu          { display: none; }
+  .hamburger         { display: flex; }
+  .signup-btn-float  { display: none; }
+  .mobile-drawer     { top: 76px; }
 }
 
-/* ── Tablet mid-range (768px–1024px) ─────────────────── */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .navbar-wrapper { padding: 13px 16px; }
-  .navbar { padding: 10px 18px; }
-  .logo-text { font-size: 20px; }
+  .navbar-inner  { padding: 0 16px; }
+  .navbar        { padding: 10px 18px; }
+  .logo-text     { font-size: 20px; }
 }
 
-/* ── Small mobile (≤480px) ───────────────────────────── */
 @media (max-width: 480px) {
-  .navbar-wrapper { padding: 10px 12px; }
-  .logo-text { font-size: 17px; }
-  .logo-img  { width: 30px; height: 30px; }
-  .login-btn { font-size: 13px; padding: 6px 10px; }
+  .navbar-inner  { padding: 0 12px; }
+  .logo-text     { font-size: 17px; }
+  .logo-img      { width: 30px; height: 30px; }
+  .login-btn     { font-size: 13px; padding: 6px 10px; }
   .mobile-drawer { top: 72px; left: 10px; right: 10px; }
 }
         
