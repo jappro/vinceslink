@@ -3619,108 +3619,117 @@ body {
         }
     }
 
-    // Hamburger Menu Toggle
-const hamburger = document.getElementById(‘hamburger’);
-const navMenu = document.getElementById(‘navMenu’);
+    // ════════════════════════════════════════════════════
+// VINCESLINK NAVBAR JAVASCRIPT
+// Replace your entire navbar JS block with this.
+// ════════════════════════════════════════════════════
 
-console.log('Hamburger element:', hamburger);
-console.log('NavMenu element:', navMenu);
-
-if (hamburger && navMenu) {
-    console.log('Hamburger menu initialized!');
-    
-    hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        console.log('Hamburger clicked!');
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        console.log('Menu is now:', navMenu.classList.contains('active') ? 'OPEN' : 'CLOSED');
-    });
-
-    // Close menu when clicking on a nav link
-    const menuLinks = navMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                console.log('Menu closed via link click');
-            }
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-            if (navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                console.log('Menu closed via outside click');
-            }
-        }
-    });
-} else {
-    console.error('Hamburger or NavMenu not found!');
+// ── Scroll: .scrolled class on pill ─────────────────
+const navbar = document.getElementById('navbar');
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
 }
 
-// Services Dropdown Toggle
+// ── Hamburger → Mobile Drawer ────────────────────────
+const hamburger    = document.getElementById('hamburger');
+const mobileDrawer = document.getElementById('mobileDrawer');
+
+if (hamburger && mobileDrawer) {
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = mobileDrawer.classList.contains('open');
+
+    if (!isOpen) {
+      mobileDrawer.classList.add('opening');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          mobileDrawer.classList.add('open');
+        });
+      });
+    } else {
+      mobileDrawer.classList.remove('open');
+      setTimeout(() => mobileDrawer.classList.remove('opening'), 300);
+    }
+
+    hamburger.classList.toggle('active');
+  });
+
+  // Close drawer on outside click
+  document.addEventListener('click', (e) => {
+    if (!mobileDrawer.contains(e.target) && !hamburger.contains(e.target)) {
+      if (mobileDrawer.classList.contains('open')) {
+        mobileDrawer.classList.remove('open');
+        setTimeout(() => mobileDrawer.classList.remove('opening'), 300);
+        hamburger.classList.remove('active');
+      }
+    }
+  });
+
+  // Close drawer on link click
+  mobileDrawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileDrawer.classList.remove('open');
+      setTimeout(() => mobileDrawer.classList.remove('opening'), 300);
+      hamburger.classList.remove('active');
+    });
+  });
+}
+
+// ── Drawer: Services sub-toggle ──────────────────────
+const drawerServicesToggle = document.getElementById('drawerServicesToggle');
+const drawerSub            = document.getElementById('drawerSub');
+
+if (drawerServicesToggle && drawerSub) {
+  drawerServicesToggle.addEventListener('click', () => {
+    const isOpen = drawerSub.classList.toggle('open');
+    drawerServicesToggle.classList.toggle('drawer-services-open', isOpen);
+  });
+}
+
+// ── Desktop: Services dropdown ───────────────────────
 const servicesDropdown = document.getElementById('servicesDropdown');
-const servicesLink = document.getElementById('servicesLink');
+const servicesLink     = document.getElementById('servicesLink');
 
 if (servicesLink && servicesDropdown) {
-    // Click handler
-    servicesLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Toggle the active class
-        const isActive = servicesDropdown.classList.toggle('active');
-        
-        // Update arrow icon
-        const dropdownIcon = servicesLink.querySelector('.dropdown-icon');
-        if (dropdownIcon) {
-            dropdownIcon.textContent = isActive ? '▲' : '▼';
-        }
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!servicesDropdown.contains(e.target)) {
-            servicesDropdown.classList.remove('active');
-            const dropdownIcon = servicesLink.querySelector('.dropdown-icon');
-            if (dropdownIcon) {
-                dropdownIcon.textContent = '▼';
-            }
-        }
-    });
+  servicesLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const isActive = servicesDropdown.classList.toggle('active');
+    const icon = servicesLink.querySelector('.dropdown-icon');
+    if (icon) icon.textContent = isActive ? '▲' : '▼';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!servicesDropdown.contains(e.target)) {
+      servicesDropdown.classList.remove('active');
+      const icon = servicesLink.querySelector('.dropdown-icon');
+      if (icon) icon.textContent = '▼';
+    }
+  });
 }
 
-// Theme Toggle
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const themeText = document.getElementById('themeText');
-const body = document.body;
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            themeIcon.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-            themeText.textContent = 'Light';
-        } else {
-            themeIcon.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-            themeText.textContent = 'Dark';
-        }
-    });
+// ── Sign Up → Coming Soon ────────────────────────────
+function showComingSoon() {
+  alert('Coming Soon — E-Commerce Portal launching shortly!');
 }
 
-// Sign Up Button - Show Coming Soon
-const signUpBtn = document.querySelector('.signup-btn');
-if (signUpBtn) {
-    signUpBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        showComingSoon();
-    });
+const signupBtn    = document.getElementById('signupBtn');
+const drawerSignup = document.getElementById('drawerSignup');
+
+if (signupBtn) {
+  signupBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    showComingSoon();
+  });
+}
+
+if (drawerSignup) {
+  drawerSignup.addEventListener('click', (e) => {
+    e.preventDefault();
+    showComingSoon();
+  });
 }
 
   // hero section
