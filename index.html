@@ -531,7 +531,7 @@
   flex: 1;
   max-width: 550px;
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 
 /* TITLE */
@@ -571,6 +571,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
   overflow: hidden;
 }
 
@@ -691,6 +692,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; 
+  z-index: 2;
 }
 
 /* IMAGE */
@@ -699,6 +702,7 @@
   max-width: 572px;        /* was 520px — +10% */
   height: auto;
   display: block;
+  z-index: 3;
   margin-top: 40px;        /* nudges image down on desktop */
   animation: float 6s ease-in-out infinite;
 
@@ -755,6 +759,7 @@
     margin-top: 0;         /* no nudge on tablet */
     background: transparent;
     mix-blend-mode: normal;
+    z-index: 3;
   }
 }
 
@@ -780,7 +785,8 @@
     max-width: 357px;      /* was 340px — +5% */
     margin-top: 0;
     animation: none;
-
+    z-index: 3;
+      
     /* Fix 1: these two lines kill the mobile shadow/wash */
     background: transparent;
     mix-blend-mode: normal;
