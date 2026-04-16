@@ -505,9 +505,9 @@
 @media (max-width: 480px) {
   .navbar-wrapper  { padding: 8px 0; }        /* was 12px — less outer height */
   .navbar-inner    { padding: 0 10px; }
-  .navbar          { padding: 3px 8px; }     /* was 10px 14px — tighter pill */
+  .navbar          { padding: 8px 12px; }     /* was 10px 14px — tighter pill */
   .logo-img        { width: 30px; height: 30px; } /* was 30px */
-  .logo-text       { font-size: 5px; }       /* was 17px */
+  .logo-text       { font-size: 8px; }       /* was 17px */
   .login-btn       { font-size: 13px; padding: 5px 10px; }
   .hamburger       { padding: 5px; }          /* was 7px */
   .mobile-drawer   { top: 58px; left: 10px; right: 10px; } /* matches new height */
@@ -3674,11 +3674,6 @@ if (servicesLink && servicesDropdown) {
       if (icon) icon.textContent = '▼';
     }
   });
-}
-
-// ── Sign Up → Coming Soon ────────────────────────────
-function showComingSoon() {
-  alert('Coming Soon — E-Commerce Portal launching shortly!');
 }
 
 const signupBtn    = document.getElementById('signupBtn');
