@@ -848,7 +848,44 @@
   display: block;
   margin-top: 4px;
 }
+        
+/* VERIFIED METRIC ALIGNMENT */
+.metric-verified {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 
+/* BLUE VERIFIED BADGE */
+.verified-badge {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+
+  background: #1a73e8; /* clean SaaS blue */
+  position: relative;
+
+  display: inline-block;
+}
+
+/* WHITE CHECK */
+.verified-badge::after {
+  content: "";
+  position: absolute;
+
+  left: 4px;
+  top: 2px;
+
+  width: 5px;
+  height: 9px;
+
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+
+  transform: rotate(45deg);
+}
+        
 @media (max-width: 900px) {
 
   .hero-metrics {
@@ -2791,7 +2828,7 @@
     <ul class="nav-menu" id="navMenu">
       <li><a href="#home" class="active">Home</a></li>
       <li class="services-dropdown" id="servicesDropdown">
-        <a href="#services" id="servicesLink">
+        <a href="#services" id="services">
           Services <span class="dropdown-icon">▼</span>
         </a>
         <ul class="dropdown-menu">
@@ -2898,8 +2935,11 @@
     </div>
 
     <div class="metric">
-      <h3>3</h3>
-      <span>Verified Partnerships</span>
+        <h3 class="metric-verified">
+            3
+            <span class="verified-badge"></span>
+        </h3>
+        <span>Verified Partnerships</span>
     </div>
   </div>
     
