@@ -686,63 +686,7 @@
 .btn-glass:hover .arrow {
   transform: translateX(6px);
 }
-
-/* =========================
-   HERO METRICS
-========================= */
-.hero-metrics {
-  margin-top: 30px;
-
-  display: flex;
-  gap: 40px;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* EACH METRIC */
-.metric h3 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111;
-}
-
-.metric span {
-  font-size: 13px;
-  color: #666;
-  display: block;
-  margin-top: 4px;
-}
-
-/* =========================
-   DESKTOP OVERLAP EFFECT
-========================= */
-@media (min-width: 901px) {
-  .hero-metrics {
-    transform: translateY(20px); /* pushes slightly into image zone */
-  }
-}
-
-@media (max-width: 900px) {
-
-  .hero-metrics {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-
-    margin-top: 30px;
-    transform: translateY(10px); /* subtle overlap */
-  }
-
-  .metric h3 {
-    font-size: 24px;
-  }
-
-  .metric span {
-    font-size: 13px;
-  }
-}
-        
+      
 /* =========================
    RIGHT SIDE
 ========================= */
@@ -870,6 +814,62 @@
   .buttons {
     justify-content: center;
     margin-top: 24px;
+  }
+}
+
+/* =========================
+   HERO METRICS (DESKTOP)
+========================= */
+.hero-metrics {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  bottom: 60px; /* controls vertical placement */
+
+  display: flex;
+  gap: 60px;
+
+  text-align: center;
+
+  z-index: 4; /* ABOVE IMAGE */
+}
+
+/* METRIC TEXT */
+.metric h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+}
+
+.metric span {
+  font-size: 13px;
+  color: #666;
+  display: block;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+
+  .hero-metrics {
+    position: static;
+    transform: none;
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    align-items: center;
+  }
+
+  .metric h3 {
+    font-size: 24px;
+  }
+
+  .metric span {
+    font-size: 13px;
   }
 }
 
