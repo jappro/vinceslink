@@ -688,6 +688,62 @@
 }
 
 /* =========================
+   HERO METRICS
+========================= */
+.hero-metrics {
+  margin-top: 30px;
+
+  display: flex;
+  gap: 40px;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* EACH METRIC */
+.metric h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+}
+
+.metric span {
+  font-size: 13px;
+  color: #666;
+  display: block;
+  margin-top: 4px;
+}
+
+/* =========================
+   DESKTOP OVERLAP EFFECT
+========================= */
+@media (min-width: 901px) {
+  .hero-metrics {
+    transform: translateY(20px); /* pushes slightly into image zone */
+  }
+}
+
+@media (max-width: 900px) {
+
+  .hero-metrics {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 30px;
+    transform: translateY(10px); /* subtle overlap */
+  }
+
+  .metric h3 {
+    font-size: 24px;
+  }
+
+  .metric span {
+    font-size: 13px;
+  }
+}
+        
+/* =========================
    RIGHT SIDE
 ========================= */
 .hero-right {
@@ -2822,7 +2878,23 @@
           </button>
       </a>
     </div>
+      
+      <div class="hero-metrics">
+  <div class="metric">
+    <h3>50+</h3>
+    <span>Products Delivered</span>
   </div>
+
+  <div class="metric">
+    <h3>150+</h3>
+    <span>Customers Served</span>
+  </div>
+
+  <div class="metric">
+    <h3>3</h3>
+    <span>Verified Partnerships</span>
+  </div>
+</div>
 
   <div class="hero-right">
   <img src="images/70719BEA-2947-43A7-9FD4-01809707E1D2.png" class="hero-img" />
