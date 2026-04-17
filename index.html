@@ -1807,6 +1807,133 @@
         opacity: 0.9;
     }
 
+    /* ===== PARTNERS SECTION ===== */
+#partners {
+  background: linear-gradient(180deg, #0f0f0f 0%, #141414 60%, #1a1a1a 100%);
+  padding: 80px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top/bottom fade blends into adjacent sections */
+#partners::before,
+#partners::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 1;
+}
+#partners::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(15,15,15,0.0), transparent);
+}
+#partners::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(26,26,26,0.0), transparent);
+}
+
+.partners-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.partners-eyebrow {
+  font-family: 'Georgia', serif;
+  font-size: clamp(11px, 1.5vw, 13px);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #a0845c;
+  margin: 0 0 10px;
+}
+
+.partners-sub {
+  font-family: 'Georgia', serif;
+  font-size: clamp(14px, 2vw, 17px);
+  color: #888;
+  margin: 0 0 56px;
+  font-style: italic;
+}
+
+/* ===== ROW: always single row, never wraps ===== */
+.partners-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(24px, 6vw, 80px);
+  flex-wrap: nowrap;
+}
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+
+/* ===== CIRCULAR LOGO ===== */
+.partner-logo-wrap {
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(160, 132, 92, 0.35);
+  box-shadow:
+    0 0 0 6px rgba(160, 132, 92, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  background: #fff;
+
+  /* Responsive sizes */
+  width: clamp(90px, 18vw, 150px);
+  height: clamp(90px, 18vw, 150px);
+}
+
+.partner-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.partner-name {
+  font-family: 'Georgia', serif;
+  font-size: clamp(12px, 1.8vw, 15px);
+  color: #c8b99a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ===== BOUNCE ANIMATION ===== */
+@keyframes partnerBounce {
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-18px) scale(1.06); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.partner-card.animate-1 {
+  animation: partnerBounce 0.5s ease-in-out 0s both;
+}
+.partner-card.animate-2 {
+  animation: partnerBounce 0.5s ease-in-out 0.15s both;
+}
+.partner-card.animate-3 {
+  animation: partnerBounce 0.5s ease-in-out 0.3s both;
+}
+.partner-card.animate-3-rev {
+  animation: partnerBounce 0.5s ease-in-out 0s both;
+}
+.partner-card.animate-2-rev {
+  animation: partnerBounce 0.5s ease-in-out 0.15s both;
+}
+.partner-card.animate-1-rev {
+  animation: partnerBounce 0.5s ease-in-out 0.3s both;
+}
+
     /* FAQ Section */
     .faq-section {
         padding: 5rem 5%;
@@ -3274,6 +3401,37 @@
     </div>
 </section>
 
+    <!-- PARTNERS SECTION -->
+<section id="partners">
+  <div class="partners-inner">
+    <p class="partners-eyebrow">Trusted By</p>
+    <p class="partners-sub">Real partnerships. Real credibility.</p>
+
+    <div class="partners-row" id="partnersRow">
+      <div class="partner-card">
+        <div class="partner-logo-wrap">
+          <img src="images/IMG_0491.jpeg" alt="Paul Feng" class="partner-logo" />
+        </div>
+        <span class="partner-name">Paul Feng</span>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo-wrap">
+          <img src="images/IMG_0492.jpeg" alt="PWAN" class="partner-logo" />
+        </div>
+        <span class="partner-name">PWAN</span>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo-wrap">
+          <img src="images/IMG_0493.jpeg" alt="KGL Realty Pro" class="partner-logo" />
+        </div>
+        <span class="partner-name">KGL Realty Pro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ Section -->
 <section class="faq-section" id="faq">
     <div class="faq-container">
@@ -3976,7 +4134,48 @@ if (drawerSignup) {
             }
         });
     }
+    
+    // ===== PARTNERS BOUNCE ANIMATION =====
+(function () {
+  const cards = document.querySelectorAll('#partnersRow .partner-card');
+  if (!cards.length) return;
 
+  const bounceClasses = ['animate-1', 'animate-2', 'animate-3'];
+  const bounceClassesRev = ['animate-3-rev', 'animate-2-rev', 'animate-1-rev'];
+  const allAnimClasses = [...bounceClasses, ...bounceClassesRev];
+
+  function clearClasses() {
+    cards.forEach(c => c.classList.remove(...allAnimClasses));
+  }
+
+  function runSequence() {
+    clearClasses();
+
+    // Forward: 1 → 2 → 3
+    cards.forEach((card, i) => card.classList.add(bounceClasses[i]));
+
+    // Reverse: 3 → 2 → 1 (starts after forward completes ~800ms)
+    setTimeout(() => {
+      clearClasses();
+      cards.forEach((card, i) => card.classList.add(bounceClassesRev[i]));
+    }, 800);
+  }
+
+  // IntersectionObserver: triggers on every scroll into view
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runSequence();
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  observer.observe(document.getElementById('partners'));
+})();
+    
     // ===== TERMS POPUP ON FIRST VISIT - BULLETPROOF VERSION =====
     
     // Method 1: Immediate check after DOM loaded
