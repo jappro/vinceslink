@@ -833,6 +833,8 @@
   text-align: center;
 
   z-index: 4; /* ABOVE IMAGE */
+
+  overflow: hidden; /* prevents visual duplication edge cases */
 }
 
 /* METRIC TEXT */
@@ -879,6 +881,50 @@
   /* Using a muted slate blue-gray */
   fill: #FF4500;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));
+}
+
+/* METRIC SEPARATORS */
+.metric {
+  position: relative;
+  padding: 0 16px; /* space for the lines */
+}
+
+/* LEFT LINE */
+.metric::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 1px;
+  height: 30px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0,0,0,0.15),
+    transparent
+  );
+}
+
+/* RIGHT LINE */
+.metric::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 1px;
+  height: 30px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0,0,0,0.15),
+    transparent
+  );
 }
         
 @media (max-width: 900px) {
