@@ -1809,7 +1809,7 @@
 
     /* ===== PARTNERS SECTION ===== */
 #partners {
-  background: linear-gradient(180deg, #0f0f0f 0%, #141414 60%, #1a1a1a 100%);
+  background: linear-gradient(160deg, #F4F1F8 0%, #d6eef0 50%, #b8e4e8 100%);
   padding: 80px 24px;
   text-align: center;
   position: relative;
@@ -1827,15 +1827,7 @@
   pointer-events: none;
   z-index: 1;
 }
-#partners::before {
-  top: 0;
-  background: linear-gradient(to bottom, rgba(15,15,15,0.0), transparent);
-}
-#partners::after {
-  bottom: 0;
-  background: linear-gradient(to top, rgba(26,26,26,0.0), transparent);
-}
-
+        
 .partners-inner {
   max-width: 960px;
   margin: 0 auto;
@@ -1845,21 +1837,21 @@
 
 .partners-eyebrow {
   font-family: 'Georgia', serif;
-  font-size: clamp(11px, 1.5vw, 13px);
-  letter-spacing: 0.25em;
+  font-size: clamp(15px, 2.5vw, 22px);
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #a0845c;
-  margin: 0 0 10px;
+  color: #2a6b70;
+  margin: 0 0 12px;
 }
 
 .partners-sub {
   font-family: 'Georgia', serif;
-  font-size: clamp(14px, 2vw, 17px);
-  color: #888;
+  font-size: clamp(16px, 2.5vw, 21px);
+  color: #4a4060;
   margin: 0 0 56px;
   font-style: italic;
 }
-
+        
 /* ===== ROW: always single row, never wraps ===== */
 .partners-row {
   display: flex;
@@ -1902,10 +1894,11 @@
 
 .partner-name {
   font-family: 'Georgia', serif;
-  font-size: clamp(12px, 1.8vw, 15px);
-  color: #c8b99a;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: clamp(13px, 2vw, 17px);
+  color: #2a6b70;
+  letter-spacing: 0.12em;
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 /* ===== BOUNCE ANIMATION ===== */
