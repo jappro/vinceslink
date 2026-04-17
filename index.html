@@ -1904,27 +1904,30 @@
 /* ===== BOUNCE ANIMATION ===== */
 @keyframes partnerBounce {
   0%   { transform: translateY(0) scale(1); }
-  50%  { transform: translateY(-18px) scale(1.06); }
+  30%  { transform: translateY(-28px) scale(1.08); }
+  55%  { transform: translateY(-6px) scale(1.02); }
+  75%  { transform: translateY(-16px) scale(1.05); }
+  90%  { transform: translateY(-2px) scale(1.01); }
   100% { transform: translateY(0) scale(1); }
 }
 
 .partner-card.animate-1 {
-  animation: partnerBounce 0.5s ease-in-out 0s both;
+  animation: partnerBounce 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0s both;
 }
 .partner-card.animate-2 {
-  animation: partnerBounce 0.5s ease-in-out 0.15s both;
+  animation: partnerBounce 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.28s both;
 }
 .partner-card.animate-3 {
-  animation: partnerBounce 0.5s ease-in-out 0.3s both;
+  animation: partnerBounce 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.56s both;
 }
 .partner-card.animate-3-rev {
-  animation: partnerBounce 0.5s ease-in-out 0s both;
+  animation: partnerBounce 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0s both;
 }
 .partner-card.animate-2-rev {
-  animation: partnerBounce 0.5s ease-in-out 0.15s both;
+  animation: partnerBounce 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.28s both;
 }
 .partner-card.animate-1-rev {
-  animation: partnerBounce 0.5s ease-in-out 0.3s both;
+  animation: partnerBounce 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.56s both;
 }
 
     /* FAQ Section */
@@ -4151,7 +4154,7 @@ if (drawerSignup) {
     setTimeout(() => {
       clearClasses();
       cards.forEach((card, i) => card.classList.add(bounceClassesRev[i]));
-    }, 800);
+    }, 1500);
   }
 
   // IntersectionObserver: triggers on every scroll into view
