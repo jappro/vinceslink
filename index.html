@@ -152,21 +152,6 @@
   overflow: hidden;
 }
 
-/* Logo inside */
-.logo-img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-}
-
-.logo-text {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--primary-blue);
-  letter-spacing: -0.5px;
-  white-space: nowrap;
-}
-
 .logo-section::after {
   content: "";
   position: absolute;
@@ -181,6 +166,21 @@
     rgba(255,255,255,0.6),
     transparent 60%
   );
+
+/* Logo inside */
+.logo-img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
 
   opacity: 0.4;
   pointer-events: none;
@@ -3003,11 +3003,13 @@
   <nav class="navbar" id="navbar">
 
     <!-- Logo -->
-    <a href="#home" class="logo-section">
+  <a href="#home" class="logo-section">
+    <div class="logo-glass">
       <img src="images/IMG_0509.jpeg"
            alt="Vinceslink Logo" class="logo-img"/>
-      <span class="logo-text">vinceslink</span>
-    </a>
+    </div>
+    <span class="logo-text">vinceslink</span>
+  </a>
 
     <!-- Desktop nav links -->
     <ul class="nav-menu" id="navMenu">
