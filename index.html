@@ -125,54 +125,23 @@
 
 /* ── Logo ─────────────────────────────────────────────── */
 /* Glass container */
-.logo-glass {
+.logo-img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  position: relative;
+  object-fit: cover;
 
-  /* Glass effect */
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Glass feel directly on image */
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px;
+
+  /* Soft UI shadow */
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
 
   /* Subtle border */
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  /* Soft UI shadows */
-  box-shadow:
-    0 6px 16px rgba(0, 0, 0, 0.15),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-/* Logo image inside */
-.logo-img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-}
-
-.logo-glass::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.6),
-    transparent 60%
-  );
-
-  opacity: 0.35;
-  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .logo-text {
@@ -3005,11 +2974,9 @@
 
     <!-- Logo -->
   <a href="#home" class="logo-section">
-    <div class="logo-glass">
       <img src="images/IMG_0509.jpeg"
            alt="Vinceslink Logo" class="logo-img"/>
-    </div>
-    <span class="logo-text">vinceslink</span>
+      <span class="logo-text">vinceslink</span>
   </a>
 
     <!-- Desktop nav links -->
