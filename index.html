@@ -92,28 +92,24 @@ gap: 16px;                  /* fixed gap between pill and Sign Up */
 
 /* ── Floating Pill ───────────────────────────────────── */
 .navbar {
-pointer-events: all;
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 1.5rem;
-
-border-radius: 999px;
-padding: 10px 20px 10px 14px;
-
-background: rgba(255, 255, 255, 0.60);
-backdrop-filter: blur(20px) saturate(180%);
--webkit-backdrop-filter: blur(20px) saturate(180%);
-border: 1px solid rgba(255, 255, 255, 0.80);
-box-shadow:
-0 4px 24px rgba(0, 0, 0, 0.08),
-0 1px 4px rgba(0, 0, 0, 0.04),
-inset 0 1px 0 rgba(255, 255, 255, 0.95);
-
-flex: 1;                    /* pill fills available space */
-min-width: 0;
-
-transition: box-shadow 0.3s ease, background 0.3s ease;
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: 999px;
+  padding: 10px 20px 10px 14px;
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  flex: 1;
+  min-width: 0;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -134,18 +130,20 @@ flex-shrink: 0;
 }
 
 .logo-img {
-width: 36px;
-height: 36px;
-object-fit: contain;
-border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;     /* prevents flex from squishing it */
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .logo-text {
-font-size: 27px;
-font-weight: 700;
-color: var(--primary-blue);
-letter-spacing: -0.5px;
-white-space: nowrap;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 /* ── Nav Menu (desktop) ──────────────────────────────── */
@@ -477,38 +475,85 @@ inset 0 1px 0 rgba(255, 220, 180, 0.55);
 /* ═══════════════════════════════════════════════════════
 RESPONSIVE
 ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   TABLET — iPad Safari / Android tablet Chrome
+   768px – 1024px
+═══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-.navbar-wrapper { padding: 12px 0; }
+  .navbar-wrapper  { padding: 12px 0; }
 
-.navbar-inner {
-padding: 0 14px;
-gap: 10px;
+  .navbar-inner {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .navbar {
+    flex: 1;
+    max-width: none;
+    padding: 9px 16px;
+  }
+
+  .logo-img  { width: 32px; height: 32px; min-width: 32px; }
+  .logo-text { font-size: 18px; }
+
+  .nav-menu         { display: none; }
+  .hamburger        { display: flex; }
+  .signup-btn-float { display: none; }
+  .mobile-drawer    { top: 74px; }
 }
 
-.navbar {
-flex: 1;
-max-width: none;
-padding: 10px 14px;
+/* ═══════════════════════════════════════════════════════
+   MOBILE — iPhone Safari + Android Chrome
+   Standard viewport: 360px–430px
+   max-width: 767px catches all phones
+═══════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .navbar-wrapper { padding: 10px 0; }
+
+  .navbar-inner {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .logo-section { gap: 6px; }
+  .logo-img     { width: 28px; height: 28px; min-width: 28px; }
+  .logo-text    { font-size: 16px; letter-spacing: -0.3px; }
+
+  .login-btn {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .hamburger {
+    padding: 5px;
+    gap: 4px;
+  }
+
+  .hamburger span {
+    width: 18px;
+    height: 2px;
+  }
+
+  .mobile-drawer { top: 68px; left: 10px; right: 10px; }
 }
 
-.nav-menu          { display: none; }
-.hamburger         { display: flex; }
-.signup-btn-float  { display: none; }
-.mobile-drawer     { top: 76px; }
-}
+/* ═══════════════════════════════════════════════════════
+   SMALL MOBILE — older/smaller Android phones
+   max-width: 380px (Galaxy A series, older iPhones)
+═══════════════════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .navbar { padding: 7px 10px; }
 
-@media (min-width: 780px) and (max-width: 1024px) {
-.navbar-inner  { padding: 0 16px; }
-.navbar        { padding: 10px 18px; }
-.logo-text     { font-size: 22px; }
-}
+  .logo-img     { width: 26px; height: 26px; min-width: 26px; }
+  .logo-text    { font-size: 15px; }
 
-@media (max-width: 480px) {
-.navbar-inner  { padding: 0 12px; }
-.logo-text     { font-size: 10px; }
-.logo-img      { width: 32px; height: 32px; border-radius: 50%; }
-.login-btn     { font-size: 13px; padding: 6px 10px; }
-.mobile-drawer { top: 72px; left: 10px; right: 10px; }
+  .login-btn    { font-size: 12px; padding: 5px 8px; }
+
+  .mobile-drawer { top: 64px; }
 }
         
    /* =========================
