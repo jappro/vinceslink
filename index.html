@@ -48,15 +48,7 @@
     }
 
 /* ═══════════════════════════════════════════════════════
-VINCESLINK NAVBAR CSS — v3 (zoom-stable centering)
-ONLY the wrapper + navbar positioning changed.
-Everything else is identical to your current CSS.
-═══════════════════════════════════════════════════════ */
-
-/* ── Wrapper ─────────────────────────────────────────────
-Full-width fixed bar. Centers the inner group.
-padding: vertical only — horizontal centering is
-handled by the inner .navbar-inner container below.
+      NAV WRAPPER
 ──────────────────────────────────────────────────────── */
 .navbar-wrapper {
 position: fixed;
@@ -71,14 +63,7 @@ justify-content: center;   /* centers the inner group */
 pointer-events: none;
 }
 
-/* ── Inner group — pill + Sign Up as one centered unit ──
-This is the KEY: a fixed max-width container that holds
-both elements. At any zoom level, this group stays
-centered and the internal proportions stay consistent.
-
-NOTE: You need to wrap your <nav> and .signup-btn-float
-inside a new <div class="navbar-inner"> in your HTML.
-See HTML instruction at the bottom of this file.
+/* ── NAV INNER
 ──────────────────────────────────────────────────────── */
 .navbar-inner {
 pointer-events: none;
@@ -558,8 +543,6 @@ RESPONSIVE
         
 /* =========================
    HERO BASE — Grid layout
-   Two columns top row: left | right
-   Full-width bottom row: metrics
 ========================= */
 .hero {
   position: relative;
@@ -571,7 +554,6 @@ RESPONSIVE
     "metrics metrics";
   align-items: center;
   gap: 0 40px;
-
   padding: 80px 8% 60px;
   background: linear-gradient(135deg, #f5f7fb 0%, #eef2f7 100%);
 }
@@ -874,24 +856,45 @@ RESPONSIVE
   height: 30px;
   background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.15), transparent);
 }
+
+/* =========================
+   COUNTER ANIMATION
+   .counting class added by JS
+   during count-up
+========================= */
+.counter-value {
+  display: inline;
+}
         
 /* =========================
    RESPONSIVE
 ========================= */
 /* =========================
-   TABLET (≤1200px)
+   TABLET (≤1024px)
+   Stacks like mobile
 ========================= */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "metrics";
+    text-align: center;
     padding: 70px 6% 50px;
-    gap: 0 30px;
+    gap: 0;
   }
+
+  .hero-left  { margin-top: 20px; }
+  .hero-right { margin-top: 30px; }
 
   .hero-left h1 { font-size: 52px; }
   .hero-left p  { font-size: 17px; }
 
+  .buttons { justify-content: center; }
+
   .hero-img {
-    max-width: 546px;
+    max-width: 480px;
     margin-top: 0;
     background: transparent;
     mix-blend-mode: normal;
@@ -907,19 +910,11 @@ RESPONSIVE
 }
 
 /* =========================
-   MOBILE (≤900px)
-   Stack to single column
+   MOBILE (≤767px)
 ========================= */
-@media (max-width: 900px) {
+@media (max-width: 767px) {
   .hero {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "right"
-      "metrics";
-    text-align: center;
     padding: 60px 5% 40px;
-    gap: 0;
   }
 
   .hero-left  { margin-top: 30px; }
@@ -928,7 +923,7 @@ RESPONSIVE
   .hero-left h1 { font-size: 34px; }
   .hero-left p  { font-size: 15px; margin-top: 16px; }
 
-  .buttons { justify-content: center; margin-top: 24px; }
+  .buttons { margin-top: 24px; }
 
   .hero-img {
     max-width: 357px;
@@ -3069,17 +3064,17 @@ RESPONSIVE
 <!-- ✅ METRICS (THIS IS THE KEY POSITION) -->
 
   <div class="hero-metrics">
-    <div class="metric">
+    <div class="metric" id="counter-products">
       <h3>50+</h3>
       <span>Products Delivered</span>
     </div>
 
-    <div class="metric">
+    <div class="metric" id="counter-customers">
       <h3>150+</h3>
       <span>Customers Served</span>
     </div>
       
-      <div class="metric">
+      <div class="metric" id="counter-partnerships">
           <h3 class="metric-verified">
               3
               <span class="verified-badge" title="Verified Partnership">
@@ -3923,8 +3918,64 @@ if (drawerSignup) {
     showComingSoon();
   });
 }
-                              
-    // Product Carousel
+    
+// Counter config — edit target numbers here
+    const counters = [
+        { selector: ‘#counter-products’,     start: 30,  end: 50,  suffix: ‘+’,  duration: 1200 },
+        { selector: ‘#counter-customers’,    start: 100, end: 150, suffix: ‘+’,  duration: 1400 },
+        { selector: ‘#counter-partnerships’, start: 0,   end: 3,   suffix: ‘’,   duration: 800  },
+         ];
+
+         function animateCounter(el, start, end, suffix, duration) {
+             const startTime = performance.now();
+             el.textContent = start + suffix;
+
+             function update(currentTime) {
+                 const elapsed  = currentTime - startTime;
+                 const progress = Math.min(elapsed / duration, 1);
+                 
+                 // Ease-out curve — fast start, slows at end
+                 const eased = 1 - Math.pow(1 - progress, 3);
+                 const current = Math.floor(start + (end - start) * eased);
+
+                 el.textContent = current + suffix;
+
+                 if (progress < 1) {
+                     requestAnimationFrame(update);
+                 } else {
+                     el.textContent = end + suffix; // ensure exact final value
+                 }
+
+             }
+
+             requestAnimationFrame(update);
+         }
+
+         function runCounters() {
+             counters.forEach(({ selector, start, end, suffix, duration }) => {
+                 const el = document.querySelector(selector);
+                 if (el) animateCounter(el, start, end, suffix, duration);
+             });
+         }
+
+         // IntersectionObserver — triggers every time metrics enters view
+         const metricsSection = document.querySelector(’.hero-metrics’);
+
+         if (metricsSection) {
+             const observer = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         runCounters();
+                     }
+                 });
+             }, {
+                 threshold: 0.3 // triggers when 30% of metrics is visible
+                     });
+
+             observer.observe(metricsSection);
+         }
+ 
+   // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
     const indicators = document.querySelectorAll('.indicator');
     let currentSlide = 0;
