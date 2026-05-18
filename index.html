@@ -3919,62 +3919,67 @@ if (drawerSignup) {
   });
 }
     
+// ════════════════════════════════════════════════════
+// COUNTER ANIMATION
+// Counts up when metrics section scrolls into view.
+// Replays every time user scrolls back to it.
+// ════════════════════════════════════════════════════
+
 // Counter config — edit target numbers here
-    const counters = [
-        { selector: ‘#counter-products’,     start: 30,  end: 50,  suffix: ‘+’,  duration: 1200 },
-        { selector: ‘#counter-customers’,    start: 100, end: 150, suffix: ‘+’,  duration: 1400 },
-        { selector: ‘#counter-partnerships’, start: 0,   end: 3,   suffix: ‘’,   duration: 800  },
-         ];
+const counters = [
+  { selector: '#counter-products',     start: 30,  end: 50,  suffix: '+',  duration: 1200 },
+  { selector: '#counter-customers',    start: 100, end: 150, suffix: '+',  duration: 1400 },
+  { selector: '#counter-partnerships', start: 0,   end: 3,   suffix: '',   duration: 800  },
+];
 
-         function animateCounter(el, start, end, suffix, duration) {
-             const startTime = performance.now();
-             el.textContent = start + suffix;
+function animateCounter(el, start, end, suffix, duration) {
+  const startTime = performance.now();
+  el.textContent = start + suffix;
 
-             function update(currentTime) {
-                 const elapsed  = currentTime - startTime;
-                 const progress = Math.min(elapsed / duration, 1);
-                 
-                 // Ease-out curve — fast start, slows at end
-                 const eased = 1 - Math.pow(1 - progress, 3);
-                 const current = Math.floor(start + (end - start) * eased);
+  function update(currentTime) {
+    const elapsed  = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
 
-                 el.textContent = current + suffix;
+    // Ease-out curve — fast start, slows at end
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(start + (end - start) * eased);
 
-                 if (progress < 1) {
-                     requestAnimationFrame(update);
-                 } else {
-                     el.textContent = end + suffix; // ensure exact final value
-                 }
+    el.textContent = current + suffix;
 
-             }
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = end + suffix; // ensure exact final value
+    }
+  }
 
-             requestAnimationFrame(update);
-         }
+  requestAnimationFrame(update);
+}
 
-         function runCounters() {
-             counters.forEach(({ selector, start, end, suffix, duration }) => {
-                 const el = document.querySelector(selector);
-                 if (el) animateCounter(el, start, end, suffix, duration);
-             });
-         }
+function runCounters() {
+  counters.forEach(({ selector, start, end, suffix, duration }) => {
+    const el = document.querySelector(selector);
+    if (el) animateCounter(el, start, end, suffix, duration);
+  });
+}
 
-         // IntersectionObserver — triggers every time metrics enters view
-         const metricsSection = document.querySelector(’.hero-metrics’);
+// IntersectionObserver — triggers every time metrics enters view
+const metricsSection = document.querySelector('.hero-metrics');
 
-         if (metricsSection) {
-             const observer = new IntersectionObserver((entries) => {
-                 entries.forEach(entry => {
-                     if (entry.isIntersecting) {
-                         runCounters();
-                     }
-                 });
-             }, {
-                 threshold: 0.3 // triggers when 30% of metrics is visible
-                     });
+if (metricsSection) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runCounters();
+      }
+    });
+  }, {
+    threshold: 0.3 // triggers when 30% of metrics is visible
+  });
 
-             observer.observe(metricsSection);
-         }
- 
+  observer.observe(metricsSection);
+}
+    
    // Product Carousel
     const carouselTrack = document.getElementById('carouselTrack');
     const indicators = document.querySelectorAll('.indicator');
