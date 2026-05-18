@@ -864,19 +864,20 @@ RESPONSIVE
    HERO METRICS (DESKTOP)
 ========================= */
 .hero-metrics {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  bottom: 60px; /* controls vertical placement */
+
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-
   gap: 60px;
-
-  margin-top: 40px;
 
   text-align: center;
 
-  position: relative;
-  z-index: 2;
+  z-index: 4; /* ABOVE IMAGE */
+
+  overflow: hidden; /* prevents visual duplication edge cases */
 }
 
 /* METRIC TEXT */
