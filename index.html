@@ -861,23 +861,22 @@ RESPONSIVE
 }
 
 /* =========================
-   HERO METRICS (DESKTOP)
+   HERO METRICS
 ========================= */
 .hero-metrics {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
-  bottom: 60px; /* controls vertical placement */
+  /* KEY FIX: remove position:absolute — flows naturally */
+  position: static;
+  transform: none;
 
   display: flex;
-  gap: 60px;
+  flex-wrap: wrap;          /* wraps gracefully when tight */
+  justify-content: center;
+  gap: 0 60px;              /* horizontal gap only — vertical handled by wrap */
 
+  margin-top: 40px;         /* space below buttons on desktop */
   text-align: center;
-
-  z-index: 4; /* ABOVE IMAGE */
-
-  overflow: hidden; /* prevents visual duplication edge cases */
+  z-index: 4;
+  width: 100%;
 }
 
 /* METRIC TEXT */
@@ -893,18 +892,18 @@ RESPONSIVE
   display: block;
   margin-top: 4px;
 }
-        
-/* UPDATED VERIFIED METRIC ALIGNMENT */
+
+/* VERIFIED METRIC */
 .metric-verified {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px; /* Slightly tighter gap for professional look */
+  gap: 6px;
 }
 
-/* THE MUTED SEAL BADGE */
+/* VERIFIED BADGE */
 .verified-badge {
-  width: 18px; /* Slightly larger for the scalloped edges */
+  width: 18px;
   height: 18px;
   display: inline-flex;
   align-items: center;
@@ -917,11 +916,9 @@ RESPONSIVE
   transform: scale(1.1);
 }
 
-/* THE SVG ICON */
 .verified-icon {
   width: 100%;
   height: 100%;
-  /* Using a muted slate blue-gray */
   fill: #FF4500;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));
 }
@@ -929,70 +926,55 @@ RESPONSIVE
 /* METRIC SEPARATORS */
 .metric {
   position: relative;
-  padding: 0 16px; /* space for the lines */
+  padding: 0 16px;
 }
 
-/* LEFT LINE */
 .metric::before {
   content: "";
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-
   width: 1px;
   height: 36px;
-
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0,0,0,0.15),
-    transparent
-  );
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.15), transparent);
 }
 
-/* RIGHT LINE */
 .metric::after {
   content: "";
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-
   width: 1px;
   height: 30px;
-
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0,0,0,0.15),
-    transparent
-  );
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.15), transparent);
 }
-        
-@media (max-width: 900px) {
 
+/* =========================
+   TABLET (768px–1024px)
+========================= */
+@media (max-width: 1024px) {
   .hero-metrics {
-    position: static;
-    transform: none;
-
-    margin-top: 20px;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px 30px;
-
-    text-items: center;
+    gap: 0 40px;
+    margin-top: 32px;
   }
 
-  .metric h3 {
-    font-size: 24px;
+  .metric h3   { font-size: 26px; }
+  .metric span { font-size: 13px; }
+}
+
+/* =========================
+   MOBILE (≤767px)
+========================= */
+@media (max-width: 767px) {
+  .hero-metrics {
+    gap: 16px 24px;
+    margin-top: 24px;
   }
 
-  .metric span {
-    font-size: 13px;
-  }
+  .metric h3   { font-size: 24px; }
+  .metric span { font-size: 12px; }
 }
 
   /* Product Carousel Section */
