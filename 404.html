@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Redirecting — Vinceslink</title>
+  <script>
+    // GitHub Pages clean URL redirect
+    // Appends .html to any path that doesn't already have an extension
+    (function() {
+      const path = window.location.pathname;
+      const hasExtension = path.includes('.');
+
+      if (!hasExtension && path !== '/') {
+        // Redirect to .html version
+        window.location.replace(
+          window.location.origin + path + '.html' + window.location.search
+        );
+      } else {
+        // Genuine 404 — redirect to homepage
+        window.location.replace(window.location.origin);
+      }
+    })();
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f0f4ff;
+      color: #0F172A;
+    }
+    p { font-size: 15px; color: #64748b; }
+  </style>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
