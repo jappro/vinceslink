@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Support — Vinceslink</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --royal:    #0033CC;
+  --royal-mid:#1a4fd6;
+  --royal-light: #3d6bff;
+  --orange:   #FF8A3D;
+  --orange-dim: rgba(255,138,61,0.18);
+  --white:    #ffffff;
+  --off-white:#f0f4ff;
+  --text:     #0F172A;
+  --muted:    #64748B;
+  --border:   rgba(255,255,255,0.12);
+  --card-bg:  rgba(255,255,255,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #020818;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   STAR FIELD CANVAS
+══════════════════════════════════════════ */
+#starCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   AMBIENT GLOW BLOBS
+══════════════════════════════════════════ */
+.ambient {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,51,204,0.35), transparent 65%);
+  top: -150px; left: -100px;
+  animation: ambientDrift 18s ease-in-out infinite alternate;
+}
+.ambient-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,138,61,0.12), transparent 65%);
+  bottom: -100px; right: -80px;
+  animation: ambientDrift 22s ease-in-out infinite alternate-reverse;
+}
+.ambient-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(61,107,255,0.20), transparent 65%);
+  top: 40%; right: 20%;
+  animation: ambientDrift 15s ease-in-out infinite alternate;
+}
+@keyframes ambientDrift {
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(30px,20px) scale(1.1); }
+}
+
+/* ══════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════ */
+.page-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 5% 100px;
+}
+
+/* ── Back bar ── */
+.back-bar {
+  padding: 28px 0 0;
+  margin-bottom: 60px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: color 0.25s ease;
+}
+.back-link:hover { color: rgba(255,255,255,0.85); }
+.back-link svg { transition: transform 0.25s ease; }
+.back-link:hover svg { transform: translateX(-3px); }
+
+/* ── Hero headline ── */
+.page-hero {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,51,204,0.15);
+  border: 1px solid rgba(0,51,204,0.35);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(147,185,255,0.9);
+  margin-bottom: 24px;
+}
+
+.hero-eyebrow-dot {
+  width: 6px; height: 6px;
+  background: #93b9ff;
+  border-radius: 50%;
+  animation: dotBlink 2s ease-in-out infinite;
+}
+@keyframes dotBlink {
+  0%,100% { opacity:1; } 50% { opacity:0.3; }
+}
+
+.page-hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+
+.page-hero h1 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  background: linear-gradient(135deg, #93b9ff 0%, #fff 50%, #ffc49a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-hero p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Main grid ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSE TIME CARD (top left)
+══════════════════════════════════════════ */
+.response-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(20px);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.response-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(147,185,255,0.5), transparent);
+}
+
+.response-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.status-ring {
+  position: relative;
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+}
+
+.status-ring svg {
+  width: 36px; height: 36px;
+  animation: rotateSlow 8s linear infinite;
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.status-ring-inner {
+  position: absolute;
+  inset: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: statusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+
+.response-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #22c55e;
+  margin-bottom: 2px;
+}
+
+.response-time {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+
+.response-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   FORM CARD
+══════════════════════════════════════════ */
+.form-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(24px);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(147,185,255,0.6), rgba(255,138,61,0.3), transparent);
+}
+
+.form-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: -0.3px;
+}
+
+/* Form fields */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.40);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--white);
+  outline: none;
+  transition: all 0.25s ease;
+  appearance: none;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,0.22);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(61,107,255,0.6);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(0,51,204,0.15);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+select option {
+  background: #0d1a3a;
+  color: var(--white);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.65;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #0033CC 0%, #1a4fd6 50%, #3d6bff 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 6px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.2px;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left 0.5s ease;
+}
+
+.submit-btn:hover::before { left: 100%; }
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,51,204,0.40);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════
+   CONTACT INFO STRIP (below button)
+══════════════════════════════════════════ */
+.contact-strip {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  flex-wrap: wrap;
+}
+
+.contact-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.strip-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: rgba(0,51,204,0.18);
+  border: 1px solid rgba(61,107,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.strip-icon svg {
+  width: 15px; height: 15px;
+  fill: none;
+  stroke: #93b9ff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.strip-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+  margin-bottom: 2px;
+}
+
+.strip-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+}
+
+.strip-value a {
+  color: #93b9ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.strip-value a:hover { color: var(--white); }
+
+/* ══════════════════════════════════════════
+   SUCCESS OVERLAY
+══════════════════════════════════════════ */
+.success-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(2,8,24,0.85);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+}
+
+.success-overlay.show {
+  display: flex;
+  animation: overlayIn 0.4s ease both;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.success-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 28px;
+  padding: 52px 48px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  backdrop-filter: blur(30px);
+  animation: cardPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  position: relative;
+  overflow: hidden;
+}
+
+.success-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(147,185,255,0.7), transparent);
+}
+
+@keyframes cardPop {
+  from { opacity: 0; transform: scale(0.85) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Checkmark animation */
+.success-check {
+  width: 72px; height: 72px;
+  margin: 0 auto 24px;
+  position: relative;
+}
+
+.check-circle {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.05));
+  border: 2px solid rgba(34,197,94,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: checkPulse 0.6s ease both;
+}
+
+@keyframes checkPulse {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.check-circle svg {
+  width: 32px; height: 32px;
+  stroke: #22c55e;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawCheck 0.5s 0.3s ease forwards;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.success-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.success-close {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #0033CC, #3d6bff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.success-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,51,204,0.4);
+}
+
+/* Confetti particles */
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 1px;
+  animation: confettiFall 1.5s ease forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(300px) rotate(720deg); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .page-hero { margin-bottom: 48px; }
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .form-card { padding: 24px 20px; }
+  .contact-strip { gap: 16px; }
+  .success-card { padding: 40px 28px; }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- Star canvas -->
+
+<canvas id="starCanvas"></canvas>
+
+<!-- Ambient blobs -->
+
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+<div class="ambient ambient-3"></div>
+
+<!-- Success overlay -->
+
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="success-check">
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24"><polyline points="4,12 9,17 20,7"/></svg>
+      </div>
+    </div>
+    <div class="success-title">Message Sent!</div>
+    <div class="success-sub">We've received your message and will get back to you within 24–48 hours.</div>
+    <button class="success-close" onclick="closeSuccess()">Back to Vinceslink</button>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- Back -->
+
+  <div class="back-bar">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 12L6 8l4-4"/>
+      </svg>
+      Back to Vinceslink
+    </a>
+  </div>
+
+  <!-- Hero -->
+
+  <div class="page-hero">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Support & Partnerships
+    </div>
+    <h1>Let's <em>Talk</em></h1>
+    <p>Questions, partnerships, or collaborations — we're here and ready to connect.</p>
+  </div>
+
+  <!-- Grid -->
+
+  <div class="contact-grid">
+
+<!-- LEFT -->
+<div>
+  <!-- Response card -->
+  <div class="response-card">
+    <div class="response-status">
+      <div class="status-ring">
+        <svg viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="15" stroke="rgba(34,197,94,0.2)" stroke-width="2"/>
+          <path d="M18 3 A15 15 0 0 1 33 18" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="status-ring-inner"></div>
+      </div>
+      <div>
+        <div class="response-label">Team Status</div>
+        <div class="response-time">Active & Responding</div>
+      </div>
+    </div>
+    <div class="response-sub">Average response time: <strong style="color:rgba(255,255,255,0.7)">24–48 hours</strong><br/>Mon–Sat · All inquiries welcomed</div>
+  </div>
+</div>
+
+<!-- RIGHT: Form -->
+<div class="form-card">
+  <div class="form-card-title">Send a message</div>
+
+  <form id="contactForm">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name *</label>
+        <input type="text" name="first_name" placeholder="John" required/>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Doe"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email Address *</label>
+      <input type="email" name="email" id="emailInput" placeholder="john@example.com" required/>
+    </div>
+
+    <div class="form-group">
+      <label>Subject *</label>
+      <select name="subject" required>
+        <option value="" disabled selected>Select a subject</option>
+        <option>General Inquiry</option>
+        <option>Partnership</option>
+        <option>Collaboration</option>
+        <option>Real Estate Inquiry</option>
+        <option>Product Inquiry</option>
+        <option>Technical Support</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Message *</label>
+      <textarea name="message" placeholder="Tell us how we can help..." required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <span class="btn-inner" id="btnInner">
+        Send Message
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </span>
+    </button>
+
+    <!-- Contact strip below button -->
+    <div class="contact-strip">
+      <div class="contact-strip-item">
+        <div class="strip-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="strip-label">Email</div>
+          <div class="strip-value"><a href="mailto:support@vinceslink.com">support@vinceslink.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-strip-item">
+        <div class="strip-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="strip-label">Website</div>
+          <div class="strip-value"><a href="https://vinceslink.com" target="_blank">vinceslink.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-strip-item">
+        <div class="strip-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="strip-label">Based in</div>
+          <div class="strip-value">Nigeria 🇳🇬</div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// STAR FIELD
+// ══════════════════════════════════════════
+(function() {
+  const canvas = document.getElementById('starCanvas');
+  const ctx    = canvas.getContext('2d');
+  let stars    = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function createStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x:     Math.random() * W,
+        y:     Math.random() * H,
+        r:     Math.random() * 1.4 + 0.2,
+        alpha: Math.random() * 0.7 + 0.1,
+        speed: Math.random() * 0.15 + 0.03,
+        drift: (Math.random() - 0.5) * 0.08,
+        twinkleSpeed: Math.random() * 0.02 + 0.005,
+        twinkleDir: Math.random() > 0.5 ? 1 : -1,
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    stars.forEach(s => {
+      // Twinkle
+      s.alpha += s.twinkleSpeed * s.twinkleDir;
+      if (s.alpha > 0.85 || s.alpha < 0.05) s.twinkleDir *= -1;
+
+      // Drift upward slowly
+      s.y -= s.speed;
+      s.x += s.drift;
+      if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
+      if (s.x < -2) s.x = W + 2;
+      if (s.x > W + 2) s.x = -2;
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(180,210,255,${s.alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createStars(200); });
+  resize();
+  createStars(200);
+  draw();
+})();
+
+// ══════════════════════════════════════════
+// FORM SUBMISSION
+// ══════════════════════════════════════════
+const form      = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const btnInner  = document.getElementById('btnInner');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  submitBtn.disabled = true;
+  btnInner.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+    </svg>
+    Sending...
+  `;
+
+  try {
+    const data     = new FormData(form);
+    const response = await fetch('https://formspree.io/f/mvzyzjkn', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      showSuccess();
+    } else {
+      throw new Error('Failed');
+    }
+  } catch {
+    btnInner.innerHTML = 'Try Again — or email us directly';
+    submitBtn.disabled = false;
+    setTimeout(() => {
+      btnInner.innerHTML = `Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>`;
+    }, 3000);
+  }
+});
+
+// ══════════════════════════════════════════
+// SUCCESS ANIMATION + SOUND
+// ══════════════════════════════════════════
+function showSuccess() {
+  const overlay = document.getElementById('successOverlay');
+  overlay.classList.add('show');
+
+  // Confetti
+  spawnConfetti();
+
+  // Subtle success sound via Web Audio API
+  try {
+    const ctx  = new (window.AudioContext || window.webkitAudioContext)();
+    const play = (freq, start, duration, type = 'sine') => {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type      = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + start);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime + start);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + duration);
+      osc.start(ctx.currentTime + start);
+      osc.stop(ctx.currentTime + start + duration);
+    };
+    // Pleasant 3-note chime
+    play(523, 0,    0.3); // C5
+    play(659, 0.15, 0.3); // E5
+    play(784, 0.30, 0.5); // G5
+  } catch(e) {}
+
+  // Reset button
+  btnInner.innerHTML = `Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>`;
+  submitBtn.disabled = false;
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+
+// Close on backdrop click
+document.getElementById('successOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeSuccess();
+});
+
+function spawnConfetti() {
+  const container = document.getElementById('confettiContainer');
+  container.innerHTML = '';
+  const colors = ['#3d6bff','#93b9ff','#FF8A3D','#22c55e','#fbbf24','#ffffff'];
+
+  for (let i = 0; i < 40; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-particle';
+    el.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 30}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-delay: ${Math.random() * 0.6}s;
+      animation-duration: ${1.2 + Math.random() * 0.8}s;
+      width: ${4 + Math.random() * 6}px;
+      height: ${4 + Math.random() * 6}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '1px'};
+    `;
+    container.appendChild(el);
+  }
+}
+</script>
+
+</body>
+</html>
