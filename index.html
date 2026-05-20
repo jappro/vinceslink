@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vinceslink - Everyday Essentials, Gadgets & Realty</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="scroll-animations.js"></script>
     <link rel="icon" href="images/copy_35B30140-AB4E-4E82-BAC2-9E39BF61C95E.png">
     <style>
         * {
@@ -4352,6 +4353,313 @@ if (newsletterForm) {
   });
 }
     
+    /* ════════════════════════════════════════════════════════
+   VINCESLINK — PREMIUM SCROLL ANIMATIONS v2
+   
+════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* ── Inject CSS ───────────────────────────────────── */
+  const style = document.createElement('style');
+  style.textContent = `
+
+    /* Base animation states */
+    .vl-hidden {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .vl-hidden-left {
+      opacity: 0;
+      transform: translateX(-64px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .vl-hidden-right {
+      opacity: 0;
+      transform: translateX(64px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .vl-hidden-scale {
+      opacity: 0;
+      transform: scale(0.88) translateY(32px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .vl-hidden-pop {
+      opacity: 0;
+      transform: scale(0.65);
+      transition: opacity 0.5s cubic-bezier(0.34,1.56,0.64,1),
+                  transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    /* Visible state */
+    .vl-visible {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Stagger delays */
+    .vl-d1 { transition-delay: 0.07s !important; }
+    .vl-d2 { transition-delay: 0.14s !important; }
+    .vl-d3 { transition-delay: 0.21s !important; }
+    .vl-d4 { transition-delay: 0.28s !important; }
+    .vl-d5 { transition-delay: 0.35s !important; }
+    .vl-d6 { transition-delay: 0.42s !important; }
+
+    /* Section divider line */
+    .vl-divider {
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0,51,204,0.22) 25%,
+        rgba(61,107,255,0.30) 50%,
+        rgba(255,138,61,0.18) 75%,
+        transparent 100%
+      );
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: opacity 0.5s ease,
+                  transform 1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .vl-divider.vl-visible {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    /* Founder card premium glow */
+    .founder-card.vl-visible {
+      box-shadow:
+        0 0 50px rgba(0,51,204,0.16),
+        0 24px 64px rgba(0,0,0,0.16) !important;
+    }
+
+    /* Hero image parallax */
+    .hero-img { will-change: transform; }
+
+    /* Smooth partner logo hover after animation */
+    .partner-card.vl-visible img {
+      transition: transform 0.3s ease;
+    }
+    .partner-card.vl-visible img:hover {
+      transform: scale(1.08);
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* ── Helpers ─────────────────────────────────────── */
+  function tag(el, animClass, delay) {
+    if (!el) return;
+    el.classList.add(animClass);
+    if (delay) el.classList.add(delay);
+  }
+
+  function tagAll(els, animClass, staggered) {
+    els.forEach((el, i) => {
+      el.classList.add(animClass);
+      if (staggered) {
+        const d = Math.min(i + 1, 6);
+        el.classList.add(`vl-d${d}`);
+      }
+    });
+  }
+
+  /* ── Insert section dividers ─────────────────────── */
+  function insertDividers() {
+    const sectionSelectors = [
+      '.hero',
+      '.carousel-section',
+      '.business-section',
+      '.marketplace-section',
+      '.about-section',
+      '#partners',
+      '.faq-section',
+      '.contact-section',
+    ];
+    sectionSelectors.forEach(sel => {
+      const sec = document.querySelector(sel);
+      if (!sec) return;
+      const line = document.createElement('span');
+      line.className = 'vl-divider';
+      sec.parentNode.insertBefore(line, sec);
+    });
+  }
+
+  /* ── Main init ───────────────────────────────────── */
+  function init() {
+    insertDividers();
+
+    /* ════════════════════════════════════════════════
+       HERO — parallax scroll on image
+    ════════════════════════════════════════════════ */
+    const heroImg = document.querySelector('.hero-img');
+    const heroSec = document.querySelector('.hero');
+    if (heroImg && heroSec) {
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const heroH   = heroSec.offsetHeight;
+        if (scrollY < heroH * 1.2) {
+          heroImg.style.transform = `translateY(${scrollY * 0.10}px)`;
+        }
+      }, { passive: true });
+    }
+
+    /* ════════════════════════════════════════════════
+       METRICS — scale pop stagger
+    ════════════════════════════════════════════════ */
+    tagAll(document.querySelectorAll('.metric'), 'vl-hidden-scale', true);
+
+    /* ════════════════════════════════════════════════
+       BUSINESS DIVISION — title + cards stagger scale
+    ════════════════════════════════════════════════ */
+    tag(document.querySelector('.business-section .section-title'), 'vl-hidden');
+    tagAll(document.querySelectorAll('.business-card'), 'vl-hidden-scale', true);
+
+    /* ════════════════════════════════════════════════
+       MARKETPLACE — left from left, cart up, iphone from right
+    ════════════════════════════════════════════════ */
+    const marketSec = document.querySelector('.marketplace-section');
+    if (marketSec) {
+      // Text content — slide from left
+      const mcContent = marketSec.querySelector('.marketplace-content');
+      if (mcContent) {
+        tag(mcContent, 'vl-hidden-left');
+        // Stagger inner elements
+        const innerEls = mcContent.querySelectorAll('h2, h3, p, a, button');
+        innerEls.forEach((el, i) => {
+          el.classList.add(`vl-d${Math.min(i + 1, 6)}`);
+        });
+      }
+
+      // Cart illustration — slide up
+      tag(marketSec.querySelector('.cart-illustration'), 'vl-hidden', 'vl-d2');
+
+      // iPhone mockup — slide from right
+      tag(marketSec.querySelector('.iphone-mockup'), 'vl-hidden-right', 'vl-d1');
+    }
+
+    /* ════════════════════════════════════════════════
+       ABOUT — blocks stagger up, founder card from right
+    ════════════════════════════════════════════════ */
+    const aboutSec = document.querySelector('.about-section');
+    if (aboutSec) {
+      tag(aboutSec.querySelector('h2, .section-title'), 'vl-hidden');
+
+      // About blocks (story, mission, vision)
+      const aboutBlocks = aboutSec.querySelectorAll('.about-block');
+      aboutBlocks.forEach((block, i) => {
+        block.classList.add('vl-hidden', `vl-d${Math.min(i + 1, 6)}`);
+      });
+
+      // Founder card — distinct: slides from right + glow
+      const founderCard = aboutSec.querySelector('.founder-card');
+      if (founderCard) {
+        founderCard.classList.add('vl-hidden-right', 'vl-d2');
+      }
+    }
+
+    /* ════════════════════════════════════════════════
+       PARTNERSHIP — title fades, cards bounce-pop stagger
+    ════════════════════════════════════════════════ */
+    const partnerSec = document.getElementById('partners');
+    if (partnerSec) {
+      tag(partnerSec.querySelector('h2, h3'), 'vl-hidden');
+      tag(partnerSec.querySelector('p'), 'vl-hidden', 'vl-d1');
+      tagAll(partnerSec.querySelectorAll('.partner-card'), 'vl-hidden-pop', true);
+    }
+
+    /* ════════════════════════════════════════════════
+       FAQ — title, items stagger, chips pop
+    ════════════════════════════════════════════════ */
+    const faqSec = document.querySelector('.faq-section');
+    if (faqSec) {
+      tag(faqSec.querySelector('h2, .section-title'), 'vl-hidden');
+      tag(faqSec.querySelector('p'), 'vl-hidden', 'vl-d1');
+      tagAll(faqSec.querySelectorAll('.faq-item'), 'vl-hidden', true);
+      tagAll(faqSec.querySelectorAll('.faq-links a'), 'vl-hidden-pop', true);
+    }
+
+    /* ════════════════════════════════════════════════
+       CONTACT SECTION
+       newsletter → contact-grid cards → social section
+    ════════════════════════════════════════════════ */
+    const contactSec = document.querySelector('.contact-section');
+    if (contactSec) {
+      tag(contactSec.querySelector('h2, .section-title'), 'vl-hidden');
+
+      // Newsletter
+      tag(contactSec.querySelector('.newsletter-section'), 'vl-hidden', 'vl-d1');
+
+      // Contact grid cards — stagger
+      const contactCards = contactSec.querySelectorAll('.contact-grid > *');
+      contactCards.forEach((card, i) => {
+        card.classList.add('vl-hidden', `vl-d${Math.min(i + 1, 6)}`);
+      });
+
+      // Social section — whole block fades up
+      tag(contactSec.querySelector('.social-section'), 'vl-hidden', 'vl-d2');
+
+      // Social links inside — pop stagger
+      const socialLinks = contactSec.querySelectorAll('.social-section a');
+      socialLinks.forEach((link, i) => {
+        link.classList.add('vl-hidden-pop', `vl-d${Math.min(i + 1, 6)}`);
+      });
+    }
+
+    /* ════════════════════════════════════════════════
+       FOOTER — gentle fade up in groups
+    ════════════════════════════════════════════════ */
+    const footer = document.querySelector('footer.footer');
+    if (footer) {
+      const footerCols = footer.querySelectorAll(':scope > div, :scope > section, :scope > nav');
+      footerCols.forEach((col, i) => {
+        col.classList.add('vl-hidden', `vl-d${Math.min(i + 1, 6)}`);
+      });
+      // Fallback — direct children if no nested divs
+      if (footerCols.length === 0) {
+        tag(footer, 'vl-hidden');
+      }
+    }
+
+    /* ════════════════════════════════════════════════
+       INTERSECTION OBSERVER
+       Adds vl-visible on enter, removes on exit (replay)
+    ════════════════════════════════════════════════ */
+    const allEls = document.querySelectorAll(
+      '.vl-hidden, .vl-hidden-left, .vl-hidden-right, .vl-hidden-scale, .vl-hidden-pop, .vl-divider'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('vl-visible');
+        } else {
+          entry.target.classList.remove('vl-visible');
+        }
+      });
+    }, {
+      threshold: 0.10,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    allEls.forEach(el => observer.observe(el));
+  }
+
+  /* ── Boot ────────────────────────────────────────── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+            
     // ===== TERMS POPUP ON FIRST VISIT - BULLETPROOF VERSION =====
     
     // Method 1: Immediate check after DOM loaded
