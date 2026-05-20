@@ -1083,12 +1083,35 @@ RESPONSIVE
     }
 
     .business-cards-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 3.5rem;
-        max-width: 1500px;
-        margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* fixed 3 cols on desktop */
+    gap: 3.5rem;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/* ── Tablet (768px–1024px) ── */
+@media (max-width: 1024px) {
+    .business-cards-container {
+        grid-template-columns: 1fr;  /* stack to single column */
+        gap: 2rem;
+        max-width: 600px;            /* center the single column */
     }
+
+    .card-image-wrapper { height: 380px; }
+    .card-title         { font-size: 26px; }
+    .card-description   { font-size: 15px; }
+    .section-title      { font-size: 38px; }
+}
+
+/* ── Mobile (≤767px) ── */
+@media (max-width: 767px) {
+    .business-section   { padding: 3rem 5%; }
+    .section-title      { font-size: 28px; letter-spacing: -0.5px; }
+    .card-image-wrapper { height: 300px; }
+    .card-title         { font-size: 22px; }
+    .card-btn           { padding: 12px 32px; font-size: 15px; }
+}
 
     .business-card {
         background-color: var(--white);
