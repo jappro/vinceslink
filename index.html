@@ -946,85 +946,119 @@ RESPONSIVE
   .metric span { font-size: 12px; }
 }
 
-  /* Product Carousel Section */
-    .carousel-section {
-        padding: 2rem 5% 4rem;
-        background-color: var(--white);
-    }
+  /* =========================
+   CAROUSEL SECTION
+========================= */
+.carousel-section {
+  padding: 2rem 0 4rem;
+  background-color: var(--white);
+  overflow: hidden;
+}
 
-    .carousel-container {
-        position: relative;
-        max-width: 1400px;
-        margin: 0 auto;
-        overflow: hidden;
-    }
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
 
-    .carousel-track {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 2rem;
-        transition: transform 0.5s ease-in-out;
-    }
-  
-    .product-card {
-        min-width: clamp(260px, 28vw, 320px);
-        background-color: var(--white);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+.carousel-container:active {
+  cursor: grabbing;
+}
 
-    .product-card:hover {
-        transform: translateY(-12px) scale(1.02);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-    }
+/* The track scrolls via CSS animation */
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;          /* expands to fit all cards */
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
 
-    .product-image {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-    }
+/* Pause on hover */
+.carousel-track.paused,
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
 
-    .product-info {
-        padding: 1.5rem;
-        text-align: center;
-    }
+/* Infinite scroll keyframe */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* -50% because cards are duplicated */
+}
 
-    .product-name {
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 0.5rem;
-    }
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-card {
+  min-width: 300px;
+  width: 300px;
+  background-color: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;              /* never squish */
+  user-select: none;           /* prevent text selection while dragging */
+}
 
-    .product-category {
-        font-size: 14px;
-        color: var(--text-light);
-    }
+.product-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
+}
 
-    /* Carousel Indicators */
-    .carousel-indicators {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 2rem;
-    }
+.product-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  pointer-events: none;        /* prevent image drag interfering */
+}
 
-    .indicator {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #D0D0D0;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+.product-info {
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+}
 
-    .indicator.active {
-        background-color: var(--primary-blue);
-        width: 30px;
-        border-radius: 6px;
-    }
+.product-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.product-category {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .carousel-section { padding: 1.5rem 0 3rem; }
+  .product-card     { min-width: 270px; width: 270px; }
+  .product-image    { height: 230px; }
+  .carousel-track   { gap: 1.5rem; animation-duration: 24s; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .carousel-section { padding: 1rem 0 2.5rem; }
+  .product-card     { min-width: 230px; width: 230px; }
+  .product-image    { height: 190px; }
+  .product-name     { font-size: 14px; }
+  .product-category { font-size: 12px; }
+  .carousel-track   { gap: 1rem; animation-duration: 20s; }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .product-card  { min-width: 200px; width: 200px; }
+  .product-image { height: 160px; }
+}
 
     /* Business Divisions Section */
     .business-section {
@@ -3091,121 +3125,65 @@ RESPONSIVE
 
 <!-- Product Carousel Section -->
 <section class="carousel-section">
-    <div class="carousel-container">
-        <div class="carousel-track" id="carouselTrack">
-            <!-- Product Card 1: Fast Charger -->
-            <div class="product-card">
-                <img src="images/carousel/IMG_8970.jpeg" alt="Fast 9A Charger" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-name">PF-014 Fast 9A Charger</h3>
-                    <p class="product-category">Gadgets • Chargers</p>
-                </div>
-            </div>
+  <div class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
 
-            <!-- Product Card 2: Headset -->
-            <div class="product-card">
-                <img src="images/carousel/IMG_8969.jpeg" alt="P-31 Headset HD Sound" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-name">P-31 Headset HD Sound</h3>
-                    <p class="product-category">Gadgets • Audio</p>
-                </div>
-            </div>
-
-            <!-- Product Card 3: Ice Cream -->
-            <div class="product-card">
-                <img src="images/carousel/IMG_8971.jpeg" alt="FanIce Ice Cream" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-name">FanIce Ice Cream</h3>
-                    <p class="product-category">Super Store • Frozen</p>
-                </div>
-            </div>
-
-            <!-- Product Card 4: Cosmetics -->
-            <div class="product-card">
-                <img src="images/carousel/IMG_8997.png" alt="Premium Cosmetics" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-name">Premium Cosmetics</h3>
-                    <p class="product-category">Super Store • Beauty</p>
-                </div>
-            </div>
-
-            <!-- Product Card 5: Land Property -->
-            <div class="product-card">
-                <img src="images/carousel/IMG_8976.png" alt="Land Property" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-name">Prime Land Property</h3>
-                    <p class="product-category">Real Estate • Land</p>
-                </div>
-            </div>
-
-            <!-- Product Card 6: House -->
-            <div class="product-card">
-                <img src="images/carousel/IMG_9152.jpeg" alt="Residential House" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-name">Modern Residential House</h3>
-                    <p class="product-category">Real Estate • Housing</p>
-                </div>
-            </div>
+      <!-- ── ORIGINAL 6 CARDS ── -->
+      <div class="product-card">
+        <img src="images/carousel/IMG_8970.jpeg" alt="Fast 9A Charger" class="product-image">
+        <div class="product-info">
+          <h3 class="product-name">PF-014 Fast 9A Charger</h3>
+          <p class="product-category">Gadgets • Chargers</p>
         </div>
+      </div>
 
-        <div class="carousel-indicators">
-            <div class="indicator active" data-slide="0"></div>
-            <div class="indicator" data-slide="1"></div>
-            <div class="indicator" data-slide="2"></div>
-            <div class="indicator" data-slide="3"></div>
+      <div class="product-card">
+        <img src="images/carousel/IMG_8969.jpeg" alt="P-31 Headset HD Sound" class="product-image">
+        <div class="product-info">
+          <h3 class="product-name">P-31 Headset HD Sound</h3>
+          <p class="product-category">Gadgets • Audio</p>
         </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/carousel/IMG_8971.jpeg" alt="FanIce Ice Cream" class="product-image">
+        <div class="product-info">
+          <h3 class="product-name">FanIce Ice Cream</h3>
+          <p class="product-category">Super Store • Frozen</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/carousel/IMG_8997.png" alt="Premium Cosmetics" class="product-image">
+        <div class="product-info">
+          <h3 class="product-name">Premium Cosmetics</h3>
+          <p class="product-category">Super Store • Beauty</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/carousel/IMG_8976.png" alt="Land Property" class="product-image">
+        <div class="product-info">
+          <h3 class="product-name">Prime Land Property</h3>
+          <p class="product-category">Real Estate • Land</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="images/carousel/IMG_9152.jpeg" alt="Residential House" class="product-image">
+        <div class="product-info">
+          <h3 class="product-name">Modern Residential House</h3>
+          <p class="product-category">Real Estate • Housing</p>
+        </div>
+      </div>
+
+      <!-- ── DUPLICATE CARDS (seamless loop) ──
+           JS clones these automatically.
+           These are just fallback if JS fails.
+      -->
+
     </div>
-</section>
-
-<!-- Business Divisions Section -->
-<section class="business-section" id="services">
-    <div class="section-header">
-        <h2 class="section-title">OUR SERVICES</h2>
-    </div>
-
-    <div class="business-cards-container">
-        <!-- Card 1: Gadget Hub -->
-        <div class="business-card">
-            <div class="card-image-wrapper">
-                <img src="images/business/IMG_8993.jpeg" alt="Vinceslink Gadget Hub" class="card-image">
-                <div class="card-overlay">
-                    <h3 class="card-title">Vinceslink<br>Gadget Hub</h3>
-                </div>
-            </div>
-            <div class="card-content">
-                <p class="card-description">Smart gadgets and reliable tech built for everyday performance.</p>
-                <a href="gadget.html" class="card-btn">Browse Gadgets</a>
-            </div>
-        </div>
-
-        <!-- Card 2: Super Store -->
-        <div class="business-card">
-            <div class="card-image-wrapper">
-                <img src="images/business/IMG_8991.jpeg" alt="Vinceslink Super Store" class="card-image">
-                <div class="card-overlay">
-                    <h3 class="card-title">Vinceslink<br>Super Store</h3>
-                </div>
-            </div>
-            <div class="card-content">
-                <p class="card-description">Daily essentials and premium groceries delivered to your doorstep.</p>
-                <a href="superstore.html" class="card-btn">Shop Essentials</a>
-            </div>
-        </div>
-
-        <!-- Card 3: Realty -->
-        <div class="business-card">
-            <div class="card-image-wrapper">
-                <img src="images/business/IMG_9153.jpeg" alt="Vinceslink Realty" class="card-image">
-                <div class="card-overlay">
-                    <h3 class="card-title">Vinceslink<br>Realty</h3>
-                </div>
-            </div>
-            <div class="card-content">
-                <p class="card-description">Verified property solutions for buying, selling, and investment.</p>
-                <a href="realty.html" class="card-btn">Explore Properties</a>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
 <!-- Marketplace Section -->
@@ -3981,135 +3959,144 @@ if (metricsSection) {
 }
     
    // Product Carousel
-    const carouselTrack = document.getElementById('carouselTrack');
-    const indicators = document.querySelectorAll('.indicator');
-    let currentSlide = 0;
-    let autoSlideInterval;
+    (function() {
+  const track     = document.getElementById('carouselTrack');
+  const container = track?.parentElement;
+  if (!track || !container) return;
 
-    // Touch/Swipe variables
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isDragging = false;
-    let startX = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
+  // ── Step 1: Clone all cards for seamless loop ──
+  // We duplicate the entire set so when the first
+  // set scrolls out, the clone is already in view.
+  const originalCards = Array.from(track.children);
+  originalCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
 
-    function updateCarousel(slideIndex) {
-        const cardWidth = 350; // min-width of product card
-        const gap = 32; // 2rem gap
-        const offset = slideIndex * (cardWidth + gap);
-        
-        carouselTrack.style.transform = `translateX(-${offset}px)`;
-        
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === slideIndex);
-        });
-    }
+  // ── Step 2: Pause on hover ──
+  container.addEventListener('mouseenter', () => {
+    track.classList.add('paused');
+  });
+  container.addEventListener('mouseleave', () => {
+    if (!isDragging) track.classList.remove('paused');
+  });
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % indicators.length;
-        updateCarousel(currentSlide);
-    }
+  // ── Step 3: Drag to scroll (mouse) ──
+  let isDragging   = false;
+  let dragStartX   = 0;
+  let dragStartAnim = 0; // animation offset at drag start
 
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + indicators.length) % indicators.length;
-        updateCarousel(currentSlide);
-    }
+  // Get current animation offset in px
+  function getAnimOffset() {
+    const style = window.getComputedStyle(track);
+    const matrix = new DOMMatrix(style.transform);
+    return matrix.m41; // translateX value
+  }
 
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
-    }
+  container.addEventListener('mousedown', (e) => {
+    isDragging   = true;
+    dragStartX   = e.clientX;
+    dragStartAnim = getAnimOffset();
 
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-    }
+    // Freeze animation at current position
+    track.style.animationPlayState = 'paused';
+    const frozenX = getAnimOffset();
+    track.style.animation = 'none';
+    track.style.transform = `translateX(${frozenX}px)`;
 
-    // Manual indicator click
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentSlide = index;
-            updateCarousel(currentSlide);
-            stopAutoSlide();
-            startAutoSlide(); // Restart auto-slide after manual interaction
-        });
+    container.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const diff = e.clientX - dragStartX;
+    let newX = dragStartAnim + diff;
+
+    // Bounds: keep within the duplicated range
+    const halfWidth = track.scrollWidth / 2;
+    if (newX > 0) newX = -halfWidth + newX;
+    if (newX < -halfWidth) newX = newX + halfWidth;
+
+    track.style.transform = `translateX(${newX}px)`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    container.style.cursor = 'grab';
+
+    // Resume animation from current drag position
+    resumeFromPosition();
+  });
+
+  // ── Step 4: Touch / swipe (mobile) ──
+  let touchStartX = 0;
+  let touchFrozenX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX  = e.touches[0].clientX;
+
+    track.style.animationPlayState = 'paused';
+    const frozenX = getAnimOffset();
+    track.style.animation = 'none';
+    track.style.transform = `translateX(${frozenX}px)`;
+    touchFrozenX = frozenX;
+  }, { passive: true });
+
+  container.addEventListener('touchmove', (e) => {
+    const diff = e.touches[0].clientX - touchStartX;
+    let newX = touchFrozenX + diff;
+
+    const halfWidth = track.scrollWidth / 2;
+    if (newX > 0) newX = -halfWidth + newX;
+    if (newX < -halfWidth) newX = newX + halfWidth;
+
+    track.style.transform = `translateX(${newX}px)`;
+  }, { passive: true });
+
+  container.addEventListener('touchend', () => {
+    resumeFromPosition();
+  });
+
+  // ── Resume animation from current translateX position ──
+  function resumeFromPosition() {
+    const currentX  = getAnimOffset();
+    const halfWidth = track.scrollWidth / 2;
+
+    // Convert current position to a percentage progress
+    const progress  = Math.abs(currentX) / halfWidth;
+    const duration  = parseFloat(
+      getComputedStyle(document.documentElement)
+        .getPropertyValue('--carousel-duration') || '28'
+    );
+
+    // Remaining time based on drag position
+    const remaining = (1 - (progress % 1)) * 28 * 1000;
+
+    track.style.animation = 'none';
+    track.style.transform  = `translateX(${currentX}px)`;
+
+    // Small delay then re-attach animation
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        track.style.transform = '';
+        track.style.animation = '';
+
+        // Re-apply from stylesheet
+        track.classList.remove('paused');
+        void track.offsetWidth; // force reflow
+        track.style.animation = `marquee 28s linear infinite`;
+
+        // Adjust start time to match drag position
+        const delay = -(progress % 1) * 28;
+        track.style.animationDelay = `${delay}s`;
+      });
     });
+  }
 
-    // Touch/Swipe Events
-    carouselTrack.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        stopAutoSlide();
-    });
-
-    carouselTrack.addEventListener('touchmove', (e) => {
-        touchEndX = e.touches[0].clientX;
-    });
-
-    carouselTrack.addEventListener('touchend', () => {
-        handleSwipe();
-        startAutoSlide();
-    });
-
-    // Mouse drag events for desktop
-    carouselTrack.addEventListener('mousedown', (e) => {
-        touchStartX = e.clientX;
-        isDragging = true;
-        stopAutoSlide();
-        carouselTrack.style.cursor = 'grabbing';
-    });
-
-    carouselTrack.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        touchEndX = e.clientX;
-    });
-
-    carouselTrack.addEventListener('mouseup', () => {
-        if (isDragging) {
-            handleSwipe();
-            isDragging = false;
-            carouselTrack.style.cursor = 'grab';
-            startAutoSlide();
-        }
-    });
-
-    carouselTrack.addEventListener('mouseleave', () => {
-        if (isDragging) {
-            isDragging = false;
-            carouselTrack.style.cursor = 'grab';
-            startAutoSlide();
-        }
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50; // Minimum swipe distance
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe left - next slide
-                nextSlide();
-            } else {
-                // Swipe right - previous slide
-                prevSlide();
-            }
-        }
-
-        touchStartX = 0;
-        touchEndX = 0;
-    }
-
-    // Pause carousel on hover
-    carouselTrack.addEventListener('mouseenter', () => {
-        if (!isDragging) stopAutoSlide();
-        carouselTrack.style.cursor = 'grab';
-    });
-    
-    carouselTrack.addEventListener('mouseleave', () => {
-        if (!isDragging) startAutoSlide();
-        carouselTrack.style.cursor = 'default';
-    });
-
-    // Start auto-slide on page load
-    startAutoSlide();
+})();
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
