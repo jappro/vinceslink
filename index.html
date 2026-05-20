@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vinceslink - Everyday Essentials, Gadgets & Realty</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="icon" href="images/copy_35B30140-AB4E-4E82-BAC2-9E39BF61C95E.png">
     <style>
         * {
@@ -3614,7 +3615,7 @@ RESPONSIVE
         <div class="newsletter-section">
             <h3 class="newsletter-title">Stay Updated</h3>
             <p class="newsletter-text">Subscribe to our newsletter for exclusive deals, new arrivals, and property listings</p>
-            <form class="newsletter-form" onsubmit="showComingSoon(); return false;">
+            <form class="newsletter-form">
                 <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
                 <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
@@ -4284,6 +4285,72 @@ if (metricsSection) {
 
   observer.observe(document.getElementById('partners'));
 })();
+    
+    // ════════════════════════════════════════════════════
+// VINCESLINK NEWSLETTER — EmailJS Integration
+// Add this inside your <script> block
+// ════════════════════════════════════════════════════
+
+// ── Step 1: Initialize EmailJS ───────────────────────
+emailjs.init('xowvT09DicJFEqhY8');
+
+// ── Step 2: Newsletter form handler ─────────────────
+const newsletterForm = document.querySelector('.newsletter-form');
+const newsletterInput = document.querySelector('.newsletter-input');
+const newsletterBtn = document.querySelector('.newsletter-btn');
+
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = newsletterInput.value.trim();
+    if (!email) return;
+
+    // Disable button while sending
+    newsletterBtn.disabled = true;
+    newsletterBtn.textContent = 'Subscribing...';
+
+    // ── Send Template 1: Notify you ──────────────────
+    const notifyParams = {
+      subscriber_email: email
+    };
+
+    // ── Send Template 2: Welcome subscriber ──────────
+    const welcomeParams = {
+      subscriber_email: email
+    };
+
+    // Send both emails
+    Promise.all([
+      emailjs.send('service_wbt6pyo', 'template_fl8xpqg', notifyParams),
+      emailjs.send('service_wbt6pyo', 'template_q9wblxf', welcomeParams)
+    ])
+    .then(() => {
+      // Success
+      newsletterBtn.textContent = '✓ Subscribed!';
+      newsletterBtn.style.background = '#22c55e';
+      newsletterInput.value = '';
+
+      setTimeout(() => {
+        newsletterBtn.textContent = 'Subscribe';
+        newsletterBtn.style.background = '';
+        newsletterBtn.disabled = false;
+      }, 4000);
+    })
+    .catch((error) => {
+      // Error
+      console.error('Newsletter error:', error);
+      newsletterBtn.textContent = 'Try Again';
+      newsletterBtn.style.background = '#ef4444';
+      newsletterBtn.disabled = false;
+
+      setTimeout(() => {
+        newsletterBtn.textContent = 'Subscribe';
+        newsletterBtn.style.background = '';
+      }, 3000);
+    });
+  });
+}
     
     // ===== TERMS POPUP ON FIRST VISIT - BULLETPROOF VERSION =====
     
