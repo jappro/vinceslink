@@ -10,5 +10,17 @@
       ],
       "destination": "/shop.html"
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "shop.vinceslink.com"
+        }
+      ],
+      "dest": "/shop.html"
+    }
   ]
 }
