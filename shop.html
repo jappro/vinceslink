@@ -5,17 +5,16 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vinceslink Shop — Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --royal:   #0033CC;
-  --blue:    #1a4fd6;
-  --orange:  #FF8A3D;
-  --white:   #ffffff;
-  --dark:    #0F172A;
-  --muted:   #475569;
+  --royal:  #0033CC;
+  --blue:   #1a4fd6;
+  --white:  #ffffff;
+  --dark:   #0F172A;
+  --muted:  #475569;
 }
 
 html, body {
@@ -24,25 +23,29 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ── Full page background ── */
+/* ══════════════════════════════════════
+   FULL PAGE — background image
+══════════════════════════════════════ */
 body {
-  background: #c8d4f0;
-  background-image: url('images/shop-bg.png');
+  background: #c8d4f5;
+  background-image: url('images/shop/images/IMG_0995.jpeg');
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
 }
 
-/* ── Page wrapper ── */
+/* ══════════════════════════════════════
+   PAGE LAYOUT
+   Everything stacks centered
+══════════════════════════════════════ */
 .page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 20px 48px;
-  position: relative;
+  padding: 28px 20px 40px;
 }
 
 /* ── Logo ── */
@@ -51,43 +54,43 @@ body {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .logo img {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .logo-text {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--royal);
   letter-spacing: -0.5px;
 }
 
-/* ── Eyebrow badge ── */
+/* ── Eyebrow ── */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0,51,204,0.20);
+  gap: 8px;
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,51,204,0.18);
   border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.8px;
+  padding: 5px 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--royal);
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .eyebrow-dot {
-  width: 6px; height: 6px;
+  width: 5px; height: 5px;
   background: var(--royal);
   border-radius: 50%;
   animation: blink 2s ease-in-out infinite;
@@ -99,135 +102,146 @@ body {
 
 /* ── Headline ── */
 .headline {
-  font-size: clamp(32px, 6vw, 58px);
-  font-weight: 700;
-  color: var(--dark);
   text-align: center;
-  line-height: 1.1;
-  letter-spacing: -1.5px;
-  margin-bottom: 14px;
-  max-width: 620px;
+  line-height: 1.05;
+  margin-bottom: 10px;
 }
 
-.headline em {
-  font-family: 'Cormorant Garamond', serif;
+.headline-coming {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(36px, 7vw, 62px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -2px;
+  display: inline;
+}
+
+.headline-soon {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 7vw, 62px);
+  font-weight: 700;
   font-style: italic;
-  font-weight: 600;
   color: var(--royal);
+  letter-spacing: -1px;
+  display: inline;
+  margin-left: 10px;
 }
 
 /* ── Subtext ── */
 .subtext {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--muted);
   text-align: center;
   line-height: 1.7;
-  max-width: 440px;
-  margin-bottom: 8px;
+  max-width: 380px;
+  margin-bottom: 6px;
 }
 
-.coming-soon-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--royal);
-  margin-bottom: 32px;
-  text-align: center;
-}
-
-/* ── Countdown card ── */
-.countdown-card {
-  background: rgba(255,255,255,0.52);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.75);
-  border-radius: 24px;
-  padding: 28px 40px;
-  box-shadow:
-    0 8px 32px rgba(0,51,204,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.9);
-  margin-bottom: 12px;
-  text-align: center;
-  width: 100%;
-  max-width: 480px;
-}
-
-.countdown-label-top {
+.launching-label {
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 16px;
+  font-weight: 700;
+  color: var(--royal);
+  text-align: center;
+  letter-spacing: 0.3px;
+  margin-bottom: 18px;
+}
+
+/* ══════════════════════════════════════
+   COUNTDOWN — overlaid on bear's card
+   Liquid glass, minimal blur
+══════════════════════════════════════ */
+.countdown-wrapper {
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 18px;
+}
+
+.countdown-card {
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 22px;
+  padding: 24px 32px 20px;
+  box-shadow:
+    0 4px 20px rgba(0,51,204,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.70);
+  text-align: center;
 }
 
 .countdown-digits {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .countdown-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  min-width: 72px;
+  min-width: 80px;
 }
 
 .countdown-number {
-  font-size: clamp(42px, 8vw, 64px);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(48px, 10vw, 72px);
   font-weight: 700;
   color: var(--royal);
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -3px;
   font-variant-numeric: tabular-nums;
 }
 
-.countdown-unit-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+.countdown-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--royal);
-  opacity: 0.7;
+  opacity: 0.6;
+  margin-top: 4px;
 }
 
 .countdown-sep {
-  font-size: 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
   font-weight: 300;
-  color: rgba(0,51,204,0.25);
-  margin-bottom: 18px;
+  color: rgba(0,51,204,0.20);
   line-height: 1;
+  padding-bottom: 16px;
+  margin: 0 2px;
 }
 
-/* ── Browse + WhatsApp section ── */
+/* ══════════════════════════════════════
+   ACTION CARD
+══════════════════════════════════════ */
 .action-card {
-  background: rgba(255,255,255,0.52);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.75);
-  border-radius: 24px;
-  padding: 24px 28px;
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 22px;
+  padding: 20px 24px;
   box-shadow:
-    0 8px 32px rgba(0,51,204,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.9);
+    0 4px 20px rgba(0,51,204,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.70);
   width: 100%;
-  max-width: 480px;
-  margin-bottom: 32px;
+  max-width: 440px;
+  margin-bottom: 24px;
 }
 
 .action-top {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .cart-icon {
-  width: 40px; height: 40px;
-  background: rgba(0,51,204,0.09);
-  border-radius: 12px;
+  width: 36px; height: 36px;
+  background: rgba(0,51,204,0.10);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,7 +249,7 @@ body {
 }
 
 .cart-icon svg {
-  width: 20px; height: 20px;
+  width: 18px; height: 18px;
   stroke: var(--royal);
   fill: none;
   stroke-width: 2;
@@ -244,33 +258,28 @@ body {
 }
 
 .action-text {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--dark);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-.action-text strong {
-  color: var(--royal);
-}
+.action-text strong { color: var(--royal); }
 
 .action-buttons {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Browse dropdown button */
-.browse-btn {
-  flex: 1;
-  position: relative;
-}
+/* Browse */
+.browse-btn { flex: 1; position: relative; }
 
 .browse-trigger {
   width: 100%;
-  padding: 13px 20px;
-  background: rgba(255,255,255,0.70);
-  border: 1.5px solid rgba(0,51,204,0.20);
-  border-radius: 14px;
-  font-size: 14px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.60);
+  border: 1.5px solid rgba(0,51,204,0.18);
+  border-radius: 12px;
+  font-size: 13.5px;
   font-weight: 600;
   font-family: 'DM Sans', sans-serif;
   color: var(--dark);
@@ -278,34 +287,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
   transition: all 0.25s ease;
 }
 
 .browse-trigger:hover {
-  background: rgba(255,255,255,0.90);
+  background: rgba(255,255,255,0.85);
   border-color: var(--royal);
 }
 
-.browse-trigger svg {
-  transition: transform 0.3s ease;
-}
-
-.browse-trigger.open svg {
-  transform: rotate(180deg);
-}
+.browse-trigger svg { transition: transform 0.3s ease; }
+.browse-trigger.open svg { transform: rotate(180deg); }
 
 .browse-dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 6px);
   left: 0; right: 0;
   background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,51,204,0.15);
-  border-radius: 14px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,51,204,0.12);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 32px rgba(0,51,204,0.12);
+  box-shadow: 0 10px 28px rgba(0,51,204,0.12);
   z-index: 100;
 }
 
@@ -314,10 +318,10 @@ body {
 .browse-option {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 13px 18px;
+  gap: 9px;
+  padding: 12px 16px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   color: var(--dark);
   transition: background 0.2s ease;
@@ -332,18 +336,14 @@ body {
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.browse-option-icon {
-  font-size: 18px;
-}
-
-/* WhatsApp button */
+/* WhatsApp */
 .whatsapp-btn {
-  flex: 1.2;
-  padding: 13px 20px;
+  flex: 1.3;
+  padding: 12px 16px;
   background: #25D366;
   border: none;
-  border-radius: 14px;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
   font-weight: 700;
   font-family: 'DM Sans', sans-serif;
   color: white;
@@ -351,16 +351,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
   text-decoration: none;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 16px rgba(37,211,102,0.30);
+  box-shadow: 0 4px 14px rgba(37,211,102,0.28);
 }
 
 .whatsapp-btn:hover {
   background: #1db954;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37,211,102,0.38);
+  box-shadow: 0 8px 22px rgba(37,211,102,0.36);
 }
 
 /* ── Trust badges ── */
@@ -368,88 +368,86 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .trust-badge {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 11.5px;
   font-weight: 500;
   color: var(--muted);
 }
 
 .trust-badge svg {
-  width: 15px; height: 15px;
+  width: 14px; height: 14px;
   stroke: var(--royal);
   fill: none;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 .trust-sep {
-  width: 1px; height: 14px;
+  width: 1px; height: 12px;
   background: rgba(0,0,0,0.12);
 }
 
 /* ── Footer ── */
-.page-footer {
-  text-align: center;
-}
+.page-footer { text-align: center; }
 
 .footer-copy {
-  font-size: 12px;
-  color: rgba(71,85,105,0.7);
-  margin-bottom: 12px;
+  font-size: 11.5px;
+  color: rgba(71,85,105,0.65);
+  margin-bottom: 10px;
 }
 
 .social-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .social-icon {
-  width: 36px; height: 36px;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.80);
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.75);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .social-icon:hover {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.80);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,51,204,0.12);
 }
 
 .social-icon svg {
-  width: 16px; height: 16px;
+  width: 15px; height: 15px;
   fill: var(--royal);
 }
 
-/* ── Responsive ── */
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
 @media (max-width: 480px) {
-  .countdown-card { padding: 22px 20px; }
-  .countdown-number { font-size: 44px; }
-  .countdown-unit { min-width: 56px; }
-  .action-card { padding: 20px; }
+  .countdown-card { padding: 20px 16px 16px; }
+  .countdown-number { font-size: 48px; }
+  .countdown-unit { min-width: 62px; }
+  .countdown-sep { font-size: 38px; }
   .action-buttons { flex-direction: column; }
   .browse-btn, .whatsapp-btn { flex: none; width: 100%; }
   .trust-badges { gap: 12px; }
-  .headline { font-size: 30px; }
+  body { background-attachment: scroll; }
 }
 
   </style>
@@ -468,38 +466,43 @@ body {
 
   <div class="eyebrow">
     <span class="eyebrow-dot"></span>
-    E-Commerce
+    · E-Commerce ·
   </div>
 
   <!-- Headline -->
 
-  <h1 class="headline">Coming <em>Soon</em></h1>
+  <div class="headline">
+    <span class="headline-coming">Coming</span>
+    <span class="headline-soon">Soon</span>
+  </div>
 
-  <!-- Description -->
+  <!-- Subtext -->
 
   <p class="subtext">
     We are building an e-commerce where you can shop directly,
     pay online and get your goods delivered on your doorstep.
   </p>
-  <p class="coming-soon-label">This feature is launching in</p>
+  <p class="launching-label">This feature is launching in</p>
 
-  <!-- Countdown -->
+  <!-- Countdown — overlaid on bear's glassmorphism card -->
 
-  <div class="countdown-card">
-    <div class="countdown-digits">
-      <div class="countdown-unit">
-        <div class="countdown-number" id="cd-days">000</div>
-        <div class="countdown-unit-label">Days</div>
-      </div>
-      <div class="countdown-sep">:</div>
-      <div class="countdown-unit">
-        <div class="countdown-number" id="cd-hours">00</div>
-        <div class="countdown-unit-label">Hrs</div>
-      </div>
-      <div class="countdown-sep">:</div>
-      <div class="countdown-unit">
-        <div class="countdown-number" id="cd-mins">00</div>
-        <div class="countdown-unit-label">Mins</div>
+  <div class="countdown-wrapper">
+    <div class="countdown-card">
+      <div class="countdown-digits">
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-days">000</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-hours">00</div>
+          <div class="countdown-label">Hrs</div>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-mins">00</div>
+          <div class="countdown-label">Mins</div>
+        </div>
       </div>
     </div>
   </div>
@@ -510,7 +513,8 @@ body {
     <div class="action-top">
       <div class="cart-icon">
         <svg viewBox="0 0 24 24">
-          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
         </svg>
       </div>
@@ -520,33 +524,27 @@ body {
     </div>
 
 <div class="action-buttons">
-
-  <!-- Browse dropdown -->
+  <!-- Browse -->
   <div class="browse-btn" id="browseBtn">
     <button class="browse-trigger" id="browseTrigger" onclick="toggleBrowse()">
       Browse
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 5l5 5 5-5"/>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 4.5l4.5 4.5 4.5-4.5"/>
       </svg>
     </button>
     <div class="browse-dropdown" id="browseDropdown">
-      <a href="https://vinceslink.com/gadget.html" class="browse-option">
-        <span class="browse-option-icon">📱</span> Gadget Hub
-      </a>
-      <a href="https://vinceslink.com/superstore.html" class="browse-option">
-        <span class="browse-option-icon">🛒</span> Super Store
-      </a>
+      <a href="https://vinceslink.com/gadget.html" class="browse-option">📱 Gadget Hub</a>
+      <a href="https://vinceslink.com/superstore.html" class="browse-option">🛒 Super Store</a>
     </div>
   </div>
 
   <!-- WhatsApp -->
   <a href="https://wa.me/2349078683552" target="_blank" class="whatsapp-btn">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="white">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="white">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
     </svg>
     Shop on WhatsApp
   </a>
-
 </div>
 
   </div>
@@ -575,15 +573,12 @@ body {
   <div class="page-footer">
     <p class="footer-copy">© 2025 Vinceslink. All rights reserved.</p>
     <div class="social-row">
-      <!-- Instagram -->
       <a href="#" class="social-icon" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </a>
-      <!-- Facebook -->
       <a href="#" class="social-icon" aria-label="Facebook">
         <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       </a>
-      <!-- TikTok -->
       <a href="#" class="social-icon" aria-label="TikTok">
         <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
       </a>
@@ -593,45 +588,36 @@ body {
 </div>
 
 <script>
-  // ── Countdown timer ──────────────────────────────────
-  // Target: September 27, 2026
+  // ── Countdown ────────────────────────────────────────
   const TARGET = new Date('2026-09-27T00:00:00').getTime();
 
   function updateCountdown() {
-    const now  = Date.now();
-    const diff = TARGET - now;
-
+    const diff = TARGET - Date.now();
     if (diff <= 0) {
       document.getElementById('cd-days').textContent  = '000';
       document.getElementById('cd-hours').textContent = '00';
       document.getElementById('cd-mins').textContent  = '00';
       return;
     }
-
-    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
     document.getElementById('cd-days').textContent  = String(days).padStart(3, '0');
     document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
     document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
   }
 
   updateCountdown();
-  setInterval(updateCountdown, 30000); // update every 30s
+  setInterval(updateCountdown, 30000);
 
   // ── Browse dropdown ──────────────────────────────────
   function toggleBrowse() {
-    const trigger  = document.getElementById('browseTrigger');
-    const dropdown = document.getElementById('browseDropdown');
-    trigger.classList.toggle('open');
-    dropdown.classList.toggle('open');
+    document.getElementById('browseTrigger').classList.toggle('open');
+    document.getElementById('browseDropdown').classList.toggle('open');
   }
 
-  // Close dropdown on outside click
   document.addEventListener('click', (e) => {
-    const btn = document.getElementById('browseBtn');
-    if (!btn.contains(e.target)) {
+    if (!document.getElementById('browseBtn').contains(e.target)) {
       document.getElementById('browseTrigger').classList.remove('open');
       document.getElementById('browseDropdown').classList.remove('open');
     }
