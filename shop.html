@@ -275,16 +275,6 @@ body {
 }
 
 .cart-icon {
-  width: 36px; height: 36px;
-  background: rgba(0,51,204,0.10);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.cart-icon {
   width: 42px; height: 42px;
   background: rgba(255,255,255,0.35);
   backdrop-filter: blur(4px) saturate(140%);
@@ -298,6 +288,15 @@ body {
   box-shadow:
     0 2px 8px rgba(0,0,0,0.06),
     inset 0 1px 0 rgba(255,255,255,0.80);
+}
+
+.cart-icon svg {
+  width: 17px; height: 17px;
+  stroke: var(--royal);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .action-text {
