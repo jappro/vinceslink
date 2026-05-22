@@ -10,37 +10,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --royal:  #0033CC;
-  --dark:   #0F172A;
-  --muted:  #475569;
-  --white:  #ffffff;
+  --royal: #0033CC;
+  --dark:  #0F172A;
+  --muted: #475569;
+  --white: #ffffff;
 }
 
-html {
-  height: 100%;
-  overflow: hidden;
-}
+html { height: 100%; overflow: hidden; }
 
 body {
   height: 100%;
   width: 100%;
   overflow: hidden;
   font-family: 'DM Sans', sans-serif;
-
-  /* Background image fills entire viewport */
   background: #c8d4f5;
   background-image: url('images/shop/images/IMG_0995.jpeg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-
-  /* Rubber band bounce — CSS only */
   overscroll-behavior: none;
 }
 
-/* ══════════════════════════════════════
-   FULL PAGE CONTAINER
-══════════════════════════════════════ */
 .page {
   height: 100vh;
   width: 100%;
@@ -50,14 +40,12 @@ body {
   position: relative;
 }
 
-/* ══════════════════════════════════════
-   NAVBAR
-══════════════════════════════════════ */
+/* ══ NAVBAR ══ */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 14px 20px;
   background: rgba(255,255,255,0.35);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
@@ -74,14 +62,13 @@ body {
 }
 
 .nav-logo img {
-  width: 34px;
-  height: 34px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .nav-logo-text {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--royal);
   letter-spacing: -0.5px;
@@ -92,21 +79,18 @@ body {
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--royal);
   background: rgba(255,255,255,0.50);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(0,51,204,0.18);
   border-radius: 999px;
-  padding: 7px 16px;
+  padding: 6px 14px;
   transition: all 0.25s ease;
 }
 
-.nav-back:hover {
-  background: rgba(255,255,255,0.80);
-  transform: translateX(-2px);
-}
+.nav-back:hover { background: rgba(255,255,255,0.80); transform: translateX(-2px); }
 
 .nav-back svg {
   width: 13px; height: 13px;
@@ -117,22 +101,19 @@ body {
   stroke-linejoin: round;
 }
 
-/* ══════════════════════════════════════
-   CONTENT AREA
-   Fills remaining height below navbar
-══════════════════════════════════════ */
+/* ══ CONTENT WRAPPER ══ */
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 18px 20px 12px;
+  padding: 14px 20px 10px;
   overflow: hidden;
   position: relative;
 }
 
-/* ── Eyebrow ── */
+/* ══ EYEBROW ══ */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -147,7 +128,7 @@ body {
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--royal);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .eyebrow-dot {
@@ -161,16 +142,16 @@ body {
   0%,100% { opacity:1; } 50% { opacity:0.2; }
 }
 
-/* ── Headline ── */
+/* ══ HEADLINE ══ */
 .headline {
   text-align: center;
   line-height: 1.05;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .headline-coming {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(34px, 8vw, 56px);
+  font-size: clamp(30px, 7.5vw, 52px);
   font-weight: 700;
   color: var(--dark);
   letter-spacing: -2px;
@@ -178,7 +159,7 @@ body {
 
 .headline-soon {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 8vw, 56px);
+  font-size: clamp(30px, 7.5vw, 52px);
   font-weight: 700;
   font-style: italic;
   color: var(--royal);
@@ -186,51 +167,65 @@ body {
   margin-left: 10px;
 }
 
-/* ── Subtext ── */
+/* ══ SUBTEXT ══ */
 .subtext {
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 12px;
+  color: var(--dark);
   text-align: center;
-  line-height: 1.65;
-  max-width: 340px;
-  margin-bottom: 5px;
+  line-height: 1.6;
+  max-width: 300px;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 6px rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+/* ══ COUNTDOWN — positioned over baked-in card ══ */
+.countdown-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  /* 
+    This spacer pushes down to where the card sits in the bg image.
+    The card in IMG_0995.jpeg occupies roughly 38%–62% of image height.
+    We use padding-top to reserve that vertical space.
+  */
+  padding-top: clamp(10px, 4vh, 28px);
+  margin-bottom: clamp(8px, 2vh, 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .launching-label {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
-  color: var(--royal);
+  color: var(--dark);
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+  text-shadow: 0 1px 4px rgba(255,255,255,0.5);
 }
 
-/* ══════════════════════════════════════
-   COUNTDOWN — NO CARD
-   Numbers float directly on bear's card
-   in the background image
-══════════════════════════════════════ */
 .countdown-digits {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   gap: 0;
-  margin-bottom: 14px;
 }
 
 .countdown-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 90px;
+  min-width: clamp(70px, 20vw, 100px);
 }
 
 .countdown-number {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(52px, 12vw, 80px);
+  font-size: clamp(44px, 11vw, 72px);
   font-weight: 700;
   color: var(--dark);
   line-height: 1;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -240,43 +235,41 @@ body {
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--royal);
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .countdown-sep {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 52px;
+  font-size: clamp(40px, 10vw, 64px);
   font-weight: 300;
-  color: rgba(0,0,0,0.18);
+  color: rgba(0,0,0,0.20);
   line-height: 1;
-  padding-bottom: 14px;
-  margin: 0 4px;
+  padding-bottom: 16px;
+  margin: 0 2px;
 }
 
-/* ══════════════════════════════════════
-   ACTION ROW
-══════════════════════════════════════ */
+/* ══ ACTION CARD ══ */
 .action-card {
   background: rgba(255,255,255,0.32);
   backdrop-filter: blur(6px) saturate(150%);
   -webkit-backdrop-filter: blur(6px) saturate(150%);
   border: 1px solid rgba(255,255,255,0.60);
   border-radius: 20px;
-  padding: 16px 20px;
+  padding: 14px 18px;
   width: 100%;
   max-width: 420px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .action-top {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .cart-icon {
-  width: 32px; height: 32px;
+  width: 30px; height: 30px;
   background: rgba(0,51,204,0.10);
   border-radius: 9px;
   display: flex;
@@ -286,7 +279,7 @@ body {
 }
 
 .cart-icon svg {
-  width: 16px; height: 16px;
+  width: 15px; height: 15px;
   stroke: var(--royal);
   fill: none;
   stroke-width: 2;
@@ -295,23 +288,20 @@ body {
 }
 
 .action-text {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--dark);
   line-height: 1.55;
 }
 
 .action-text strong { color: var(--royal); }
 
-.action-buttons {
-  display: flex;
-  gap: 10px;
-}
+.action-buttons { display: flex; gap: 10px; }
 
 .browse-btn { flex: 1; position: relative; }
 
 .browse-trigger {
   width: 100%;
-  padding: 11px 14px;
+  padding: 10px 12px;
   background: rgba(255,255,255,0.65);
   border: 1.5px solid rgba(0,51,204,0.18);
   border-radius: 11px;
@@ -327,11 +317,7 @@ body {
   transition: all 0.25s ease;
 }
 
-.browse-trigger:hover {
-  background: rgba(255,255,255,0.88);
-  border-color: var(--royal);
-}
-
+.browse-trigger:hover { background: rgba(255,255,255,0.88); border-color: var(--royal); }
 .browse-trigger svg { transition: transform 0.3s ease; }
 .browse-trigger.open svg { transform: rotate(180deg); }
 
@@ -363,19 +349,14 @@ body {
   transition: background 0.2s ease;
 }
 
-.browse-option:hover {
-  background: rgba(0,51,204,0.06);
-  color: var(--royal);
-}
+.browse-option:hover { background: rgba(0,51,204,0.06); color: var(--royal); }
+.browse-option:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.05); }
 
-.browse-option:not(:last-child) {
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
+/* WhatsApp → Royal Blue to match reference */
 .whatsapp-btn {
   flex: 1.3;
-  padding: 11px 14px;
-  background: #25D366;
+  padding: 10px 12px;
+  background: var(--royal);
   border: none;
   border-radius: 11px;
   font-size: 13px;
@@ -389,33 +370,33 @@ body {
   gap: 6px;
   text-decoration: none;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(37,211,102,0.28);
+  box-shadow: 0 4px 14px rgba(0,51,204,0.30);
 }
 
 .whatsapp-btn:hover {
-  background: #1db954;
+  background: #0029a3;
   transform: translateY(-1px);
 }
 
-/* ── Trust badges ── */
+/* ══ TRUST BADGES ══ */
 .trust-badges {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .trust-badge {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 500;
   color: var(--muted);
 }
 
 .trust-badge svg {
-  width: 13px; height: 13px;
+  width: 12px; height: 12px;
   stroke: var(--royal);
   fill: none;
   stroke-width: 1.8;
@@ -424,24 +405,19 @@ body {
   opacity: 0.65;
 }
 
-.trust-sep {
-  width: 1px; height: 11px;
-  background: rgba(0,0,0,0.12);
-}
+.trust-sep { width: 1px; height: 11px; background: rgba(0,0,0,0.12); }
 
-/* ══════════════════════════════════════
-   RESPONSIVE — small phones
-══════════════════════════════════════ */
+/* ══ RESPONSIVE ══ */
 @media (max-width: 380px) {
-  .countdown-number { font-size: 44px; }
-  .countdown-unit   { min-width: 70px; }
-  .countdown-sep    { font-size: 40px; }
-  .subtext          { font-size: 12px; }
+  .countdown-number { font-size: 38px; }
+  .countdown-unit   { min-width: 60px; }
+  .countdown-sep    { font-size: 34px; }
+  .subtext          { font-size: 11px; }
 }
 
 @media (max-height: 700px) {
   .subtext       { display: none; }
-  .launching-label { margin-bottom: 8px; }
+  .countdown-wrapper { padding-top: 6px; }
 }
 
   </style>
@@ -485,21 +461,24 @@ body {
 </p>
 <p class="launching-label">This feature is launching in</p>
 
-<!-- Countdown — no card, floats on bear's morphism -->
-<div class="countdown-digits">
-  <div class="countdown-unit">
-    <div class="countdown-number" id="cd-days">000</div>
-    <div class="countdown-label">Days</div>
-  </div>
-  <div class="countdown-sep">:</div>
-  <div class="countdown-unit">
-    <div class="countdown-number" id="cd-hours">00</div>
-    <div class="countdown-label">Hrs</div>
-  </div>
-  <div class="countdown-sep">:</div>
-  <div class="countdown-unit">
-    <div class="countdown-number" id="cd-mins">00</div>
-    <div class="countdown-label">Mins</div>
+<!-- Countdown wrapper — floats over baked card -->
+<div class="countdown-wrapper">
+  <p class="launching-label">This feature is launching in</p>
+  <div class="countdown-digits">
+    <div class="countdown-unit">
+      <div class="countdown-number" id="cd-days">000</div>
+      <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-number" id="cd-hours">00</div>
+      <div class="countdown-label">Hrs</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <div class="countdown-number" id="cd-mins">00</div>
+      <div class="countdown-label">Mins</div>
+    </div>
   </div>
 </div>
 
