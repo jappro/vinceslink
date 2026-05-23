@@ -214,7 +214,7 @@ body {
   align-items: flex-end;
   justify-content: center;
   gap: 0;
-  margin-bottom: 14px;
+  margin-top: 26px;
 }
 
 .countdown-unit {
@@ -225,12 +225,12 @@ body {
 }
 
 .countdown-number {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(52px, 12vw, 80px);
+  font-family: 'DM Sans', sans-serif;  /* was Space Grotesk */
+  font-size: clamp(38px, 9vw, 52px);   /* was clamp(52px, 12vw, 80px) */
   font-weight: 700;
   color: var(--dark);
   line-height: 1;
-  letter-spacing: -3px;
+  letter-spacing: -1px;               /* was -3px */
   font-variant-numeric: tabular-nums;
 }
 
@@ -244,15 +244,16 @@ body {
 }
 
 .countdown-sep {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 52px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 36px;                    /* was 52px */
   font-weight: 300;
   color: rgba(0,0,0,0.18);
   line-height: 1;
   padding-bottom: 14px;
-  margin: 0 4px;
+  margin: 0 8px;
+  content: '|';                       /* visual only */
 }
-
+    
 /* ── Action card — wider, lower, less padding ── */
 .action-card {
   background: rgba(255,255,255,0.28);
@@ -523,12 +524,12 @@ body {
     <div class="countdown-number" id="cd-days">000</div>
     <div class="countdown-label">Days</div>
   </div>
-  <div class="countdown-sep">:</div>
+  <div class="countdown-sep">|</div>
   <div class="countdown-unit">
     <div class="countdown-number" id="cd-hours">00</div>
     <div class="countdown-label">Hrs</div>
   </div>
-  <div class="countdown-sep">:</div>
+  <div class="countdown-sep">|</div>
   <div class="countdown-unit">
     <div class="countdown-number" id="cd-mins">00</div>
     <div class="countdown-label">Mins</div>
