@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AirPod Pro Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e8e8e8;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .card {
+      width: 340px;
+      background: #ffffff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+      position: relative;
+    }
+
+    /* ── Image zone ── */
+    .card__image-wrap {
+      position: relative;
+      background: #8f9e78; /* sage green */
+      border-radius: 22px 22px 0 0;
+      padding: 32px 24px 0 24px;
+      min-height: 290px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* darker stripe at the bottom of the green area */
+    .card__image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 44px;
+      background: #6b7a58;
+      border-radius: 0;
+    }
+
+    .card__badge {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+
+    .card__plus {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 300;
+      color: #222;
+      cursor: pointer;
+      z-index: 3;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+
+    .card__img {
+      width: 230px;
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin: 0 auto;
+      /* subtle drop shadow to lift product off background */
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,0.18));
+    }
+
+    /* ── Text zone ── */
+    .card__body {
+      padding: 20px 20px 22px 20px;
+    }
+
+    .card__title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card__title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+
+    .card__pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .card__price-old {
+      font-size: 13px;
+      font-weight: 500;
+      color: #b0b0b0;
+      text-decoration: line-through;
+    }
+
+    .card__price-new {
+      font-size: 18px;
+      font-weight: 700;
+      color: #6b7a58;
+    }
+
+    .card__bottom-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+
+    .card__desc {
+      font-size: 13px;
+      font-weight: 400;
+      color: #888;
+      line-height: 1.55;
+      max-width: 170px;
+    }
+
+    .card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #6b7a58;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .card__cta:hover { background: #5a6848; }
+
+    .card__cta-icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Image area -->
+    <div class="card__image-wrap">
+      <div class="card__plus">+</div>
+      <img
+        class="card__img"
+        src="images/business/Gadget/IMG_1231.png"
+        alt="AirPod Pro in charging case"
+      />
+      <span class="card__badge">Premium Noise cancellation</span>
+    </div>
+
+    <!-- Text area -->
+    <div class="card__body">
+      <div class="card__title-row">
+        <h2 class="card__title">AirPod Pro</h2>
+        <div class="card__pricing">
+          <span class="card__price-old">₦35,000</span>
+          <span class="card__price-new">₦28,500</span>
+        </div>
+      </div>
+
+      <div class="card__bottom-row">
+        <p class="card__desc">Active Noise Cancellation for immersive sound everywhere.</p>
+        <button class="card__cta">
+          Shop Now <span class="card__cta-icon">↗</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
