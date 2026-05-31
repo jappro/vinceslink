@@ -1,192 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AirPod Pro Card</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #e8e8e8;
+      background: #ddddd9;
       font-family: 'DM Sans', sans-serif;
     }
-
-    .card {
-      width: 340px;
+    .card-shell {
+      width: 348px;
       background: #ffffff;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+      border-radius: 34px;
+      padding: 7px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10), 0 20px 50px rgba(0,0,0,0.07);
       position: relative;
     }
-
-    /* ── Image zone ── */
-    .card__image-wrap {
+    .card {
+      width: 100%;
+      border-radius: 28px;
+      background: #ffffff;
+      overflow: hidden;
       position: relative;
-      background: #8f9e78; /* sage green */
-      border-radius: 22px 22px 0 0;
-      padding: 32px 24px 0 24px;
-      min-height: 290px;
+    }
+    .card__image-section {
+      position: relative;
+      width: 100%;
+    }
+    .card__img-wrap {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
     }
-
-    /* darker stripe at the bottom of the green area */
-    .card__image-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 44px;
-      background: #6b7a58;
-      border-radius: 0;
-    }
-
-    .card__badge {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+    .card__img {
+      width: 272px;
+      display: block;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,0.17));
+      margin-top: 10px;
+      position: relative;
       z-index: 2;
-      color: #fff;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      padding-bottom: 10px;
     }
-
     .card__plus {
       position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 42px;
-      height: 42px;
+      top: 4px; right: 4px;
+      width: 52px; height: 52px;
       background: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      font-weight: 300;
-      color: #222;
       cursor: pointer;
-      z-index: 3;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      z-index: 20;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
-
-    .card__img {
-      width: 230px;
-      position: relative;
-      z-index: 1;
-      display: block;
-      margin: 0 auto;
-      /* subtle drop shadow to lift product off background */
-      filter: drop-shadow(0 16px 24px rgba(0,0,0,0.18));
+    .card__band-label {
+      background: #6b7a56;
+      text-align: center;
+      padding: 10px 0 13px;
+      margin-top: -1px;
     }
-
-    /* ── Text zone ── */
+    .card__band-label span {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
     .card__body {
-      padding: 20px 20px 22px 20px;
+      background: #ffffff;
+      padding: 20px 20px 26px 20px;
     }
-
     .card__title-row {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
-
     .card__title {
-      font-size: 26px;
-      font-weight: 700;
+      font-size: 28px;
+      font-weight: 800;
       color: #1a1a1a;
       letter-spacing: -0.5px;
     }
-
-    .card__pricing {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-    }
-
-    .card__price-old {
-      font-size: 13px;
-      font-weight: 500;
-      color: #b0b0b0;
-      text-decoration: line-through;
-    }
-
-    .card__price-new {
-      font-size: 18px;
-      font-weight: 700;
-      color: #6b7a58;
-    }
-
-    .card__bottom-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-top: 2px;
-    }
-
-    .card__desc {
-      font-size: 13px;
-      font-weight: 400;
-      color: #888;
-      line-height: 1.55;
-      max-width: 170px;
-    }
-
+    .card__pricing { display: flex; align-items: baseline; gap: 6px; }
+    .card__price-old { font-size: 13px; font-weight: 500; color: #c0bfbc; text-decoration: line-through; }
+    .card__price-new { font-size: 19px; font-weight: 800; color: #5a6e42; letter-spacing: -0.3px; }
+    .card__bottom-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+    .card__desc { font-size: 13px; color: #aaa; line-height: 1.6; max-width: 160px; }
     .card__cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #6b7a58;
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 11px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      letter-spacing: 0.01em;
-      transition: background 0.2s;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #6b7a56; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 600;
+      padding: 12px 18px; border-radius: 50px; border: none; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.2s, transform 0.15s;
     }
-
-    .card__cta:hover { background: #5a6848; }
-
-    .card__cta-icon {
-      font-size: 14px;
-      line-height: 1;
-    }
+    .card__cta:hover { background: #546145; transform: translateY(-1px); }
+    .card__cta svg { width: 16px; height: 16px; flex-shrink: 0; }
   </style>
 </head>
 <body>
 
+<div class="card-shell">
   <div class="card">
 
-    <!-- Image area -->
-    <div class="card__image-wrap">
-      <div class="card__plus">+</div>
-      <img
-        class="card__img"
-        src="images/business/Gadget/IMG_1231.png"
-        alt="AirPod Pro in charging case"
-      />
-      <span class="card__badge">Premium Noise cancellation</span>
+    <div class="card__image-section">
+
+      <svg viewBox="0 0 334 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+
+        <!--
+          GREEN SHAPE — the L explained:
+          
+          Top edge: starts at top-left (rounded), goes RIGHT but STOPS at x=244
+          Then goes STRAIGHT DOWN to y=68  <-- the vertical stroke of the L
+          Then at the corner (x=244, y=68), curves smoothly
+          Then goes STRAIGHT RIGHT to x=334  <-- the horizontal stroke of the L
+          Then straight down the right edge to bottom-right rounded corner
+          Bottom edge left, bottom-left rounded corner, up left edge, done.
+
+          The L corner radius: ~28px, so:
+          - vertical stroke ends at (244, 68)
+          - curve: Q 244,96  272,96  (corner curves from going-down to going-right)
+          - horizontal stroke: from 272,96 to 334,96... 
+          
+          Wait — re-reading the zoomed image:
+          The green goes:
+           - straight across the top from top-left corner to ~x=240
+           - drops straight DOWN to ~y=68
+           - curves at the bottom of that drop (the L's corner)
+           - then goes RIGHT all the way to the card right edge (x=334)
+           - then straight DOWN the right edge
+
+          So the white space is a rectangular area at top-right,
+          with the inner corner (bottom-left of that white area) being rounded.
+        -->
+
+        <!-- Main green shape -->
+        <path d="
+          M 22,0
+          L 244,0
+          L 244,68
+          Q 244,96 272,96
+          L 334,96
+          L 334,298
+          Q 334,320 312,320
+          L 22,320
+          Q 0,320 0,298
+          L 0,22
+          Q 0,0 22,0
+          Z
+        " fill="#8fa07a"/>
+
+        <!-- Olive arc at bottom: gentle upward arch top edge -->
+        <path d="
+          M 0,278
+          Q 167,258 334,278
+          L 334,320
+          L 0,320
+          Z
+        " fill="#6b7a56"/>
+
+      </svg>
+
+      <!-- Product image -->
+      <div class="card__img-wrap">
+        <img class="card__img" src="images/business/Gadget/IMG_1231.png" alt="AirPod Pro"/>
+      </div>
+
+      <!-- + button -->
+      <div class="card__plus">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <line x1="10" y1="3" x2="10" y2="17" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="3" y1="10" x2="17" y2="10" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
     </div>
 
-    <!-- Text area -->
+    <!-- OLIVE TEXT LABEL -->
+    <div class="card__band-label">
+      <span>Premium Noise cancellation</span>
+    </div>
+
+    <!-- WHITE BODY -->
     <div class="card__body">
       <div class="card__title-row">
         <h2 class="card__title">AirPod Pro</h2>
@@ -195,16 +199,20 @@
           <span class="card__price-new">₦28,500</span>
         </div>
       </div>
-
       <div class="card__bottom-row">
         <p class="card__desc">Active Noise Cancellation for immersive sound everywhere.</p>
         <button class="card__cta">
-          Shop Now <span class="card__cta-icon">↗</span>
+          Shop Now
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+            <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
       </div>
     </div>
 
   </div>
+</div>
 
 </body>
 </html>
