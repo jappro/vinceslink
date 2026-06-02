@@ -62,18 +62,7 @@
       z-index: 20;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
-    .card__band-label {
-      background: #6b7a56;
-      text-align: center;
-      padding: 10px 0 13px;
-      margin-top: -1px;
-    }
-    .card__band-label span {
-      color: #fff;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
+   
     .card__body {
       background: #ffffff;
       padding: 20px 20px 26px 20px;
@@ -115,35 +104,8 @@
     <div class="card__image-section">
 
       <svg viewBox="0 0 334 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
-
-        <!--
-          GREEN SHAPE — the L explained:
-          
-          Top edge: starts at top-left (rounded), goes RIGHT but STOPS at x=244
-          Then goes STRAIGHT DOWN to y=68  <-- the vertical stroke of the L
-          Then at the corner (x=244, y=68), curves smoothly
-          Then goes STRAIGHT RIGHT to x=334  <-- the horizontal stroke of the L
-          Then straight down the right edge to bottom-right rounded corner
-          Bottom edge left, bottom-left rounded corner, up left edge, done.
-
-          The L corner radius: ~28px, so:
-          - vertical stroke ends at (244, 68)
-          - curve: Q 244,96  272,96  (corner curves from going-down to going-right)
-          - horizontal stroke: from 272,96 to 334,96... 
-          
-          Wait — re-reading the zoomed image:
-          The green goes:
-           - straight across the top from top-left corner to ~x=240
-           - drops straight DOWN to ~y=68
-           - curves at the bottom of that drop (the L's corner)
-           - then goes RIGHT all the way to the card right edge (x=334)
-           - then straight DOWN the right edge
-
-          So the white space is a rectangular area at top-right,
-          with the inner corner (bottom-left of that white area) being rounded.
-        -->
-
-        <!-- Main green shape -->
+        
+<!-- Main green shape -->
         <path d="
           M 22,0
           L 244,0
@@ -158,16 +120,7 @@
           Q 0,0 22,0
           Z
         " fill="#8fa07a"/>
-
-        <!-- Olive arc at bottom: gentle upward arch top edge -->
-        <path d="
-          M 0,278
-          Q 167,258 334,278
-          L 334,320
-          L 0,320
-          Z
-        " fill="#6b7a56"/>
-
+        
       </svg>
 
       <!-- Product image -->
@@ -183,11 +136,6 @@
         </svg>
       </div>
 
-    </div>
-
-    <!-- OLIVE TEXT LABEL -->
-    <div class="card__band-label">
-      <span>Premium Noise cancellation</span>
     </div>
 
     <!-- WHITE BODY -->
