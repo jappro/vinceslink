@@ -37,26 +37,11 @@
       overflow: hidden;
     }
     
-    .card__img-wrap {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .card__img {
-      width: 272px;
-      display: block;
-      filter: drop-shadow(0 14px 26px rgba(0,0,0,0.17));
-      margin-top: 10px;
-      position: relative;
-      z-index: 2;
-    }
     .card__plus {
       position: absolute;
       top: 4px; right: 4px;
       width: 47px; height: 48px;
-      background: #fff;
+      background: #C5D8A9;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -70,32 +55,35 @@
       background: #ffffff;
       padding: 20px 20px 26px 20px;
     }
+    
     .card__title-row {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 14px;
     }
+    
     .card__title {
       font-size: 28px;
       font-weight: 800;
       color: #1a1a1a;
       letter-spacing: -0.5px;
     }
+    
     .card__pricing { display: flex; align-items: baseline; gap: 6px; }
     .card__price-old { font-size: 13px; font-weight: 500; color: #c0bfbc; text-decoration: line-through; }
-    .card__price-new { font-size: 19px; font-weight: 800; color: #C5D8A9; letter-spacing: -0.3px; }
+    .card__price-new { font-size: 19px; font-weight: 800; color: #7A8B4D; letter-spacing: -0.3px; }
     .card__bottom-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
     .card__desc { font-size: 13px; color: #aaa; line-height: 1.6; max-width: 160px; }
     .card__cta {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #6b7a56; color: #fff;
+      background: #7A8B4D; color: #fff;
       font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 600;
       padding: 12px 18px; border-radius: 50px; border: none; cursor: pointer;
       white-space: nowrap; flex-shrink: 0;
       transition: background 0.2s, transform 0.15s;
     }
-    .card__cta:hover { background: #C5D8A9; transform: translateY(-1px); }
+    .card__cta:hover { background: #6b7a56; transform: translateY(-1px); }
     .card__cta svg { width: 16px; height: 16px; flex-shrink: 0; }
   </style>
 </head>
