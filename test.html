@@ -138,20 +138,39 @@
 
     /* ── rest of card ── */
     .card__body {
-      background: #ffffff;
-      padding: 20px 20px 26px 20px;
-    }
-    .card__title-row {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 4px;
+      align-items: stretch;
+      
+      background: #ffffff;
+      padding: 20px 20px 26px;
     }
+
+    .card__left {
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .card__right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card__pricing {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+    
     .card__title { font-size: 28px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
-    .card__pricing { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
     .card__price-old { font-size: 13px; font-weight: 500; color: #c0bfbc; text-decoration: line-through; }
     .card__price-new { font-size: 19px; font-weight: 800; color: #7A8B4D; letter-spacing: -0.3px; }
-    .card__bottom-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
     .card__desc { font-size: 13px; color: #aaa; line-height: 1.6; max-width: 160px; }
     .card__cta {
       display: inline-flex; align-items: center; gap: 8px;
@@ -234,23 +253,37 @@
 
     <!-- Card body -->
     <div class="card__body">
-      <div class="card__title-row">
+
+      <div class="card__left">
         <h2 class="card__title">AirPod Pro</h2>
+
+        <p class="card__desc">
+          Active Noise Cancellation for immersive sound everywhere.
+        </p>
+      </div>
+
+      <div class="card__right">
         <div class="card__pricing">
           <span class="card__price-new">₦28,500</span>
           <span class="card__price-old">₦35,000</span>
         </div>
-      </div>
-      <div class="card__bottom-row">
-        <p class="card__desc">Active Noise Cancellation for immersive sound everywhere.</p>
+
         <button class="card__cta">
           Shop Now
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
-            <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5"
+          fill="rgba(255,255,255,0.18)"
+          stroke="rgba(255,255,255,0.28)"
+          stroke-width="1"/>
+            <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14"
+          stroke="white"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
+    
     </div>
 
   </div>
