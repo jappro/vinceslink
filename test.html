@@ -41,8 +41,10 @@
     /* ── Plus / Check Button ── */
     .card__plus {
       position: absolute;
-      top: 4px; right: 4px;
-      width: 47px; height: 48px;
+      top: clamp(6px, 1.5vw, 10px);
+      right: clamp(6px, 1.5vw, 10px);
+      width: clamp(30px, 7.5vw, 38px);
+      height: clamp(30px, 7.5vw, 38px);
       background: #fff;
       border-radius: 50%;
       display: flex;
@@ -56,30 +58,23 @@
       transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
       overflow: visible;
     }
-    .card__plus:hover {
-      transform: scale(1.08);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
-    }
-    .card__plus:active {
-      transform: scale(0.93);
-    }
-    .card__plus.added {
+    .card__plus:hover  { transform: scale(1.08); box-shadow: 0 4px 18px rgba(0,0,0,0.18); }
+    .card__plus:active { transform: scale(0.93); }
+    .card__plus.added  {
       background: #eaf4e2;
       box-shadow: 0 0 0 3px #C5D8A9, 0 4px 18px rgba(107,122,86,0.25);
     }
 
-    /* icon swap */
     .icon-plus, .icon-check {
       position: absolute;
       transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
     }
     .icon-plus  { opacity: 1; transform: scale(1) rotate(0deg); }
     .icon-check { opacity: 0; transform: scale(0.4) rotate(-30deg); }
-
     .card__plus.added .icon-plus  { opacity: 0; transform: scale(0.4) rotate(45deg); }
     .card__plus.added .icon-check { opacity: 1; transform: scale(1) rotate(0deg); }
 
-    /* ── Confetti particles ── */
+    /* ── Confetti ── */
     .confetti-wrap {
       position: absolute;
       top: 50%; left: 50%;
@@ -94,7 +89,6 @@
       opacity: 0;
       transform: translate(-50%, -50%) scale(0);
     }
-    /* 10 petals at different angles */
     .petal:nth-child(1)  { background: #ff6b6b; }
     .petal:nth-child(2)  { background: #ffd93d; }
     .petal:nth-child(3)  { background: #6bcb77; }
@@ -106,28 +100,24 @@
     .petal:nth-child(9)  { background: #6bcb77; width:5px; height:9px; border-radius:50%; }
     .petal:nth-child(10) { background: #4d96ff; }
 
-    /* burst animation triggered by JS adding .burst class */
-    .card__plus.added ~ .confetti-wrap .petal,
     .confetti-wrap.burst .petal {
       animation: petalBurst 0.7s cubic-bezier(0.22,0.61,0.36,1) forwards;
     }
-
-    /* stagger each petal */
-    .confetti-wrap.burst .petal:nth-child(1)  { --angle: 0deg;   --dist: 32px; animation-delay: 0s; }
-    .confetti-wrap.burst .petal:nth-child(2)  { --angle: 36deg;  --dist: 28px; animation-delay: 0.03s; }
-    .confetti-wrap.burst .petal:nth-child(3)  { --angle: 72deg;  --dist: 34px; animation-delay: 0.06s; }
-    .confetti-wrap.burst .petal:nth-child(4)  { --angle: 108deg; --dist: 30px; animation-delay: 0.02s; }
-    .confetti-wrap.burst .petal:nth-child(5)  { --angle: 144deg; --dist: 36px; animation-delay: 0.05s; }
-    .confetti-wrap.burst .petal:nth-child(6)  { --angle: 180deg; --dist: 28px; animation-delay: 0.01s; }
-    .confetti-wrap.burst .petal:nth-child(7)  { --angle: 216deg; --dist: 32px; animation-delay: 0.04s; }
-    .confetti-wrap.burst .petal:nth-child(8)  { --angle: 252deg; --dist: 30px; animation-delay: 0.07s; }
-    .confetti-wrap.burst .petal:nth-child(9)  { --angle: 288deg; --dist: 34px; animation-delay: 0.02s; }
-    .confetti-wrap.burst .petal:nth-child(10) { --angle: 324deg; --dist: 28px; animation-delay: 0.06s; }
+    .confetti-wrap.burst .petal:nth-child(1)  { --angle:0deg;   --dist:32px; animation-delay:0s; }
+    .confetti-wrap.burst .petal:nth-child(2)  { --angle:36deg;  --dist:28px; animation-delay:0.03s; }
+    .confetti-wrap.burst .petal:nth-child(3)  { --angle:72deg;  --dist:34px; animation-delay:0.06s; }
+    .confetti-wrap.burst .petal:nth-child(4)  { --angle:108deg; --dist:30px; animation-delay:0.02s; }
+    .confetti-wrap.burst .petal:nth-child(5)  { --angle:144deg; --dist:36px; animation-delay:0.05s; }
+    .confetti-wrap.burst .petal:nth-child(6)  { --angle:180deg; --dist:28px; animation-delay:0.01s; }
+    .confetti-wrap.burst .petal:nth-child(7)  { --angle:216deg; --dist:32px; animation-delay:0.04s; }
+    .confetti-wrap.burst .petal:nth-child(8)  { --angle:252deg; --dist:30px; animation-delay:0.07s; }
+    .confetti-wrap.burst .petal:nth-child(9)  { --angle:288deg; --dist:34px; animation-delay:0.02s; }
+    .confetti-wrap.burst .petal:nth-child(10) { --angle:324deg; --dist:28px; animation-delay:0.06s; }
 
     @keyframes petalBurst {
-      0%   { opacity: 1; transform: translate(-50%,-50%) scale(0) rotate(0deg); }
+      0%   { opacity:1; transform:translate(-50%,-50%) scale(0) rotate(0deg); }
       60%  {
-        opacity: 1;
+        opacity:1;
         transform:
           translate(
             calc(-50% + cos(var(--angle)) * var(--dist)),
@@ -136,7 +126,7 @@
           scale(1.2) rotate(180deg);
       }
       100% {
-        opacity: 0;
+        opacity:0;
         transform:
           translate(
             calc(-50% + cos(var(--angle)) * var(--dist) * 1.6),
