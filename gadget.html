@@ -802,115 +802,253 @@
     .product-track {
       max-width: 1280px;
       margin: 0 auto;
-      display: grid;
-      grid-template-rows: 1fr;
-      grid-auto-flow: column;
-      grid-auto-columns: calc((100% - 3 * 16px) / 4);
+      display: flex;
+      flex-direction: row;
       gap: 16px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
-      padding: 4px 40px 16px;
+      -ms-overflow-style: none;
+      padding: 8px 40px 20px;
+      /* Desktop: show ~3.5 card-shells */
+      --card-w: 260px;
     }
     .product-track::-webkit-scrollbar { display: none; }
-    @media (max-width: 900px) {
-      .product-track { grid-auto-columns: calc((100% - 1 * 16px) / 2); }
-    }
-    @media (max-width: 480px) {
-      .product-track { grid-auto-columns: calc(100% - 32px); padding: 4px 16px 16px; }
+
+    /* Card shell sizing per breakpoint */
+    .product-track .card-shell {
+      flex: 0 0 var(--card-w);
+      height: calc(var(--card-w) * 1.372); /* maintain 328:450 ratio */
+      scroll-snap-align: start;
     }
 
-    /* ── PRODUCT CARD ── */
-    .product-card {
-      background: var(--card);
-      border: 1.5px solid var(--card-border);
-      border-radius: 16px;
-      overflow: hidden;
-      scroll-snap-align: start;
-      box-shadow: var(--shadow-card);
+    /* Tablet — ~2.5 cards */
+    @media (max-width: 1024px) {
+      .product-track { --card-w: 280px; padding: 8px 24px 20px; }
+    }
+    /* Mobile — 328px, show 1.55 (edge peek of card 2) */
+    @media (max-width: 600px) {
+      .product-track {
+        --card-w: 328px;
+        padding: 8px 20px 20px;
+        /* peek: track wider than viewport, first card + 0.55 of second */
+      }
+    }
+
+    /* ── PRODUCT CARD — your card-shell design ── */
+
+    /* card-shell is the outer white rounded frame */
+    .card-shell {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 7px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04),
+                  0 8px 24px rgba(0,0,0,0.10),
+                  0 20px 50px rgba(0,0,0,0.07);
+      position: relative;
       transition: transform 0.22s, box-shadow 0.22s;
+      /* sizing handled by .product-track .card-shell */
+    }
+    .card-shell:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06),
+                  0 16px 40px rgba(0,0,0,0.16),
+                  0 32px 64px rgba(0,0,0,0.10);
+    }
+
+    /* inner card fills the shell */
+    .product-card {
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(0,51,204,0.13);
+      border-radius: 34px; /* shell 40px - padding 7px + a bit */
+      background: #ffffff;
+      overflow: hidden;
+      position: relative;
     }
 
+    /* SVG image section — flex:3 like your design */
     .product-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: var(--bg-alt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
+      width: 100%;
+      flex: 3;
       overflow: hidden;
     }
-    .product-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+    .product-img svg {
       display: block;
-      transition: transform 0.4s ease;
+      width: 100%;
+      height: 100%;
     }
-    .product-card:hover .product-img img { transform: scale(1.04); }
+    /* placeholder when no image */
     .product-img .img-placeholder-text {
       position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
       font-size: 0.65rem;
-      color: var(--card-border);
+      color: rgba(255,255,255,0.45);
       letter-spacing: 0.05em;
+      z-index: 2;
     }
 
+    /* + / ✅ button — your design exactly */
+    .card__plus {
+      position: absolute;
+      top: 10px; right: 12px;
+      width: 36px; height: 36px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      border: none; outline: none;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      overflow: visible;
+    }
+    .card__plus:hover  { transform: scale(1.08); box-shadow: 0 4px 18px rgba(0,0,0,0.18); }
+    .card__plus:active { transform: scale(0.93); }
+    .card__plus.added  {
+      box-shadow: 0 0 0 3px var(--cat-mid, #aaa), 0 4px 18px rgba(0,0,0,0.15);
+    }
+
+    .icon-plus, .icon-check {
+      position: absolute;
+      transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .icon-plus  { opacity: 1; transform: scale(1) rotate(0deg); }
+    .icon-check { opacity: 0; transform: scale(0.4) rotate(-30deg); }
+    .card__plus.added .icon-plus  { opacity: 0; transform: scale(0.4) rotate(45deg); }
+    .card__plus.added .icon-check { opacity: 1; transform: scale(1) rotate(0deg); }
+
+    /* Confetti */
+    .confetti-wrap {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      pointer-events: none;
+      z-index: 30;
+    }
+    .petal {
+      position: absolute;
+      width: 7px; height: 7px;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      transform: translate(-50%,-50%) scale(0);
+    }
+    .petal:nth-child(1)  { background:#ff6b6b; }
+    .petal:nth-child(2)  { background:#ffd93d; }
+    .petal:nth-child(3)  { background:#6bcb77; }
+    .petal:nth-child(4)  { background:#4d96ff; }
+    .petal:nth-child(5)  { background:#ff6b6b; width:5px; height:9px; border-radius:50%; }
+    .petal:nth-child(6)  { background:#c77dff; }
+    .petal:nth-child(7)  { background:#ffd93d; width:5px; height:9px; border-radius:50%; }
+    .petal:nth-child(8)  { background:#ff9a3c; }
+    .petal:nth-child(9)  { background:#6bcb77; width:5px; height:9px; border-radius:50%; }
+    .petal:nth-child(10) { background:#4d96ff; }
+    .confetti-wrap.burst .petal {
+      animation: petalBurst 0.7s cubic-bezier(0.22,0.61,0.36,1) forwards;
+    }
+    .confetti-wrap.burst .petal:nth-child(1)  { --angle:0deg;   --dist:32px; animation-delay:0s; }
+    .confetti-wrap.burst .petal:nth-child(2)  { --angle:36deg;  --dist:28px; animation-delay:0.03s; }
+    .confetti-wrap.burst .petal:nth-child(3)  { --angle:72deg;  --dist:34px; animation-delay:0.06s; }
+    .confetti-wrap.burst .petal:nth-child(4)  { --angle:108deg; --dist:30px; animation-delay:0.02s; }
+    .confetti-wrap.burst .petal:nth-child(5)  { --angle:144deg; --dist:36px; animation-delay:0.05s; }
+    .confetti-wrap.burst .petal:nth-child(6)  { --angle:180deg; --dist:28px; animation-delay:0.01s; }
+    .confetti-wrap.burst .petal:nth-child(7)  { --angle:216deg; --dist:32px; animation-delay:0.04s; }
+    .confetti-wrap.burst .petal:nth-child(8)  { --angle:252deg; --dist:30px; animation-delay:0.07s; }
+    .confetti-wrap.burst .petal:nth-child(9)  { --angle:288deg; --dist:34px; animation-delay:0.02s; }
+    .confetti-wrap.burst .petal:nth-child(10) { --angle:324deg; --dist:28px; animation-delay:0.06s; }
+    @keyframes petalBurst {
+      0%   { opacity:1; transform:translate(-50%,-50%) scale(0) rotate(0deg); }
+      60%  { opacity:1; transform:translate(calc(-50% + cos(var(--angle)) * var(--dist)), calc(-50% + sin(var(--angle)) * var(--dist))) scale(1.2) rotate(180deg); }
+      100% { opacity:0; transform:translate(calc(-50% + cos(var(--angle)) * var(--dist) * 1.6), calc(-50% + sin(var(--angle)) * var(--dist) * 1.6)) scale(0.6) rotate(360deg); }
+    }
+
+    /* Card body — white, flex:1 */
     .product-body {
-      padding: 16px 16px 18px;
+      flex: 1;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      background: #ffffff;
+      padding: 14px 18px 16px;
+    }
+    .product-left {
+      flex: 1;
+      min-width: 0;
+      max-width: 55%;
       display: flex;
       flex-direction: column;
-      flex: 1;
       gap: 5px;
+      overflow: hidden;
+    }
+    .product-right {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
     }
     .product-name {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 0.97rem;
-      color: var(--text);
-      line-height: 1.3;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      overflow: hidden;
     }
     .product-desc {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.58;
+      font-size: 0.73rem;
+      color: #aaa;
+      line-height: 1.4;
     }
     .product-pricing {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 6px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0;
     }
     .price-current {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.3px;
     }
     .price-old {
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #c0bfbc;
       text-decoration: line-through;
     }
     .shop-btn {
-      margin-top: 12px;
-      padding: 10px 0;
-      border: none;
-      border-radius: 10px;
+      display: inline-flex; align-items: center; gap: 6px;
+      color: #fff;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      letter-spacing: 0.01em;
+      font-size: 11.5px; font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 9999px;
+      border: none; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
       transition: opacity 0.2s, transform 0.15s;
-      width: 100%;
     }
-    .shop-btn:hover  { opacity: 0.85; transform: scale(0.98); }
-    .shop-btn:active { transform: scale(0.95); }
+    .shop-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .shop-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .shop-btn:active { transform: scale(0.96); }
+
+    /* ── Per-category colours ── */
+    /* Each category defines: bg-light, bg-mid, strip-color, check-color, price-color, btn-color */
+    /* Chargers — blue */
+    .cat-chargers { --cat-light: #dce6ff; --cat-mid: #0033CC; --cat-strip: #0029a3; --cat-price: #0033CC; --cat-btn: #0033CC; }
+    /* Sounds — purple */
+    .cat-sounds   { --cat-light: #ede0ff; --cat-mid: #7B2FBE; --cat-strip: #5a1fa0; --cat-price: #7B2FBE; --cat-btn: #7B2FBE; }
+    /* Power banks — orange */
+    .cat-powerbanks { --cat-light: #fff1e0; --cat-mid: #FF8A3D; --cat-strip: #cc6a1f; --cat-price: #cc6a1f; --cat-btn: #cc6a1f; }
+    /* Cables — green */
+    .cat-cables   { --cat-light: #d6f2e0; --cat-mid: #1E8E3E; --cat-strip: #156130; --cat-price: #1E8E3E; --cat-btn: #1E8E3E; }
+    /* Others — teal */
+    .cat-others   { --cat-light: #d6f7fa; --cat-mid: #00BCD4; --cat-strip: #007a8a; --cat-price: #007a8a; --cat-btn: #007a8a; }
 
     /* ════════════════════════════════
        STORE SECTION
@@ -1772,31 +1910,120 @@
     others:     { name: 'Others',     count: 7,  track: 'others-track'   },
   };
 
+  /* ── CART BUTTON — your confetti toggle ── */
+  function initCartBtn(btn, confettiEl) {
+    function positionConfetti() {
+      confettiEl.style.left = (btn.offsetLeft + btn.offsetWidth / 2) + 'px';
+      confettiEl.style.top  = (btn.offsetTop  + btn.offsetHeight / 2) + 'px';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isAdded = btn.classList.toggle('added');
+      if (isAdded) {
+        positionConfetti();
+        confettiEl.classList.remove('burst');
+        void confettiEl.offsetWidth;
+        confettiEl.classList.add('burst');
+        setTimeout(() => confettiEl.classList.remove('burst'), 900);
+      }
+    });
+  }
+
   function buildCards() {
     Object.entries(categories).forEach(([key, cat]) => {
       const track = document.getElementById(cat.track);
       for (let i = 1; i <= cat.count; i++) {
+        const uid = `${key}-${i}`;
+        // Outer shell
+        const shell = document.createElement('div');
+        shell.className = 'card-shell';
+
+        // Inner card
         const card = document.createElement('div');
         card.className = 'product-card';
+
+        const imgPath = `images/gadgets/${key}/${key}-${i}.jpg`;
+
         card.innerHTML = `
+          <!-- IMAGE SECTION — SVG shape matching your design -->
           <div class="product-img">
-            <img src="images/gadgets/${key}/${key}-${i}.jpg"
-                 alt="${cat.name} ${i}"
-                 onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder-text').style.display='block'"
-                 style="display:block"/>
-            <span class="img-placeholder-text" style="display:none">Image ${i}</span>
-          </div>
-          <div class="product-body">
-            <div class="product-name">${cat.name} ${i}</div>
-            <div class="product-desc">Description</div>
-            <div class="product-pricing">
-              <span class="price-current">&#8358;0.00</span>
-              <span class="price-old">&#8358;0.00</span>
+            <svg viewBox="0 0 334 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;">
+              <defs>
+                <clipPath id="clip-${uid}">
+                  <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z"/>
+                </clipPath>
+              </defs>
+              <!-- Strip bar -->
+              <path d="M 0,272 L 334,272 L 334,290 Q 334,320 304,320 L 30,320 Q 0,320 0,290 L 0,272 Z" fill="var(--cat-strip)"/>
+              <!-- Light BG shape -->
+              <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z" fill="var(--cat-light)"/>
+              <!-- Product image -->
+              <image
+                href="${imgPath}"
+                x="0" y="0" width="334" height="299"
+                preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#clip-${uid})"
+              />
+              <!-- Strip label -->
+              <text x="167" y="309" text-anchor="middle" dominant-baseline="middle"
+                fill="#ffffff" font-size="13" font-weight="500"
+                font-family="DM Sans, sans-serif" letter-spacing="0.5">
+                Product Tag
+              </text>
+            </svg>
+
+            <!-- + button -->
+            <button class="card__plus" aria-label="Add to cart" id="cartBtn-${uid}">
+              <svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <line x1="10" y1="3" x2="10" y2="17" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="3" y1="10" x2="17" y2="10" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <svg class="icon-check" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="10" fill="var(--cat-mid)"/>
+                <polyline points="6,11.5 9.5,15 16,8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <!-- Confetti -->
+            <div class="confetti-wrap" id="confetti-${uid}">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="petal"></div>
             </div>
-            <button class="shop-btn" onclick="openModal()">Shop Now</button>
+          </div>
+
+          <!-- BODY -->
+          <div class="product-body">
+            <div class="product-left">
+              <div class="product-name">${cat.name} ${i}</div>
+              <p class="product-desc">Description</p>
+            </div>
+            <div class="product-right">
+              <div class="product-pricing">
+                <span class="price-current" style="color:var(--cat-price)">&#8358;0.00</span>
+                <span class="price-old">&#8358;0.00</span>
+              </div>
+              <button class="shop-btn" style="background:var(--cat-btn)" onclick="openModal()">
+                Shop Now
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5"
+                    fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+                  <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14"
+                    stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
           </div>
         `;
-        track.appendChild(card);
+
+        shell.appendChild(card);
+        track.appendChild(shell);
+
+        // Wire up cart button after DOM insert
+        const cartBtn = card.querySelector(`#cartBtn-${uid}`);
+        const confettiEl = card.querySelector(`#confetti-${uid}`);
+        initCartBtn(cartBtn, confettiEl);
       }
     });
   }
