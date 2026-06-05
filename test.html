@@ -45,10 +45,10 @@
     /* ── Plus / Check Button ── */
     .card__plus {
       position: absolute;
-      top: clamp(12px, 1.8vw, 16px);
-      right: clamp(8px, 1.5vw, 12px);
-      width: clamp(32px, 7.5vw, 44px);
-      height: clamp(32px, 7.5vw, 44px);
+      top: 10px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
       background: #fff;
       border-radius: 50%;
       display: flex;
@@ -147,14 +147,12 @@
       display: flex;
       justify-content: space-between;
       align-items: stretch;
-      
       background: #ffffff;
       padding: 16px 20px 18px;
     }
 
     .card__left {
       flex: 1;
-
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -200,15 +198,15 @@
       <svg viewBox="0 0 334 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;">
         <defs>
           <clipPath id="greenClip">
-            <path d="M 22,0 L 252,0 Q 270,0 270,18 L 270,52 Q 270,68 290,65 L 314,65 Q 334,65 334,82 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z"/>
+            <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z"/>
           </clipPath>
         </defs>
 
         <!-- Olive strip -->
         <path d="M 0,272 L 334,272 L 334,290 Q 334,320 304,320 L 30,320 Q 0,320 0,290 L 0,272 Z" fill="#7A8B4D"/>
 
-        <!-- Green L-shape -->
-        <path d="M 22,0 L 252,0 Q 270,0 270,18 L 270,52 Q 270,68 290,65 L 314,65 Q 334,65 334,82 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z" fill="#C5D8A9"/>
+        <!-- Green L-shape — updated notch -->
+        <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z" fill="#C5D8A9"/>
 
         <!-- Product image clipped to green area -->
         <image
@@ -229,29 +227,20 @@
 
       <!-- + / ✅ button -->
       <button class="card__plus" id="cartBtn" aria-label="Add to cart">
-        <!-- Plus icon -->
         <svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <line x1="10" y1="3" x2="10" y2="17" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
           <line x1="3" y1="10" x2="17" y2="10" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
         </svg>
-        <!-- Check icon -->
         <svg class="icon-check" width="22" height="22" viewBox="0 0 22 22" fill="none">
           <circle cx="11" cy="11" r="10" fill="#6b7a56"/>
           <polyline points="6,11.5 9.5,15 16,8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
 
-      <!-- Confetti container anchored to the button -->
       <div class="confetti-wrap" id="confettiWrap">
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
         <div class="petal"></div>
       </div>
 
@@ -259,13 +248,9 @@
 
     <!-- Card body -->
     <div class="card__body">
-
       <div class="card__left">
         <h2 class="card__title">AirPod Pro</h2>
-
-        <p class="card__desc">
-          Active Noise Cancellation for immersive sound everywhere.
-        </p>
+        <p class="card__desc">Active Noise Cancellation for immersive sound everywhere.</p>
       </div>
 
       <div class="card__right">
@@ -273,23 +258,16 @@
           <span class="card__price-new">₦28,500</span>
           <span class="card__price-old">₦35,000</span>
         </div>
-
         <button class="card__cta">
           Shop Now
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2.5" y="2.5" width="19" height="19" rx="5"
-          fill="rgba(255,255,255,0.18)"
-          stroke="rgba(255,255,255,0.28)"
-          stroke-width="1"/>
+              fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
             <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14"
-          stroke="white"
-          stroke-width="1.9"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
+              stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-    
     </div>
 
   </div>
@@ -299,25 +277,18 @@
   const btn = document.getElementById('cartBtn');
   const confetti = document.getElementById('confettiWrap');
 
-  // Position the confetti wrap exactly over the button
   function positionConfetti() {
-    const btnRect = btn.getBoundingClientRect();
-    const parentRect = btn.offsetParent.getBoundingClientRect();
     confetti.style.left = (btn.offsetLeft + btn.offsetWidth / 2) + 'px';
     confetti.style.top  = (btn.offsetTop  + btn.offsetHeight / 2) + 'px';
   }
 
   btn.addEventListener('click', () => {
     const isAdded = btn.classList.toggle('added');
-
     if (isAdded) {
       positionConfetti();
-      // remove then re-add to retrigger animation
       confetti.classList.remove('burst');
-      void confetti.offsetWidth; // reflow
+      void confetti.offsetWidth;
       confetti.classList.add('burst');
-
-      // clean up burst class after animation
       setTimeout(() => confetti.classList.remove('burst'), 900);
     }
   });
