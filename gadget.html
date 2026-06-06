@@ -171,20 +171,7 @@
       display: block;
       opacity: 0.7;
     }
-    /* On mobile shift focal point so face is visible */
-    @media (max-width: 768px) {
-      .hero-bg img {
-        object-position: 72% 10%;
-      }
-      /* Lighten overlay on mobile so image breathes more */
-      .hero-overlay {
-        background:
-          linear-gradient(to bottom,
-            rgba(5,6,26,0.70) 0%,
-            rgba(5,6,26,0.45) 50%,
-            rgba(5,6,26,0.70) 100%);
-      }
-    }
+
 
     /* Gradient overlay — left side readable, right side shows image */
     .hero-overlay {
@@ -502,6 +489,34 @@
       object-fit: contain;
       filter: drop-shadow(0 20px 48px rgba(0,80,255,0.30))
               drop-shadow(0 4px 20px rgba(0,0,0,0.55));
+      /* Tune these CSS vars per breakpoint to reposition/resize */
+      --iphone-scale: 1;
+      --iphone-offset-x: 0px;
+      --iphone-offset-y: 0px;
+      transform: scale(var(--iphone-scale))
+                 translate(var(--iphone-offset-x), var(--iphone-offset-y));
+      transform-origin: center center;
+    }
+    @media (max-width: 1024px) {
+      .sub-iphone-img {
+        --iphone-scale: 0.95;
+        --iphone-offset-x: 0px;
+        --iphone-offset-y: 0px;
+      }
+    }
+    @media (max-width: 768px) {
+      .sub-iphone-img {
+        --iphone-scale: 0.90;
+        --iphone-offset-x: 0px;
+        --iphone-offset-y: 0px;
+      }
+    }
+    @media (max-width: 480px) {
+      .sub-iphone-img {
+        --iphone-scale: 0.85;
+        --iphone-offset-x: 0px;
+        --iphone-offset-y: 0px;
+      }
     }
 
     /* ── RIGHT: cards + tagline ── */
@@ -1385,7 +1400,7 @@
 
 <!-- ══ NAV ══ -->
 <nav id="mainNav">
-  <a href="https://jappro.github.io/vinceslink/" class="nav-back">
+  <a href="https://vinceslink.com" class="nav-back">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 12H5M12 19l-7-7 7-7"/>
     </svg>
@@ -1435,7 +1450,7 @@
     <h1>Premium Gadgets.<br/><span class="accent">Trusted Quality.</span></h1>
 
     <p class="hero-desc">
-      Top quality tech accessories and smart gadgets, sourced directly from <strong style="color:rgba(255,255,255,0.90);">Paul Feng Gadgets</strong> — our verified regional distribution partner. Every product is founder-sourced, personally selected, and delivered with guaranteed authenticity.
+      Top quality tech accessories and smart gadgets, sourced directly through our verified regional partnership with <strong style="color:rgba(255,255,255,0.90);">Paul Feng Gadgets</strong>. Every product is personally selected for performance, reliability, and guaranteed authenticity, bringing you trusted technology with confidence.
     </p>
 
     <div class="hero-btns">
@@ -1504,7 +1519,7 @@
       <!-- Square rainbow ring behind the phones -->
       <div class="sub-ring-box"></div>
       <!-- PNG with transparent bg floats freely on top -->
-      <img src="images/business/Gadget/IMG_1244.png"
+      <img src="images/business/Gadget/copy_71A11150-E16D-4034-A8A1-3D2E5F5C1C16.png"
            alt="Featured Gadgets"
            class="sub-iphone-img"
            onerror="this.style.opacity='0.15'"/>
@@ -1839,7 +1854,7 @@
 <!-- ══ FOOTER ══ -->
 <footer>
   <p>© 2026 Vinceslink Gadget Hub. All rights reserved. &nbsp;|&nbsp;
-    <a href="https://jappro.github.io/vinceslink/">← Back to Main Site</a>
+    <a href="https://vinceslink.com">← Back to Main Site</a>
   </p>
   <p>Built with
     <svg viewBox="0 0 24 24" fill="#e25555" width="13" height="13" style="vertical-align:middle;margin:0 2px">
