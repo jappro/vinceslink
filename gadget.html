@@ -810,8 +810,8 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
       padding: 8px 40px 20px;
-      /* Desktop: show ~3.5 card-shells */
-      --card-w: 260px;
+      /* Desktop: show 3.5 cards — 1200px track / 3.5 ≈ 320px */
+      --card-w: 320px;
     }
     .product-track::-webkit-scrollbar { display: none; }
 
@@ -822,16 +822,15 @@
       scroll-snap-align: start;
     }
 
-    /* Tablet — ~2.5 cards */
+    /* Tablet — 2.1 cards visible */
     @media (max-width: 1024px) {
-      .product-track { --card-w: 280px; padding: 8px 24px 20px; }
+      .product-track { --card-w: 340px; padding: 8px 24px 20px; }
     }
     /* Mobile — 328px, show 1.55 (edge peek of card 2) */
     @media (max-width: 600px) {
       .product-track {
         --card-w: 328px;
         padding: 8px 20px 20px;
-        /* peek: track wider than viewport, first card + 0.55 of second */
       }
     }
 
@@ -1288,6 +1287,7 @@
     .cat-others     .price-current { color: var(--others); }
     .cat-others     .shop-btn      { background: var(--others);     color: #fff; }
     .cat-others     .section-icon  { background: var(--others); }
+
 
     /* ════════════════════════════════
        FADE IN ON SCROLL
@@ -2047,24 +2047,29 @@
 
   /* ── CHIP SCROLL + ACTIVE STATE ── */
   function scrollToCategory(id, chipEl) {
-    document.querySelectorAll('.chip').forEach(c => { c.className = 'chip'; });
-    chipEl.classList.add('active-' + id);
+    setActiveChip(id);
     const target = document.getElementById(id);
-    const offset = 68 + 70; /* nav + chips height */
+    const offset = 68 + 70;
     const top = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: 'smooth' });
   }
 
   const sectionIds = ['chargers','sounds','powerbanks','cables','others'];
+
+  function setActiveChip(id) {
+    document.querySelectorAll('.chip').forEach(c => {
+      c.className = 'chip';
+      if (c.dataset.target === id) {
+        c.classList.add('active-' + id);
+        // Auto-scroll the chips bar so this chip is always in view
+        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      }
+    });
+  }
+
   const chipObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        document.querySelectorAll('.chip').forEach(c => {
-          c.className = 'chip';
-          if (c.dataset.target === id) c.classList.add('active-' + id);
-        });
-      }
+      if (entry.isIntersecting) setActiveChip(entry.target.id);
     });
   }, { rootMargin: '-130px 0px -60% 0px' });
 
@@ -2171,6 +2176,5 @@
     });
     loadPosition();
   })();
+
 </script>
-</body>
-</html>
