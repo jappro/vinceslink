@@ -1,72 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AirPod Pro Card</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet"/>
+  <title>Vinceslink Gadget Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
+    /* ── CSS VARIABLES ── */
+    :root {
+      --bg:           #F5F5F3;
+      --bg-alt:       #EFEFED;
+      --text:         #1A1A1A;
+      --text-muted:   #666666;
+      --card:         #ffffff;
+      --card-border:  #e2e4e9;
+      --chip-bg:      #f0f1f4;
+      --chip-text:    #2C3E50;
+      --nav-bg:       rgba(255,255,255,0.95);
+      --shadow:       0 2px 16px rgba(0,0,0,0.07);
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 32px rgba(0,51,204,0.13);
+      --blue:         #0033CC;
+      --blue-hover:   #0029a3;
+      --chargers:       #0033CC;
+      --chargers-light: #e6ebff;
+      --sounds:         #7B2FBE;
+      --sounds-light:   #f3e8ff;
+      --powerbanks:     #FF8A3D;
+      --powerbanks-light:#fff0e6;
+      --cables:         #1E8E3E;
+      --cables-light:   #e6f4ea;
+      --others:         #00BCD4;
+      --others-light:   #e0f9fb;
+
+      /* Hero dark theme */
+      --hero-bg:      #05061a;
+      --hero-surface: rgba(255,255,255,0.06);
+      --hero-border:  rgba(255,255,255,0.10);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+
     body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════
+       NAV — transparent over hero, white over content
+    ════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      transition: background 0.35s, border-color 0.35s, box-shadow 0.35s;
+      /* Start transparent over hero */
+      background: transparent;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.88rem;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    nav.scrolled .nav-back { color: var(--text-muted); }
+    .nav-back:hover { opacity: 0.75; }
+    .nav-back svg { width: 18px; height: 18px; }
+
+    .nav-brand {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.95);
+      transition: color 0.35s;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    nav.scrolled .nav-brand { color: var(--text); }
+    .nav-brand span { color: #4d9fff; }
+    nav.scrolled .nav-brand span { color: var(--blue); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-signup-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.25s, border-color 0.25s;
+      white-space: nowrap;
+    }
+    nav.scrolled .nav-signup-btn {
+      background: #FF8A3D;
+      border-color: #FF8A3D;
+      color: white;
+    }
+    .nav-signup-btn:hover { opacity: 0.88; }
+    .nav-signup-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-signup-btn span { display: none; }
+      .nav-signup-btn { padding: 8px 10px; }
+    }
+
+    /* ════════════════════════════════
+       HERO — full-viewport dark section
+    ════════════════════════════════ */
+    .hero {
+      position: relative;
       min-height: 100vh;
+      background: var(--hero-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Background image */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 65% top;
+      display: block;
+      opacity: 0.7;
+    }
+
+
+    /* Gradient overlay — left side readable, right side shows image */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to right,
+          rgba(5,6,26,0.95) 0%,
+          rgba(5,6,26,0.80) 35%,
+          rgba(5,6,26,0.30) 65%,
+          rgba(5,6,26,0.05) 100%),
+        linear-gradient(to top,
+          rgba(5,6,26,0.60) 0%,
+          transparent 40%);
+    }
+
+    /* Content */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 120px 48px 80px;
+      width: 100%;
+    }
+
+    /* Eyebrow pill */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.7);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.5s ease both;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4d9fff;
+    }
+
+    /* Main heading */
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 24px;
+      max-width: 600px;
+      animation: fadeInUp 0.5s ease 0.1s both;
+    }
+    .hero h1 .accent { color: #4d9fff; }
+
+    /* Description */
+    .hero-desc {
+      max-width: 480px;
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      line-height: 1.78;
+      margin-bottom: 40px;
+      font-weight: 400;
+      animation: fadeInUp 0.5s ease 0.2s both;
+    }
+
+    /* CTA buttons */
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+      animation: fadeInUp 0.5s ease 0.3s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      background: #0033CC;
+      color: white;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #0029a3; transform: scale(1.03); }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.22);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.14); }
+    .btn-secondary svg { width: 18px; height: 18px; }
+
+    /* Trust badges row */
+    .hero-trust {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      max-width: 680px;
+      animation: fadeInUp 0.5s ease 0.4s both;
+    }
+    .hero-trust-item {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 22px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-trust-item:last-child { border-right: none; }
+    .trust-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(77,159,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: #4d9fff;
+    }
+    .trust-icon svg { width: 18px; height: 18px; }
+    .trust-text-wrap { display: flex; flex-direction: column; gap: 2px; }
+    .trust-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+    .trust-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.3;
+    }
+
+    /* Top-right floating spec card */
+    .hero-spec-card {
+      position: absolute;
+      top: 100px;
+      right: 48px;
+      z-index: 3;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      border-radius: 14px;
+      padding: 16px 20px;
+      min-width: 190px;
+      animation: fadeInUp 0.6s ease 0.5s both;
+    }
+    .spec-card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: white;
+      margin-bottom: 2px;
+    }
+    .spec-card-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+    }
+    .spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .spec-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4d9fff;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero-spec-card { display: none; }
+      .hero-inner { padding: 100px 24px 64px; }
+      .hero h1 { font-size: clamp(2.2rem, 9vw, 3.2rem); }
+      .hero-trust-item { min-width: 150px; padding: 14px 16px; }
+    }
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+      .btn-primary, .btn-secondary {
+        padding: 11px 18px;
+        font-size: 0.82rem;
+        flex: 0 0 auto;
+      }
+      .hero-trust { flex-direction: column; }
+      .hero-trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .hero-trust-item:last-child { border-bottom: none; }
+    }
+
+    /* ════════════════════════════════
+       SUB-HERO — split: iPhone left, cards right
+    ════════════════════════════════ */
+    .sub-hero {
+      background: linear-gradient(160deg, #06081e 0%, #0a0d2a 50%, #080c24 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Ambient top glow */
+    .sub-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse, rgba(0,80,255,0.14) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Permanent two-column — never stacks */
+    .sub-hero-layout {
+      display: grid;
+      grid-template-columns: 44% 56%;
+      position: relative;
+      z-index: 1;
+      min-height: 520px;
+    }
+
+    /* ── LEFT: iPhone floating over square ring-light ── */
+    .sub-hero-left {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ddddd9;
-      font-family: 'DM Sans', sans-serif;
+      padding: 40px 0;
+      overflow: visible;
     }
 
+    /* Square rainbow ring-light — sits behind the iPhone */
+    .sub-ring-box {
+      position: absolute;
+      /* Square: equal width/height based on the column */
+      width: 68%;
+      aspect-ratio: 1;
+      border-radius: 28px;
+      z-index: 0;
+      /* Rainbow border using conic-gradient */
+      background:
+        linear-gradient(#06081e, #06081e) padding-box,
+        conic-gradient(
+          from 0deg,
+          #0066ff,
+          #8833ff,
+          #ff33cc,
+          #ff6600,
+          #ffcc00,
+          #00ccff,
+          #0066ff
+        ) border-box;
+      border: 2.5px solid transparent;
+      /* Glowing bloom */
+      box-shadow:
+        0 0 40px rgba(0,100,255,0.45),
+        0 0 90px rgba(140,0,255,0.25),
+        0 0 140px rgba(255,50,200,0.12);
+      /* Slowly spin the rainbow */
+      animation: ringRotate 6s linear infinite;
+    }
+    @keyframes ringRotate {
+      from { filter: hue-rotate(0deg); }
+      to   { filter: hue-rotate(360deg); }
+    }
+
+    /* iPhone PNG — floats above ring, transparent bg shows through */
+    .sub-iphone-img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 48px rgba(0,80,255,0.30))
+              drop-shadow(0 4px 20px rgba(0,0,0,0.55));
+      /* Tune these CSS vars per breakpoint to reposition/resize */
+      --iphone-scale: 1;
+      --iphone-offset-x: 0px;
+      --iphone-offset-y: 0px;
+      transform: scale(var(--iphone-scale))
+                 translate(var(--iphone-offset-x), var(--iphone-offset-y));
+      transform-origin: center center;
+    }
+    @media (max-width: 1024px) {
+      .sub-iphone-img {
+        --iphone-scale: 0.95;
+        --iphone-offset-x: 0px;
+        --iphone-offset-y: 0px;
+      }
+    }
+    @media (max-width: 768px) {
+      .sub-iphone-img {
+        --iphone-scale: 0.90;
+        --iphone-offset-x: 0px;
+        --iphone-offset-y: 0px;
+      }
+    }
+    @media (max-width: 480px) {
+      .sub-iphone-img {
+        --iphone-scale: 0.85;
+        --iphone-offset-x: 0px;
+        --iphone-offset-y: 0px;
+      }
+    }
+
+    /* ── RIGHT: cards + tagline ── */
+    .sub-hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 36px 36px 20px;
+      gap: 0;
+    }
+
+    .sub-hero-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+    .sub-hero-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+      color: white;
+      letter-spacing: -0.02em;
+    }
+    .sub-hero-title .accent { color: #4d9fff; }
+
+    .sub-hero-shop {
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    }
+    .sub-hero-shop-label {
+      font-size: 0.80rem; color: rgba(255,255,255,0.38); font-weight: 500;
+    }
+    .sub-scroll-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .sub-scroll-btn:hover { background: rgba(255,255,255,0.15); }
+    .sub-scroll-btn svg { width: 12px; height: 12px; }
+
+    /* Cards scroll track */
+    .sub-cards-track {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 4px;
+    }
+    .sub-cards-track::-webkit-scrollbar { display: none; }
+
+    /* Card — square shape, transparent glass body */
+    .sub-card {
+      /* Desktop: show ~3 cards */
+      flex: 0 0 calc(33.33% - 7px);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      transition: border-color 0.22s, transform 0.22s, background 0.22s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .sub-card:hover {
+      border-color: rgba(77,159,255,0.50);
+      background: rgba(77,159,255,0.07);
+      transform: translateY(-4px);
+    }
+
+    /* Square image area — transparent bg */
+    .sub-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: transparent;
+      display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      padding: 10px 8px 6px;
+    }
+    .sub-card-img img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.38s ease;
+    }
+    .sub-card:hover .sub-card-img img { transform: scale(1.07); }
+
+    /* Transparent text area */
+    .sub-card-body {
+      padding: 6px 10px 12px;
+      background: rgba(255,255,255,0.025);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex: 1;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .sub-card-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 0.78rem;
+      color: rgba(255,255,255,0.90); line-height: 1.25;
+    }
+    .sub-card-desc {
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.4;
+    }
+    .sub-card-price {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 0.80rem;
+      color: #4d9fff; margin-top: 3px;
+    }
+
+    /* Tagline — lives in right column, under cards */
+    .sub-tagline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 12px 20px;
+      margin-top: 16px;
+    }
+    .sub-tagline-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(0,51,204,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: #4d9fff;
+    }
+    .sub-tagline-icon svg { width: 16px; height: 16px; }
+    .sub-tagline-text {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.5;
+    }
+    .sub-tagline-text .accent { color: #4d9fff; font-weight: 600; }
+
+    /* ── RESPONSIVE — always split ── */
+    @media (max-width: 1024px) {
+      .sub-hero-right { padding: 32px 20px 32px 14px; }
+      .sub-card { flex: 0 0 calc(50% - 5px); }
+      .sub-ring-box { width: 72%; }
+    }
+    @media (max-width: 768px) {
+      .sub-hero-layout { grid-template-columns: 46% 54%; min-height: 380px; }
+      .sub-hero-left { padding: 24px 0; }
+      .sub-iphone-img { max-width: 100%; }
+      .sub-ring-box { width: 76%; border-radius: 18px; }
+      .sub-hero-right { padding: 24px 14px 24px 10px; }
+      .sub-hero-head { margin-bottom: 12px; }
+      .sub-hero-title { font-size: clamp(0.82rem, 3vw, 1.1rem); }
+      .sub-hero-shop-label { display: none; }
+      /* Mobile cards: show 1 full + half of 2nd */
+      .sub-card { flex: 0 0 58%; border-radius: 10px; }
+      .sub-card-img { padding: 6px; }
+      .sub-card-body { padding: 4px 8px 10px; }
+      .sub-card-name { font-size: 0.68rem; }
+      .sub-card-desc { display: none; }
+      .sub-card-price { font-size: 0.68rem; }
+      .sub-tagline { padding: 8px 12px; border-radius: 10px; margin-top: 10px; }
+      .sub-tagline-icon { width: 26px; height: 26px; }
+      .sub-tagline-icon svg { width: 12px; height: 12px; }
+      .sub-tagline-text { font-size: 0.62rem; }
+    }
+    @media (max-width: 480px) {
+      .sub-hero-layout { grid-template-columns: 44% 56%; min-height: 300px; }
+      .sub-hero-left { padding: 16px 0; }
+      .sub-ring-box { width: 80%; border-radius: 14px; }
+      .sub-hero-right { padding: 16px 10px 16px 6px; }
+      .sub-card { flex: 0 0 62%; }
+      .sub-tagline-text { font-size: 0.58rem; }
+    }
+
+    /* ════════════════════════════════
+       CATEGORY CHIPS
+    ════════════════════════════════ */
+    .chips-section {
+      position: sticky;
+      top: 68px;
+      z-index: 90;
+      background: #F5F5F3;
+      border-bottom: 1px solid #ebebea;
+      padding: 14px 40px;
+      box-shadow: var(--shadow);
+    }
+    .chips-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .chips-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .chips-row::-webkit-scrollbar { display: none; }
+
+    .chip {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 1.5px solid var(--card-border);
+      background: var(--chip-bg);
+      color: var(--chip-text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.22s;
+      white-space: nowrap;
+    }
+    .chip svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .chip:hover { opacity: 0.8; }
+    .chip.active-chargers   { background: var(--chargers);   color: #fff; border-color: var(--chargers); }
+    .chip.active-sounds     { background: var(--sounds);     color: #fff; border-color: var(--sounds); }
+    .chip.active-powerbanks { background: var(--powerbanks); color: #fff; border-color: var(--powerbanks); }
+    .chip.active-cables     { background: var(--cables);     color: #fff; border-color: var(--cables); }
+    .chip.active-others     { background: var(--others);     color: #fff; border-color: var(--others); }
+
+    @media (max-width: 600px) { .chips-section { padding: 12px 16px; } }
+
+    /* ════════════════════════════════
+       CATEGORY SECTIONS
+    ════════════════════════════════ */
+    .categories-wrapper { background: #F5F5F3; }
+
+    .category-section {
+      padding: 60px 0 52px;
+      border-bottom: 1px solid #ebebea;
+    }
+    .category-section:last-child { border-bottom: none; }
+    .category-section.alt-bg { background: #EFEFED; }
+
+    .section-header {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .section-title-wrap { display: flex; align-items: center; gap: 12px; }
+
+    .section-icon {
+      width: 42px; height: 42px;
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: white;
+    }
+    .section-icon svg { width: 20px; height: 20px; }
+
+    .section-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .section-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .scroll-controls { display: flex; gap: 8px; }
+    .scroll-btn {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1.5px solid var(--blue);
+      background: var(--card);
+      color: var(--blue);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      box-shadow: var(--shadow);
+    }
+    .scroll-btn:hover { background: var(--blue); color: #fff; }
+    .scroll-btn svg { width: 16px; height: 16px; }
+
+    /* ── PRODUCT SCROLL TRACK ── */
+    .product-track {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 8px 40px 20px 32px;
+      /* Desktop: show 3.5 cards — 1200px track / 3.5 ≈ 320px */
+      --card-w: 320px;
+    }
+    .product-track::-webkit-scrollbar { display: none; }
+
+    /* Card shell sizing per breakpoint */
+    .product-track .card-shell {
+      flex: 0 0 var(--card-w);
+      height: calc(var(--card-w) * 1.372); /* maintain 328:450 ratio */
+      scroll-snap-align: start;
+    }
+
+    /* Tablet — 2.1 cards visible */
+    @media (max-width: 1024px) {
+      .product-track { --card-w: 340px; padding: 8px 24px 20px 24px; }
+    }
+    /* Mobile — 328px, show 1.55 (edge peek of card 2) */
+    @media (max-width: 600px) {
+      .product-track {
+        --card-w: 328px;
+        padding: 8px 20px 20px 20px;
+      }
+    }
+
+    /* ── PRODUCT CARD — your card-shell design ── */
+
+    /* card-shell is the outer white rounded frame */
     .card-shell {
-      width: 328px;
-      height: 450px;
       background: #ffffff;
       border-radius: 40px;
       padding: 7px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10), 0 20px 50px rgba(0,0,0,0.07);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04),
+                  0 8px 24px rgba(0,0,0,0.10),
+                  0 20px 50px rgba(0,0,0,0.07);
       position: relative;
+      transition: transform 0.22s, box-shadow 0.22s;
+      /* sizing handled by .product-track .card-shell */
     }
-    .card {
-      width: 100%;
-      height: 100%;
+    .card-shell:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06),
+                  0 16px 40px rgba(0,0,0,0.16),
+                  0 32px 64px rgba(0,0,0,0.10);
+    }
+
+    /* inner card fills the shell */
+    .product-card {
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
-      border-radius: 40px;
+      border-radius: 34px; /* shell 40px - padding 7px + a bit */
       background: #ffffff;
       overflow: hidden;
       position: relative;
     }
-    .card__image-section {
+
+    /* SVG image section — flex:3 like your design */
+    .product-img {
       position: relative;
       width: 100%;
-      border-radius: 0 0 40px 40px;
       flex: 3;
+      overflow: hidden;
+    }
+    .product-img svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    /* placeholder when no image */
+    .product-img .img-placeholder-text {
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+      z-index: 2;
     }
 
-    /* ── Plus / Check Button ── */
+    /* + / ✅ button — your design exactly */
     .card__plus {
       position: absolute;
-      top: 10px;
-      right: 12px;
-      width: 36px;
-      height: 36px;
+      top: 10px; right: 12px;
+      width: 36px; height: 36px;
       background: #fff;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       cursor: pointer;
       z-index: 20;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-      border: none;
-      outline: none;
+      border: none; outline: none;
       transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
       overflow: visible;
     }
     .card__plus:hover  { transform: scale(1.08); box-shadow: 0 4px 18px rgba(0,0,0,0.18); }
     .card__plus:active { transform: scale(0.93); }
     .card__plus.added  {
-      background: #eaf4e2;
-      box-shadow: 0 0 0 3px #C5D8A9, 0 4px 18px rgba(107,122,86,0.25);
+      box-shadow: 0 0 0 3px var(--cat-mid, #aaa), 0 4px 18px rgba(0,0,0,0.15);
     }
 
     .icon-plus, .icon-check {
@@ -78,7 +934,7 @@
     .card__plus.added .icon-plus  { opacity: 0; transform: scale(0.4) rotate(45deg); }
     .card__plus.added .icon-check { opacity: 1; transform: scale(1) rotate(0deg); }
 
-    /* ── Confetti ── */
+    /* Confetti */
     .confetti-wrap {
       position: absolute;
       top: 50%; left: 50%;
@@ -91,19 +947,18 @@
       width: 7px; height: 7px;
       border-radius: 50% 0 50% 0;
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
+      transform: translate(-50%,-50%) scale(0);
     }
-    .petal:nth-child(1)  { background: #ff6b6b; }
-    .petal:nth-child(2)  { background: #ffd93d; }
-    .petal:nth-child(3)  { background: #6bcb77; }
-    .petal:nth-child(4)  { background: #4d96ff; }
-    .petal:nth-child(5)  { background: #ff6b6b; width:5px; height:9px; border-radius:50%; }
-    .petal:nth-child(6)  { background: #c77dff; }
-    .petal:nth-child(7)  { background: #ffd93d; width:5px; height:9px; border-radius:50%; }
-    .petal:nth-child(8)  { background: #ff9a3c; }
-    .petal:nth-child(9)  { background: #6bcb77; width:5px; height:9px; border-radius:50%; }
-    .petal:nth-child(10) { background: #4d96ff; }
-
+    .petal:nth-child(1)  { background:#ff6b6b; }
+    .petal:nth-child(2)  { background:#ffd93d; }
+    .petal:nth-child(3)  { background:#6bcb77; }
+    .petal:nth-child(4)  { background:#4d96ff; }
+    .petal:nth-child(5)  { background:#ff6b6b; width:5px; height:9px; border-radius:50%; }
+    .petal:nth-child(6)  { background:#c77dff; }
+    .petal:nth-child(7)  { background:#ffd93d; width:5px; height:9px; border-radius:50%; }
+    .petal:nth-child(8)  { background:#ff9a3c; }
+    .petal:nth-child(9)  { background:#6bcb77; width:5px; height:9px; border-radius:50%; }
+    .petal:nth-child(10) { background:#4d96ff; }
     .confetti-wrap.burst .petal {
       animation: petalBurst 0.7s cubic-bezier(0.22,0.61,0.36,1) forwards;
     }
@@ -117,186 +972,1280 @@
     .confetti-wrap.burst .petal:nth-child(8)  { --angle:252deg; --dist:30px; animation-delay:0.07s; }
     .confetti-wrap.burst .petal:nth-child(9)  { --angle:288deg; --dist:34px; animation-delay:0.02s; }
     .confetti-wrap.burst .petal:nth-child(10) { --angle:324deg; --dist:28px; animation-delay:0.06s; }
-
     @keyframes petalBurst {
       0%   { opacity:1; transform:translate(-50%,-50%) scale(0) rotate(0deg); }
-      60%  {
-        opacity:1;
-        transform:
-          translate(
-            calc(-50% + cos(var(--angle)) * var(--dist)),
-            calc(-50% + sin(var(--angle)) * var(--dist))
-          )
-          scale(1.2) rotate(180deg);
-      }
-      100% {
-        opacity:0;
-        transform:
-          translate(
-            calc(-50% + cos(var(--angle)) * var(--dist) * 1.6),
-            calc(-50% + sin(var(--angle)) * var(--dist) * 1.6)
-          )
-          scale(0.6) rotate(360deg);
-      }
+      60%  { opacity:1; transform:translate(calc(-50% + cos(var(--angle)) * var(--dist)), calc(-50% + sin(var(--angle)) * var(--dist))) scale(1.2) rotate(180deg); }
+      100% { opacity:0; transform:translate(calc(-50% + cos(var(--angle)) * var(--dist) * 1.6), calc(-50% + sin(var(--angle)) * var(--dist) * 1.6)) scale(0.6) rotate(360deg); }
     }
 
-    /* ── rest of card ── */
-    .card__body {
+    /* Card body — white, flex:1 */
+    .product-body {
       flex: 1;
       flex-shrink: 0;
       display: flex;
       justify-content: space-between;
       align-items: stretch;
       background: #ffffff;
-      padding: 16px 20px 18px;
+      padding: 14px 18px 16px;
     }
-
-    .card__left {
+    .product-left {
       flex: 1;
       min-width: 0;
-      max-width: 155px;
+      max-width: 55%;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
       overflow: hidden;
     }
-    
-    .card__right {
+    .product-right {
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-end;
     }
-
-    .card__pricing {
+    .product-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+    .product-desc {
+      font-size: 0.73rem;
+      color: #aaa;
+      line-height: 1.4;
+    }
+    .product-pricing {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 0px;
+      gap: 0;
     }
-    
-    .card__title { font-size: 24px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; overflow: hidden; }
-    .card__price-old { font-size: 12px; font-weight: 500; color: #c0bfbc; text-decoration: line-through; }
-    .card__price-new { font-size: 16px; font-weight: 800; color: #7A8B4D; letter-spacing: -0.3px; }
-    .card__desc { font-size: 12px; color: #aaa; line-height: 1.4; max-width: 140px; }
-    .card__cta {
+    .price-current {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.3px;
+    }
+    .price-old {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #c0bfbc;
+      text-decoration: line-through;
+    }
+    .shop-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      background: #6b7a56; color: #fff;
-      font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 600;
-      padding: 9px 14px; border-radius: 9999px; border: none; cursor: pointer;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11.5px; font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 9999px;
+      border: none; cursor: pointer;
       white-space: nowrap; flex-shrink: 0;
-      transition: background 0.2s, transform 0.15s;
+      transition: opacity 0.2s, transform 0.15s;
     }
-    .card__cta:hover { background: #7A8B4D; transform: translateY(-1px); }
-    .card__cta svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .shop-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .shop-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .shop-btn:active { transform: scale(0.96); }
+
+    /* ── Per-category colours ── */
+    /* Each category defines: bg-light, bg-mid, strip-color, check-color, price-color, btn-color */
+    /* Chargers — blue */
+    .cat-chargers { --cat-light: #dce6ff; --cat-mid: #0033CC; --cat-strip: #0029a3; --cat-price: #0033CC; --cat-btn: #0033CC; }
+    /* Sounds — purple */
+    .cat-sounds   { --cat-light: #ede0ff; --cat-mid: #7B2FBE; --cat-strip: #5a1fa0; --cat-price: #7B2FBE; --cat-btn: #7B2FBE; }
+    /* Power banks — orange */
+    .cat-powerbanks { --cat-light: #fff1e0; --cat-mid: #FF8A3D; --cat-strip: #cc6a1f; --cat-price: #cc6a1f; --cat-btn: #cc6a1f; }
+    /* Cables — green */
+    .cat-cables   { --cat-light: #d6f2e0; --cat-mid: #1E8E3E; --cat-strip: #156130; --cat-price: #1E8E3E; --cat-btn: #1E8E3E; }
+    /* Others — teal */
+    .cat-others   { --cat-light: #d6f7fa; --cat-mid: #00BCD4; --cat-strip: #007a8a; --cat-price: #007a8a; --cat-btn: #007a8a; }
+
+    /* ════════════════════════════════
+       STORE SECTION
+    ════════════════════════════════ */
+    .store-section {
+      padding: 80px 40px 88px;
+      background: #F5F5F3;
+    }
+    .store-inner { max-width: 900px; margin: 0 auto; }
+
+    .store-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--chargers-light);
+      color: var(--chargers);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .store-eyebrow svg { width: 13px; height: 13px; }
+
+    .store-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .store-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 540px;
+      margin-bottom: 32px;
+    }
+    .store-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 640px) { .store-grid { grid-template-columns: 1fr; } }
+
+    .store-info-card {
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .store-info-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .store-info-label svg { width: 13px; height: 13px; color: var(--blue); }
+
+    .store-address {
+      font-size: 0.97rem;
+      line-height: 1.70;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .directions-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--chargers);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .directions-btn:hover { opacity: 0.85; }
+    .directions-btn svg { width: 14px; height: 14px; }
+
+    .store-hours { display: flex; flex-direction: column; gap: 6px; }
+    .store-hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .store-hours-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .store-hours-row strong { color: var(--text); font-weight: 500; }
+
+    .map-container {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-card);
+      margin-top: 24px;
+      height: 300px;
+    }
+    .map-container iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ════════════════════════════════
+       MODAL
+    ════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px 28px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.25s;
+      position: relative;
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: none; border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 4px;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: var(--chargers-light);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      color: var(--blue);
+    }
+    .modal-icon svg { width: 26px; height: 26px; }
+    .modal h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .modal p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 10px;
+      padding: 13px 20px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+      width: 100%;
+    }
+    .wa-btn:hover { opacity: 0.88; }
+    .wa-btn svg { width: 20px; height: 20px; }
+    .modal-note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      background: #F5F5F3;
+      border-top: 1px solid #ebebea;
+      padding: 22px 40px 30px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ════════════════════════════════
+       CATEGORY COLORS
+    ════════════════════════════════ */
+    .cat-chargers   .price-current { color: var(--chargers); }
+    .cat-chargers   .shop-btn      { background: var(--chargers);   color: #fff; }
+    .cat-chargers   .section-icon  { background: var(--chargers); }
+
+    .cat-sounds     .price-current { color: var(--sounds); }
+    .cat-sounds     .shop-btn      { background: var(--sounds);     color: #fff; }
+    .cat-sounds     .section-icon  { background: var(--sounds); }
+
+    .cat-powerbanks .price-current { color: var(--powerbanks); }
+    .cat-powerbanks .shop-btn      { background: var(--powerbanks); color: #fff; }
+    .cat-powerbanks .section-icon  { background: var(--powerbanks); }
+
+    .cat-cables     .price-current { color: var(--cables); }
+    .cat-cables     .shop-btn      { background: var(--cables);     color: #fff; }
+    .cat-cables     .section-icon  { background: var(--cables); }
+
+    .cat-others     .price-current { color: var(--others); }
+    .cat-others     .shop-btn      { background: var(--others);     color: #fff; }
+    .cat-others     .section-icon  { background: var(--others); }
+
+
+    /* ════════════════════════════════
+       FADE IN ON SCROLL
+    ════════════════════════════════ */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+    .fade-in-section.is-visible .product-card {
+      animation: cardFadeUp 0.45s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .fade-in-section.is-visible .product-card:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in-section.is-visible .product-card:nth-child(2) { animation-delay: 0.10s; }
+    .fade-in-section.is-visible .product-card:nth-child(3) { animation-delay: 0.15s; }
+    .fade-in-section.is-visible .product-card:nth-child(4) { animation-delay: 0.20s; }
+    .fade-in-section.is-visible .product-card:nth-child(n+5) { animation-delay: 0.25s; }
+
+    @keyframes cardFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ════════════════════════════════
+       FLOATING WHATSAPP
+    ════════════════════════════════ */
+    .wa-float-wrapper {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 500;
+      cursor: grab;
+      user-select: none;
+      animation: waFadeIn 0.7s ease 0.5s both;
+    }
+    .wa-float-wrapper:active { cursor: grabbing; }
+    .wa-float-wrapper.dragging { animation: none; transition: none; }
+    .wa-float {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.15);
+      text-decoration: none;
+      transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), background 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .wa-float i { font-size: 1.75rem; line-height: 1; pointer-events: none; }
+    .wa-float:hover {
+      background: #1ebe5d;
+      transform: scale(1.13);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.18);
+    }
+    .wa-float:active { transform: scale(1.05); }
+    .wa-float-wrapper.did-drag .wa-float { pointer-events: none; }
+    .wa-float-tooltip {
+      position: absolute;
+      right: calc(100% + 12px); top: 50%;
+      transform: translateY(-50%);
+      background: #1a1a1a;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 6px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .wa-float-tooltip::after {
+      content: '';
+      position: absolute;
+      left: 100%; top: 50%;
+      transform: translateY(-50%);
+      border: 5px solid transparent;
+      border-left-color: #1a1a1a;
+    }
+    .wa-float:hover .wa-float-tooltip { opacity: 1; }
+
+    @keyframes waFadeIn {
+      from { opacity: 0; transform: scale(0.6) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
-<div class="card-shell">
-  <div class="card">
+<!-- ══ NAV ══ -->
+<nav id="mainNav">
+  <a href="https://vinceslink.com" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    Back
+  </a>
 
-    <div class="card__image-section">
+  <span class="nav-brand">VINCES<span>LINK</span></span>
 
-      <svg viewBox="0 0 334 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;">
-        <defs>
-          <clipPath id="greenClip">
-            <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z"/>
-          </clipPath>
-        </defs>
-
-        <!-- Olive strip -->
-        <path d="M 0,272 L 334,272 L 334,290 Q 334,320 304,320 L 30,320 Q 0,320 0,290 L 0,272 Z" fill="#7A8B4D"/>
-
-        <!-- Green L-shape — updated notch -->
-        <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z" fill="#C5D8A9"/>
-
-        <!-- Product image clipped to green area -->
-        <image
-          href="images/IMG_1358.png"
-          x="0" y="0"
-          width="334" height="299"
-          preserveAspectRatio="xMidYMid slice"
-          clip-path="url(#greenClip)"
-        />
-
-        <!-- Strip label -->
-        <text x="167" y="309" text-anchor="middle" dominant-baseline="middle"
-          fill="#ffffff" font-size="13" font-weight="500"
-          font-family="DM Sans, sans-serif" letter-spacing="0.5">
-          Premium Noise cancellation
-        </text>
+  <div class="nav-right">
+    <a href="https://shop.vinceslink.com" target="_blank" rel="noopener noreferrer" class="nav-signup-btn">
+      <!-- Icon: person + plus (sign up) -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <line x1="19" y1="8" x2="19" y2="14"/>
+        <line x1="22" y1="11" x2="16" y2="11"/>
       </svg>
+      <span>Sign Up</span>
+    </a>
+  </div>
+</nav>
 
-      <!-- + / ✅ button -->
-      <button class="card__plus" id="cartBtn" aria-label="Add to cart">
-        <svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <line x1="10" y1="3" x2="10" y2="17" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="3" y1="10" x2="17" y2="10" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-        <svg class="icon-check" width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <circle cx="11" cy="11" r="10" fill="#6b7a56"/>
-          <polyline points="6,11.5 9.5,15 16,8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="images/business/Gadget/IMG_1229.jpeg" alt="Vinceslink Gadget Hub"/>
+  </div>
+  <div class="hero-overlay"></div>
 
-      <div class="confetti-wrap" id="confettiWrap">
-        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div>
-      </div>
+  <!-- Floating spec card — top right -->
+  <div class="hero-spec-card">
+    <div class="spec-card-title">Gadget Hub</div>
+    <div class="spec-card-sub">Premium tech, verified quality.</div>
+    <div class="spec-list">
+      <div class="spec-item"><div class="spec-dot"></div> Original Products Only</div>
+      <div class="spec-item"><div class="spec-dot"></div> Verified Distributor</div>
+      <div class="spec-item"><div class="spec-dot"></div> Regional Warranty Support</div>
+    </div>
+  </div>
 
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Vinceslink Gadget Hub
     </div>
 
-    <!-- Card body -->
-    <div class="card__body">
-      <div class="card__left">
-        <h2 class="card__title">AirPod Pro</h2>
-        <p class="card__desc">Active Noise Cancellation for immersive sound everywhere.</p>
+    <h1>Premium Gadgets.<br/><span class="accent">Trusted Quality.</span></h1>
+
+    <p class="hero-desc">
+      Top quality tech accessories and smart gadgets, sourced directly through our verified regional partnership with <strong style="color:rgba(255,255,255,0.90);">Paul Feng Gadgets</strong>. Every product is personally selected for performance, reliability, and guaranteed authenticity, bringing you trusted technology with confidence.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#chargers" class="btn-primary">
+        Browse Collection
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="#store" class="btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Visit Store
+      </a>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="hero-trust">
+      <div class="hero-trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="trust-text-wrap">
+          <div class="trust-label">Verified Distributor</div>
+          <div class="trust-sub">Official regional partner</div>
+        </div>
+      </div>
+      <div class="hero-trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="trust-text-wrap">
+          <div class="trust-label">Original Product</div>
+          <div class="trust-sub">100% genuine &amp; authentic</div>
+        </div>
+      </div>
+      <div class="hero-trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="trust-text-wrap">
+          <div class="trust-label">Regional Warranty</div>
+          <div class="trust-sub">Peace of mind, guaranteed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SUB-HERO ══ -->
+<section class="sub-hero">
+  <div class="sub-hero-layout">
+
+    <!-- LEFT — iPhone floating over square rainbow ring-light -->
+    <div class="sub-hero-left">
+      <!-- Square rainbow ring behind the phones -->
+      <div class="sub-ring-box"></div>
+      <!-- PNG with transparent bg floats freely on top -->
+      <img src="images/business/Gadget/copy_71A11150-E16D-4034-A8A1-3D2E5F5C1C16.png"
+           alt="Featured Gadgets"
+           class="sub-iphone-img"
+           onerror="this.style.opacity='0.15'"/>
+    </div>
+
+    <!-- RIGHT — Popular Right Now + tagline -->
+    <div class="sub-hero-right">
+      <div class="sub-hero-head">
+        <h2 class="sub-hero-title">Popular <span class="accent">Right Now</span></h2>
+        <div class="sub-hero-shop">
+          <span class="sub-hero-shop-label">Shop</span>
+          <button class="sub-scroll-btn" onclick="subScroll(-1)" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="sub-scroll-btn" onclick="subScroll(1)" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <div class="card__right">
-        <div class="card__pricing">
-          <span class="card__price-new">₦28,500</span>
-          <span class="card__price-old">₦35,000</span>
+      <div class="sub-cards-track" id="subCardsTrack">
+        <!-- Headset -->
+        <div class="sub-card" onclick="openModal()">
+          <div class="sub-card-img">
+            <img src="images/business/Gadget/IMG_1235.png" alt="Headset" onerror="this.style.opacity='0.15'"/>
+          </div>
+          <div class="sub-card-body">
+            <div class="sub-card-name">Wireless Headset</div>
+            <div class="sub-card-desc">Noise cancelling<br/>Deep bass</div>
+            <div class="sub-card-price">₦0,000</div>
+          </div>
         </div>
-        <button class="card__cta">
-          Shop Now
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5"
-              fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
-            <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14"
-              stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- AirPod -->
+        <div class="sub-card" onclick="openModal()">
+          <div class="sub-card-img">
+            <img src="images/business/Gadget/IMG_1231.png" alt="AirPod" onerror="this.style.opacity='0.15'"/>
+          </div>
+          <div class="sub-card-body">
+            <div class="sub-card-name">Wireless Earbuds</div>
+            <div class="sub-card-desc">Adaptive audio<br/>Spatial sound</div>
+            <div class="sub-card-price">₦0,000</div>
+          </div>
+        </div>
+        <!-- Wireless Charger -->
+        <div class="sub-card" onclick="openModal()">
+          <div class="sub-card-img">
+            <img src="images/business/Gadget/IMG_1238.png" alt="Wireless Charger" onerror="this.style.opacity='0.15'"/>
+          </div>
+          <div class="sub-card-body">
+            <div class="sub-card-name">Wireless Charger</div>
+            <div class="sub-card-desc">MagSafe<br/>Fast charging</div>
+            <div class="sub-card-price">₦0,000</div>
+          </div>
+        </div>
+        <!-- Smart Watch -->
+        <div class="sub-card" onclick="openModal()">
+          <div class="sub-card-img">
+            <img src="images/business/Gadget/IMG_1239.png" alt="Smart Watch" onerror="this.style.opacity='0.15'"/>
+          </div>
+          <div class="sub-card-body">
+            <div class="sub-card-name">Smart Watch</div>
+            <div class="sub-card-desc">Health monitor<br/>Always-on</div>
+            <div class="sub-card-price">₦0,000</div>
+          </div>
+        </div>
+        <!-- Charger -->
+        <div class="sub-card" onclick="openModal()">
+          <div class="sub-card-img">
+            <img src="images/business/Gadget/IMG_1233.png" alt="Charger" onerror="this.style.opacity='0.15'"/>
+          </div>
+          <div class="sub-card-body">
+            <div class="sub-card-name">Fast Charger</div>
+            <div class="sub-card-desc">65W GaN<br/>Multi-port</div>
+            <div class="sub-card-price">₦0,000</div>
+          </div>
+        </div>
+      </div><!-- /sub-cards-track -->
+
+      <!-- Tagline lives in right column, under cards -->
+      <div class="sub-tagline">
+        <div class="sub-tagline-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
           </svg>
+        </div>
+        <p class="sub-tagline-text">
+          We understand if you <span class="accent">never want to</span> leave home <span class="accent">without them.</span>
+        </p>
+      </div>
+
+    </div><!-- /sub-hero-right -->
+  </div><!-- /sub-hero-layout -->
+</section>
+
+<!-- ══ CATEGORY CHIPS ══ -->
+<div class="chips-section">
+  <div class="chips-label">Browse by Category</div>
+  <div class="chips-row">
+    <button class="chip" data-target="chargers" onclick="scrollToCategory('chargers', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+      Chargers
+    </button>
+    <button class="chip" data-target="sounds" onclick="scrollToCategory('sounds', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+      </svg>
+      Sounds
+    </button>
+    <button class="chip" data-target="powerbanks" onclick="scrollToCategory('powerbanks', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="18" height="11" rx="2"/><path d="M22 11v4"/><path d="M7 11v2"/><path d="M11 11v2"/><path d="M15 11v2"/>
+      </svg>
+      Power Banks
+    </button>
+    <button class="chip" data-target="cables" onclick="scrollToCategory('cables', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2V9z"/><path d="M8 11v5a2 2 0 002 2h4a2 2 0 002-2v-5"/>
+      </svg>
+      Cables
+    </button>
+    <button class="chip" data-target="others" onclick="scrollToCategory('others', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>
+      </svg>
+      Others
+    </button>
+  </div>
+</div>
+
+<!-- ══ CATEGORY SECTIONS ══ -->
+<div class="categories-wrapper">
+
+  <!-- CHARGERS -->
+  <section class="category-section cat-chargers fade-in-section" id="chargers">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="section-title">Chargers</div>
+          <div class="section-count">10 products</div>
+        </div>
+      </div>
+      <div class="scroll-controls">
+        <button class="scroll-btn" onclick="scrollTrack('chargers-track', -1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="scroll-btn" onclick="scrollTrack('chargers-track', 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
     </div>
+    <div class="product-track" id="chargers-track"></div>
+  </section>
 
+  <!-- SOUNDS -->
+  <section class="category-section alt-bg cat-sounds fade-in-section" id="sounds">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="section-title">Sounds</div>
+          <div class="section-count">7 products</div>
+        </div>
+      </div>
+      <div class="scroll-controls">
+        <button class="scroll-btn" onclick="scrollTrack('sounds-track', -1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="scroll-btn" onclick="scrollTrack('sounds-track', 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-track" id="sounds-track"></div>
+  </section>
+
+  <!-- POWER BANKS -->
+  <section class="category-section cat-powerbanks fade-in-section" id="powerbanks">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="18" height="11" rx="2"/><path d="M22 11v4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="section-title">Power Banks</div>
+          <div class="section-count">6 products</div>
+        </div>
+      </div>
+      <div class="scroll-controls">
+        <button class="scroll-btn" onclick="scrollTrack('powerbanks-track', -1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="scroll-btn" onclick="scrollTrack('powerbanks-track', 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-track" id="powerbanks-track"></div>
+  </section>
+
+  <!-- CABLES -->
+  <section class="category-section alt-bg cat-cables fade-in-section" id="cables">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2V9z"/><path d="M8 11v5a2 2 0 002 2h4a2 2 0 002-2v-5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="section-title">Cables</div>
+          <div class="section-count">5 products</div>
+        </div>
+      </div>
+      <div class="scroll-controls">
+        <button class="scroll-btn" onclick="scrollTrack('cables-track', -1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="scroll-btn" onclick="scrollTrack('cables-track', 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-track" id="cables-track"></div>
+  </section>
+
+  <!-- OTHERS -->
+  <section class="category-section cat-others fade-in-section" id="others">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="section-title">Others</div>
+          <div class="section-count">7 products</div>
+        </div>
+      </div>
+      <div class="scroll-controls">
+        <button class="scroll-btn" onclick="scrollTrack('others-track', -1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="scroll-btn" onclick="scrollTrack('others-track', 1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-track" id="others-track"></div>
+  </section>
+
+</div>
+
+<!-- ══ STORE SECTION ══ -->
+<section class="store-section fade-in-section" id="store">
+  <div class="store-inner">
+    <div class="store-eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Physical Store
+    </div>
+    <h2 class="store-title">Visit Our Gadget Hub</h2>
+    <p class="store-desc">Prefer to shop in person? Visit our Gadget Hub location for hands-on assistance and same-day purchases. Our friendly team is always ready to help.</p>
+
+    <div class="store-grid">
+      <div class="store-info-card">
+        <div class="store-info-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Store Address
+        </div>
+        <p class="store-address">
+          No. 12 Ijoko Rd,<br/>
+          Opposite African Church,<br/>
+          Sango, Ota,<br/>
+          Ogun State, Nigeria
+        </p>
+        <a href="https://www.google.com/maps?q=No.+12+Ijoko+Rd,+Opposite+African+Church,+Sango,+Ota,+Ogun+State"
+           target="_blank" rel="noopener noreferrer" class="directions-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          Get Directions
+        </a>
+      </div>
+
+      <div class="store-info-card">
+        <div class="store-info-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          Opening Hours
+        </div>
+        <div class="store-hours">
+          <div class="store-hours-row"><strong>Monday – Friday</strong><span>9:00 AM – 6:00 PM</span></div>
+          <div class="store-hours-row"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
+          <div class="store-hours-row"><strong>Sunday</strong><span>Closed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps?q=No.+12+Ijoko+Rd,+Opposite+African+Church,+Sango,+Ota,+Ogun+State&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Vinceslink Gadget Hub Location"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>© 2026 Vinceslink Gadget Hub. All rights reserved. &nbsp;|&nbsp;
+    <a href="https://vinceslink.com">← Back to Main Site</a>
+  </p>
+  <p>Built with
+    <svg viewBox="0 0 24 24" fill="#e25555" width="13" height="13" style="vertical-align:middle;margin:0 2px">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+    </svg>
+    by <a href="https://jappro.github.io/portfolio/">Japheth</a>
+  </p>
+</footer>
+
+<!-- ══ FLOATING WHATSAPP ══ -->
+<div class="wa-float-wrapper" id="waFloat">
+  <a href="https://wa.me/message/5XF6PFQZNCLTA1?text=Hello%2C%20I%20would%20like%20to%20make%20an%20inquiry%20about%20products%20in%20Vinceslink%20Gadget%20Hub."
+     target="_blank" rel="noopener noreferrer"
+     class="wa-float" aria-label="Chat on WhatsApp" id="waLink">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-float-tooltip">Chat with us</span>
+  </a>
+</div>
+
+<!-- ══ SHOP MODAL ══ -->
+<div class="modal-overlay" id="shopModal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('shopModal').classList.remove('open')" aria-label="Close">✕</button>
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </div>
+    <h3>Online Store Coming Soon!</h3>
+    <p>Our e-commerce platform is launching soon. For now, place your order directly via WhatsApp and our team will assist you immediately.</p>
+    <a href="https://wa.me/message/5XF6PFQZNCLTA1" target="_blank" rel="noopener noreferrer" class="wa-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12.05 2.073A9.935 9.935 0 002.073 12.05 9.897 9.897 0 003.7 17.94L2 22l4.19-1.655A9.962 9.962 0 0012.05 22c5.513 0 9.95-4.437 9.95-9.95S17.563 2.073 12.05 2.073z"/>
+      </svg>
+      Order on WhatsApp
+    </a>
+    <p class="modal-note">Our team typically responds within minutes during business hours.</p>
   </div>
 </div>
 
 <script>
-  const btn = document.getElementById('cartBtn');
-  const confetti = document.getElementById('confettiWrap');
+  /* ── NAV SCROLL STATE ── */
+  const nav = document.getElementById('mainNav');
+  function updateNav() {
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 
-  function positionConfetti() {
-    confetti.style.left = (btn.offsetLeft + btn.offsetWidth / 2) + 'px';
-    confetti.style.top  = (btn.offsetTop  + btn.offsetHeight / 2) + 'px';
+  /* ── SUB-HERO SCROLL ── */
+  function subScroll(dir) {
+    const track = document.getElementById('subCardsTrack');
+    track.scrollBy({ left: dir * track.clientWidth * 0.75, behavior: 'smooth' });
   }
 
-  btn.addEventListener('click', () => {
-    const isAdded = btn.classList.toggle('added');
-    if (isAdded) {
-      positionConfetti();
-      confetti.classList.remove('burst');
-      void confetti.offsetWidth;
-      confetti.classList.add('burst');
-      setTimeout(() => confetti.classList.remove('burst'), 900);
-    }
-  });
-</script>
+  /* ── PRODUCT CARD BUILDER ── */
+  const categories = {
+    chargers:   { name: 'Charger',    count: 10, track: 'chargers-track' },
+    sounds:     { name: 'Sounds',     count: 7,  track: 'sounds-track'   },
+    powerbanks: { name: 'Power Bank', count: 6,  track: 'powerbanks-track' },
+    cables:     { name: 'Cable',      count: 5,  track: 'cables-track'   },
+    others:     { name: 'Others',     count: 7,  track: 'others-track'   },
+  };
 
-</body>
-</html>
+  /* ── PRODUCT DATA — fill in name, tag, desc, newPrice, oldPrice, imgPath ── */
+  const productData = {
+    chargers: [
+      { name: 'iPhone F Charger', tag: '3x Faster Than Original 5W', desc: '60W iPhone fast charger. Charge from 0% to 60% in 30mins', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-1.jpg' },
+      { name: 'Charger 2',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-2.jpg' },
+      { name: 'Charger 3',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-3.jpg' },
+      { name: 'Charger 4',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-4.jpg' },
+      { name: 'Charger 5',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-5.jpg' },
+      { name: 'Charger 6',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-6.jpg' },
+      { name: 'Charger 7',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-7.jpg' },
+      { name: 'Charger 8',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-8.jpg' },
+      { name: 'Charger 9',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-9.jpg' },
+      { name: 'Charger 10',   tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-10.jpg' },
+    ],
+    sounds: [
+      { name: 'Sounds 1',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-1.jpg' },
+      { name: 'Sounds 2',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-2.jpg' },
+      { name: 'Sounds 3',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-3.jpg' },
+      { name: 'Sounds 4',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-4.jpg' },
+      { name: 'Sounds 5',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-5.jpg' },
+      { name: 'Sounds 6',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-6.jpg' },
+      { name: 'Sounds 7',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-7.jpg' },
+    ],
+    powerbanks: [
+      { name: 'Power Bank 1', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/powerbank-1.jpg' },
+      { name: 'Power Bank 2', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/powerbank-2.jpg' },
+      { name: 'Power Bank 3', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/powerbank-3.jpg' },
+      { name: 'Power Bank 4', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/powerbank-4.jpg' },
+      { name: 'Power Bank 5', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/powerbank-5.jpg' },
+      { name: 'Power Bank 6', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/powerbank-6.jpg' },
+    ],
+    cables: [
+      { name: 'Cable 1', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/cable-1.jpg' },
+      { name: 'Cable 2', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/cable-2.jpg' },
+      { name: 'Cable 3', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/cable-3.jpg' },
+      { name: 'Cable 4', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/cable-4.jpg' },
+      { name: 'Cable 5', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/cable-5.jpg' },
+    ],
+    others: [
+      { name: 'Others 1', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-1.jpg' },
+      { name: 'Others 2', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-2.jpg' },
+      { name: 'Others 3', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-3.jpg' },
+      { name: 'Others 4', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-4.jpg' },
+      { name: 'Others 5', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-5.jpg' },
+      { name: 'Others 6', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-6.jpg' },
+      { name: 'Others 7', tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/others-7.jpg' },
+    ],
+  };
+
+
+  function initCartBtn(btn, confettiEl) {
+    function positionConfetti() {
+      confettiEl.style.left = (btn.offsetLeft + btn.offsetWidth / 2) + 'px';
+      confettiEl.style.top  = (btn.offsetTop  + btn.offsetHeight / 2) + 'px';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isAdded = btn.classList.toggle('added');
+      if (isAdded) {
+        positionConfetti();
+        confettiEl.classList.remove('burst');
+        void confettiEl.offsetWidth;
+        confettiEl.classList.add('burst');
+        setTimeout(() => confettiEl.classList.remove('burst'), 900);
+      }
+    });
+  }
+
+  function buildCards() {
+    Object.entries(categories).forEach(([key, cat]) => {
+      const track = document.getElementById(cat.track);
+      for (let i = 1; i <= cat.count; i++) {
+        const uid = `${key}-${i}`;
+        // Outer shell
+        const shell = document.createElement('div');
+        shell.className = 'card-shell';
+
+        // Inner card
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        const imgPath = `images/gadgets/${key}/${key}-${i}.jpg`;
+        const data = (productData[key] && productData[key][i-1]) || {};
+        const pName     = data.name     || `${cat.name} ${i}`;
+        const pTag      = data.tag      || 'Product Tag';
+        const pDesc     = data.desc     || 'Description';
+        const pNew      = data.newPrice || '₦0.00';
+        const pOld      = data.oldPrice || '₦0.00';
+        const pImg      = data.img      || imgPath;
+
+        card.innerHTML = `
+          <!-- IMAGE SECTION — SVG shape matching your design -->
+          <div class="product-img">
+            <svg viewBox="0 0 334 320" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;">
+              <defs>
+                <clipPath id="clip-${uid}">
+                  <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z"/>
+                </clipPath>
+              </defs>
+              <!-- Strip bar -->
+              <path d="M 0,272 L 334,272 L 334,290 Q 334,320 304,320 L 30,320 Q 0,320 0,290 L 0,272 Z" fill="var(--cat-strip)"/>
+              <!-- Light BG shape -->
+              <path d="M 22,0 L 252,0 Q 274,0 274,22 L 274,48 Q 274,58 284,58 L 312,58 Q 334,58 334,80 L 334,272 Q 334,299 308,299 L 26,299 Q 0,299 0,272 L 0,22 Q 0,0 22,0 Z" fill="var(--cat-light)"/>
+              <!-- Product image -->
+              <image
+                href="${pImg}"
+                x="0" y="0" width="334" height="299"
+                preserveAspectRatio="xMidYMid slice"
+                clip-path="url(#clip-${uid})"
+              />
+              <!-- Strip label -->
+              <text x="167" y="309" text-anchor="middle" dominant-baseline="middle"
+                fill="#ffffff" font-size="13" font-weight="500"
+                font-family="DM Sans, sans-serif" letter-spacing="0.5">
+                ${pTag}
+              </text>
+            </svg>
+
+            <!-- + button -->
+            <button class="card__plus" aria-label="Add to cart" id="cartBtn-${uid}">
+              <svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <line x1="10" y1="3" x2="10" y2="17" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="3" y1="10" x2="17" y2="10" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <svg class="icon-check" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="10" fill="var(--cat-mid)"/>
+                <polyline points="6,11.5 9.5,15 16,8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <!-- Confetti -->
+            <div class="confetti-wrap" id="confetti-${uid}">
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+              <div class="petal"></div>
+            </div>
+          </div>
+
+          <!-- BODY -->
+          <div class="product-body">
+            <div class="product-left">
+              <div class="product-name">${pName}</div>
+              <p class="product-desc">${pDesc}</p>
+            </div>
+            <div class="product-right">
+              <div class="product-pricing">
+                <span class="price-current" style="color:var(--cat-price)">${pNew}</span>
+                <span class="price-old">${pOld}</span>
+              </div>
+              <button class="shop-btn" style="background:var(--cat-btn)" onclick="openModal()">
+                Shop Now
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5"
+                    fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+                  <path d="M8.5 15.5L15.5 8.5M15.5 8.5H10M15.5 8.5V14"
+                    stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+
+        shell.appendChild(card);
+        track.appendChild(shell);
+
+        // Wire up cart button after DOM insert
+        const cartBtn = card.querySelector(`#cartBtn-${uid}`);
+        const confettiEl = card.querySelector(`#confetti-${uid}`);
+        initCartBtn(cartBtn, confettiEl);
+      }
+    });
+  }
+  buildCards();
+
+  /* ── HORIZONTAL SCROLL ARROWS — stop at boundaries ── */
+  function scrollTrack(trackId, dir) {
+    const track = document.getElementById(trackId);
+    const cardWidth = track.querySelector('.product-card')
+      ? track.querySelector('.product-card').offsetWidth + 16 /* gap */
+      : track.clientWidth;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (dir > 0 && track.scrollLeft >= maxScroll - 2) return; // already at end
+    if (dir < 0 && track.scrollLeft <= 2) return;             // already at start
+    const step = Math.round(track.clientWidth / cardWidth) * cardWidth;
+    const target = dir > 0
+      ? Math.min(track.scrollLeft + step, maxScroll)
+      : Math.max(track.scrollLeft - step, 0);
+    track.scrollTo({ left: target, behavior: 'smooth' });
+  }
+
+  /* ── CHIP SCROLL + ACTIVE STATE ── */
+  function scrollToCategory(id, chipEl) {
+    setActiveChip(id);
+    const target = document.getElementById(id);
+    const offset = 68 + 70;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  const sectionIds = ['chargers','sounds','powerbanks','cables','others'];
+
+  function setActiveChip(id) {
+    document.querySelectorAll('.chip').forEach(c => {
+      c.className = 'chip';
+      if (c.dataset.target === id) {
+        c.classList.add('active-' + id);
+        // Auto-scroll the chips bar so this chip is always in view
+        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      }
+    });
+  }
+
+  const chipObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveChip(entry.target.id);
+    });
+  }, { rootMargin: '-130px 0px -60% 0px' });
+
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) chipObserver.observe(el);
+  });
+
+  /* ── MODAL ── */
+  function openModal() {
+    document.getElementById('shopModal').classList.add('open');
+  }
+  function closeModal(e) {
+    if (e.target === document.getElementById('shopModal')) {
+      document.getElementById('shopModal').classList.remove('open');
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('shopModal').classList.remove('open');
+  });
+
+  /* ── FADE IN ON SCROLL ── */
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-in-section').forEach(el => fadeObserver.observe(el));
+
+  /* ── DRAGGABLE WHATSAPP BUTTON ── */
+  (function () {
+    const wrapper = document.getElementById('waFloat');
+    let isDragging = false, didDrag = false;
+    let startX, startY, initLeft, initTop;
+
+    function initPosition() {
+      const rect = wrapper.getBoundingClientRect();
+      wrapper.style.right = 'auto'; wrapper.style.bottom = 'auto';
+      wrapper.style.left = rect.left + 'px'; wrapper.style.top = rect.top + 'px';
+    }
+    function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
+
+    wrapper.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      initPosition(); isDragging = true; didDrag = false;
+      startX = e.clientX; startY = e.clientY;
+      initLeft = parseFloat(wrapper.style.left); initTop = parseFloat(wrapper.style.top);
+      wrapper.classList.add('dragging'); e.preventDefault();
+    });
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) didDrag = true;
+      wrapper.style.left = clamp(initLeft + dx, 0, window.innerWidth - wrapper.offsetWidth) + 'px';
+      wrapper.style.top  = clamp(initTop  + dy, 0, window.innerHeight - wrapper.offsetHeight) + 'px';
+    });
+    document.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false; wrapper.classList.remove('dragging');
+      if (didDrag) { wrapper.classList.add('did-drag'); setTimeout(() => wrapper.classList.remove('did-drag'), 300); }
+      savePosition();
+    });
+    wrapper.addEventListener('touchstart', e => {
+      initPosition(); isDragging = true; didDrag = false;
+      const t = e.touches[0]; startX = t.clientX; startY = t.clientY;
+      initLeft = parseFloat(wrapper.style.left); initTop = parseFloat(wrapper.style.top);
+      wrapper.classList.add('dragging');
+    }, { passive: true });
+    document.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      const t = e.touches[0]; const dx = t.clientX - startX, dy = t.clientY - startY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) didDrag = true;
+      wrapper.style.left = clamp(initLeft + dx, 0, window.innerWidth - wrapper.offsetWidth) + 'px';
+      wrapper.style.top  = clamp(initTop  + dy, 0, window.innerHeight - wrapper.offsetHeight) + 'px';
+      if (didDrag) e.preventDefault();
+    }, { passive: false });
+    document.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false; wrapper.classList.remove('dragging');
+      if (didDrag) { wrapper.classList.add('did-drag'); setTimeout(() => wrapper.classList.remove('did-drag'), 300); }
+      savePosition();
+    });
+    function savePosition() {
+      localStorage.setItem('wa-float-left', wrapper.style.left);
+      localStorage.setItem('wa-float-top',  wrapper.style.top);
+    }
+    function loadPosition() {
+      const left = localStorage.getItem('wa-float-left');
+      const top  = localStorage.getItem('wa-float-top');
+      if (left && top) {
+        wrapper.style.right = 'auto'; wrapper.style.bottom = 'auto';
+        wrapper.style.left  = clamp(parseFloat(left), 0, window.innerWidth  - wrapper.offsetWidth) + 'px';
+        wrapper.style.top   = clamp(parseFloat(top),  0, window.innerHeight - wrapper.offsetHeight) + 'px';
+      }
+    }
+    window.addEventListener('resize', () => {
+      if (wrapper.style.left) {
+        wrapper.style.left = clamp(parseFloat(wrapper.style.left), 0, window.innerWidth  - wrapper.offsetWidth) + 'px';
+        wrapper.style.top  = clamp(parseFloat(wrapper.style.top),  0, window.innerHeight - wrapper.offsetHeight) + 'px';
+      }
+    });
+    loadPosition();
+  })();
+
+</script>
