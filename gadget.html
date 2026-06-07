@@ -11,8 +11,8 @@
   <style>
     /* ── CSS VARIABLES ── */
     :root {
-      --bg:           #ffffff;
-      --bg-alt:       #F5F7FA;
+      --bg:           #F5F5F3;
+      --bg-alt:       #EFEFED;
       --text:         #1A1A1A;
       --text-muted:   #666666;
       --card:         #ffffff;
@@ -703,8 +703,8 @@
       position: sticky;
       top: 68px;
       z-index: 90;
-      background: var(--bg);
-      border-bottom: 1px solid var(--card-border);
+      background: #F5F5F3;
+      border-bottom: 1px solid #ebebea;
       padding: 14px 40px;
       box-shadow: var(--shadow);
     }
@@ -755,14 +755,14 @@
     /* ════════════════════════════════
        CATEGORY SECTIONS
     ════════════════════════════════ */
-    .categories-wrapper { background: var(--bg); }
+    .categories-wrapper { background: #F5F5F3; }
 
     .category-section {
       padding: 60px 0 52px;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid #ebebea;
     }
     .category-section:last-child { border-bottom: none; }
-    .category-section.alt-bg { background: var(--bg-alt); }
+    .category-section.alt-bg { background: #EFEFED; }
 
     .section-header {
       max-width: 1280px;
@@ -824,7 +824,7 @@
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      padding: 8px 40px 20px;
+      padding: 8px 40px 20px 32px;
       /* Desktop: show 3.5 cards — 1200px track / 3.5 ≈ 320px */
       --card-w: 320px;
     }
@@ -839,13 +839,13 @@
 
     /* Tablet — 2.1 cards visible */
     @media (max-width: 1024px) {
-      .product-track { --card-w: 340px; padding: 8px 24px 20px; }
+      .product-track { --card-w: 340px; padding: 8px 24px 20px 24px; }
     }
     /* Mobile — 328px, show 1.55 (edge peek of card 2) */
     @media (max-width: 600px) {
       .product-track {
         --card-w: 328px;
-        padding: 8px 20px 20px;
+        padding: 8px 20px 20px 20px;
       }
     }
 
@@ -1069,7 +1069,7 @@
     ════════════════════════════════ */
     .store-section {
       padding: 80px 40px 88px;
-      background: var(--bg-alt);
+      background: #F5F5F3;
     }
     .store-inner { max-width: 900px; margin: 0 auto; }
 
@@ -1269,8 +1269,8 @@
        FOOTER
     ════════════════════════════════ */
     footer {
-      background: var(--bg);
-      border-top: 1px solid var(--card-border);
+      background: #F5F5F3;
+      border-top: 1px solid #ebebea;
       padding: 22px 40px 30px;
       text-align: center;
       font-size: 0.82rem;
@@ -1928,16 +1928,16 @@
   /* ── PRODUCT DATA — fill in name, tag, desc, newPrice, oldPrice, imgPath ── */
   const productData = {
     chargers: [
-      { name: 'iPhone F Charger',    tag: '3x Faster Than Original 5W', desc: '60W iphone fast charger. Charge from 0% to 60% in 30 mins', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/c9dd25b9-2c54-4ec7-96be-ecbfd34fdb9a.jpeg' },
-      { name: 'Charger 2',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-2.jpg' },
-      { name: 'Charger 3',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-3.jpg' },
-      { name: 'Charger 4',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-4.jpg' },
-      { name: 'Charger 5',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-5.jpg' },
-      { name: 'Charger 6',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-6.jpg' },
-      { name: 'Charger 7',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-7.jpg' },
-      { name: 'Charger 8',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-8.jpg' },
-      { name: 'Charger 9',    tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-9.jpg' },
-      { name: 'Charger 10',   tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-10.jpg' },
+      { name: 'iPhone F Charger',  tag: '3x Faster Than Original 5W',  desc: '60W iPhone fast charger. Charge from 0% to 60% in 30mins',          newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-1.jpg' },
+      { name: 'PF-PD 25W A+C',     tag: 'Power Adapter',                desc: 'Fast charger (25W) USB to Type-C cable. Calibrated outputs.',        newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/aa633274-ca10-49e3-9a92-dba7419c3366.jpeg' },
+      { name: 'PF-012 Fast',        tag: '3x Faster Than Original 5W',  desc: 'MICRO • iOS • TYPE-C Fast charger',                                  newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/e059d3ec-6b5e-4146-a4ff-525cf6f64dd3.jpeg' },
+      { name: 'PF-007',             tag: '',                             desc: 'MICRO • TYPE-C 2USB Charger',                                        newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/decd462c-9c2e-491c-9f5d-b7ad9aa53d35.jpeg' },
+      { name: 'PF-014 FAST',        tag: '3x Faster Than Original 5W',  desc: 'MICRO • iOS • TYPE-C Fast charger',                                  newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/266cba2d-de45-44fb-b0d7-64c7fd1fdd7c.jpeg' },
+      { name: 'PF-026',             tag: 'Power Adapter',                desc: 'USB-C 35W 3pin IP 15 PRO MAX',                                      newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/93b33ec7-58ca-40c2-a4d1-e8ac0ecb6940.jpeg' },
+      { name: 'PF-CAR01 AA',        tag: 'Inbuilt Safety Tube',         desc: '60W High Power fast car charger',                                   newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/c8ef3859-6bdc-4a32-bae3-b66d2a59c293.jpeg' },
+      { name: 'PF-FA001 9A',        tag: '3x Faster Than Original 5W',  desc: '2 IN 1 MICRO • TYPE-C Multi-protocol fast charger',                 newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/categories/chargers/IMG_1408.jpeg' },
+      { name: 'Charger 9',          tag: 'Product Tag',                  desc: 'Description',                                                       newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-9.jpg' },
+      { name: 'Charger 10',         tag: 'Product Tag',                  desc: 'Description',                                                       newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/charger-10.jpg' },
     ],
     sounds: [
       { name: 'Sounds 1',  tag: 'Product Tag', desc: 'Description', newPrice: '₦0.00', oldPrice: '₦0.00', img: 'images/business/Gadget/sounds-1.jpg' },
