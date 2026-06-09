@@ -142,8 +142,12 @@
       background-position: center right;
       background-repeat: no-repeat;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
     }
+
+    /* Trust section hidden on desktop, shown on mobile inside hero */
+    .trust-section { display: none; }
 
     /* Subtle left-side fade so text is readable */
     .hero::before {
@@ -304,11 +308,6 @@
     /* ════════════════════════════════
        TRUST SECTION (mobile only)
     ════════════════════════════════ */
-    .trust-section {
-      display: none; /* hidden on desktop */
-      background: var(--white);
-      padding: 0 16px 24px;
-    }
     .trust-card {
       background: var(--white);
       border-radius: 16px;
@@ -366,7 +365,7 @@
       }
       .nav-center { display: none; }
       .nav-cta    { display: none; }
-      .logo       { display: none; } /* desktop logo hidden */
+      .logo       { display: none; }
       .hamburger  { display: flex; }
       .cart-btn   { display: flex; }
 
@@ -381,36 +380,58 @@
         transform: translateX(-50%);
       }
 
-      /* Hero */
+      /* ↓ Adjust this value to shift the background image left/right on mobile.
+           Higher % = more to the right (shows more products).
+           Lower %  = more to the left (shows more of the empty store bg).
+           Try values between 60% and 85% to find your sweet spot. */
       .hero {
-        min-height: 620px;
-        background-position: right center;
+        min-height: 780px;
+        background-position: 72% center;
         align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       .hero::before {
         background: linear-gradient(
           to right,
-          rgba(255,240,230,0.96) 0%,
-          rgba(255,240,230,0.88) 40%,
-          rgba(255,240,230,0.40) 62%,
-          rgba(255,240,230,0.00) 78%
+          rgba(255,240,230,0.97) 0%,
+          rgba(255,240,230,0.88) 36%,
+          rgba(255,240,230,0.40) 56%,
+          rgba(255,240,230,0.00) 72%
         );
       }
 
+      /* Content narrower so image shows on right */
       .hero-content {
-        padding: 32px 0 40px 20px;
-        max-width: 75%;
+        padding: 32px 0 0 20px;
+        max-width: 55%;
       }
 
-      .hero-h1 { font-size: clamp(26px, 7.5vw, 36px); }
+      /* Badge: two-line layout */
+      .badge {
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 11.5px;
+        padding: 8px 14px;
+        max-width: 160px;
+        line-height: 1.5;
+        white-space: normal;
+      }
+      .badge svg { margin-top: 2px; flex-shrink: 0; }
 
+      .hero-h1 { font-size: clamp(24px, 7vw, 34px); }
+
+      /* Narrower max-width forces ~6 lines */
       .hero-p {
         font-size: 13.5px;
+        line-height: 1.75;
+        max-width: 155px;
         margin-bottom: 24px;
       }
 
-      /* Stacked buttons on mobile */
+      /* Stacked buttons */
       .hero-ctas {
         flex-direction: column;
         align-items: flex-start;
@@ -420,14 +441,30 @@
       .btn-filled,
       .btn-ghost {
         font-size: 12px;
-        padding: 12px 22px;
+        padding: 12px 20px;
       }
 
       /* Trust strip hidden inside hero on mobile */
       .trust-strip { display: none; }
 
-      /* Trust section shown below hero on mobile */
-      .trust-section { display: block; }
+      /* Trust card sits AT THE BOTTOM of the hero, ON the background image */
+      .trust-section {
+        display: block;
+        position: relative;
+        z-index: 3;
+        background: transparent;
+        padding: 24px 16px 32px;
+        width: 100%;
+        /* Pull it up into the hero section visually */
+        margin-top: auto;
+      }
+
+      /* Make card semi-transparent so hero image shows through slightly */
+      .trust-card {
+        background: rgba(255,255,255,0.88);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      }
 
       /* Tagline bar hidden on mobile */
       .tagline-bar { display: none; }
@@ -578,12 +615,9 @@
 
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════
-     TRUST SECTION (mobile only)
-══════════════════════════════════ -->
-<section class="trust-section">
+  <!-- Trust card: inside hero on mobile so it sits on bg image -->
+  <section class="trust-section">
   <div class="trust-card">
 
     <div class="trust-card-item">
@@ -635,6 +669,8 @@
     </div>
 
   </div>
+  </section>
+
 </section>
 
 <!-- ══════════════════════════════════
