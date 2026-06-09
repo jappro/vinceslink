@@ -17,34 +17,32 @@
       --blue:         #0033CC;
       --black:        #111111;
       --text-dark:    #1a1a1a;
-      --text-mid:     #444444;
+      --text-mid:     #555555;
       --white:        #ffffff;
-      --radius-sm:    6px;
-      --radius-md:    12px;
-      --radius-lg:    50px;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--white);
       color: var(--text-dark);
+      background: var(--white);
     }
 
-    /* ─── NAVBAR ─────────────────────────────────────── */
+    /* ════════════════════════════════
+       NAVBAR
+    ════════════════════════════════ */
     .navbar {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
       background: var(--white);
-      border-bottom: 1px solid #f0f0f0;
-      padding: 0 40px;
+      border-bottom: 1px solid #ececec;
       height: 68px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      padding: 0 40px;
     }
 
-    /* Logo */
+    /* Logo — always visible */
     .logo {
       display: flex;
       align-items: center;
@@ -52,77 +50,63 @@
       text-decoration: none;
       flex-shrink: 0;
     }
-    .logo-icon {
-      width: 42px;
-      height: 42px;
-      color: var(--blue);
-    }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
-    .logo-name {
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      color: var(--black);
-    }
-    .logo-sub {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--orange);
-      margin-top: 2px;
-    }
+    .logo-icon { width: 40px; height: 40px; color: var(--blue); }
+    .logo-name { font-size: 18px; font-weight: 900; letter-spacing: 0.04em; color: var(--black); line-height: 1; }
+    .logo-sub  { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--orange); margin-top: 2px; }
 
-    /* Desktop nav links */
-    .nav-links {
+    /* Desktop nav */
+    .nav-center {
+      flex: 1;
       display: flex;
-      align-items: center;
+      justify-content: center;
       gap: 32px;
-      list-style: none;
     }
-    .nav-links a {
-      font-size: 13px;
+    .nav-center a {
+      font-size: 12.5px;
       font-weight: 500;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: var(--text-mid);
       text-decoration: none;
-      text-transform: uppercase;
+      white-space: nowrap;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--orange); }
+    .nav-center a:hover { color: var(--orange); }
 
-    /* Nav CTA */
     .nav-cta {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 7px;
       background: var(--orange);
       color: var(--white);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       text-decoration: none;
       padding: 10px 20px;
-      border-radius: var(--radius-lg);
-      transition: background 0.2s, transform 0.15s;
+      border-radius: 50px;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
     }
-    .nav-cta:hover { background: #e67a30; transform: translateY(-1px); }
+    .nav-cta:hover { background: #e67a2e; }
 
-    /* Hamburger (mobile only) */
+    /* Mobile-only nav items */
     .hamburger {
       display: none;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
       color: var(--black);
+      padding: 4px;
+      flex-shrink: 0;
     }
-
-    /* Cart (mobile only) */
+    .nav-mobile-logo {
+      display: none; /* shown on mobile */
+      flex: 1;
+      justify-content: center;
+    }
     .cart-btn {
       display: none;
       position: relative;
@@ -131,47 +115,47 @@
       cursor: pointer;
       color: var(--blue);
       padding: 4px;
+      flex-shrink: 0;
     }
     .cart-badge {
       position: absolute;
-      top: -4px;
-      right: -6px;
+      top: -3px; right: -5px;
       background: var(--orange);
       color: var(--white);
       font-size: 9px;
       font-weight: 700;
-      width: 16px;
-      height: 16px;
+      width: 16px; height: 16px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* ─── HERO ───────────────────────────────────────── */
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
     .hero {
       position: relative;
-      min-height: 580px;
+      min-height: 560px;
       background-image: url('images/business/Superstore/IMG_1427.jpeg');
       background-size: cover;
       background-position: center right;
       background-repeat: no-repeat;
       display: flex;
       align-items: center;
-      overflow: hidden;
     }
 
-    /* Left fade so text is always readable */
+    /* Subtle left-side fade so text is readable */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to right,
-        var(--orange-light) 0%,
-        var(--orange-light) 38%,
-        rgba(255,240,230,0.85) 52%,
-        rgba(255,240,230,0.0) 70%
+        rgba(255,240,230,0.92) 0%,
+        rgba(255,240,230,0.80) 35%,
+        rgba(255,240,230,0.30) 55%,
+        rgba(255,240,230,0.00) 72%
       );
       pointer-events: none;
     }
@@ -179,59 +163,58 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 520px;
-      padding: 60px 40px 60px 60px;
+      padding: 60px 0 60px 60px;
+      max-width: 530px;
     }
 
     /* Badge pill */
-    .hero-badge {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--white);
-      border: 1.5px solid #e8d5c4;
-      border-radius: var(--radius-lg);
-      padding: 7px 16px;
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid #ddd;
+      border-radius: 50px;
+      padding: 8px 18px;
       font-size: 12px;
       font-weight: 600;
-      color: var(--text-mid);
-      margin-bottom: 22px;
-      letter-spacing: 0.02em;
+      color: var(--text-dark);
+      margin-bottom: 20px;
     }
-    .hero-badge svg { color: var(--orange); flex-shrink: 0; }
+    .badge svg { color: var(--orange); flex-shrink: 0; }
 
     /* Headline */
-    .hero-headline {
-      font-size: clamp(32px, 4.5vw, 52px);
+    .hero-h1 {
+      font-size: clamp(30px, 3.6vw, 50px);
       font-weight: 900;
       line-height: 1.1;
       color: var(--text-dark);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .hero-headline span {
-      display: block;
+    .hero-h1 .accent {
       color: var(--orange);
+      display: block;
     }
 
     /* Body */
-    .hero-body {
+    .hero-p {
       font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-mid);
+      line-height: 1.75;
+      color: #444;
       margin-top: 16px;
-      margin-bottom: 28px;
-      max-width: 400px;
+      margin-bottom: 30px;
+      max-width: 420px;
     }
 
-    /* CTAs */
+    /* CTAs — side by side on desktop */
     .hero-ctas {
       display: flex;
       align-items: center;
       gap: 14px;
-      flex-wrap: wrap;
       margin-bottom: 36px;
+      flex-wrap: wrap;
     }
-    .btn-primary {
+    .btn-filled {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -242,15 +225,15 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 14px 26px;
-      border-radius: var(--radius-lg);
+      padding: 13px 24px;
+      border-radius: 50px;
       border: 2px solid var(--orange);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
+      transition: background 0.2s;
+      white-space: nowrap;
     }
-    .btn-primary:hover { background: #e67a30; border-color: #e67a30; transform: translateY(-1px); }
+    .btn-filled:hover { background: #e67a2e; border-color: #e67a2e; }
 
-    .btn-outline {
+    .btn-ghost {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -261,54 +244,50 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 14px 26px;
-      border-radius: var(--radius-lg);
+      padding: 13px 24px;
+      border-radius: 50px;
       border: 2px solid var(--text-dark);
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
     }
-    .btn-outline:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-1px); }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* Trust badges strip */
+    /* Trust strip — INSIDE hero on desktop */
     .trust-strip {
       display: flex;
-      gap: 20px;
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(6px);
-      border: 1.5px solid rgba(255,138,61,0.15);
-      border-radius: var(--radius-md);
+      gap: 0;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
       padding: 14px 20px;
-      max-width: 440px;
+      max-width: 460px;
     }
     .trust-item {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      flex: 1;
+      gap: 6px;
+      padding: 0 8px;
+      border-right: 1px solid rgba(0,0,0,0.08);
     }
-    .trust-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--orange-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--orange);
-    }
-    .trust-label {
-      font-size: 11px;
+    .trust-item:last-child { border-right: none; }
+    .trust-item svg { color: var(--text-dark); }
+    .trust-item span {
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--text-dark);
       text-align: center;
       line-height: 1.3;
     }
 
-    /* ─── TAGLINE BAR ────────────────────────────────── */
+    /* ════════════════════════════════
+       TAGLINE BAR
+    ════════════════════════════════ */
     .tagline-bar {
       background: var(--orange-light);
-      border-top: 1px solid rgba(255,138,61,0.2);
+      border-top: 1px solid rgba(255,138,61,0.18);
       padding: 14px 40px;
       display: flex;
       justify-content: center;
@@ -319,270 +298,353 @@
       font-size: 14px;
       font-weight: 600;
       color: var(--text-dark);
-      letter-spacing: 0.02em;
     }
-    .sparkle { color: var(--orange); font-size: 16px; }
+    .sparkle { color: var(--orange); font-size: 15px; }
 
-    /* ─── MOBILE ─────────────────────────────────────── */
+    /* ════════════════════════════════
+       TRUST SECTION (mobile only)
+    ════════════════════════════════ */
+    .trust-section {
+      display: none; /* hidden on desktop */
+      background: var(--white);
+      padding: 0 16px 24px;
+    }
+    .trust-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .trust-card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      border-right: 1px solid #f0f0f0;
+    }
+    .trust-card-item:nth-child(2n) { border-right: none; }
+    .trust-card-item:nth-child(3),
+    .trust-card-item:nth-child(4) { border-bottom: none; }
+
+    .trust-icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--orange-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--orange);
+    }
+    .trust-text-block strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .trust-text-block span {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+
+    /* ════════════════════════════════
+       MOBILE BREAKPOINT
+    ════════════════════════════════ */
     @media (max-width: 768px) {
+
       /* Navbar */
-      .navbar { padding: 0 20px; }
-      .nav-links, .nav-cta { display: none; }
-      .hamburger, .cart-btn { display: flex; align-items: center; justify-content: center; }
+      .navbar {
+        padding: 0 18px;
+        justify-content: space-between;
+      }
+      .nav-center { display: none; }
+      .nav-cta    { display: none; }
+      .logo       { display: none; } /* desktop logo hidden */
+      .hamburger  { display: flex; }
+      .cart-btn   { display: flex; }
+
+      /* Mobile logo shown */
+      .nav-mobile-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
       /* Hero */
       .hero {
-        min-height: auto;
-        flex-direction: column;
+        min-height: 620px;
+        background-position: right center;
         align-items: flex-start;
-        background-position: bottom center;
-        background-size: 100% auto;
-        padding-bottom: 0;
       }
 
       .hero::before {
         background: linear-gradient(
-          to bottom,
-          var(--orange-light) 0%,
-          var(--orange-light) 55%,
-          rgba(255,240,230,0.6) 70%,
-          rgba(255,240,230,0) 100%
+          to right,
+          rgba(255,240,230,0.96) 0%,
+          rgba(255,240,230,0.88) 40%,
+          rgba(255,240,230,0.40) 62%,
+          rgba(255,240,230,0.00) 78%
         );
       }
 
       .hero-content {
-        padding: 36px 20px 24px 20px;
-        max-width: 100%;
+        padding: 32px 0 40px 20px;
+        max-width: 75%;
       }
 
-      .hero-headline { font-size: clamp(28px, 8vw, 38px); }
+      .hero-h1 { font-size: clamp(26px, 7.5vw, 36px); }
 
-      .hero-ctas { gap: 10px; }
-      .btn-primary, .btn-outline { padding: 12px 20px; font-size: 12px; }
-
-      /* Trust strip becomes 2x2 card below hero */
-      .trust-strip {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-        border-radius: var(--radius-md);
-        padding: 0;
-        margin: 0 16px;
-        max-width: calc(100% - 32px);
-        background: var(--white);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        position: relative;
-        z-index: 3;
-        bottom: 0;
-      }
-      .trust-item {
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        padding: 16px;
-        border-bottom: 1px solid #f0f0f0;
-        border-right: 1px solid #f0f0f0;
-      }
-      .trust-item:nth-child(2n) { border-right: none; }
-      .trust-item:nth-child(3),
-      .trust-item:nth-child(4) { border-bottom: none; }
-
-      .trust-label { text-align: left; font-size: 12px; }
-      .trust-sub { font-size: 11px; color: var(--text-mid); font-weight: 400; }
-
-      /* hero image spacer on mobile */
-      .hero-image-spacer {
-        display: block;
-        width: 100%;
-        height: 280px;
+      .hero-p {
+        font-size: 13.5px;
+        margin-bottom: 24px;
       }
 
+      /* Stacked buttons on mobile */
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 0;
+      }
+      .btn-filled,
+      .btn-ghost {
+        font-size: 12px;
+        padding: 12px 22px;
+      }
+
+      /* Trust strip hidden inside hero on mobile */
+      .trust-strip { display: none; }
+
+      /* Trust section shown below hero on mobile */
+      .trust-section { display: block; }
+
+      /* Tagline bar hidden on mobile */
       .tagline-bar { display: none; }
-    }
-
-    @media (min-width: 769px) {
-      .hero-image-spacer { display: none; }
-      .trust-item .trust-sub { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
-  <nav class="navbar">
+<!-- ══════════════════════════════════
+     NAVBAR
+══════════════════════════════════ -->
+<nav class="navbar">
 
-    <!-- Hamburger (mobile) -->
-    <button class="hamburger" aria-label="Open menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-        <line x1="3" y1="6"  x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
+  <!-- Mobile: hamburger -->
+  <button class="hamburger" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <line x1="3" y1="6"  x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
 
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="4" y="14" width="34" height="22" rx="3" stroke="currentColor" stroke-width="2.5"/>
-        <path d="M4 20h34" stroke="currentColor" stroke-width="2.5"/>
-        <circle cx="14" cy="40" r="3" fill="currentColor"/>
-        <circle cx="30" cy="40" r="3" fill="currentColor"/>
-        <path d="M12 14V10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v4" stroke="currentColor" stroke-width="2.5"/>
-        <rect x="18" y="24" width="6" height="6" rx="1" fill="currentColor" opacity="0.6"/>
-      </svg>
-      <div class="logo-text">
-        <span class="logo-name">VINCESLINK</span>
-        <span class="logo-sub">SUPER STORE</span>
-      </div>
-    </a>
+  <!-- Mobile: centered logo -->
+  <a href="#" class="nav-mobile-logo">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--blue)">
+      <circle cx="9"  cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <div>
+      <div class="logo-name">VINCESLINK</div>
+      <div class="logo-sub">SUPER STORE</div>
+    </div>
+  </a>
 
-    <!-- Desktop nav links -->
-    <ul class="nav-links">
-      <li><a href="#">Provisions</a></li>
-      <li><a href="#">Household Articles</a></li>
-      <li><a href="#">Beauty & Personal Care</a></li>
-      <li><a href="#">Drinks & Refreshments</a></li>
-      <li><a href="#">Health Essentials</a></li>
-    </ul>
+  <!-- Desktop: logo -->
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9"  cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <div>
+      <div class="logo-name">VINCESLINK</div>
+      <div class="logo-sub">SUPER STORE</div>
+    </div>
+  </a>
 
-    <!-- Desktop CTA / Mobile cart -->
-    <a href="#" class="nav-cta">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-        <circle cx="12" cy="9" r="2.5"/>
-      </svg>
-      Visit Our Store
-    </a>
-
-    <button class="cart-btn" aria-label="Cart">
-      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="4" y="14" width="34" height="22" rx="3" stroke="currentColor" stroke-width="2.5"/>
-        <path d="M4 20h34" stroke="currentColor" stroke-width="2.5"/>
-        <circle cx="14" cy="40" r="3" fill="currentColor"/>
-        <circle cx="30" cy="40" r="3" fill="currentColor"/>
-        <path d="M12 14V10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v4" stroke="currentColor" stroke-width="2.5"/>
-        <rect x="18" y="24" width="6" height="6" rx="1" fill="currentColor" opacity="0.6"/>
-      </svg>
-      <span class="cart-badge">2</span>
-    </button>
-
+  <!-- Desktop: nav links -->
+  <nav class="nav-center">
+    <a href="#">Provisions</a>
+    <a href="#">Household Articles</a>
+    <a href="#">Beauty &amp; Personal Care</a>
+    <a href="#">Drinks &amp; Refreshments</a>
+    <a href="#">Health Essentials</a>
   </nav>
 
-  <!-- ═══ HERO ══════════════════════════════════════════ -->
-  <section class="hero">
+  <!-- Desktop: CTA -->
+  <a href="#" class="nav-cta">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
+    Visit Our Store
+  </a>
 
-    <div class="hero-content">
+  <!-- Mobile: cart -->
+  <button class="cart-btn" aria-label="Cart">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9"  cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-badge">2</span>
+  </button>
 
-      <!-- Badge -->
-      <div class="hero-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <path d="M16 10a4 4 0 01-8 0"/>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+
+    <!-- Badge -->
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Your Trusted Store For Everyday Needs
+    </div>
+
+    <!-- Headline -->
+    <h1 class="hero-h1">
+      Everyday Essentials
+      <span class="accent">Without the Stress</span>
+    </h1>
+
+    <!-- Body -->
+    <p class="hero-p">
+      Shop trusted groceries, household items, beauty products,
+      beverages, and health essentials — carefully selected
+      for quality, value, and convenience.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-ctas">
+      <a href="#" class="btn-filled">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        Your Trusted Store For Everyday Needs
+        Shop Categories
+      </a>
+      <a href="#" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        Visit Our Store
+      </a>
+    </div>
+
+    <!-- Trust strip (desktop only, inside hero) -->
+    <div class="trust-strip">
+
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+        </svg>
+        <span>Quality<br>Products</span>
       </div>
 
-      <!-- Headline -->
-      <h1 class="hero-headline">
-        Everyday Essentials
-        <span>Without the Stress</span>
-      </h1>
-
-      <!-- Body -->
-      <p class="hero-body">
-        Shop trusted groceries, household items, beauty products,
-        beverages, and health essentials — all carefully selected
-        for quality, value, and convenience.
-      </p>
-
-      <!-- CTAs -->
-      <div class="hero-ctas">
-        <a href="#" class="btn-primary">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 01-8 0"/>
-          </svg>
-          Shop Categories
-        </a>
-        <a href="#" class="btn-outline">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            <circle cx="12" cy="9" r="2.5"/>
-          </svg>
-          Visit Our Store
-        </a>
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>
+        <span>Affordable<br>Prices</span>
       </div>
 
-      <!-- Trust strip -->
-      <div class="trust-strip">
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Trusted<br>Local Store</span>
+      </div>
 
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <polyline points="9 12 11 14 15 10"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-label">Quality Products</div>
-            <div class="trust-sub">Carefully selected for you</div>
-          </div>
-        </div>
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.12 1.2 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+        </svg>
+        <span>Friendly<br>Support</span>
+      </div>
 
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-label">Affordable Prices</div>
-            <div class="trust-sub">Great value for every budget</div>
-          </div>
-        </div>
+    </div>
+  </div>
+</section>
 
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-label">Trusted Local Store</div>
-            <div class="trust-sub">Serving our community</div>
-          </div>
-        </div>
+<!-- ══════════════════════════════════
+     TRUST SECTION (mobile only)
+══════════════════════════════════ -->
+<section class="trust-section">
+  <div class="trust-card">
 
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.12 1.2 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="trust-label">Friendly Support</div>
-            <div class="trust-sub">We're here to help you</div>
-          </div>
-        </div>
-
+    <div class="trust-card-item">
+      <div class="trust-icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </div>
+      <div class="trust-text-block">
+        <strong>Quality Products</strong>
+        <span>Carefully selected for you</span>
       </div>
     </div>
 
-    <!-- Mobile spacer so background image shows below content -->
-    <div class="hero-image-spacer"></div>
+    <div class="trust-card-item">
+      <div class="trust-icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>
+      </div>
+      <div class="trust-text-block">
+        <strong>Affordable Prices</strong>
+        <span>Great value for every budget</span>
+      </div>
+    </div>
 
-  </section>
+    <div class="trust-card-item">
+      <div class="trust-icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="trust-text-block">
+        <strong>Trusted Local Store</strong>
+        <span>Serving our community</span>
+      </div>
+    </div>
 
-  <!-- ═══ TAGLINE BAR ═══════════════════════════════════ -->
-  <div class="tagline-bar">
-    <span class="sparkle">✦</span>
-    <p>Great products. Great prices. Every day.</p>
-    <span class="sparkle">✦</span>
+    <div class="trust-card-item">
+      <div class="trust-icon-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.12 1.2 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+        </svg>
+      </div>
+      <div class="trust-text-block">
+        <strong>Friendly Support</strong>
+        <span>We're here to help you</span>
+      </div>
+    </div>
+
   </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TAGLINE BAR (desktop only)
+══════════════════════════════════ -->
+<div class="tagline-bar">
+  <span class="sparkle">✦</span>
+  <p>Great products. Great prices. Every day.</p>
+  <span class="sparkle">✦</span>
+</div>
 
 </body>
 </html>
