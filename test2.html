@@ -136,10 +136,10 @@
     ════════════════════════════════ */
     .hero {
       position: relative;
-      min-height: 560px;
+      min-height: 580px;
       background-image: url('images/business/Superstore/IMG_1427.jpeg');
       background-size: cover;
-      background-position: center right;
+      background-position: center 12%; /* shift down so woman's head clears navbar */
       background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
@@ -187,17 +187,19 @@
     }
     .badge svg { color: var(--orange); flex-shrink: 0; }
 
-    /* Headline */
+    /* Headline — 2 lines on desktop: "Everyday Essentials" / "Without the Stress" */
     .hero-h1 {
-      font-size: clamp(30px, 3.6vw, 50px);
+      font-size: clamp(36px, 4.2vw, 56px);
       font-weight: 900;
       line-height: 1.1;
       color: var(--text-dark);
       margin-bottom: 4px;
+      white-space: nowrap;
     }
     .hero-h1 .accent {
       color: var(--orange);
       display: block;
+      white-space: nowrap;
     }
 
     /* Body */
@@ -287,23 +289,35 @@
     }
 
     /* ════════════════════════════════
-       TAGLINE BAR
+       TAGLINE BAR — floats at bottom of hero on desktop
     ════════════════════════════════ */
     .tagline-bar {
-      background: var(--orange-light);
-      border-top: 1px solid rgba(255,138,61,0.18);
-      padding: 14px 40px;
+      position: absolute;
+      bottom: 24px;
+      left: 0; right: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .tagline-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,245,235,0.70);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,138,61,0.18);
+      border-radius: 50px;
+      padding: 10px 28px;
     }
     .tagline-bar p {
       font-size: 14px;
       font-weight: 600;
       color: var(--text-dark);
     }
-    .sparkle { color: var(--orange); font-size: 15px; }
+    .sparkle { color: var(--orange); font-size: 14px; }
 
     /* ════════════════════════════════
        TRUST SECTION (mobile only)
@@ -417,7 +431,11 @@
       }
       .badge svg { margin-top: 2px; flex-shrink: 0; }
 
-      .hero-h1 { font-size: clamp(24px, 7vw, 34px); }
+      .hero-h1 {
+        font-size: clamp(24px, 7vw, 34px);
+        white-space: normal;
+      }
+      .hero-h1 .accent { white-space: normal; }
 
       /* Narrower max-width forces ~6 lines */
       .hero-p {
@@ -463,8 +481,7 @@
 
       /* Tagline bar hidden on mobile */
       .tagline-bar { display: none; }
-    }
-  </style>
+    }  </style>
 </head>
 <body>
 
@@ -611,6 +628,15 @@
     </div>
   </div>
 
+  <!-- Tagline: floats at bottom of hero image, desktop only -->
+  <div class="tagline-bar">
+    <div class="tagline-inner">
+      <span class="sparkle">✦</span>
+      <p>Great products. Great prices. Every day.</p>
+      <span class="sparkle">✦</span>
+    </div>
+  </div>
+
 </section>
 
 <!-- ══════════════════════════════════
@@ -670,14 +696,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     TAGLINE BAR (desktop only)
-══════════════════════════════════ -->
-<div class="tagline-bar">
-  <span class="sparkle">✦</span>
-  <p>Great products. Great prices. Every day.</p>
-  <span class="sparkle">✦</span>
-</div>
 
 </body>
 </html>
