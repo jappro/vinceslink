@@ -136,20 +136,20 @@
     ════════════════════════════════ */
     .hero {
       position: relative;
-      min-height: 580px;
+      min-height: 720px;
       background-image: url('images/business/Superstore/IMG_1427.jpeg');
       background-size: cover;
-      background-position: center 12%; /* shift down so woman's head clears navbar */
+      background-position: center 18%;
       background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    /* Trust section hidden on desktop, shown on mobile inside hero */
+    /* Trust section hidden on desktop */
     .trust-section { display: none; }
 
-    /* Subtle left-side fade so text is readable */
+    /* Left-side fade so text is readable */
     .hero::before {
       content: '';
       position: absolute;
@@ -167,33 +167,34 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 60px 0 60px 60px;
-      max-width: 530px;
+      padding: 80px 0 80px 70px;
+      max-width: 560px;
+      margin-top: 40px; /* push content down so image shows more at top */
     }
 
     /* Badge pill */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.85);
+      gap: 9px;
+      background: rgba(255,255,255,0.88);
       border: 1.5px solid #ddd;
       border-radius: 50px;
-      padding: 8px 18px;
-      font-size: 12px;
+      padding: 9px 20px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--text-dark);
-      margin-bottom: 20px;
+      margin-bottom: 26px;
     }
     .badge svg { color: var(--orange); flex-shrink: 0; }
 
-    /* Headline — 2 lines on desktop: "Everyday Essentials" / "Without the Stress" */
+    /* Headline — 2 lines: "Everyday Essentials" / "Without the Stress" */
     .hero-h1 {
-      font-size: clamp(36px, 4.2vw, 56px);
+      font-size: clamp(38px, 4.4vw, 58px);
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.12;
       color: var(--text-dark);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       white-space: nowrap;
     }
     .hero-h1 .accent {
@@ -202,36 +203,36 @@
       white-space: nowrap;
     }
 
-    /* Body */
+    /* Body — larger, more readable, better spacing */
     .hero-p {
-      font-size: 15px;
-      line-height: 1.75;
+      font-size: 16.5px;
+      line-height: 1.85;
       color: #444;
-      margin-top: 16px;
-      margin-bottom: 30px;
-      max-width: 420px;
+      margin-top: 20px;
+      margin-bottom: 36px;
+      max-width: 440px;
     }
 
-    /* CTAs — side by side on desktop */
+    /* CTAs */
     .hero-ctas {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 36px;
+      gap: 16px;
+      margin-bottom: 44px;
       flex-wrap: wrap;
     }
     .btn-filled {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       background: var(--orange);
       color: var(--white);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 13px 24px;
+      padding: 15px 28px;
       border-radius: 50px;
       border: 2px solid var(--orange);
       transition: background 0.2s;
@@ -242,15 +243,15 @@
     .btn-ghost {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       background: transparent;
       color: var(--text-dark);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 13px 24px;
+      padding: 15px 28px;
       border-radius: 50px;
       border: 2px solid var(--text-dark);
       transition: border-color 0.2s, color 0.2s;
@@ -258,34 +259,34 @@
     }
     .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* Trust strip — INSIDE hero on desktop */
+    /* Trust strip — inside hero on desktop, more breathing room */
     .trust-strip {
       display: flex;
       gap: 0;
-      background: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.78);
       backdrop-filter: blur(8px);
       border: 1.5px solid rgba(0,0,0,0.08);
-      border-radius: 14px;
-      padding: 14px 20px;
-      max-width: 460px;
+      border-radius: 16px;
+      padding: 18px 24px;
+      max-width: 500px;
     }
     .trust-item {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      padding: 0 8px;
+      gap: 8px;
+      padding: 0 12px;
       border-right: 1px solid rgba(0,0,0,0.08);
     }
     .trust-item:last-child { border-right: none; }
-    .trust-item svg { color: var(--text-dark); }
+    .trust-item svg { color: var(--text-dark); width: 22px; height: 22px; }
     .trust-item span {
-      font-size: 11.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--text-dark);
       text-align: center;
-      line-height: 1.3;
+      line-height: 1.4;
     }
 
     /* ════════════════════════════════
