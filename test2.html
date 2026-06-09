@@ -369,6 +369,85 @@
     }
 
     /* ════════════════════════════════
+       TABLET BREAKPOINT (769px–1024px)
+    ════════════════════════════════ */
+    @media (min-width: 769px) and (max-width: 1024px) {
+
+      /* Navbar: hide full nav links, show condensed version */
+      .navbar { padding: 0 28px; }
+      .nav-center { gap: 18px; }
+      .nav-center a { font-size: 11px; }
+      .nav-cta { font-size: 11.5px; padding: 9px 16px; }
+
+      /* Hero */
+      .hero {
+        min-height: 620px;
+        background-position: center 15%;
+      }
+
+      .hero-content {
+        padding: 60px 0 60px 44px;
+        max-width: 480px;
+        margin-top: 20px;
+      }
+
+      /* Badge */
+      .badge {
+        font-size: 12px;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+      }
+
+      /* Headline: allow wrap on smaller tablets */
+      .hero-h1 {
+        font-size: clamp(32px, 4vw, 46px);
+        white-space: normal;
+      }
+      .hero-h1 .accent { white-space: normal; }
+
+      /* Body */
+      .hero-p {
+        font-size: 15px;
+        line-height: 1.8;
+        margin-top: 16px;
+        margin-bottom: 28px;
+        max-width: 380px;
+      }
+
+      /* CTAs */
+      .hero-ctas {
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+      .btn-filled,
+      .btn-ghost {
+        font-size: 12.5px;
+        padding: 13px 22px;
+      }
+
+      /* Trust strip */
+      .trust-strip {
+        padding: 14px 16px;
+        max-width: 420px;
+        border-radius: 14px;
+      }
+      .trust-item {
+        padding: 0 8px;
+        gap: 6px;
+      }
+      .trust-item svg { width: 18px; height: 18px; }
+      .trust-item span { font-size: 11px; }
+
+      /* Tagline bar */
+      .tagline-bar { bottom: 18px; }
+      .tagline-inner {
+        padding: 9px 22px;
+        gap: 12px;
+      }
+      .tagline-bar p { font-size: 13px; }
+    }
+
+    /* ════════════════════════════════
        MOBILE BREAKPOINT
     ════════════════════════════════ */
     @media (max-width: 768px) {
