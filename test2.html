@@ -380,16 +380,12 @@
         transform: translateX(-50%);
       }
 
-      /* ↓ Adjust this value to shift the background image left/right on mobile.
-           Higher % = more to the right (shows more products).
-           Lower %  = more to the left (shows more of the empty store bg).
-           Try values between 60% and 85% to find your sweet spot. */
       .hero {
-        min-height: 780px;
-        background-position: 72% center;
+        min-height: 680px;
+        background-position: 58% center;
         align-items: flex-start;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
       }
 
       .hero::before {
@@ -408,14 +404,14 @@
         max-width: 55%;
       }
 
-      /* Badge: two-line layout */
+      /* Badge: exactly 2 lines */
       .badge {
         display: inline-flex;
         align-items: flex-start;
         gap: 8px;
-        font-size: 11.5px;
-        padding: 8px 14px;
-        max-width: 160px;
+        font-size: 12px;
+        padding: 8px 16px;
+        max-width: 195px;
         line-height: 1.5;
         white-space: normal;
       }
@@ -447,23 +443,22 @@
       /* Trust strip hidden inside hero on mobile */
       .trust-strip { display: none; }
 
-      /* Trust card sits AT THE BOTTOM of the hero, ON the background image */
+      /* Trust card: sits OUTSIDE the hero. Only the top ~24px
+         overlaps the hero via negative margin-top, giving the
+         "peek" effect. Rest of card is on white bg below. */
       .trust-section {
         display: block;
         position: relative;
-        z-index: 3;
-        background: transparent;
-        padding: 24px 16px 32px;
-        width: 100%;
-        /* Pull it up into the hero section visually */
-        margin-top: auto;
+        z-index: 10;
+        background: var(--white);
+        padding: 0 16px 32px;
+        margin-top: -24px;
       }
 
-      /* Make card semi-transparent so hero image shows through slightly */
       .trust-card {
-        background: rgba(255,255,255,0.88);
-        backdrop-filter: blur(6px);
-        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        background: var(--white);
+        box-shadow: 0 -2px 20px rgba(0,0,0,0.10), 0 4px 20px rgba(0,0,0,0.06);
+        border-radius: 16px;
       }
 
       /* Tagline bar hidden on mobile */
@@ -616,8 +611,12 @@
     </div>
   </div>
 
-  <!-- Trust card: inside hero on mobile so it sits on bg image -->
-  <section class="trust-section">
+</section>
+
+<!-- ══════════════════════════════════
+     TRUST SECTION (mobile only)
+══════════════════════════════════ -->
+<section class="trust-section">
   <div class="trust-card">
 
     <div class="trust-card-item">
@@ -669,8 +668,6 @@
     </div>
 
   </div>
-  </section>
-
 </section>
 
 <!-- ══════════════════════════════════
