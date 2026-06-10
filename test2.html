@@ -796,40 +796,41 @@
         margin-bottom: 0;
         margin-left: -16px;
         margin-right: -16px;
-        padding: 44px 24px 88px;
-        min-height: 320px;
-        /* Layer 1: left→right fade — text readable, boy visible on right
+        padding: 36px 20px 76px;
+        min-height: 314px;
+        /* Layer 1: left→right fade — solid orange-light on left, boy visible on right
            Layer 2: bottom fade — blends into bento grid below
-           Layer 3: the boy image                                        */
+           Layer 3: the boy image zoomed in and pushed right                  */
         background:
           linear-gradient(
             to right,
-            rgba(255,240,230,0.97) 0%,
-            rgba(255,240,230,0.93) 26%,
-            rgba(255,240,230,0.60) 46%,
-            rgba(255,240,230,0.15) 63%,
-            rgba(255,240,230,0.00) 80%
+            rgba(255,240,230,0.98) 0%,
+            rgba(255,240,230,0.96) 30%,
+            rgba(255,240,230,0.65) 48%,
+            rgba(255,240,230,0.10) 62%,
+            rgba(255,240,230,0.00) 75%
           ),
           linear-gradient(
             to bottom,
-            transparent 55%,
-            rgba(255,240,230,0.80) 78%,
+            transparent 52%,
+            rgba(255,240,230,0.80) 76%,
             #fff0e6 100%
           ),
-          url('images/business/Superstore/IMG_1453.jpeg') right center / cover no-repeat;
+          url('images/business/Superstore/IMG_1453.jpeg') 68% 10% / 145% no-repeat;
       }
 
-      /* Text sits naturally on top — no z-index tricks needed */
+      /* Tighter text column — clear separation from the boy on the right */
       .intro-text {
-        max-width: 58%;
+        max-width: 50%;
       }
 
       .intro-boy-card { display: none; }
 
       .intro-text h2 {
         font-size: clamp(24px, 7vw, 30px);
-        margin-bottom: 12px;
-        line-height: 1.15;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 14px;
       }
 
       /* Description: constrained by parent max-width → wraps to 4 lines */
