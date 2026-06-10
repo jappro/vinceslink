@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premium Rice Card</title>
 <style>
+  :root {
+    --orange-light: #fff0e6;
+    --orange: #FF8A3D;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -16,28 +21,26 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
-  /* Slim trim ring */
   .card-trim {
-    border-radius: 30px;
-    padding: 5px;
-    background: #fff0e6;
-    box-shadow: 0 12px 48px rgba(0,0,0,0.14);
+    border-radius: 18px;
+    padding: 4px;
+    background: #ffffff;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    display: inline-block;
   }
 
-  /* Card */
   .card {
-    width: 320px;
-    border-radius: 26px;
+    width: 162px;
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
-    background: #fff0e6;
+    background: #ffffff;
   }
 
-  /* ── Image fills full width, no padding ── */
   .card__image {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 162 / 166;
     overflow: hidden;
   }
 
@@ -48,95 +51,107 @@
     display: block;
   }
 
-  /* Flame badge */
   .badge-flame {
     position: absolute;
-    top: 14px; left: 14px;
-    width: 42px; height: 42px;
-    background: rgba(255,255,255,0.92);
-    border-radius: 12px;
+    top: 9px; left: 9px;
+    width: 20px; height: 20px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    backdrop-filter: blur(8px);
     z-index: 2;
   }
 
-  /* Wishlist */
   .btn-wishlist {
     position: absolute;
-    bottom: 14px; right: 14px;
-    width: 42px; height: 42px;
+    bottom: 7px; right: 7px;
+    width: 26px; height: 26px;
     background: rgba(255,255,255,0.92);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     cursor: pointer; border: none;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
     z-index: 2;
     transition: transform 0.15s ease;
   }
   .btn-wishlist:hover { transform: scale(1.08); }
 
-  /* ── Info panel — flush white bottom ── */
+  .heart-path {
+    transition: stroke 0.2s ease, fill 0.2s ease;
+  }
+  .btn-wishlist.liked .heart-path {
+    stroke: #e8202e;
+    fill: #e8202e;
+  }
+
   .card__body {
     position: relative;
     background: #ffffff;
-    padding: 14px 16px 18px;
+    padding: 7px 9px 9px;
   }
 
-  /* Fade from image into white panel */
   .card__body::before {
     content: '';
     position: absolute;
-    top: -24px; left: 0; right: 0;
-    height: 24px;
+    top: -14px; left: 0; right: 0;
+    height: 14px;
     background: linear-gradient(to bottom, transparent, #ffffff);
     pointer-events: none;
   }
 
   .product-name {
-    font-size: 18px;
+    font-size: 11px;
     font-weight: 800;
     color: #1a1a1a;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     line-height: 1.1;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
 
   .product-desc {
-    font-size: 11.5px;
-    color: #aaaaaa;
-    margin-bottom: 10px;
-    line-height: 1.4;
+    font-size: 8.5px;
+    color: #bbbbbb;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .price-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+  }
+
+  .price-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
 
   .price-current {
-    font-size: 22px;
+    font-size: 13px;
     font-weight: 800;
     color: #1a1a1a;
-    letter-spacing: -0.6px;
+    letter-spacing: -0.4px;
+    line-height: 1.1;
   }
 
   .price-original {
-    font-size: 13px;
-    color: #c0c0c0;
+    font-size: 8.5px;
+    color: #c8c8c8;
     text-decoration: line-through;
     font-weight: 500;
   }
 
   .discount-badge {
-    background: rgba(232, 76, 30, 0.10);
-    color: #e84c1e;
-    font-size: 10.5px;
+    background: var(--orange-light);
+    color: var(--orange);
+    font-size: 8px;
     font-weight: 700;
-    padding: 3px 8px;
+    padding: 3px 5px;
     border-radius: 20px;
+    white-space: nowrap;
   }
 </style>
 </head>
@@ -147,27 +162,29 @@
 
     <div class="card__image">
       <div class="badge-flame">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2C12 2 7 7.5 7 12.5C7 15.538 9.239 18 12 18C14.761 18 17 15.538 17 12.5C17 10.5 15.5 8.5 15.5 8.5C15.5 8.5 15 11 13.5 11C12.5 11 12 10 12 9C12 6.5 14 4 14 4C13.5 3 12 2 12 2Z" fill="#E84C1E"/>
-          <path d="M12 14C12 14 10 13 10 11.5C10 10.672 10.5 10 11 9.5C11 10.5 11.8 11 12.5 11C13.5 11 14 10.2 14 9.5C14.5 10.5 15 11.5 15 12.5C15 14.433 13.657 16 12 16C10.343 16 9 14.433 9 12.5C9 12.5 9.8 14 12 14Z" fill="#FF8C42"/>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C12 2 7 7.5 7 12.5C7 15.538 9.239 18 12 18C14.761 18 17 15.538 17 12.5C17 10.5 15.5 8.5 15.5 8.5C15.5 8.5 15 11 13.5 11C12.5 11 12 10 12 9C12 6.5 14 4 14 4C13.5 3 12 2 12 2Z" fill="var(--orange)"/>
+          <path d="M12 14C12 14 10 13 10 11.5C10 10.672 10.5 10 11 9.5C11 10.5 11.8 11 12.5 11C13.5 11 14 10.2 14 9.5C14.5 10.5 15 11.5 15 12.5C15 14.433 13.657 16 12 16C10.343 16 9 14.433 9 12.5C9 12.5 9.8 14 12 14Z" fill="var(--orange-light)"/>
         </svg>
       </div>
 
-      <img src="images/business/Superstore/hots/IMG_1463.jpeg" alt="Stallion Premium Rice 5kg">
+      <img src="images/business/Superstore/hots/IMG_1466.jpeg" alt="Stallion Premium Rice 5kg">
 
-      <button class="btn-wishlist" aria-label="Add to wishlist">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="#e8a020" stroke-width="2"/>
+      <button class="btn-wishlist" aria-label="Add to wishlist" onclick="this.classList.toggle('liked')">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
+          <path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/>
         </svg>
       </button>
     </div>
 
     <div class="card__body">
       <h2 class="product-name">Premium Rice</h2>
-      <p class="product-desc">Extra long grain · Premium quality · Perfect for every meal</p>
+      <p class="product-desc">Extra long grain · Premium quality 5kg</p>
       <div class="price-row">
-        <span class="price-current">₦9,500</span>
-        <span class="price-original">₦12,000</span>
+        <div class="price-left">
+          <span class="price-current">₦9,500</span>
+          <span class="price-original">₦12,000</span>
+        </div>
         <span class="discount-badge">21% OFF</span>
       </div>
     </div>
