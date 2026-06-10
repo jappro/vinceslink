@@ -16,49 +16,36 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
-  /* Outer white trim ring */
+  /* Slim trim ring */
   .card-trim {
     border-radius: 30px;
     padding: 5px;
-    background: rgba(255,255,255,0.85);
+    background: #fff0e6;
     box-shadow: 0 12px 48px rgba(0,0,0,0.14);
   }
 
-  /* The card itself */
+  /* Card */
   .card {
     width: 320px;
     border-radius: 26px;
     overflow: hidden;
     position: relative;
-    background: linear-gradient(168deg, #f8f0e2 0%, #f0e2c6 55%, #e8d4a8 100%);
+    background: #fff0e6;
   }
 
-  /* Wheat stalk decoration */
-  .card::before {
-    content: '';
-    position: absolute;
-    right: -4px; bottom: 80px;
-    width: 100px; height: 220px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 220'%3E%3Cg opacity='0.3' fill='%23a07840'%3E%3Cellipse cx='50' cy='210' rx='3' ry='20'/%3E%3Cellipse cx='50' cy='175' rx='3' ry='17'/%3E%3Cellipse cx='43' cy='142' rx='8' ry='4' transform='rotate(-22 43 142)'/%3E%3Cellipse cx='57' cy='152' rx='8' ry='4' transform='rotate(22 57 152)'/%3E%3Cellipse cx='41' cy='126' rx='7' ry='4' transform='rotate(-28 41 126)'/%3E%3Cellipse cx='59' cy='136' rx='7' ry='4' transform='rotate(28 59 136)'/%3E%3Cellipse cx='50' cy='108' rx='5' ry='6'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── Image zone ── */
+  /* ── Image fills full width, no padding ── */
   .card__image {
     position: relative;
-    z-index: 1;
-    height: 310px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
   }
 
   .card__image img {
-    height: 280px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.18));
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   /* Flame badge */
@@ -66,11 +53,12 @@
     position: absolute;
     top: 14px; left: 14px;
     width: 42px; height: 42px;
-    background: rgba(255,255,255,0.90);
+    background: rgba(255,255,255,0.92);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     backdrop-filter: blur(8px);
+    z-index: 2;
   }
 
   /* Wishlist */
@@ -78,30 +66,30 @@
     position: absolute;
     bottom: 14px; right: 14px;
     width: 42px; height: 42px;
-    background: rgba(255,255,255,0.90);
+    background: rgba(255,255,255,0.92);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     cursor: pointer; border: none;
     backdrop-filter: blur(8px);
+    z-index: 2;
     transition: transform 0.15s ease;
   }
   .btn-wishlist:hover { transform: scale(1.08); }
 
-  /* ── Info panel — flush, part of the card, no float ── */
+  /* ── Info panel — flush white bottom ── */
   .card__body {
     position: relative;
-    z-index: 1;
     background: #ffffff;
-    padding: 14px 16px 16px;
+    padding: 14px 16px 18px;
   }
 
-  /* Soft fade where image meets panel */
+  /* Fade from image into white panel */
   .card__body::before {
     content: '';
     position: absolute;
-    top: -28px; left: 0; right: 0;
-    height: 28px;
+    top: -24px; left: 0; right: 0;
+    height: 24px;
     background: linear-gradient(to bottom, transparent, #ffffff);
     pointer-events: none;
   }
@@ -122,7 +110,6 @@
     line-height: 1.4;
   }
 
-  /* Price row */
   .price-row {
     display: flex;
     align-items: center;
@@ -158,9 +145,7 @@
 <div class="card-trim">
   <div class="card">
 
-    <!-- Image zone -->
     <div class="card__image">
-
       <div class="badge-flame">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C12 2 7 7.5 7 12.5C7 15.538 9.239 18 12 18C14.761 18 17 15.538 17 12.5C17 10.5 15.5 8.5 15.5 8.5C15.5 8.5 15 11 13.5 11C12.5 11 12 10 12 9C12 6.5 14 4 14 4C13.5 3 12 2 12 2Z" fill="#E84C1E"/>
@@ -168,8 +153,7 @@
         </svg>
       </div>
 
-      <img src="https://raw.githubusercontent.com/jappro/vinceslink/cd2de00ac0abd99d253f1931af47a48e0753af01/images/business/Superstore/hots/IMG_1463.jpeg"
-           alt="Stallion Premium Rice 5kg">
+      <img src="images/business/Superstore/hots/IMG_1463.jpeg" alt="Stallion Premium Rice 5kg">
 
       <button class="btn-wishlist" aria-label="Add to wishlist">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -178,7 +162,6 @@
       </button>
     </div>
 
-    <!-- Info panel -->
     <div class="card__body">
       <h2 class="product-name">Premium Rice</h2>
       <p class="product-desc">Extra long grain · Premium quality · Perfect for every meal</p>
