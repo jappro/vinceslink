@@ -790,62 +790,37 @@
         padding: 0 16px 48px;
       }
 
-      /* Intro: boy image as full-width background */
+      /* Intro: boy as background — multi-layer CSS, no pseudo-elements */
       .categories-intro {
-        position: relative;
-        grid-template-columns: 1fr;
+        display: block;
         margin-bottom: 0;
-        /* break out of section's side paddings so image bleeds edge-to-edge */
         margin-left: -16px;
         margin-right: -16px;
-        padding: 44px 24px 80px;
-        background-image: url('images/business/Superstore/boy-shopping.png');
-        background-size: cover;
-        background-position: right center;
-        background-repeat: no-repeat;
-        min-height: 300px;
+        padding: 44px 24px 88px;
+        min-height: 320px;
+        /* Layer 1: left→right fade — text readable, boy visible on right
+           Layer 2: bottom fade — blends into bento grid below
+           Layer 3: the boy image                                        */
+        background:
+          linear-gradient(
+            to right,
+            rgba(255,240,230,0.97) 0%,
+            rgba(255,240,230,0.93) 26%,
+            rgba(255,240,230,0.60) 46%,
+            rgba(255,240,230,0.15) 63%,
+            rgba(255,240,230,0.00) 80%
+          ),
+          linear-gradient(
+            to bottom,
+            transparent 55%,
+            rgba(255,240,230,0.80) 78%,
+            #fff0e6 100%
+          ),
+          url('images/business/Superstore/IMG_1453.jpeg') right center / cover no-repeat;
       }
 
-      /* Left-to-right gradient — readable text left, boy clearly visible right */
-      .categories-intro::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to right,
-          rgba(255,240,230,0.97) 0%,
-          rgba(255,240,230,0.93) 28%,
-          rgba(255,240,230,0.55) 48%,
-          rgba(255,240,230,0.12) 65%,
-          rgba(255,240,230,0.00) 82%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      /* Bottom fade — seamless blending into the bento grid below */
-      .categories-intro::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 110px;
-        background: linear-gradient(
-          to bottom,
-          transparent 0%,
-          rgba(255,240,230,0.75) 55%,
-          #fff0e6 100%
-        );
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      /* Lift text above both gradient layers */
+      /* Text sits naturally on top — no z-index tricks needed */
       .intro-text {
-        position: relative;
-        z-index: 2;
-        /* narrow width keeps text to ~4 lines and preserves boy visibility */
         max-width: 58%;
       }
 
