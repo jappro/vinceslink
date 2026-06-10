@@ -786,31 +786,91 @@
 
       /* ── Categories section mobile ── */
       .categories-section {
-        padding: 36px 16px 48px;
+        /* no top padding — intro covers it. side padding for bento grid. */
+        padding: 0 16px 48px;
       }
 
-      /* Intro block: stacked, no boy card */
+      /* Intro: boy image as full-width background */
       .categories-intro {
+        position: relative;
         grid-template-columns: 1fr;
-        margin-bottom: 24px;
+        margin-bottom: 0;
+        /* break out of section's side paddings so image bleeds edge-to-edge */
+        margin-left: -16px;
+        margin-right: -16px;
+        padding: 44px 24px 80px;
+        background-image: url('images/business/Superstore/boy-shopping.png');
+        background-size: cover;
+        background-position: right center;
+        background-repeat: no-repeat;
+        min-height: 300px;
+      }
+
+      /* Left-to-right gradient — readable text left, boy clearly visible right */
+      .categories-intro::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(255,240,230,0.97) 0%,
+          rgba(255,240,230,0.93) 28%,
+          rgba(255,240,230,0.55) 48%,
+          rgba(255,240,230,0.12) 65%,
+          rgba(255,240,230,0.00) 82%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Bottom fade — seamless blending into the bento grid below */
+      .categories-intro::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 110px;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(255,240,230,0.75) 55%,
+          #fff0e6 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Lift text above both gradient layers */
+      .intro-text {
+        position: relative;
+        z-index: 2;
+        /* narrow width keeps text to ~4 lines and preserves boy visibility */
+        max-width: 58%;
       }
 
       .intro-boy-card { display: none; }
 
       .intro-text h2 {
-        font-size: clamp(26px, 7vw, 32px);
+        font-size: clamp(24px, 7vw, 30px);
         margin-bottom: 12px;
+        line-height: 1.15;
       }
+
+      /* Description: constrained by parent max-width → wraps to 4 lines */
       .intro-text p {
-        font-size: 14px;
+        font-size: 13.5px;
+        line-height: 1.8;
         margin-bottom: 0;
         max-width: 100%;
+        color: var(--text-dark);
       }
-      /* hide browse button in intro on mobile — full-width CTA at bottom */
+
+      /* hide browse button on mobile — full-width CTA is at bottom */
       .intro-text .btn-browse { display: none; }
 
-      /* Mobile bento grid gap */
-      .bento-grid { gap: 14px; }
+      /* No top gap between intro image and first bento row */
+      .bento-grid { gap: 14px; margin-top: 0; }
 
       /* ── Row 1 mobile: horizontal scroll, 2.2 cards visible ── */
       .bento-row-1 {
@@ -1175,7 +1235,7 @@
         <p>Quality products, great prices &amp; everything you love in one place.</p>
       </div>
       <!-- Replace src with your actual boy image path -->
-      <img src="https://github.com/jappro/vinceslink/blob/c0afc7c248c4226bf4b4a084dde3fc8e5c02018c/images/business/Superstore/IMG_1453.jpeg" alt="Happy shopper with Vinceslink bag" />
+      <img src="images/business/Superstore/IMG_1453.jpeg" alt="Happy shopper with Vinceslink bag" />
     </div>
 
   </div>
@@ -1187,7 +1247,7 @@
     <div class="bento-row-1">
 
       <!-- Provisions -->
-      <a href="#" class="bento-card card--provisions">
+      <a href="#provisions-section" class="bento-card card--provisions">
         <div class="card-image">
           <img src="images/business/Superstore/provisions.jpg" alt="Provisions — rice, oils, canned goods" />
         </div>
@@ -1209,7 +1269,7 @@
       </a>
 
       <!-- Household Articles -->
-      <a href="#" class="bento-card card--household">
+      <a href="#articles-section" class="bento-card card--household">
         <div class="card-image">
           <img src="images/business/Superstore/household.jpg" alt="Household cleaning supplies" />
         </div>
@@ -1231,7 +1291,7 @@
       </a>
 
       <!-- Beauty & Personal Care -->
-      <a href="#" class="bento-card card--beauty">
+      <a href="#cusmetics-section" class="bento-card card--beauty">
         <div class="card-image">
           <img src="images/business/Superstore/beauty.jpg" alt="Beauty and skincare products" />
         </div>
@@ -1258,7 +1318,7 @@
     <div class="bento-row-2">
 
       <!-- Drinks & Refreshments -->
-      <a href="#" class="bento-card card--drinks">
+      <a href="#drinks-section" class="bento-card card--drinks">
         <div class="card-body">
           <div class="card-icon">
             <!-- cup icon -->
@@ -1282,7 +1342,7 @@
       </a>
 
       <!-- Health Essentials -->
-      <a href="#" class="bento-card card--health">
+      <a href="#medecines-section" class="bento-card card--health">
         <div class="card-body">
           <div class="card-icon">
             <!-- heart-pulse icon -->
