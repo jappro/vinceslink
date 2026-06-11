@@ -12,13 +12,14 @@
       --pink:         #e91e8c;
       --teal:         #7b1fa2;
       --green:        #2e7d32;
+      --bg:           #F7FFF6;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-      background: var(--orange-light);
+      background: var(--bg);
       color: #1a1a1a;
       min-height: 100vh;
     }
@@ -27,7 +28,7 @@
        HERO
     ───────────────────────────── */
     .hero {
-      background: var(--orange-light);
+      background: var(--bg);
       padding: 28px 20px 0;
       overflow: hidden;
     }
@@ -92,7 +93,7 @@
        PAGE
     ───────────────────────────── */
     .page {
-      background: var(--orange-light);
+      background: var(--bg);
       padding: 20px 14px 48px;
       display: flex;
       flex-direction: column;
@@ -311,6 +312,93 @@
     .cat-beauty   .heart-path { stroke: var(--pink);   }
     .cat-refresh  .heart-path { stroke: var(--teal);   }
     .cat-essentials .heart-path { stroke: var(--green); }
+
+    /* ─────────────────────────────
+       RESPONSIVE — TABLET & DESKTOP
+    ───────────────────────────── */
+
+    /* Tablet: 600px–1023px — 3 cards visible + 0.5 peek */
+    @media (min-width: 600px) {
+      .hero { padding: 40px 36px 0; }
+      .hero-title { font-size: 38px; }
+      .hero-subtitle { font-size: 15px; max-width: 340px; }
+      .hero-img { width: 220px; }
+
+      .page { padding: 28px 24px 60px; gap: 36px; }
+
+      .category-title { font-size: 17px; }
+      .cat-icon { width: 48px; height: 48px; }
+
+      .product-row { gap: 14px; padding-right: 24px; margin-right: -24px; }
+
+      /* 3.5 cards visible on tablet */
+      .card-trim {
+        width: calc((100vw - 60px) / 3.5);
+      }
+      .product-row.expanded .card-trim {
+        width: calc((100vw - 60px) / 3);
+      }
+
+      .product-name  { font-size: 12.5px; }
+      .product-desc  { font-size: 9.5px; }
+      .price-current { font-size: 14px; }
+      .price-original { font-size: 9.5px; }
+      .discount-badge { font-size: 9px; }
+    }
+
+    /* Desktop: 1024px+ — fixed max-width container, 4 cards visible */
+    @media (min-width: 1024px) {
+      body { display: flex; justify-content: center; }
+
+      /* Constrain the whole section */
+      .hero, .page {
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .hero { padding: 48px 48px 0; border-radius: 24px 24px 0 0; }
+      .hero-title { font-size: 44px; }
+      .hero-subtitle { font-size: 16px; max-width: 420px; }
+      .hero-img { width: 260px; }
+
+      .page { padding: 32px 48px 72px; gap: 40px; border-radius: 0 0 24px 24px; }
+
+      .category-title { font-size: 18px; }
+      .cat-icon { width: 52px; height: 52px; }
+      .cat-icon svg { width: 26px; height: 26px; }
+
+      /* On desktop row is always a fixed grid — no scroll needed for 4 cards */
+      .product-row {
+        overflow-x: hidden;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding-right: 0;
+        margin-right: 0;
+      }
+
+      /* 4 cards per row, fixed width */
+      .card-trim {
+        width: calc(25% - 12px);
+      }
+
+      /* Expanded on desktop: show all 6 in a 3-per-row wrap */
+      .product-row.expanded {
+        overflow-x: hidden;
+        flex-wrap: wrap;
+        scroll-snap-type: none;
+      }
+      .product-row.expanded .card-trim {
+        width: calc(33.333% - 11px);
+      }
+
+      /* Hide see all button text change on desktop since all cards visible */
+      .product-name  { font-size: 13px; }
+      .product-desc  { font-size: 10px; }
+      .price-current { font-size: 15px; }
+      .price-original { font-size: 10px; }
+      .discount-badge { font-size: 9.5px; padding: 4px 7px; }
+    }
   </style>
 </head>
 <body>
@@ -363,7 +451,7 @@
           <div class="card">
             <div class="card__image" style="background:#fff0e6;">
               <div class="badge-flame"><svg width="22" height="22" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
-              <img src="images/business/Superstore/hots/IMG_1466.jpeg" alt="Premium Rice" />
+              <img src="images/business/Superstore/premium-rice.jpeg" alt="Premium Rice" />
               <button class="btn-wishlist" onclick="this.classList.toggle('liked')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button>
             </div>
             <div class="card__body">
