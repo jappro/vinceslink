@@ -458,35 +458,42 @@
     /* ═══════════════════════════════════════
        BENTO GRID ROW 1 — CATEGORY CARDS
     ═══════════════════════════════════════ */
-
-    /* Shared card styles */
-    .bento-grid__row-1 {
-      width: 100%;
+    :root {
+      --orange-light: #fff0e6;
+      --orange:       #FF8A3D;
+      --green-light:  #e8f5e9;
+      --green:        #2e7d32;
+      --pink-light:   #fce4ec;
+      --pink:         #e91e8c;
     }
+
+    .bento-grid__row-1 { width: 100%; }
 
     .row-1__track {
       display: flex;
       gap: 14px;
+      align-items: stretch;
     }
 
+    /* ── CARD BASE ── */
     .category-card {
+      flex: 1 1 0;
+      min-width: 0;
+      border-radius: 20px;
+      background: #fff;
       display: flex;
       flex-direction: column;
-      border-radius: 20px;
       overflow: visible;
-      flex-shrink: 0;
       position: relative;
     }
 
-    .category-card--provisions  { background: #fdf3e3; }
-    .category-card--household   { background: #eef6f0; }
-    .category-card--beauty      { background: #fdeef4; }
 
-    /* Image area — top half */
+
+    /* ── IMAGE — top 55% ── */
     .category-card__image {
-      width: 100%;
+      flex: 0 0 55%;
       border-radius: 20px 20px 0 0;
-      overflow: hidden;
+      overflow: hidden;        /* clips image only */
       position: relative;
     }
 
@@ -498,38 +505,28 @@
       display: block;
     }
 
-    /* Circle icon — sits at boundary of image and text */
+    /* ── ICON — absolutely on the CARD, centered at image bottom edge ── */
+    /* Uses margin-top on body to push text down, icon overlaps the gap */
     .category-card__icon-wrap {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       border-radius: 50%;
-      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 3;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      z-index: 5;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
     }
+    .category-card__icon-wrap svg { display: block; }
 
-    .category-card__icon-wrap svg {
-      display: block;
-    }
-
-    /* Icon colors per card */
-    .category-card--provisions  .category-card__icon-wrap { border: 2px solid #e8a020; }
-    .category-card--provisions  .category-card__icon-wrap svg { stroke: #e8a020; }
-    .category-card--household   .category-card__icon-wrap { border: 2px solid #3a9e6a; }
-    .category-card--household   .category-card__icon-wrap svg { stroke: #3a9e6a; }
-    .category-card--beauty      .category-card__icon-wrap { border: 2px solid #d4608a; }
-    .category-card--beauty      .category-card__icon-wrap svg { stroke: #d4608a; }
-
-    /* Text area — bottom half */
+    /* ── BODY — bottom 45% ── */
     .category-card__body {
+      flex: 0 0 45%;
       display: flex;
       flex-direction: column;
-      flex: 1;
-      position: relative;
+      border-radius: 0 0 20px 20px;
+      background: #fff;
     }
 
     .category-card__title {
@@ -544,198 +541,123 @@
       flex: 1;
     }
 
-    /* Chevron button — bottom right */
+    /* ── CHEVRON ── */
     .category-card__chevron {
       align-self: flex-end;
       border-radius: 50%;
-      background: #fff;
-      border: 1.5px solid #ddd;
+      border: 1.5px solid;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    .category-card__chevron svg {
-      stroke: #444;
-    }
+    /* ── PER-CARD COLORS ── */
+    .category-card--provisions  .category-card__icon-wrap { border: 2px solid var(--orange); background: var(--orange-light); }
+    .category-card--provisions  .category-card__icon-wrap svg { stroke: var(--orange); }
+    .category-card--provisions  .category-card__chevron { background: var(--orange-light); border-color: var(--orange); }
+    .category-card--provisions  .category-card__chevron svg { stroke: var(--orange); }
+    .category-card--provisions  .category-card__chevron:hover { background: var(--orange); }
+    .category-card--provisions  .category-card__chevron:hover svg { stroke: #fff; }
 
-    /* ── MOBILE row 1 ── */
+    .category-card--household   .category-card__icon-wrap { border: 2px solid var(--green); background: var(--green-light); }
+    .category-card--household   .category-card__icon-wrap svg { stroke: var(--green); }
+    .category-card--household   .category-card__chevron { background: var(--green-light); border-color: var(--green); }
+    .category-card--household   .category-card__chevron svg { stroke: var(--green); }
+    .category-card--household   .category-card__chevron:hover { background: var(--green); }
+    .category-card--household   .category-card__chevron:hover svg { stroke: #fff; }
+
+    .category-card--beauty      .category-card__icon-wrap { border: 2px solid var(--pink); background: var(--pink-light); }
+    .category-card--beauty      .category-card__icon-wrap svg { stroke: var(--pink); }
+    .category-card--beauty      .category-card__chevron { background: var(--pink-light); border-color: var(--pink); }
+    .category-card--beauty      .category-card__chevron svg { stroke: var(--pink); }
+    .category-card--beauty      .category-card__chevron:hover { background: var(--pink); }
+    .category-card--beauty      .category-card__chevron:hover svg { stroke: #fff; }
+
+    /* ══════════════ MOBILE ══════════════ */
     @media (max-width: 767px) {
-      .bento-grid__row-1 {
-        padding: 0 16px;
-      }
+      .bento-grid__row-1 { padding: 0 8px; margin-top: -36px; position: relative; z-index: 10; }
 
-      .row-1__track {
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-bottom: 8px;
-      }
+      .row-1__track { gap: 6px; overflow: visible; }
 
-      .row-1__track::-webkit-scrollbar { display: none; }
+      .category-card { height: 280px; border-radius: 14px; }
 
-      .category-card {
-        width: 260px;
-        scroll-snap-align: start;
-        border-radius: 20px;
-      }
+      .category-card__image { border-radius: 14px 14px 0 0; }
 
-      .category-card__image {
-        height: 180px;
-      }
-
+      /* Icon: positioned so its center sits right at the bottom of the image (55% of card) */
       .category-card__icon-wrap {
-        width: 56px;
-        height: 56px;
-        bottom: -28px;
+        width: 34px;
+        height: 34px;
+        /* 55% of 240px = 132px. Icon center = 132px from top of card */
+        top: 154px;
+        transform: translate(-50%, -50%);
       }
+      .category-card__icon-wrap svg { width: 15px; height: 15px; }
 
-      .category-card__icon-wrap svg {
-        width: 26px;
-        height: 26px;
-      }
-
+      /* Body: pad top enough to clear the icon (half icon = 17px + 6px gap) */
       .category-card__body {
-        padding: 40px 18px 18px 18px;
-        gap: 8px;
+        padding: 22px 8px 10px 8px;
+        gap: 3px;
+        border-radius: 0 0 14px 14px;
       }
 
-      .category-card__title {
-        font-size: 18px;
-      }
+      .category-card__title { font-size: 10px; font-weight: 800; }
+      .category-card__desc  { font-size: 8px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 
-      .category-card__desc {
-        font-size: 12.5px;
-      }
-
-      .category-card__chevron {
-        width: 36px;
-        height: 36px;
-        margin-top: 12px;
-      }
-
-      .category-card__chevron svg {
-        width: 16px;
-        height: 16px;
-      }
+      .category-card__chevron { width: 22px; height: 22px; margin-top: 4px; }
+      .category-card__chevron svg { width: 9px; height: 9px; }
     }
 
-    /* ── TABLET row 1 ── */
+    /* ══════════════ TABLET ══════════════ */
     @media (min-width: 768px) and (max-width: 1024px) {
-      .bento-grid__row-1 {
-        padding: 0;
-      }
+      .bento-grid__row-1 { padding: 0; margin-top: -40px; position: relative; z-index: 10; }
+      .row-1__track { gap: 14px; }
 
-      .row-1__track {
-        overflow-x: visible;
-        gap: 16px;
-      }
+      .category-card { height: 340px; border-radius: 18px; }
+      .category-card__image { border-radius: 18px 18px 0 0; }
 
-      .category-card {
-        flex: 1;
-        min-width: 0;
-        border-radius: 20px;
-      }
-
-      .category-card__image {
-        height: 220px;
-      }
-
+      /* 55% of 340px = 187px */
       .category-card__icon-wrap {
-        width: 64px;
-        height: 64px;
-        bottom: -32px;
+        width: 56px; height: 56px;
+        top: 187px;
+        transform: translate(-50%, -50%);
       }
+      .category-card__icon-wrap svg { width: 24px; height: 24px; }
 
-      .category-card__icon-wrap svg {
-        width: 28px;
-        height: 28px;
-      }
+      .category-card__body { padding: 36px 16px 16px 16px; gap: 8px; border-radius: 0 0 18px 18px; }
+      .category-card__title { font-size: 17px; }
+      .category-card__desc  { font-size: 12.5px; }
 
-      .category-card__body {
-        padding: 44px 20px 20px 20px;
-        gap: 10px;
-      }
-
-      .category-card__title {
-        font-size: 20px;
-      }
-
-      .category-card__desc {
-        font-size: 13.5px;
-      }
-
-      .category-card__chevron {
-        width: 40px;
-        height: 40px;
-        margin-top: 14px;
-      }
-
-      .category-card__chevron svg {
-        width: 18px;
-        height: 18px;
-      }
+      .category-card__chevron { width: 36px; height: 36px; margin-top: 10px; }
+      .category-card__chevron svg { width: 15px; height: 15px; }
     }
 
-    /* ── DESKTOP row 1 ── */
+    /* ══════════════ DESKTOP ══════════════ */
     @media (min-width: 1025px) {
-      .bento-grid__row-1 {
-        padding: 0;
-      }
+      .bento-grid__row-1 { padding: 0; margin-top: -48px; position: relative; z-index: 10; }
+      .row-1__track { gap: 20px; }
 
-      .row-1__track {
-        overflow-x: visible;
-        gap: 20px;
-      }
+      .category-card { height: 420px; border-radius: 22px; }
+      .category-card__image { border-radius: 22px 22px 0 0; }
 
-      .category-card {
-        flex: 1;
-        min-width: 0;
-        border-radius: 24px;
-      }
-
-      .category-card__image {
-        height: 260px;
-      }
-
+      /* 55% of 420px = 231px */
       .category-card__icon-wrap {
-        width: 72px;
-        height: 72px;
-        bottom: -36px;
+        width: 66px; height: 66px;
+        top: 231px;
+        transform: translate(-50%, -50%);
       }
+      .category-card__icon-wrap svg { width: 28px; height: 28px; }
 
-      .category-card__icon-wrap svg {
-        width: 32px;
-        height: 32px;
-      }
+      .category-card__body { padding: 44px 22px 22px 22px; gap: 12px; border-radius: 0 0 22px 22px; }
+      .category-card__title { font-size: 22px; }
+      .category-card__desc  { font-size: 14px; }
 
-      .category-card__body {
-        padding: 50px 24px 24px 24px;
-        gap: 12px;
-      }
-
-      .category-card__title {
-        font-size: 24px;
-      }
-
-      .category-card__desc {
-        font-size: 14.5px;
-      }
-
-      .category-card__chevron {
-        width: 44px;
-        height: 44px;
-        margin-top: 16px;
-      }
-
-      .category-card__chevron svg {
-        width: 20px;
-        height: 20px;
-      }
+      .category-card__chevron { width: 42px; height: 42px; margin-top: 14px; }
+      .category-card__chevron svg { width: 18px; height: 18px; }
     }
+
   </style>
 </head>
 <body>
@@ -797,22 +719,19 @@
         <div class="category-card category-card--provisions">
           <div class="category-card__image">
             <img src="images/business/Superstore/bento-grid/IMG_1520.jpeg" alt="Provisions" />
-            <div class="category-card__icon-wrap">
-              <!-- Basket icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 01-8 0"/>
-              </svg>
-            </div>
+          </div>
+          <div class="category-card__icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
           </div>
           <div class="category-card__body">
             <h3 class="category-card__title">Provisions</h3>
             <p class="category-card__desc">Rice, noodles, canned foods, spices, snacks &amp; more</p>
             <div class="category-card__chevron">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </div>
           </div>
         </div>
@@ -821,21 +740,18 @@
         <div class="category-card category-card--household">
           <div class="category-card__image">
             <img src="images/business/Superstore/bento-grid/IMG_1521.jpeg" alt="Household Articles" />
-            <div class="category-card__icon-wrap">
-              <!-- House icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-            </div>
+          </div>
+          <div class="category-card__icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
           </div>
           <div class="category-card__body">
             <h3 class="category-card__title">Household Articles</h3>
             <p class="category-card__desc">Cleaning supplies, storage items, kitchen accessories &amp; everyday necessities</p>
             <div class="category-card__chevron">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </div>
           </div>
         </div>
@@ -844,29 +760,25 @@
         <div class="category-card category-card--beauty">
           <div class="category-card__image">
             <img src="images/business/Superstore/bento-grid/IMG_1522.jpeg" alt="Beauty &amp; Personal Care" />
-            <div class="category-card__icon-wrap">
-              <!-- Bottle/perfume icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 2h6v3H9zM7 5h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"/>
-                <line x1="12" y1="10" x2="12" y2="16"/>
-                <line x1="9" y1="13" x2="15" y2="13"/>
-              </svg>
-            </div>
+          </div>
+          <div class="category-card__icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 2h6v3H9zM7 5h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"/>
+              <line x1="12" y1="10" x2="12" y2="16"/>
+              <line x1="9" y1="13" x2="15" y2="13"/>
+            </svg>
           </div>
           <div class="category-card__body">
             <h3 class="category-card__title">Beauty &amp; Personal Care</h3>
             <p class="category-card__desc">Creams, lotions, perfumes, soaps &amp; trusted skincare products</p>
             <div class="category-card__chevron">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
     <!-- bento-grid__row-2 coming next -->
 
   </section>
