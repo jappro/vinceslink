@@ -235,34 +235,48 @@
 
       /* ── Tab Panels ── */
       .dt-panel { display: none; }
-      .dt-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-
-      /* ── Hero Card (left, tall) ── */
-      .dt-hero-card {
-        background: #fff; border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        display: flex; flex-direction: column;
-        grid-row: span 2;
+      .dt-panel.active {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 20px;
+        align-items: start;
       }
+
+      /* ── Hero Card (left, tall) — elevated card style ── */
+      .dt-hero-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 6px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.11);
+        display: flex; flex-direction: column;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+      }
+      .dt-hero-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.15); transform: translateY(-2px); }
+
+      .dt-hero-inner {
+        border-radius: 15px;
+        overflow: hidden;
+        display: flex; flex-direction: column;
+        flex: 1;
+      }
+
       .dt-hero-image {
         position: relative; width: 100%;
-        flex: 1; min-height: 380px;
+        min-height: 360px; flex: 1;
         overflow: hidden;
       }
       .dt-hero-image img {
         width: 100%; height: 100%; object-fit: cover; display: block;
       }
       .dt-hero-flame {
-        position: absolute; top: 16px; left: 16px;
-        width: 44px; height: 44px; background: #fff;
+        position: absolute; top: 14px; left: 14px;
+        width: 42px; height: 42px; background: #fff;
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-        z-index: 2;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.12); z-index: 2;
       }
-      .dt-hero-flame svg { width: 24px; height: 24px; }
+      .dt-hero-flame svg { width: 22px; height: 22px; }
       .dt-hero-wish {
-        position: absolute; bottom: 16px; right: 16px;
+        position: absolute; bottom: 14px; right: 14px;
         width: 38px; height: 38px; background: rgba(255,255,255,0.92);
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
         box-shadow: 0 2px 10px rgba(0,0,0,0.12); cursor: pointer; border: none;
@@ -271,48 +285,107 @@
       .dt-hero-wish:hover { transform: scale(1.1); }
       .dt-hero-wish svg { width: 16px; height: 16px; }
 
-      .dt-hero-body { padding: 20px 22px 22px; }
-      .dt-hero-name { font-size: 26px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
-      .dt-hero-desc { font-size: 13px; color: #aaa; margin-bottom: 14px; line-height: 1.4; }
-      .dt-hero-price-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-      .dt-hero-price-current { font-size: 28px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
-      .dt-hero-price-original { font-size: 14px; color: #c8c8c8; text-decoration: line-through; font-weight: 500; }
+      .dt-hero-body { background: #fff; padding: 22px 24px 24px; }
+      .dt-hero-name { font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; line-height: 1.1; }
+      .dt-hero-desc { font-size: 14px; color: #aaa; margin-bottom: 18px; line-height: 1.5; }
+      .dt-hero-price-row { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+      .dt-hero-price-current { font-size: 32px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
+      .dt-hero-price-original { font-size: 15px; color: #c8c8c8; text-decoration: line-through; font-weight: 500; }
       .dt-hero-badge {
         background: var(--orange-light); color: var(--orange);
-        font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+        font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px;
       }
       .dt-hero-stats {
-        display: flex; align-items: center; gap: 0;
-        border-top: 1px solid #f0f0f0; padding-top: 14px;
+        display: flex; align-items: center;
+        border-top: 1px solid #f0f0f0; padding-top: 16px; gap: 0;
       }
       .dt-stat {
-        display: flex; align-items: center; gap: 6px;
-        font-size: 13px; color: #888; font-weight: 500;
+        display: flex; align-items: center; gap: 7px;
+        font-size: 14px; color: #888; font-weight: 500;
         flex: 1; justify-content: center;
       }
       .dt-stat:not(:last-child) { border-right: 1px solid #f0f0f0; }
-      .dt-stat svg { width: 16px; height: 16px; flex-shrink: 0; }
+      .dt-stat svg { width: 17px; height: 17px; flex-shrink: 0; }
       .dt-stat-value { color: #1a1a1a; font-weight: 700; }
       .dt-stat.bestseller { color: var(--orange); font-weight: 700; }
-      .dt-stat.bestseller svg { color: var(--orange); }
 
-      /* ── Right 2×2 Grid ── */
+      /* ── Right side: scroll wrapper + arrows ── */
+      .dt-right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .dt-scroll-controls {
+        display: none; /* shown only when view-all is active */
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .dt-scroll-controls.visible { display: flex; }
+
+      .dt-arrow {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 1.5px solid #e0e0e0;
+        background: #fff;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      }
+      .dt-arrow:hover { background: var(--orange); border-color: var(--orange); }
+      .dt-arrow:hover svg { stroke: #fff; }
+      .dt-arrow svg { width: 14px; height: 14px; stroke: #555; }
+
+      /* Grid: default 2×2, scrollable when view-all active */
       .dt-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 14px;
+        transition: all 0.3s ease;
       }
 
-      /* Small card */
-      .dt-small-card {
-        background: #fff; border-radius: 16px;
-        overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-        display: flex; flex-direction: column;
-        cursor: pointer; transition: box-shadow 0.2s ease, transform 0.2s ease;
+      /* Scrollable mode — horizontal row of cards, each ~50% height of hero */
+      .dt-grid.scrollable {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 14px;
+        padding-bottom: 4px;
       }
-      .dt-small-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.12); transform: translateY(-2px); }
+      .dt-grid.scrollable::-webkit-scrollbar { display: none; }
+      .dt-grid.scrollable .dt-small-card {
+        flex-shrink: 0;
+        width: calc(50% - 7px);
+        scroll-snap-align: start;
+      }
+
+      /* Larger desktop: 2×3 */
+      @media (min-width: 1400px) {
+        .dt-panel.active { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+        .dt-grid { grid-template-columns: 1fr 1fr 1fr; }
+        .dt-grid.scrollable .dt-small-card { width: calc(33.333% - 10px); }
+      }
+
+      /* ── Small elevated card ── */
+      .dt-small-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 4px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+        display: flex; flex-direction: column;
+        cursor: pointer;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+      }
+      .dt-small-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.14); transform: translateY(-2px); }
+
+      .dt-small-inner { border-radius: 13px; overflow: hidden; display: flex; flex-direction: column; flex: 1; }
+
       .dt-small-image {
-        position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden;
+        position: relative; width: 100%; aspect-ratio: 3/2; overflow: hidden;
       }
       .dt-small-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .dt-small-wish {
@@ -324,7 +397,7 @@
       }
       .dt-small-wish:hover { transform: scale(1.1); }
       .dt-small-wish svg { width: 13px; height: 13px; }
-      .dt-small-body { padding: 12px 14px 14px; }
+      .dt-small-body { padding: 12px 14px 14px; background: #fff; }
       .dt-small-name { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; line-height: 1.2; }
       .dt-small-variant { font-size: 11px; color: #aaa; margin-bottom: 8px; }
       .dt-small-price-row { display: flex; align-items: center; justify-content: space-between; }
@@ -455,7 +528,7 @@
         </div>
         <p class="dt-subtitle">The products shoppers love most — trusted brands, everyday value, and fast-moving essentials.</p>
       </div>
-      <button class="dt-view-all">
+      <button class="dt-view-all" onclick="toggleViewAll(this)">
         View All Hot Picks
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
@@ -481,60 +554,48 @@
       </button>
     </div>
 
+    <!-- FLAME SVG shorthand -->
+    <template id="flame-tpl"><svg width="22" height="22" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></template>
+
     <!-- ── GROCERIES PANEL ── -->
     <div class="dt-panel active" id="dt-grocery">
-      <!-- Hero card -->
+      <!-- Hero -->
       <div class="dt-hero-card">
-        <div class="dt-hero-image" style="background:#fff0e6;">
-          <div class="dt-hero-flame">
-            <svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg>
+        <div class="dt-hero-inner">
+          <div class="dt-hero-image" style="background:#fff0e6;">
+            <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
+            <img src="images/business/Superstore/premium-rice.jpeg" alt="Premium Rice"/>
+            <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button>
           </div>
-          <img src="images/business/Superstore/premium-rice.jpeg" alt="Premium Rice" />
-          <button class="dt-hero-wish" onclick="this.classList.toggle('liked')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg>
-          </button>
-        </div>
-        <div class="dt-hero-body">
-          <div class="dt-hero-name">Premium Rice</div>
-          <div class="dt-hero-desc">Extra long grain • Premium quality • Perfect for every meal</div>
-          <div class="dt-hero-price-row">
-            <span class="dt-hero-price-current">₦9,500</span>
-            <span class="dt-hero-price-original">₦12,000</span>
-            <span class="dt-hero-badge">21% OFF</span>
-          </div>
-          <div class="dt-hero-stats">
-            <div class="dt-stat">
-              <svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <span class="dt-stat-value">4.8</span>
+          <div class="dt-hero-body">
+            <div class="dt-hero-name">Premium Rice</div>
+            <div class="dt-hero-desc">Extra long grain • Premium quality • Perfect for every meal</div>
+            <div class="dt-hero-price-row">
+              <span class="dt-hero-price-current">₦9,500</span>
+              <span class="dt-hero-price-original">₦12,000</span>
+              <span class="dt-hero-badge">21% OFF</span>
             </div>
-            <div class="dt-stat">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="dt-stat-value">312</span>
-            </div>
-            <div class="dt-stat bestseller">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-              Bestseller
+            <div class="dt-hero-stats">
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.8</span></div>
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">312</span></div>
+              <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
             </div>
           </div>
         </div>
       </div>
-      <!-- 2×2 grid -->
-      <div class="dt-grid">
-        <div class="dt-small-card">
-          <div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/power-oil.jpeg" alt="Power Oil"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div>
-          <div class="dt-small-body"><div class="dt-small-name">Power Oil</div><div class="dt-small-variant">1 Litre</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,150</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">17% OFF</span></div></div>
+      <!-- Right -->
+      <div class="dt-right">
+        <div class="dt-scroll-controls" id="ctrl-grocery">
+          <button class="dt-arrow" onclick="scrollGrid('grocery',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollGrid('grocery',1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
-        <div class="dt-small-card">
-          <div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/gino-tomato-paste.jpeg" alt="Gino Tomato Paste"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div>
-          <div class="dt-small-body"><div class="dt-small-name">Gino Tomato Paste</div><div class="dt-small-variant">400g</div><div class="dt-small-price-row"><span class="dt-small-price">₦850</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">19% OFF</span></div></div>
-        </div>
-        <div class="dt-small-card">
-          <div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/ariel-washing-powder.jpeg" alt="Ariel"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div>
-          <div class="dt-small-body"><div class="dt-small-name">Ariel Washing Powder</div><div class="dt-small-variant">1kg</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,200</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">19% OFF</span></div></div>
-        </div>
-        <div class="dt-small-card">
-          <div class="dt-small-image" style="background:#f0f7ff;"><img src="images/business/Superstore/dove-body-lotion.jpeg" alt="Dove"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div>
-          <div class="dt-small-body"><div class="dt-small-name">Dove Body Lotion</div><div class="dt-small-variant">400ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦3,800</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div>
+        <div class="dt-grid" id="grid-grocery">
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/power-oil.jpeg" alt="Power Oil"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Power Oil</div><div class="dt-small-variant">1 Litre</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,150</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">17% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/gino-tomato-paste.jpeg" alt="Gino Tomato Paste"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Gino Tomato Paste</div><div class="dt-small-variant">400g</div><div class="dt-small-price-row"><span class="dt-small-price">₦850</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">19% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/indomie-noodles.jpeg" alt="Indomie"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Indomie Noodles</div><div class="dt-small-variant">Chicken · 70g</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,200</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">20% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/golden-morn.jpeg" alt="Golden Morn"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Golden Morn Cereal</div><div class="dt-small-variant">500g</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,800</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">15% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/peak-milk.jpeg" alt="Peak Milk"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Peak Full Cream Milk</div><div class="dt-small-variant">400g</div><div class="dt-small-price-row"><span class="dt-small-price">₦3,400</span><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">15% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><img src="images/business/Superstore/ariel-washing-powder.jpeg" alt="Ariel"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Ariel Washing Powder</div><div class="dt-small-variant">1kg</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,200</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">19% OFF</span></div></div></div></div>
         </div>
       </div>
     </div>
@@ -542,93 +603,123 @@
     <!-- ── BEAUTY PANEL ── -->
     <div class="dt-panel" id="dt-beauty">
       <div class="dt-hero-card">
-        <div class="dt-hero-image" style="background:#fce4f3;">
-          <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
-          <img src="images/business/Superstore/ponds-face-cream.jpeg" alt="Pond's Face Cream"/>
-          <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button>
-        </div>
-        <div class="dt-hero-body">
-          <div class="dt-hero-name">Pond's Face Cream</div>
-          <div class="dt-hero-desc">Bright Beauty formula • Moisturising • Perfect for daily use</div>
-          <div class="dt-hero-price-row">
-            <span class="dt-hero-price-current">₦4,500</span>
-            <span class="dt-hero-price-original">₦5,500</span>
-            <span class="dt-hero-badge" style="background:#fce4f3;color:var(--pink);">18% OFF</span>
+        <div class="dt-hero-inner">
+          <div class="dt-hero-image" style="background:#fce4f3;">
+            <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
+            <img src="images/business/Superstore/ponds-face-cream.jpeg" alt="Pond's Face Cream"/>
+            <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button>
           </div>
-          <div class="dt-hero-stats">
-            <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.7</span></div>
-            <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">278</span></div>
-            <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
+          <div class="dt-hero-body">
+            <div class="dt-hero-name">Pond's Face Cream</div>
+            <div class="dt-hero-desc">Bright Beauty formula • Moisturising • Perfect for daily use</div>
+            <div class="dt-hero-price-row">
+              <span class="dt-hero-price-current">₦4,500</span>
+              <span class="dt-hero-price-original">₦5,500</span>
+              <span class="dt-hero-badge" style="background:#fce4f3;color:var(--pink);">18% OFF</span>
+            </div>
+            <div class="dt-hero-stats">
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.7</span></div>
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">278</span></div>
+              <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="dt-grid">
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/cheri-perfume.jpeg" alt="Chéri"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Chéri Perfume</div><div class="dt-small-variant">100ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦12,900</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/dove-body-lotion.jpeg" alt="Dove"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Dove Body Lotion</div><div class="dt-small-variant">400ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦3,800</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/nivea-deodorant.jpeg" alt="Nivea"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Nivea Deodorant</div><div class="dt-small-variant">50ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,750</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/olay-body-wash.jpeg" alt="Olay"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Olay Body Wash</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦5,200</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">16% OFF</span></div></div></div>
+      <div class="dt-right">
+        <div class="dt-scroll-controls" id="ctrl-beauty">
+          <button class="dt-arrow" onclick="scrollGrid('beauty',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollGrid('beauty',1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+        <div class="dt-grid" id="grid-beauty">
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/cheri-perfume.jpeg" alt="Chéri"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Chéri Perfume</div><div class="dt-small-variant">100ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦12,900</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/dove-body-lotion.jpeg" alt="Dove"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Dove Body Lotion</div><div class="dt-small-variant">400ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦3,800</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/nivea-deodorant.jpeg" alt="Nivea"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Nivea Deodorant</div><div class="dt-small-variant">50ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,750</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">17% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/olay-body-wash.jpeg" alt="Olay"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Olay Body Wash</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦5,200</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">16% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/neutrogena-face-wash.jpeg" alt="Neutrogena"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Neutrogena Face Wash</div><div class="dt-small-variant">200ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦6,750</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">16% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fce4f3;"><img src="images/business/Superstore/cheri-perfume.jpeg" alt="Chéri 2"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--pink)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Ponds Face Cream</div><div class="dt-small-variant">50g</div><div class="dt-small-price-row"><span class="dt-small-price">₦4,500</span><span class="dt-small-badge" style="background:#fce4f3;color:var(--pink);">18% OFF</span></div></div></div></div>
+        </div>
       </div>
     </div>
 
     <!-- ── REFRESHMENTS PANEL ── -->
     <div class="dt-panel" id="dt-refresh">
       <div class="dt-hero-card">
-        <div class="dt-hero-image" style="background:#f3e5f5;">
-          <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
-          <img src="images/business/Superstore/coca-cola.jpeg" alt="Coca-Cola"/>
-          <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button>
-        </div>
-        <div class="dt-hero-body">
-          <div class="dt-hero-name">Coca-Cola Original</div>
-          <div class="dt-hero-desc">Classic refreshing taste • Ice cold • Perfect for any occasion</div>
-          <div class="dt-hero-price-row">
-            <span class="dt-hero-price-current">₦600</span>
-            <span class="dt-hero-price-original">₦750</span>
-            <span class="dt-hero-badge" style="background:#f3e5f5;color:var(--teal);">20% OFF</span>
+        <div class="dt-hero-inner">
+          <div class="dt-hero-image" style="background:#f3e5f5;">
+            <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
+            <img src="images/business/Superstore/coca-cola.jpeg" alt="Coca-Cola"/>
+            <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button>
           </div>
-          <div class="dt-hero-stats">
-            <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.9</span></div>
-            <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">541</span></div>
-            <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
+          <div class="dt-hero-body">
+            <div class="dt-hero-name">Coca-Cola Original</div>
+            <div class="dt-hero-desc">Classic refreshing taste • Ice cold • Perfect for any occasion</div>
+            <div class="dt-hero-price-row">
+              <span class="dt-hero-price-current">₦600</span>
+              <span class="dt-hero-price-original">₦750</span>
+              <span class="dt-hero-badge" style="background:#f3e5f5;color:var(--teal);">20% OFF</span>
+            </div>
+            <div class="dt-hero-stats">
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.9</span></div>
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">541</span></div>
+              <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="dt-grid">
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/eva-water.jpeg" alt="Eva Water"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Eva Water</div><div class="dt-small-variant">75cl</div><div class="dt-small-price-row"><span class="dt-small-price">₦350</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">22% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/orange-juice.jpeg" alt="OJ"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Orange Juice</div><div class="dt-small-variant">1 Litre</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,850</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">20% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/hollandia-yoghurt.jpeg" alt="Hollandia"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Hollandia Yoghurt</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,100</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">19% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/malta-guinness.jpeg" alt="Malta"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Malta Guinness</div><div class="dt-small-variant">33cl Can</div><div class="dt-small-price-row"><span class="dt-small-price">₦550</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">21% OFF</span></div></div></div>
+      <div class="dt-right">
+        <div class="dt-scroll-controls" id="ctrl-refresh">
+          <button class="dt-arrow" onclick="scrollGrid('refresh',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollGrid('refresh',1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+        <div class="dt-grid" id="grid-refresh">
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/eva-water.jpeg" alt="Eva Water"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Eva Water</div><div class="dt-small-variant">75cl</div><div class="dt-small-price-row"><span class="dt-small-price">₦350</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">22% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/orange-juice.jpeg" alt="OJ"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Orange Juice</div><div class="dt-small-variant">1 Litre</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,850</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">20% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/drostdy-red-wine.jpeg" alt="Red Wine"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Drostdy Hof Red Wine</div><div class="dt-small-variant">75cl</div><div class="dt-small-price-row"><span class="dt-small-price">₦4,800</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">17% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/hollandia-yoghurt.jpeg" alt="Hollandia"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Hollandia Yoghurt</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,100</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">19% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/malta-guinness.jpeg" alt="Malta"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Malta Guinness</div><div class="dt-small-variant">33cl Can</div><div class="dt-small-price-row"><span class="dt-small-price">₦550</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">21% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#f3e5f5;"><img src="images/business/Superstore/eva-water.jpeg" alt="Eva 2"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--teal)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Eva Water Bundle</div><div class="dt-small-variant">6 × 75cl</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,900</span><span class="dt-small-badge" style="background:#f3e5f5;color:var(--teal);">20% OFF</span></div></div></div></div>
+        </div>
       </div>
     </div>
 
     <!-- ── ESSENTIALS PANEL ── -->
     <div class="dt-panel" id="dt-essentials">
       <div class="dt-hero-card">
-        <div class="dt-hero-image" style="background:#e8f5e9;">
-          <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
-          <img src="images/business/Superstore/ariel-washing-powder.jpeg" alt="Ariel"/>
-          <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button>
-        </div>
-        <div class="dt-hero-body">
-          <div class="dt-hero-name">Ariel Washing Powder</div>
-          <div class="dt-hero-desc">Deep clean technology • Fresh scent • Removes tough stains</div>
-          <div class="dt-hero-price-row">
-            <span class="dt-hero-price-current">₦2,200</span>
-            <span class="dt-hero-price-original">₦2,700</span>
-            <span class="dt-hero-badge" style="background:#e8f5e9;color:var(--green);">19% OFF</span>
+        <div class="dt-hero-inner">
+          <div class="dt-hero-image" style="background:#e8f5e9;">
+            <div class="dt-hero-flame"><svg width="24" height="24" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div>
+            <img src="images/business/Superstore/ariel-washing-powder.jpeg" alt="Ariel"/>
+            <button class="dt-hero-wish" onclick="this.classList.toggle('liked')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button>
           </div>
-          <div class="dt-hero-stats">
-            <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.6</span></div>
-            <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">189</span></div>
-            <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
+          <div class="dt-hero-body">
+            <div class="dt-hero-name">Ariel Washing Powder</div>
+            <div class="dt-hero-desc">Deep clean technology • Fresh scent • Removes tough stains</div>
+            <div class="dt-hero-price-row">
+              <span class="dt-hero-price-current">₦2,200</span>
+              <span class="dt-hero-price-original">₦2,700</span>
+              <span class="dt-hero-badge" style="background:#e8f5e9;color:var(--green);">19% OFF</span>
+            </div>
+            <div class="dt-hero-stats">
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="dt-stat-value">4.6</span></div>
+              <div class="dt-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span class="dt-stat-value">189</span></div>
+              <div class="dt-stat bestseller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Bestseller</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="dt-grid">
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/cussons-baby-wipes.jpeg" alt="Cussons"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Cussons Baby Wipes</div><div class="dt-small-variant">80s</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,050</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">19% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/viva-tissue.jpeg" alt="Viva"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Viva Tissue</div><div class="dt-small-variant">Pack of 4</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,200</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">20% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/dettol-soap.jpeg" alt="Dettol"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Dettol Soap</div><div class="dt-small-variant">165g</div><div class="dt-small-price-row"><span class="dt-small-price">₦750</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">21% OFF</span></div></div></div>
-        <div class="dt-small-card"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/harpic-toilet-cleaner.jpeg" alt="Harpic"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Harpic Power Plus</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,650</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">18% OFF</span></div></div></div>
+      <div class="dt-right">
+        <div class="dt-scroll-controls" id="ctrl-essentials">
+          <button class="dt-arrow" onclick="scrollGrid('essentials',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollGrid('essentials',1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+        <div class="dt-grid" id="grid-essentials">
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/cussons-baby-wipes.jpeg" alt="Cussons"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Cussons Baby Wipes</div><div class="dt-small-variant">80s</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,050</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">19% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/viva-tissue.jpeg" alt="Viva"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Viva Tissue</div><div class="dt-small-variant">Pack of 4</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,200</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">20% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/dettol-soap.jpeg" alt="Dettol"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Dettol Soap</div><div class="dt-small-variant">165g</div><div class="dt-small-price-row"><span class="dt-small-price">₦750</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">21% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/harpic-toilet-cleaner.jpeg" alt="Harpic"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Harpic Power Plus</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦1,650</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">18% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/mortein-insecticide.jpeg" alt="Mortein"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Mortein Insect Killer</div><div class="dt-small-variant">600ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,950</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">16% OFF</span></div></div></div></div>
+          <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#e8f5e9;"><img src="images/business/Superstore/dettol-soap.jpeg" alt="Dettol 2"/><button class="dt-small-wish" onclick="this.classList.toggle('liked')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--green)" stroke-width="2"/></svg></button></div><div class="dt-small-body"><div class="dt-small-name">Dettol Antiseptic</div><div class="dt-small-variant">500ml</div><div class="dt-small-price-row"><span class="dt-small-price">₦2,100</span><span class="dt-small-badge" style="background:#e8f5e9;color:var(--green);">15% OFF</span></div></div></div></div>
+        </div>
       </div>
     </div>
 
@@ -649,17 +740,32 @@
       const tabs   = document.querySelectorAll('.dt-tab');
       const panels = document.querySelectorAll('.dt-panel');
       const panel  = clickedTab.dataset.panel;
-
-      // Clear all
       tabs.forEach(t => t.className = 'dt-tab');
       panels.forEach(p => p.classList.remove('active'));
-
-      // Activate clicked
       const activeClasses = { grocery: 'active', beauty: 'active-pink', refresh: 'active-teal', essentials: 'active-green' };
       clickedTab.classList.add('dt-tab', activeClasses[panel]);
       document.getElementById('dt-' + panel).classList.add('active');
     }
-  </script>
 
+    /* Desktop View All — toggle scrollable on right grids */
+    let viewAllActive = false;
+    function toggleViewAll(btn) {
+      viewAllActive = !viewAllActive;
+      const grids = document.querySelectorAll('.dt-grid');
+      const ctrls = document.querySelectorAll('.dt-scroll-controls');
+      grids.forEach(g => g.classList.toggle('scrollable', viewAllActive));
+      ctrls.forEach(c => c.classList.toggle('visible', viewAllActive));
+      btn.style.background = viewAllActive ? 'var(--orange)' : '';
+      btn.style.color       = viewAllActive ? '#fff'         : '';
+    }
+
+    /* Arrow scroll */
+    function scrollGrid(panel, dir) {
+      const grid = document.getElementById('grid-' + panel);
+      if (!grid) return;
+      const cardWidth = grid.querySelector('.dt-small-card')?.offsetWidth || 220;
+      grid.scrollBy({ left: dir * (cardWidth + 14), behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
