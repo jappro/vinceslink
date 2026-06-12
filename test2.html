@@ -701,7 +701,7 @@
       .row-2__track .category-card {
         flex: 1 1 0;
         min-width: 0;
-        height: 300px;
+        height: 320px;
         border-radius: 14px;
         overflow: visible;
       }
@@ -712,11 +712,11 @@
         overflow: hidden;
       }
 
-      /* 55% of 300px = 165px */
+      /* 55% of 320px = 176px */
       .row-2__track .category-card__icon-wrap {
         width: 44px;
         height: 44px;
-        top: 165px;
+        top: 176px;
         transform: translate(-50%, -50%);
       }
       .row-2__track .category-card__icon-wrap svg { width: 20px; height: 20px; }
@@ -733,7 +733,7 @@
       .row-2__track .category-card__desc  {
         font-size: 10px;
         display: -webkit-box;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
@@ -742,91 +742,7 @@
       .row-2__track .category-card__chevron svg { width: 12px; height: 12px; }
     }
 
-    /* ── TABLET row 2 ── */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .bento-grid__row-2 { padding: 0; }
 
-      .row-2__track { gap: 14px; }
-
-      .row-2__track .category-card {
-        flex: 1 1 0;
-        min-width: 0;
-        height: 380px;
-        max-height: 380px;
-        border-radius: 18px;
-        overflow: hidden;
-      }
-
-      .row-2__track .category-card__image {
-        height: 55%;
-        border-radius: 18px 18px 0 0;
-        overflow: hidden;
-      }
-
-      /* 55% of 380px = 209px */
-      .row-2__track .category-card__icon-wrap {
-        width: 60px;
-        height: 60px;
-        top: 209px;
-        transform: translate(-50%, -50%);
-      }
-      .row-2__track .category-card__icon-wrap svg { width: 26px; height: 26px; }
-
-      .row-2__track .category-card__body {
-        padding: 40px 20px 20px 20px;
-        gap: 10px;
-        overflow: hidden;
-        border-radius: 0 0 18px 18px;
-      }
-
-      .row-2__track .category-card__title { font-size: 20px; }
-      .row-2__track .category-card__desc  { font-size: 13px; }
-
-      .row-2__track .category-card__chevron { width: 38px; height: 38px; margin-top: 12px; }
-      .row-2__track .category-card__chevron svg { width: 16px; height: 16px; }
-    }
-
-    /* ── DESKTOP row 2 ── */
-    @media (min-width: 1025px) {
-      .bento-grid__row-2 { padding: 0; }
-
-      .row-2__track { gap: 20px; }
-
-      .row-2__track .category-card {
-        flex: 1 1 0;
-        min-width: 0;
-        height: 460px;
-        border-radius: 22px;
-        overflow: visible;
-      }
-
-      .row-2__track .category-card__image {
-        height: 55%;
-        border-radius: 22px 22px 0 0;
-        overflow: hidden;
-      }
-
-      /* 55% of 460px = 253px */
-      .row-2__track .category-card__icon-wrap {
-        width: 70px;
-        height: 70px;
-        top: 253px;
-        transform: translate(-50%, -50%);
-      }
-      .row-2__track .category-card__icon-wrap svg { width: 30px; height: 30px; }
-
-      .row-2__track .category-card__body {
-        padding: 48px 24px 24px 24px;
-        gap: 12px;
-        border-radius: 0 0 22px 22px;
-      }
-
-      .row-2__track .category-card__title { font-size: 26px; }
-      .row-2__track .category-card__desc  { font-size: 15px; }
-
-      .row-2__track .category-card__chevron { width: 44px; height: 44px; margin-top: 16px; }
-      .row-2__track .category-card__chevron svg { width: 18px; height: 18px; }
-    }
   </style>
 </head>
 <body>
