@@ -626,11 +626,11 @@
       }
       .category-card__icon-wrap svg { width: 24px; height: 24px; }
 
-      .category-card__body { padding: 36px 16px 16px 16px; gap: 8px; border-radius: 0 0 18px 18px; overflow: hidden; flex: 1; }
+      .category-card__body { padding: 36px 16px 16px 16px; gap: 8px; border-radius: 0 0 18px 18px; overflow: hidden; display: flex; flex-direction: column; }
       .category-card__title { font-size: 17px; }
-      .category-card__desc  { font-size: 12.5px; }
+      .category-card__desc  { font-size: 12.5px; flex: 1; }
 
-      .category-card__chevron { width: 36px; height: 36px; margin-top: 10px; }
+      .category-card__chevron { width: 36px; height: 36px; margin-top: auto; flex-shrink: 0; }
       .category-card__chevron svg { width: 15px; height: 15px; }
     }
 
