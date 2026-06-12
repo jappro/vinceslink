@@ -615,7 +615,7 @@
       .bento-grid__row-1 { padding: 0; margin-top: -40px; position: relative; z-index: 10; }
       .row-1__track { gap: 14px; }
 
-      .category-card { height: 340px; border-radius: 18px; }
+      .category-card { height: 340px; max-height: 340px; border-radius: 18px; overflow: hidden; }
       .category-card__image { border-radius: 18px 18px 0 0; }
 
       /* 55% of 340px = 187px */
@@ -626,7 +626,7 @@
       }
       .category-card__icon-wrap svg { width: 24px; height: 24px; }
 
-      .category-card__body { padding: 36px 16px 16px 16px; gap: 8px; border-radius: 0 0 18px 18px; }
+      .category-card__body { padding: 36px 16px 16px 16px; gap: 8px; border-radius: 0 0 18px 18px; overflow: hidden; flex: 1; }
       .category-card__title { font-size: 17px; }
       .category-card__desc  { font-size: 12.5px; }
 
@@ -658,6 +658,175 @@
       .category-card__chevron svg { width: 18px; height: 18px; }
     }
 
+
+    /* ═══════════════════════════════════════
+       BENTO GRID ROW 2 — 2 CATEGORY CARDS
+    ═══════════════════════════════════════ */
+    :root {
+      --teal-light:   #e0f7fa;
+      --teal:         #00BCD4;
+      --purple-light: #f3e5f5;
+      --purple:       #7b1fa2;
+    }
+
+    .bento-grid__row-2 { width: 100%; }
+
+    .row-2__track {
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* Reuse .category-card base styles — just scope 2-card variants */
+    .category-card--drinks  .category-card__icon-wrap { border: 2px solid var(--teal);   background: var(--teal-light); }
+    .category-card--drinks  .category-card__icon-wrap svg { stroke: var(--teal); }
+    .category-card--drinks  .category-card__chevron { background: var(--teal-light); border-color: var(--teal); }
+    .category-card--drinks  .category-card__chevron svg { stroke: var(--teal); }
+    .category-card--drinks  .category-card__chevron:hover { background: var(--teal); }
+    .category-card--drinks  .category-card__chevron:hover svg { stroke: #fff; }
+
+    .category-card--health  .category-card__icon-wrap { border: 2px solid var(--purple); background: var(--purple-light); }
+    .category-card--health  .category-card__icon-wrap svg { stroke: var(--purple); }
+    .category-card--health  .category-card__chevron { background: var(--purple-light); border-color: var(--purple); }
+    .category-card--health  .category-card__chevron svg { stroke: var(--purple); }
+    .category-card--health  .category-card__chevron:hover { background: var(--purple); }
+    .category-card--health  .category-card__chevron:hover svg { stroke: #fff; }
+
+    /* ── MOBILE row 2 ── */
+    @media (max-width: 767px) {
+      .bento-grid__row-2 { padding: 0 8px; }
+
+      .row-2__track { gap: 6px; }
+
+      /* 2 cards — each takes half, taller than row-1 since wider cards can show more */
+      .row-2__track .category-card {
+        flex: 1 1 0;
+        min-width: 0;
+        height: 300px;
+        border-radius: 14px;
+        overflow: visible;
+      }
+
+      .row-2__track .category-card__image {
+        height: 55%;
+        border-radius: 14px 14px 0 0;
+        overflow: hidden;
+      }
+
+      /* 55% of 300px = 165px */
+      .row-2__track .category-card__icon-wrap {
+        width: 44px;
+        height: 44px;
+        top: 165px;
+        transform: translate(-50%, -50%);
+      }
+      .row-2__track .category-card__icon-wrap svg { width: 20px; height: 20px; }
+
+      .row-2__track .category-card__body {
+        height: 45%;
+        overflow: hidden;
+        padding: 28px 12px 12px 12px;
+        gap: 5px;
+        border-radius: 0 0 14px 14px;
+      }
+
+      .row-2__track .category-card__title { font-size: 13px; }
+      .row-2__track .category-card__desc  {
+        font-size: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .row-2__track .category-card__chevron { width: 28px; height: 28px; margin-top: 6px; }
+      .row-2__track .category-card__chevron svg { width: 12px; height: 12px; }
+    }
+
+    /* ── TABLET row 2 ── */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .bento-grid__row-2 { padding: 0; }
+
+      .row-2__track { gap: 14px; }
+
+      .row-2__track .category-card {
+        flex: 1 1 0;
+        min-width: 0;
+        height: 380px;
+        max-height: 380px;
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .row-2__track .category-card__image {
+        height: 55%;
+        border-radius: 18px 18px 0 0;
+        overflow: hidden;
+      }
+
+      /* 55% of 380px = 209px */
+      .row-2__track .category-card__icon-wrap {
+        width: 60px;
+        height: 60px;
+        top: 209px;
+        transform: translate(-50%, -50%);
+      }
+      .row-2__track .category-card__icon-wrap svg { width: 26px; height: 26px; }
+
+      .row-2__track .category-card__body {
+        padding: 40px 20px 20px 20px;
+        gap: 10px;
+        overflow: hidden;
+        border-radius: 0 0 18px 18px;
+      }
+
+      .row-2__track .category-card__title { font-size: 20px; }
+      .row-2__track .category-card__desc  { font-size: 13px; }
+
+      .row-2__track .category-card__chevron { width: 38px; height: 38px; margin-top: 12px; }
+      .row-2__track .category-card__chevron svg { width: 16px; height: 16px; }
+    }
+
+    /* ── DESKTOP row 2 ── */
+    @media (min-width: 1025px) {
+      .bento-grid__row-2 { padding: 0; }
+
+      .row-2__track { gap: 20px; }
+
+      .row-2__track .category-card {
+        flex: 1 1 0;
+        min-width: 0;
+        height: 460px;
+        border-radius: 22px;
+        overflow: visible;
+      }
+
+      .row-2__track .category-card__image {
+        height: 55%;
+        border-radius: 22px 22px 0 0;
+        overflow: hidden;
+      }
+
+      /* 55% of 460px = 253px */
+      .row-2__track .category-card__icon-wrap {
+        width: 70px;
+        height: 70px;
+        top: 253px;
+        transform: translate(-50%, -50%);
+      }
+      .row-2__track .category-card__icon-wrap svg { width: 30px; height: 30px; }
+
+      .row-2__track .category-card__body {
+        padding: 48px 24px 24px 24px;
+        gap: 12px;
+        border-radius: 0 0 22px 22px;
+      }
+
+      .row-2__track .category-card__title { font-size: 26px; }
+      .row-2__track .category-card__desc  { font-size: 15px; }
+
+      .row-2__track .category-card__chevron { width: 44px; height: 44px; margin-top: 16px; }
+      .row-2__track .category-card__chevron svg { width: 18px; height: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -779,7 +948,56 @@
 
       </div>
     </div>
-    <!-- bento-grid__row-2 coming next -->
+
+    <!-- ═══ ROW 2 — 2 CATEGORY CARDS ═══ -->
+    <div class="bento-grid__row-2">
+      <div class="row-2__track">
+
+        <!-- Card 1: Drinks & Refreshments -->
+        <div class="category-card category-card--drinks">
+          <div class="category-card__image">
+            <img src="images/business/Superstore/bento-grid/IMG_1523.jpeg" alt="Drinks &amp; Refreshments" />
+          </div>
+          <div class="category-card__icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2h8l1 7H7L8 2z"/>
+              <path d="M7 9c0 5 2 9 5 9s5-4 5-9"/>
+              <path d="M10 13h4"/>
+            </svg>
+          </div>
+          <div class="category-card__body">
+            <h3 class="category-card__title">Drinks &amp; Refreshments</h3>
+            <p class="category-card__desc">Water, soft drinks, juices, energy drinks, wines &amp; celebration essentials</p>
+            <div class="category-card__chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Health Essentials -->
+        <div class="category-card category-card--health">
+          <div class="category-card__image">
+            <img src="images/business/Superstore/bento-grid/IMG_1524.jpeg" alt="Health Essentials" />
+          </div>
+          <div class="category-card__icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+              <polyline points="12 8 12 16"/>
+              <polyline points="8 12 16 12"/>
+            </svg>
+          </div>
+          <div class="category-card__body">
+            <h3 class="category-card__title">Health Essentials</h3>
+            <p class="category-card__desc">Selected over-the-counter products for everyday wellness &amp; family care</p>
+            <div class="category-card__chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 
   </section>
 
