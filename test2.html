@@ -749,6 +749,373 @@
     }
 
 
+
+    /* ══════════════════════════════════════════
+       ROW 2 — TABLET & DESKTOP HORIZONTAL CARDS
+    ══════════════════════════════════════════ */
+
+    /* ── TABLET row 2 ── */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .bento-grid__row-2 { padding: 0; }
+
+      .row-2__track {
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      /* Left card 47%, right card 53% */
+      .row-2__track .category-card--drinks {
+        flex: 0 0 47%;
+      }
+      .row-2__track .category-card--health {
+        flex: 0 0 calc(53% - 14px);
+      }
+
+      .row-2__track .category-card {
+        height: 160px;
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        min-width: 0;
+      }
+
+      /* Text zone — left 22% */
+      .row-2__track .category-card__image { display: none; }
+
+      .row-2__track .category-card__body {
+        flex: 0 0 22%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 16px 0 16px 16px;
+        gap: 6px;
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        overflow: visible;
+      }
+
+      /* Background: cream on left fading into transparent */
+      .row-2__track .category-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          #fef5cf 0%,
+          #fef5cf 40%,
+          rgba(254,245,207,0.7) 65%,
+          rgba(254,245,207,0.0) 100%
+        );
+        z-index: 1;
+      }
+
+      /* Product image fills entire card as background */
+      .row-2__track .category-card__bg-img {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 0;
+        border-radius: 20px;
+      }
+
+      /* Icon — top left of text zone */
+      .row-2__track .category-card__icon-wrap {
+        position: relative;
+        top: auto; left: auto;
+        transform: none;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        z-index: 3;
+      }
+      .row-2__track .category-card__icon-wrap svg { width: 16px; height: 16px; }
+
+      .row-2__track .category-card__title {
+        font-size: 13px;
+        font-weight: 800;
+        color: #141414;
+        line-height: 1.25;
+        z-index: 3;
+        position: relative;
+      }
+
+      .row-2__track .category-card__desc {
+        font-size: 10px;
+        color: #333;
+        line-height: 1.5;
+        z-index: 3;
+        position: relative;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex: 1;
+      }
+
+      /* Chevron — bottom right of text zone, overlaps image */
+      .row-2__track .category-card__chevron {
+        position: absolute;
+        bottom: 14px;
+        left: calc(22% + 4px);
+        width: 28px;
+        height: 28px;
+        z-index: 3;
+        margin-top: 0;
+      }
+      .row-2__track .category-card__chevron svg { width: 12px; height: 12px; }
+    }
+
+    /* ── DESKTOP row 2 ── */
+    @media (min-width: 1025px) {
+      .bento-grid__row-2 { padding: 0; }
+
+      .row-2__track {
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .row-2__track .category-card--drinks {
+        flex: 0 0 47%;
+      }
+      .row-2__track .category-card--health {
+        flex: 0 0 calc(53% - 20px);
+      }
+
+      .row-2__track .category-card {
+        height: 170px;
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        min-width: 0;
+      }
+
+      .row-2__track .category-card__image { display: none; }
+
+      .row-2__track .category-card__body {
+        flex: 0 0 24%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 20px 0 20px 20px;
+        gap: 8px;
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        overflow: visible;
+      }
+
+      /* Cream gradient blending left → transparent */
+      .row-2__track .category-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          #fef5cf 0%,
+          #fef5cf 35%,
+          rgba(254,245,207,0.75) 55%,
+          rgba(254,245,207,0.0) 100%
+        );
+        z-index: 1;
+      }
+
+      /* Product image fills full card as background */
+      .row-2__track .category-card__bg-img {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 0;
+        border-radius: 24px;
+      }
+
+      /* Icon */
+      .row-2__track .category-card__icon-wrap {
+        position: relative;
+        top: auto; left: auto;
+        transform: none;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        z-index: 3;
+      }
+      .row-2__track .category-card__icon-wrap svg { width: 18px; height: 18px; }
+
+      .row-2__track .category-card__title {
+        font-size: 15px;
+        font-weight: 800;
+        color: #141414;
+        line-height: 1.25;
+        z-index: 3;
+        position: relative;
+      }
+
+      .row-2__track .category-card__desc {
+        font-size: 11px;
+        color: #333;
+        line-height: 1.5;
+        z-index: 3;
+        position: relative;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex: 1;
+      }
+
+      /* Chevron — overlaps into image zone */
+      .row-2__track .category-card__chevron {
+        position: absolute;
+        bottom: 16px;
+        left: calc(24% + 6px);
+        width: 32px;
+        height: 32px;
+        z-index: 3;
+        margin-top: 0;
+      }
+      .row-2__track .category-card__chevron svg { width: 14px; height: 14px; }
+    }
+
+    /* ══════════════ DESKTOP + TABLET row 2 ══════════════ */
+    @media (min-width: 768px) {
+      .bento-grid__row-2 { padding: 0; }
+
+      .row-2__track {
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      /* Left card 47%, right card 53% */
+      .row-2__track .category-card--drinks {
+        flex: 0 0 47%;
+      }
+      .row-2__track .category-card--health {
+        flex: 0 0 calc(53% - 16px);
+      }
+
+      /* Each card is horizontal — row direction */
+      .row-2__track .category-card {
+        flex-direction: row;
+        height: 170px;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        background: #fff;
+        min-width: 0;
+      }
+
+      /* ── TEXT ZONE — left 22% ── */
+      .row-2__track .category-card__text-zone {
+        flex: 0 0 22%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0 18px 18px;
+        position: relative;
+        z-index: 2;
+        background: #fff;
+      }
+
+      /* ── GRADIENT BLEND over image ── */
+      .row-2__track .category-card__text-zone::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -60px;
+        width: 80px;
+        height: 100%;
+        background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      /* Icon top-left of text zone */
+      .row-2__track .category-card__icon-wrap {
+        position: relative;
+        top: unset;
+        left: unset;
+        transform: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        flex-shrink: 0;
+        align-self: flex-start;
+      }
+      .row-2__track .category-card__icon-wrap svg { width: 16px; height: 16px; }
+
+      .row-2__track .category-card__title {
+        font-size: 14px;
+        font-weight: 800;
+        color: #141414;
+        line-height: 1.25;
+        margin-bottom: 6px;
+        white-space: normal;
+      }
+
+      .row-2__track .category-card__desc {
+        font-size: 11px;
+        color: #555;
+        line-height: 1.5;
+      }
+
+      /* Chevron — bottom right of text zone, overlapping image */
+      .row-2__track .category-card__chevron {
+        position: absolute;
+        bottom: 14px;
+        left: calc(22% - 14px);
+        width: 28px;
+        height: 28px;
+        z-index: 4;
+        margin-top: 0;
+        border-radius: 50%;
+        border: 1.5px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .row-2__track .category-card__chevron svg { width: 12px; height: 12px; }
+
+      /* ── IMAGE ZONE — right 78% ── */
+      .row-2__track .category-card__image {
+        flex: 1;
+        height: 100%;
+        border-radius: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .row-2__track .category-card__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      /* Hide the mobile body wrapper on desktop — text goes in text-zone */
+      .row-2__track .category-card__body {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -877,6 +1244,7 @@
 
         <!-- Card 1: Drinks & Refreshments -->
         <div class="category-card category-card--drinks">
+          <img class="category-card__bg-img" src="images/business/Superstore/bento-grid/IMG_1523.jpeg" alt="Drinks &amp; Refreshments" />
           <div class="category-card__image">
             <img src="images/business/Superstore/bento-grid/IMG_1523.jpeg" alt="Drinks &amp; Refreshments" />
           </div>
@@ -898,6 +1266,7 @@
 
         <!-- Card 2: Health Essentials -->
         <div class="category-card category-card--health">
+          <img class="category-card__bg-img" src="images/business/Superstore/bento-grid/IMG_1524.jpeg" alt="Health Essentials" />
           <div class="category-card__image">
             <img src="images/business/Superstore/bento-grid/IMG_1524.jpeg" alt="Health Essentials" />
           </div>
