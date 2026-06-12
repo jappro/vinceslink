@@ -697,49 +697,55 @@
 
       .row-2__track { gap: 6px; }
 
-      /* 2 cards — each takes half, taller than row-1 since wider cards can show more */
+      /* 2 cards — fixed hard pixel heights, no overflow */
       .row-2__track .category-card {
         flex: 1 1 0;
         min-width: 0;
-        height: 320px;
+        height: 280px;
+        max-height: 280px;
         border-radius: 14px;
-        overflow: visible;
+        overflow: hidden;
+        position: relative;
       }
 
       .row-2__track .category-card__image {
-        height: 55%;
+        height: 154px; /* 55% of 280px */
+        flex: none;
         border-radius: 14px 14px 0 0;
         overflow: hidden;
       }
 
-      /* 55% of 320px = 176px */
+      /* icon centered at 154px from top */
       .row-2__track .category-card__icon-wrap {
         width: 44px;
         height: 44px;
-        top: 176px;
+        top: 154px;
         transform: translate(-50%, -50%);
+        overflow: visible;
+        z-index: 5;
       }
       .row-2__track .category-card__icon-wrap svg { width: 20px; height: 20px; }
 
       .row-2__track .category-card__body {
-        height: 45%;
+        height: 126px; /* 45% of 280px */
+        flex: none;
         overflow: hidden;
-        padding: 28px 12px 12px 12px;
-        gap: 5px;
+        padding: 26px 12px 10px 12px;
+        gap: 4px;
         border-radius: 0 0 14px 14px;
       }
 
       .row-2__track .category-card__title { font-size: 13px; }
       .row-2__track .category-card__desc  {
-        font-size: 10px;
+        font-size: 9.5px;
         display: -webkit-box;
-        -webkit-line-clamp: 5;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
 
-      .row-2__track .category-card__chevron { width: 28px; height: 28px; margin-top: 6px; }
-      .row-2__track .category-card__chevron svg { width: 12px; height: 12px; }
+      .row-2__track .category-card__chevron { width: 26px; height: 26px; margin-top: 4px; }
+      .row-2__track .category-card__chevron svg { width: 11px; height: 11px; }
     }
 
 
