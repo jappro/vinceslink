@@ -10,11 +10,11 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #fef5cf;
+      background: var(--bg);
       min-height: 100vh;
     }
 
-    .gold { color: #c2891f; }
+    .gold { color: var(--orange); }
 
     /* ═══════════════════════════
        BENTO GRID WRAPPER
@@ -31,7 +31,7 @@
     @media (max-width: 767px) {
       body {
         padding: 0;
-        background: #fef5cf;
+        background: var(--orange-light);
       }
 
       .bento-grid {
@@ -42,7 +42,7 @@
         position: relative;
         width: 100%;
         height: 224px;
-        background: #fef5cf;
+        background: var(--orange-light);
       }
 
       .mobile-hero-image {
@@ -60,12 +60,12 @@
         inset: 0;
         background: linear-gradient(
           to right,
-          #fef5cf 0%,
-          #fef5cf 25%,
-          rgba(254,245,207,0.9) 38%,
-          rgba(254,245,207,0.55) 52%,
-          rgba(254,245,207,0.15) 68%,
-          rgba(254,245,207,0.0) 82%
+          var(--orange-light) 0%,
+          var(--orange-light) 25%,
+          rgba(247,255,246,0.9) 38%,
+          rgba(247,255,246,0.55) 52%,
+          rgba(247,255,246,0.15) 68%,
+          rgba(247,255,246,0.0) 82%
         );
         z-index: 1;
       }
@@ -109,7 +109,7 @@
     @media (min-width: 768px) and (max-width: 1024px) {
       body {
         padding: 0 32px;
-        background: #fef5cf;
+        background: var(--orange-light);
         display: flex;
         align-items: center;
         min-height: 100vh;
@@ -182,9 +182,9 @@
         height: 100%;
         background: linear-gradient(
           to right,
-          #fef5cf 0%,
-          rgba(254,245,207,0.75) 45%,
-          rgba(254,245,207,0.0) 100%
+          var(--orange-light) 0%,
+          rgba(247,255,246,0.75) 45%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -196,8 +196,8 @@
         height: 100%;
         background: linear-gradient(
           to left,
-          rgba(254,245,207,0.6) 0%,
-          rgba(254,245,207,0.0) 100%
+          rgba(247,255,246,0.6) 0%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -208,8 +208,8 @@
         height: 22%;
         background: linear-gradient(
           to bottom,
-          rgba(254,245,207,0.7) 0%,
-          rgba(254,245,207,0.0) 100%
+          rgba(247,255,246,0.7) 0%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -220,8 +220,8 @@
         height: 22%;
         background: linear-gradient(
           to top,
-          rgba(254,245,207,0.65) 0%,
-          rgba(254,245,207,0.0) 100%
+          rgba(247,255,246,0.65) 0%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -249,7 +249,7 @@
         width: 34px;
         height: 34px;
         border-radius: 50%;
-        border: 1.5px solid rgba(194, 137, 31, 0.5);
+        border: 1.5px solid rgba(255, 138, 61, 0.5);
         background: rgba(255,255,255,0.25);
         margin-bottom: 10px;
       }
@@ -257,7 +257,7 @@
       .info-card .star-wrap svg {
         width: 16px;
         height: 16px;
-        fill: #c2891f;
+        fill: var(--orange);
       }
 
       .info-card h3 {
@@ -282,7 +282,7 @@
     @media (min-width: 1025px) {
       body {
         padding: 0 60px;
-        background: #fef5cf;
+        background: var(--orange-light);
         display: flex;
         align-items: center;
         min-height: 100vh;
@@ -358,9 +358,9 @@
         height: 100%;
         background: linear-gradient(
           to right,
-          #fef5cf 0%,
-          rgba(254,245,207,0.75) 45%,
-          rgba(254,245,207,0.0) 100%
+          var(--orange-light) 0%,
+          rgba(247,255,246,0.75) 45%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -372,8 +372,8 @@
         height: 100%;
         background: linear-gradient(
           to left,
-          rgba(254,245,207,0.6) 0%,
-          rgba(254,245,207,0.0) 100%
+          rgba(247,255,246,0.6) 0%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -384,8 +384,8 @@
         height: 22%;
         background: linear-gradient(
           to bottom,
-          rgba(254,245,207,0.7) 0%,
-          rgba(254,245,207,0.0) 100%
+          rgba(247,255,246,0.7) 0%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -396,8 +396,8 @@
         height: 22%;
         background: linear-gradient(
           to top,
-          rgba(254,245,207,0.65) 0%,
-          rgba(254,245,207,0.0) 100%
+          rgba(247,255,246,0.65) 0%,
+          rgba(247,255,246,0.0) 100%
         );
         z-index: 2;
       }
@@ -428,7 +428,7 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border: 1.5px solid rgba(194, 137, 31, 0.5);
+        border: 1.5px solid rgba(255, 138, 61, 0.5);
         background: rgba(255,255,255,0.25);
         margin-bottom: 12px;
       }
@@ -436,7 +436,7 @@
       .info-card .star-wrap svg {
         width: 20px;
         height: 20px;
-        fill: #c2891f;
+        fill: var(--orange);
       }
 
       .info-card h3 {
@@ -459,12 +459,17 @@
        BENTO GRID ROW 1 — CATEGORY CARDS
     ═══════════════════════════════════════ */
     :root {
+      --bg:           #F7FFF6;
       --orange-light: #fff0e6;
       --orange:       #FF8A3D;
       --green-light:  #e8f5e9;
       --green:        #2e7d32;
       --pink-light:   #fce4ec;
       --pink:         #e91e8c;
+      --teal-light:   #e0f7fa;
+      --teal:         #00BCD4;
+      --purple-light: #f3e5f5;
+      --purple:       #7b1fa2;
     }
 
     .bento-grid__row-1 { width: 100%; }
@@ -851,7 +856,7 @@
         z-index: 4;
       }
 
-      /* Desc — also bleeds slightly over image */
+      /* Desc — bleeds slightly, clamped to prevent cutoff */
       .row-2__track .category-card__text-zone .category-card__desc {
         font-size: 13px;
         color: #444;
@@ -859,6 +864,10 @@
         width: 130%;
         position: relative;
         z-index: 4;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       /* Chevron — absolutely pinned bottom-right of text zone, overlaps image */
@@ -881,6 +890,56 @@
       .row-2__track .category-card__text-zone .category-card__chevron svg {
         width: 13px; height: 13px;
       }
+
+      /* Explicit hover colors per card on desktop/tablet */
+      .row-2__track .category-card--drinks .category-card__text-zone .category-card__chevron:hover {
+        background: var(--teal) !important;
+        border-color: var(--teal) !important;
+      }
+      .row-2__track .category-card--drinks .category-card__text-zone .category-card__chevron:hover svg {
+        stroke: #fff !important;
+      }
+      .row-2__track .category-card--health .category-card__text-zone .category-card__chevron:hover {
+        background: var(--purple) !important;
+        border-color: var(--purple) !important;
+      }
+      .row-2__track .category-card--health .category-card__text-zone .category-card__chevron:hover svg {
+        stroke: #fff !important;
+      }
+      /* Drinks chevron colors on desktop/tablet */
+      .row-2__track .category-card--drinks .category-card__chevron {
+        background: var(--teal-light);
+        border-color: var(--teal);
+      }
+      .row-2__track .category-card--drinks .category-card__chevron svg { stroke: var(--teal); }
+      .row-2__track .category-card--drinks .category-card__chevron:hover { background: var(--teal); border-color: var(--teal); }
+      .row-2__track .category-card--drinks .category-card__chevron:hover svg { stroke: #fff; }
+      /* Health chevron colors on desktop/tablet */
+      .row-2__track .category-card--health .category-card__chevron {
+        background: var(--purple-light);
+        border-color: var(--purple);
+      }
+      .row-2__track .category-card--health .category-card__chevron svg { stroke: var(--purple); }
+      .row-2__track .category-card--health .category-card__chevron:hover { background: var(--purple); border-color: var(--purple); }
+      .row-2__track .category-card--health .category-card__chevron:hover svg { stroke: #fff; }
+
+      /* Drinks chevron — teal */
+      .row-2__track .category-card--drinks .category-card__text-zone .category-card__chevron {
+        background: var(--teal-light);
+        border-color: var(--teal);
+      }
+      .row-2__track .category-card--drinks .category-card__text-zone .category-card__chevron svg { stroke: var(--teal); }
+      .row-2__track .category-card--drinks .category-card__text-zone .category-card__chevron:hover { background: var(--teal); }
+      .row-2__track .category-card--drinks .category-card__text-zone .category-card__chevron:hover svg { stroke: #fff; }
+
+      /* Health chevron — purple */
+      .row-2__track .category-card--health .category-card__text-zone .category-card__chevron {
+        background: var(--purple-light);
+        border-color: var(--purple);
+      }
+      .row-2__track .category-card--health .category-card__text-zone .category-card__chevron svg { stroke: var(--purple); }
+      .row-2__track .category-card--health .category-card__text-zone .category-card__chevron:hover { background: var(--purple); }
+      .row-2__track .category-card--health .category-card__text-zone .category-card__chevron:hover svg { stroke: #fff; }
 
       /* IMAGE ZONE — fills remaining width */
       .row-2__track .category-card__image {
