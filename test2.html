@@ -784,28 +784,40 @@
       /* Hide mobile body */
       .row-2__track .category-card__body { display: none !important; }
 
-      /* TEXT ZONE — left 28% */
+      /* TEXT ZONE — left 28%, overflow visible so text bleeds onto image */
       .row-2__track .category-card__text-zone {
         flex: 0 0 28%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        padding: 24px 12px 20px 20px;
+        padding: 24px 0 20px 20px;
         position: relative;
         z-index: 3;
-        background: #fff;
+        background: transparent;
+        overflow: visible;
       }
 
-      /* Gradient bleeds right from text zone into image */
+      /* Solid white bg only behind the text zone — stops at its right edge */
+      .row-2__track .category-card__text-zone::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        z-index: -1;
+      }
+
+      /* Gradient bleeds well past text zone into image — wide and soft */
       .row-2__track .category-card__text-zone::after {
         content: '';
         position: absolute;
         top: 0;
-        right: -80px;
-        width: 100px;
+        right: -120px;
+        width: 150px;
         height: 100%;
-        background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
-        z-index: 3;
+        background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%);
+        z-index: 2;
         pointer-events: none;
       }
 
@@ -826,21 +838,27 @@
         width: 18px; height: 18px;
       }
 
-      /* Title */
+      /* Title — wider than text zone so it floats over image */
       .row-2__track .category-card__text-zone .category-card__title {
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 800;
         color: #141414;
         line-height: 1.25;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         white-space: normal;
+        width: 140%;
+        position: relative;
+        z-index: 4;
       }
 
-      /* Desc */
+      /* Desc — also bleeds slightly over image */
       .row-2__track .category-card__text-zone .category-card__desc {
-        font-size: 11.5px;
-        color: #555;
-        line-height: 1.55;
+        font-size: 13px;
+        color: #444;
+        line-height: 1.6;
+        width: 130%;
+        position: relative;
+        z-index: 4;
       }
 
       /* Chevron — absolutely pinned bottom-right of text zone, overlaps image */
