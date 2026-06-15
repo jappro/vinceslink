@@ -72,7 +72,7 @@
     .hot-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
     .hero-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
     .hero-text { flex: 1; padding-bottom: 28px; }
-    .hero-title { font-size: 30px; font-weight: 800; line-height: 1.15; color: #1a1a1a; margin-bottom: 10px; }
+    .hero-title { font-size: 32px; font-weight: 800; line-height: 1.15; color: #1a1a1a; margin-bottom: 10px; }
     .hero-title span { color: var(--orange); }
     .hero-subtitle { font-size: 13.5px; color: #555; line-height: 1.55; max-width: 240px; }
     .hero-img { width: 170px; flex-shrink: 0; align-self: flex-end; position: relative; }
@@ -96,7 +96,7 @@
     .cat-icon svg { width: 22px; height: 22px; }
     .category-title { font-size: 15px; font-weight: 700; color: #1a1a1a; }
     .see-all {
-      font-size: 13px; font-weight: 600; text-decoration: none;
+      font-size: 14px; font-weight: 600; text-decoration: none;
       display: flex; align-items: center; gap: 3px; white-space: nowrap;
       cursor: pointer; background: none; border: none; padding: 0; font-family: inherit;
     }
@@ -136,13 +136,13 @@
       content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
       background: linear-gradient(to bottom, transparent, #ffffff); pointer-events: none;
     }
-    .product-name  { font-size: 13px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 3px; }
-    .product-desc  { font-size: 11px; color: #666; margin-bottom: 6px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .product-name  { font-size: 12px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.1; margin-bottom: 2px; }
+    .product-desc  { font-size: 10px; color: #666; margin-bottom: 6px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .price-row     { display: flex; align-items: center; justify-content: space-between; }
     .price-left    { display: flex; flex-direction: column; gap: 1px; }
-    .price-current { font-size: 14.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
-    .price-original { font-size: 11px; color: #888; text-decoration: line-through; font-weight: 500; }
-    .discount-badge { background: var(--orange-light); color: var(--orange); font-size: 9.5px; font-weight: 700; padding: 3px 6px; border-radius: 20px; white-space: nowrap; }
+    .price-current { font-size: 14px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
+    .price-original { font-size: 9px; color: #c8c8c8; text-decoration: line-through; font-weight: 500; }
+    .discount-badge { background: var(--orange-light); color: var(--orange); font-size: 9.5px; font-weight: 700; padding: 3px 5px; border-radius: 20px; white-space: nowrap; }
 
     /* Tablet */
     @media (min-width: 600px) and (max-width: 1023px) {
@@ -155,8 +155,8 @@
       .product-row { gap: 14px; padding-right: 24px; margin-right: -24px; }
       .card-trim { width: calc((100vw - 60px) / 3.5); }
       .product-row.expanded .card-trim { width: calc((100vw - 60px) / 3); }
-      .product-name  { font-size: 14px; }
-      .product-desc  { font-size: 12px; color: #666; }
+      .product-name  { font-size: 13.5px; }
+      .product-desc  { font-size: 10.5px; }
       .price-current { font-size: 15px; }
     }
 
@@ -167,15 +167,14 @@
       .mobile-section  { display: none; }
       .desktop-section {
         display: block;
-        max-width: 1440px;
-        margin: 0 auto;
+        width: 100%;
         padding: 48px 40px 72px;
       }
 
       /* Header */
       .dt-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; }
       .dt-title-block { display: flex; flex-direction: column; gap: 6px; }
-      .dt-title { display: flex; align-items: center; gap: 14px; font-size: 40px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
+      .dt-title { display: flex; align-items: center; gap: 14px; font-size: 44px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
       .dt-title span { color: var(--orange); }
       .dt-title-icon { width: 44px; height: 44px; flex-shrink: 0; }
       .dt-subtitle { font-size: 15px; color: #444; margin-left: 58px; }
@@ -195,29 +194,29 @@
       .dt-tab {
         display: flex; align-items: center; gap: 8px;
         padding: 10px 20px 12px; border-radius: 12px 12px 0 0;
-        font-size: 14px; font-weight: 600; color: #555;
+        font-size: 15.5px; font-weight: 700; color: #888;
         cursor: pointer; border: 1.5px solid transparent;
         background: none; font-family: inherit;
         position: relative; bottom: -1.5px;
         transition: color 0.2s, background 0.2s;
       }
       .dt-tab svg { width: 18px; height: 18px; opacity: 0.5; transition: opacity 0.2s; }
-      .dt-tab:hover { color: #444; }
       .dt-tab.active       { background: var(--orange-light); color: var(--orange); border-color: #efefef; border-bottom-color: var(--orange-light); }
       .dt-tab.active-pink  { background: #fce4f3; color: var(--pink);  border-color: #efefef; border-bottom-color: #fce4f3; }
       .dt-tab.active-teal  { background: #f3e5f5; color: var(--teal);  border-color: #efefef; border-bottom-color: #f3e5f5; }
       .dt-tab.active-green { background: #e8f5e9; color: var(--green); border-color: #efefef; border-bottom-color: #e8f5e9; }
-      .dt-tab.active svg, .dt-tab.active-pink svg, .dt-tab.active-teal svg, .dt-tab.active-green svg { opacity: 1; }
+      .dt-tab.active svg, .dt-tab.active-pink svg,
+      .dt-tab.active-teal svg, .dt-tab.active-green svg { opacity: 1; }
 
-      /* Main layout — hero wider, right fills remaining */
+      /* ── Main layout: hero left | scrollable grid right ── */
       .dt-main {
         display: grid;
-        grid-template-columns: 380px 1fr;
+        grid-template-columns: 1fr 2fr;   /* hero wider, grid gets 2x the space */
         gap: 20px;
-        align-items: start;
+        align-items: stretch;             /* both columns same height */
       }
 
-      /* ── HERO CARD ── */
+      /* ── Hero card ── */
       .dt-hero-card {
         background: #fff;
         border-radius: 20px;
@@ -227,11 +226,14 @@
         transition: box-shadow 0.2s, transform 0.2s;
       }
       .dt-hero-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.14); transform: translateY(-2px); }
-      .dt-hero-inner { border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; }
+      .dt-hero-inner {
+        border-radius: 15px; overflow: hidden;
+        display: flex; flex-direction: column; flex: 1;
+      }
       .dt-hero-image {
         position: relative; width: 100%;
-        height: 340px;   /* fixed — JS will read this to size rows */
-        overflow: hidden;
+        flex: 1;                          /* image takes remaining space */
+        overflow: hidden; min-height: 260px;
       }
       .dt-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .dt-hero-flame {
@@ -249,22 +251,24 @@
         backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
       }
       .dt-hero-wish:hover { transform: scale(1.1); }
-      .dt-hero-body { background: #fff; padding: 20px 22px 22px; }
-      .dt-hero-name { font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; line-height: 1.1; }
-      .dt-hero-desc { font-size: 14px; color: #555; margin-bottom: 14px; line-height: 1.6; }
-      .dt-hero-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-      .dt-hero-price-current { font-size: 28px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
-      .dt-hero-price-original { font-size: 14px; color: #888; text-decoration: line-through; font-weight: 500; }
+      .dt-hero-body { background: #fff; padding: 20px 22px 22px; flex-shrink: 0; }
+      .dt-hero-desc { font-size: 13px; color: #555; margin-bottom: 14px; line-height: 1.6; }
+      .dt-hero-price-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+      .dt-hero-price-current { font-size: 26.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
+      .dt-hero-price-original { font-size: 14px; color: #c8c8c8; text-decoration: line-through; font-weight: 500; }
       .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
       .dt-hero-stats { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 14px; }
-      .dt-stat { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #555; font-weight: 500; flex: 1; justify-content: center; }
+      .dt-stat { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #888; font-weight: 500; flex: 1; justify-content: center; }
       .dt-stat:not(:last-child) { border-right: 1px solid #f0f0f0; }
-      .dt-stat svg { width: 16px; height: 16px; flex-shrink: 0; }
       .dt-stat-value { color: #1a1a1a; font-weight: 700; }
       .dt-stat.bestseller { color: var(--orange); font-weight: 700; }
 
-      /* ── RIGHT SIDE ── */
-      .dt-right { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+      /* ── Right side ── */
+      .dt-right {
+        display: flex; flex-direction: column; gap: 10px;
+        min-width: 0;
+        height: 100%;                     /* match hero height via stretch */
+      }
 
       /* Arrow controls */
       .dt-scroll-controls { display: none; justify-content: flex-end; gap: 8px; }
@@ -281,20 +285,23 @@
       .dt-arrow svg { width: 14px; height: 14px; stroke: #555; transition: stroke 0.15s; }
 
       /* ── THE GRID ──
-         2 fixed rows. Default shows 3 columns.
-         Total height of grid = hero card total height (set by JS).
-         grid-auto-columns sizes each card so 3 fit exactly.
-      */
+         2 fixed rows, auto-column flow
+         Default: 3 columns visible (2×3)
+         Scrollable: unlocks horizontal scroll, same card size
+         Total grid height = hero card height via flex stretch
+      ── */
       .dt-grid {
         display: grid;
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-rows: 1fr 1fr;
         grid-auto-flow: column;
-        /* 3 cols visible: (100% - 2*gap) / 3 */
+        /* 3 cols visible: (100% - 2 gaps of 14px) / 3 */
         grid-auto-columns: calc((100% - 28px) / 3);
         gap: 14px;
         overflow: hidden;
-        /* height set by JS to match hero */
+        flex: 1;                          /* fill remaining height of .dt-right */
       }
+
+      /* Scrollable state */
       .dt-grid.scrollable {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
@@ -304,7 +311,12 @@
       .dt-grid.scrollable::-webkit-scrollbar { display: none; }
       .dt-grid.scrollable .dt-small-card { scroll-snap-align: start; }
 
-      /* ── SMALL CARD — full mobile card style ── */
+      /* Vacant slot */
+      .dt-small-card.vacant {
+        background: transparent; box-shadow: none; pointer-events: none; visibility: hidden;
+      }
+
+      /* ── Small card — full mobile card style ── */
       .dt-small-card {
         background: #fff;
         border-radius: 18px;
@@ -313,75 +325,66 @@
         display: flex; flex-direction: column;
         cursor: pointer;
         transition: box-shadow 0.2s, transform 0.2s;
-        min-width: 0;
         overflow: hidden;
+        min-width: 0;
       }
       .dt-small-card:hover:not(.vacant) { box-shadow: 0 10px 30px rgba(0,0,0,0.14); transform: translateY(-2px); }
-      .dt-small-card.vacant { background: transparent; box-shadow: none; pointer-events: none; }
 
       .dt-small-inner {
-        border-radius: 15px;
-        overflow: hidden;
-        display: flex; flex-direction: column;
-        flex: 1;
-        background: #fff;
+        border-radius: 15px; overflow: hidden;
+        display: flex; flex-direction: column; flex: 1;
       }
 
-      /* Image — fills top portion, flex: 1 to take available space */
+      /* Image fills top half of card */
       .dt-small-image {
-        position: relative;
-        width: 100%;
-        flex: 1;       /* fills available height */
-        overflow: hidden;
-        min-height: 0;
+        position: relative; width: 100%;
+        flex: 1;                          /* image grows to fill available space */
+        overflow: hidden; min-height: 80px;
       }
-      .dt-small-image img {
-        width: 100%; height: 100%; object-fit: cover; display: block;
-      }
+      .dt-small-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-      /* Flame badge — top left of image */
+      /* Flame badge — top left (same as mobile) */
       .dt-small-flame {
         position: absolute; top: 8px; left: 8px;
-        width: 28px; height: 28px;
+        width: 22px; height: 22px;
         display: flex; align-items: center; justify-content: center;
         z-index: 2;
       }
-      .dt-small-flame svg { width: 18px; height: 18px; }
 
-      /* Heart button — bottom right of image */
+      /* Heart button — bottom right (same as mobile) */
       .dt-small-wish {
-        position: absolute; bottom: 8px; right: 8px;
+        position: absolute; bottom: 7px; right: 7px;
         width: 28px; height: 28px; background: rgba(255,255,255,0.92);
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
         box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer; border: none;
         backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
       }
-      .dt-small-wish:hover { transform: scale(1.1); }
-      .dt-small-wish svg { width: 12px; height: 12px; }
+      .dt-small-wish:hover { transform: scale(1.08); }
+      .dt-small-wish:active { transform: scale(0.92); }
+      .dt-small-wish svg { width: 11px; height: 11px; }
 
-      /* Body — fixed at bottom of card */
-      .dt-small-body {
-        padding: 8px 10px 10px;
-        background: #fff;
-        flex-shrink: 0;
+      /* Gradient overlay — same as mobile card__body::before */
+      .dt-small-body-wrap {
+        position: relative; background: #fff;
       }
-      .dt-small-body::before {
+      .dt-small-body-wrap::before {
         content: '';
-        display: block;
-        height: 12px;
-        margin: -20px -10px 4px;
-        background: linear-gradient(to bottom, transparent, #fff);
+        position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+        background: linear-gradient(to bottom, transparent, #ffffff);
         pointer-events: none;
       }
-      .dt-small-name    { font-size: 13px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.1; margin-bottom: 2px; }
-      .dt-small-desc    { font-size: 11.5px; color: #555; margin-bottom: 6px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+      /* Card body text */
+      .dt-small-body { padding: 7px 9px 9px; background: #fff; }
+      .dt-small-name { font-size: 11px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.1; margin-bottom: 2px; }
+      .dt-small-desc { font-size: 8.5px; color: #bbbbbb; margin-bottom: 6px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
       .dt-small-price-row { display: flex; align-items: center; justify-content: space-between; }
       .dt-small-price-left { display: flex; flex-direction: column; gap: 1px; }
-      .dt-small-price   { font-size: 15px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
-      .dt-small-original { font-size: 11px; color: #888; text-decoration: line-through; font-weight: 500; }
-      .dt-small-orig    { font-size: 11px; color: #888; text-decoration: line-through; font-weight: 500; display: block; }
-      .dt-small-badge   { font-size: 9.5px; font-weight: 700; padding: 3px 7px; border-radius: 20px; white-space: nowrap; }
+      .dt-small-price { font-size: 13px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
+      .dt-small-orig  { font-size: 8.5px; color: #c8c8c8; text-decoration: line-through; font-weight: 500; }
+      .dt-small-badge { font-size: 8px; font-weight: 700; padding: 3px 5px; border-radius: 20px; white-space: nowrap; }
     }
+
   </style>  </style>  </style>
 </head>
 <body>
@@ -602,16 +605,6 @@
   </div><!-- /desktop-section -->
 
   <script>
-    /* ── Match grid height to hero card ── */
-    function matchGridHeight() {
-      const hero = document.querySelector('.dt-hero-card');
-      const grid = document.getElementById('dt-grid');
-      if (!hero || !grid) return;
-      grid.style.height = hero.offsetHeight + 'px';
-    }
-    window.addEventListener('load', matchGridHeight);
-    window.addEventListener('resize', matchGridHeight);
-
     /* ── Mobile toggle ── */
     function toggleExpand(btn) {
       const row = btn.closest('.category-section').querySelector('.product-row');
