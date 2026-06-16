@@ -492,6 +492,8 @@
       position: relative;
     }
 
+
+
     /* ── IMAGE — top 55% ── */
     .category-card__image {
       flex: 0 0 55%;
@@ -637,149 +639,30 @@
       .category-card__chevron svg { width: 15px; height: 15px; }
     }
 
-    /* ═══ ROW 1 — CATEGORY CARDS — DESKTOP ═══ */
-@media (min-width: 1025px) {
+    /* ══════════════ DESKTOP ══════════════ */
+    @media (min-width: 1025px) {
+      .bento-grid__row-1 { padding: 0; margin-top: -48px; position: relative; z-index: 10; }
+      .row-1__track { gap: 20px; }
 
-  .bento-grid__row-1 {
-    width: 100%;
-    padding: 0 24px;
-  }
+      .category-card { height: 420px; border-radius: 22px; }
+      .category-card__image { border-radius: 22px 22px 0 0; }
 
-  .row-1__track {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    align-items: stretch;
-  }
+      /* 55% of 420px = 231px */
+      .category-card__icon-wrap {
+        width: 66px; height: 66px;
+        top: 231px;
+        transform: translate(-50%, -50%);
+      }
+      .category-card__icon-wrap svg { width: 28px; height: 28px; }
 
-  /* ── Card widths ── */
-  .category-card--provisions,
-  .category-card--household {
-    flex: 0 0 32.5%;
-    width: 32.5%;
-  }
+      .category-card__body { padding: 44px 22px 22px 22px; gap: 12px; border-radius: 0 0 22px 22px; }
+      .category-card__title { font-size: 22px; }
+      .category-card__desc  { font-size: 14px; }
 
-  .category-card--beauty {
-    flex: 0 0 calc(35% - 0px);
-    width: 35%;
-  }
+      .category-card__chevron { width: 42px; height: 42px; margin-top: 14px; }
+      .category-card__chevron svg { width: 18px; height: 18px; }
+    }
 
-  /* ── Base card shell ── */
-  .category-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: visible; /* allow icon overlay to bleed out */
-    background-color: #fdf6ee;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-  }
-
-  /* ── Image area ── */
-  .category-card__image {
-    width: 100%;
-    height: 220px;
-    border-radius: 16px 16px 0 0;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .category-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-
-  /* ── Icon wrap — overlays boundary ── */
-  .category-card__icon-wrap {
-    position: absolute;
-    /* sits exactly on the image/body boundary */
-    top: auto;
-    bottom: calc(100% - 200px); /* adjust 220px to match image height */
-    transform: none;
-    left: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: #fff;
-    border: 1.5px solid #e8e0d8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    flex-shrink: 0;
-  }
-
-  .category-card__icon-wrap svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Icon stroke colours per card */
-  .category-card--provisions .category-card__icon-wrap svg {
-    stroke: #e07b2a;
-  }
-
-  .category-card--household .category-card__icon-wrap svg {
-    stroke: #3aaa6e;
-  }
-
-  .category-card--beauty .category-card__icon-wrap svg {
-    stroke: #d4607a;
-  }
-
-  /* ── Body / text area ── */
-  .category-card__body {
-    position: relative;
-    background-color: #fdf6ee;
-    border-radius: 0 0 16px 16px;
-    padding: 28px 16px 16px 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  /* ── Title ── */
-  .category-card__title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin: 0;
-    line-height: 1.2;
-  }
-
-  /* ── Description ── */
-  .category-card__desc {
-    font-size: 13px;
-    color: #7a7068;
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* ── Chevron ── */
-  .category-card__chevron {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #fff;
-    border: 1.5px solid #e8e0d8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .category-card__chevron svg {
-    width: 14px;
-    height: 14px;
-    stroke: #1a1a1a;
-  }
-}
 
     /* ═══════════════════════════════════════
        BENTO GRID ROW 2 — 2 CATEGORY CARDS
@@ -1232,6 +1115,13 @@
 
           <!-- MOBILE: body -->
           <div class="category-card__body">
+            <div class="category-card__icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2h8l1 7H7L8 2z"/>
+                <path d="M7 9c0 5 2 9 5 9s5-4 5-9"/>
+                <path d="M10 13h4"/>
+              </svg>
+            </div>
             <h3 class="category-card__title">Drinks &amp; Refreshments</h3>
             <p class="category-card__desc">Water, soft drinks, juices, energy drinks, wines &amp; celebration essentials</p>
             <div class="category-card__chevron">
@@ -1267,6 +1157,13 @@
 
           <!-- MOBILE: body -->
           <div class="category-card__body">
+            <div class="category-card__icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                <polyline points="12 8 12 16"/>
+                <polyline points="8 12 16 12"/>
+              </svg>
+            </div>
             <h3 class="category-card__title">Health Essentials</h3>
             <p class="category-card__desc">Selected over-the-counter products for everyday wellness &amp; family care</p>
             <div class="category-card__chevron">
