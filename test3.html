@@ -168,39 +168,39 @@
       .desktop-section {
         display: block;
         width: 100%;
-        padding: 48px 40px 72px;
+        padding: 32px 40px 40px;
       }
 
       /* Header */
-      .dt-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; }
-      .dt-title-block { display: flex; flex-direction: column; gap: 6px; }
-      .dt-title { display: flex; align-items: center; gap: 14px; font-size: 44px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
+      .dt-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+      .dt-title-block { display: flex; flex-direction: column; gap: 4px; }
+      .dt-title { display: flex; align-items: center; gap: 12px; font-size: 38px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
       .dt-title span { color: var(--orange); }
-      .dt-title-icon { width: 44px; height: 44px; flex-shrink: 0; }
-      .dt-subtitle { font-size: 15px; color: #444; margin-left: 58px; }
+      .dt-title-icon { width: 38px; height: 38px; flex-shrink: 0; }
+      .dt-subtitle { font-size: 14px; color: #444; margin-left: 50px; }
       .dt-view-all {
         display: inline-flex; align-items: center; gap: 8px;
         border: 1.5px solid var(--orange); border-radius: 24px;
-        padding: 10px 20px; color: var(--orange);
-        font-size: 14px; font-weight: 600;
+        padding: 9px 18px; color: var(--orange);
+        font-size: 13.5px; font-weight: 600;
         cursor: pointer; background: none; font-family: inherit;
-        transition: background 0.2s, color 0.2s; white-space: nowrap; margin-top: 6px;
+        transition: background 0.2s, color 0.2s; white-space: nowrap; margin-top: 4px;
       }
       .dt-view-all:hover, .dt-view-all.active { background: var(--orange); color: #fff; }
-      .dt-view-all svg { width: 16px; height: 16px; }
+      .dt-view-all svg { width: 15px; height: 15px; }
 
       /* Tabs */
-      .dt-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1.5px solid #efefef; }
+      .dt-tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 1.5px solid #efefef; }
       .dt-tab {
-        display: flex; align-items: center; gap: 8px;
-        padding: 10px 20px 12px; border-radius: 12px 12px 0 0;
-        font-size: 15.5px; font-weight: 700; color: #555;
+        display: flex; align-items: center; gap: 7px;
+        padding: 8px 16px 10px; border-radius: 10px 10px 0 0;
+        font-size: 13.5px; font-weight: 700; color: #555;
         cursor: pointer; border: 1.5px solid transparent;
         background: none; font-family: inherit;
         position: relative; bottom: -1.5px;
         transition: color 0.2s, background 0.2s;
       }
-      .dt-tab svg { width: 18px; height: 18px; opacity: 0.5; transition: opacity 0.2s; }
+      .dt-tab svg { width: 16px; height: 16px; opacity: 0.5; transition: opacity 0.2s; }
       .dt-tab.active       { background: var(--orange-light); color: var(--orange); border-color: #efefef; border-bottom-color: var(--orange-light); }
       .dt-tab.active-pink  { background: #fce4f3; color: var(--pink);  border-color: #efefef; border-bottom-color: #fce4f3; }
       .dt-tab.active-teal  { background: #f3e5f5; color: var(--teal);  border-color: #efefef; border-bottom-color: #f3e5f5; }
@@ -208,11 +208,15 @@
       .dt-tab.active svg, .dt-tab.active-pink svg,
       .dt-tab.active-teal svg, .dt-tab.active-green svg { opacity: 1; }
 
-      /* ── Main layout: hero left | scrollable grid right ── */
+      /* ── Main layout ── */
       .dt-main {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        gap: 20px;
+        gap: 16px;
+        /* Fit within viewport: 100vh minus header(~80px) + tabs(~60px) + section padding(~72px) */
+        height: calc(100vh - 260px);
+        min-height: 420px;
+        max-height: 620px;
         align-items: stretch;
       }
 
@@ -220,54 +224,56 @@
       .dt-hero-card {
         background: #fff;
         border-radius: 20px;
-        padding: 6px;
+        padding: 5px;
         box-shadow: 0 8px 32px rgba(0,0,0,0.10);
         display: flex; flex-direction: column;
+        height: 100%;
         transition: box-shadow 0.2s, transform 0.2s;
+        overflow: hidden;
       }
-      .dt-hero-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.14); transform: translateY(-2px); }
+      .dt-hero-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.13); transform: translateY(-2px); }
       .dt-hero-inner {
-        border-radius: 15px; overflow: hidden;
-        display: flex; flex-direction: column; flex: 1;
+        border-radius: 16px; overflow: hidden;
+        display: flex; flex-direction: column; flex: 1; min-height: 0;
       }
       .dt-hero-image {
         position: relative; width: 100%;
-        flex: 1;
-        overflow: hidden; min-height: 220px;
+        flex: 1; overflow: hidden; min-height: 0;
       }
       .dt-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .dt-hero-flame {
-        position: absolute; top: 14px; left: 14px;
-        width: 42px; height: 42px; background: #fff; border-radius: 50%;
+        position: absolute; top: 12px; left: 12px;
+        width: 40px; height: 40px; background: #fff; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         box-shadow: 0 2px 10px rgba(0,0,0,0.12); z-index: 2;
       }
-      .dt-hero-flame svg { width: 22px; height: 22px; }
+      .dt-hero-flame svg { width: 20px; height: 20px; }
       .dt-hero-wish {
-        position: absolute; bottom: 14px; right: 14px;
-        width: 38px; height: 38px; background: rgba(255,255,255,0.92);
+        position: absolute; bottom: 12px; right: 12px;
+        width: 36px; height: 36px; background: rgba(255,255,255,0.92);
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
         box-shadow: 0 2px 10px rgba(0,0,0,0.12); cursor: pointer; border: none;
         backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
       }
       .dt-hero-wish:hover { transform: scale(1.1); }
-      .dt-hero-body { background: #fff; padding: 18px 20px 20px; flex-shrink: 0; }
-      .dt-hero-name { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; line-height: 1.15; }
-      .dt-hero-desc { font-size: 13.5px; color: #555; margin-bottom: 14px; line-height: 1.6; }
-      .dt-hero-price-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-      .dt-hero-price-current { font-size: 26.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
-      .dt-hero-price-original { font-size: 14px; color: #999; text-decoration: line-through; font-weight: 500; }
-      .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-      .dt-hero-stats { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 14px; }
-      .dt-stat { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #666; font-weight: 500; flex: 1; justify-content: center; }
+      /* Hero body — fixed height, compact */
+      .dt-hero-body { background: #fff; padding: 14px 18px 16px; flex-shrink: 0; }
+      .dt-hero-name { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; line-height: 1.15; }
+      .dt-hero-desc { font-size: 12.5px; color: #555; margin-bottom: 10px; line-height: 1.5; }
+      .dt-hero-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+      .dt-hero-price-current { font-size: 24px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
+      .dt-hero-price-original { font-size: 13px; color: #999; text-decoration: line-through; font-weight: 500; }
+      .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+      .dt-hero-stats { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; }
+      .dt-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #666; font-weight: 500; flex: 1; justify-content: center; }
       .dt-stat:not(:last-child) { border-right: 1px solid #f0f0f0; }
-      .dt-stat svg { width: 16px; height: 16px; flex-shrink: 0; }
-      .dt-stat-value { color: #1a1a1a; font-weight: 700; font-size: 14px; }
+      .dt-stat svg { width: 14px; height: 14px; flex-shrink: 0; }
+      .dt-stat-value { color: #1a1a1a; font-weight: 700; font-size: 13px; }
       .dt-stat.bestseller { color: var(--orange); font-weight: 700; }
 
       /* ── Right side ── */
       .dt-right {
-        display: flex; flex-direction: column; gap: 10px;
+        display: flex; flex-direction: column; gap: 8px;
         min-width: 0; height: 100%;
       }
 
@@ -275,7 +281,7 @@
       .dt-scroll-controls { display: none; justify-content: flex-end; gap: 8px; }
       .dt-scroll-controls.visible { display: flex; }
       .dt-arrow {
-        width: 36px; height: 36px; border-radius: 50%;
+        width: 34px; height: 34px; border-radius: 50%;
         border: 1.5px solid #e0e0e0; background: #fff;
         display: flex; align-items: center; justify-content: center;
         cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -283,7 +289,7 @@
       }
       .dt-arrow:hover { background: var(--orange); border-color: var(--orange); }
       .dt-arrow:hover svg { stroke: #fff; }
-      .dt-arrow svg { width: 14px; height: 14px; stroke: #555; transition: stroke 0.15s; }
+      .dt-arrow svg { width: 13px; height: 13px; stroke: #555; transition: stroke 0.15s; }
 
       /* ── THE GRID ── */
       .dt-grid {
@@ -291,9 +297,10 @@
         grid-template-rows: 1fr 1fr;
         grid-auto-flow: column;
         grid-auto-columns: calc((100% - 28px) / 3);
-        gap: 14px;
+        gap: 12px;
         overflow: hidden;
         flex: 1;
+        min-height: 0;
       }
       .dt-grid.scrollable {
         overflow-x: auto;
@@ -309,40 +316,39 @@
         background: transparent; box-shadow: none; pointer-events: none; visibility: hidden;
       }
 
-      /* ── Small card — full mobile card style ── */
+      /* ── Small card ── */
       .dt-small-card {
         background: #fff;
-        border-radius: 18px;
+        border-radius: 16px;
         padding: 4px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         display: flex; flex-direction: column;
-        cursor: pointer;
+        cursor: pointer; overflow: hidden; min-width: 0;
         transition: box-shadow 0.2s, transform 0.2s;
-        overflow: hidden; min-width: 0;
       }
-      .dt-small-card:hover:not(.vacant) { box-shadow: 0 10px 30px rgba(0,0,0,0.14); transform: translateY(-2px); }
+      .dt-small-card:hover:not(.vacant) { box-shadow: 0 8px 24px rgba(0,0,0,0.13); transform: translateY(-2px); }
 
       .dt-small-inner {
-        border-radius: 15px; overflow: hidden;
-        display: flex; flex-direction: column; flex: 1;
+        border-radius: 13px; overflow: hidden;
+        display: flex; flex-direction: column; flex: 1; min-height: 0;
       }
 
       .dt-small-image {
         position: relative; width: 100%;
-        flex: 1; overflow: hidden; min-height: 80px;
+        flex: 1; overflow: hidden; min-height: 0;
       }
       .dt-small-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
       .dt-small-flame {
-        position: absolute; top: 8px; left: 8px;
-        width: 22px; height: 22px;
-        display: flex; align-items: center; justify-content: center;
-        z-index: 2;
+        position: absolute; top: 7px; left: 7px;
+        width: 20px; height: 20px;
+        display: flex; align-items: center; justify-content: center; z-index: 2;
       }
+      .dt-small-flame svg { width: 16px; height: 16px; }
 
       .dt-small-wish {
         position: absolute; bottom: 7px; right: 7px;
-        width: 28px; height: 28px; background: rgba(255,255,255,0.92);
+        width: 26px; height: 26px; background: rgba(255,255,255,0.92);
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
         box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer; border: none;
         backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
@@ -351,25 +357,37 @@
       .dt-small-wish:active { transform: scale(0.92); }
       .dt-small-wish svg { width: 11px; height: 11px; }
 
-      .dt-small-body-wrap {
-        position: relative; background: #fff;
-      }
+      .dt-small-body-wrap { position: relative; background: #fff; flex-shrink: 0; }
       .dt-small-body-wrap::before {
-        content: '';
-        position: absolute; top: -14px; left: 0; right: 0; height: 14px;
-        background: linear-gradient(to bottom, transparent, #ffffff);
-        pointer-events: none;
+        content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px;
+        background: linear-gradient(to bottom, transparent, #ffffff); pointer-events: none;
       }
 
-      /* ── Card body — +2px bump on all text, muted colors darkened ── */
-      .dt-small-body   { padding: 7px 9px 9px; background: #fff; }
-      .dt-small-name   { font-size: 13px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 3px; }
-      .dt-small-desc   { font-size: 10.5px; color: #888; margin-bottom: 6px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .dt-small-body   { padding: 6px 8px 8px; background: #fff; }
+      .dt-small-name   { font-size: 12px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 2px; }
+      .dt-small-desc   { font-size: 10px; color: #888; margin-bottom: 5px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
       .dt-small-price-row  { display: flex; align-items: center; justify-content: space-between; }
       .dt-small-price-left { display: flex; flex-direction: column; gap: 1px; }
-      .dt-small-price  { font-size: 15px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
-      .dt-small-orig   { font-size: 10.5px; color: #999; text-decoration: line-through; font-weight: 500; }
-      .dt-small-badge  { font-size: 9.5px; font-weight: 700; padding: 3px 6px; border-radius: 20px; white-space: nowrap; }
+      .dt-small-price  { font-size: 13.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
+      .dt-small-orig   { font-size: 9.5px; color: #999; text-decoration: line-through; font-weight: 500; }
+      .dt-small-badge  { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 20px; white-space: nowrap; }
+    }
+
+    /* ── Wider screens: show more columns automatically ── */
+    @media (min-width: 1400px) {
+      .dt-grid {
+        grid-auto-columns: calc((100% - 42px) / 3.5);
+      }
+    }
+    @media (min-width: 1600px) {
+      .dt-grid {
+        grid-auto-columns: calc((100% - 56px) / 4);
+      }
+    }
+    @media (min-width: 1920px) {
+      .dt-grid {
+        grid-auto-columns: calc((100% - 70px) / 4.5);
+      }
     }
   </style>  </style>  </style>
 </head>
