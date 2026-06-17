@@ -108,7 +108,7 @@
     .card         { width: 100%; border-radius: 15px; overflow: hidden; position: relative; background: #fff; }
     .card__image  { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; }
     .card__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .card__body   { position: relative; background: #fff; padding: 7px 9px 9px; }
+    .card__body   { position: relative; background: #fff; padding: 7px 9px 5px; }
     .card__body::before {
       content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
       background: linear-gradient(to bottom, transparent, #fff); pointer-events: none;
@@ -132,7 +132,7 @@
 
     /* ── Mobile card: text ── */
     .product-name   { font-size: 13px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 3px; }
-    .product-desc   { font-size: 11px; color: #666; margin-bottom: 6px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .product-desc   { font-size: 11px; color: #666; margin-bottom: 3px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .price-row      { display: flex; align-items: center; justify-content: space-between; }
     .price-left     { display: flex; flex-direction: column; gap: 1px; }
     .price-current  { font-size: 14.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
@@ -165,10 +165,10 @@
       /* ── Header ── */
       .dt-header      { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
       .dt-title-block { display: flex; flex-direction: column; gap: 4px; }
-      .dt-title       { display: flex; align-items: center; gap: 12px; font-size: 38px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
+      .dt-title       { display: flex; align-items: center; gap: 14px; font-size: 46px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
       .dt-title span  { color: var(--orange); }
-      .dt-title-icon  { width: 38px; height: 38px; flex-shrink: 0; }
-      .dt-subtitle    { font-size: 14px; color: #444; margin-left: 50px; }
+      .dt-title-icon  { width: 46px; height: 46px; flex-shrink: 0; }
+      .dt-subtitle    { font-size: 16px; color: #444; margin-left: 54px; }
       .dt-view-all {
         display: inline-flex; align-items: center; gap: 8px;
         border: 1.5px solid var(--orange); border-radius: 24px;
@@ -186,7 +186,7 @@
       .dt-tab {
         display: flex; align-items: center; gap: 7px;
         padding: 8px 16px 10px; border-radius: 10px 10px 0 0;
-        font-size: 13.5px; font-weight: 700; color: #555;
+        font-size: 15px; font-weight: 700; color: #555;
         cursor: pointer; border: 1.5px solid transparent;
         background: none; font-family: inherit;
         position: relative; bottom: -1.5px;
@@ -207,7 +207,7 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 16px;
-        height: calc(100vh - 260px);
+        height: calc(100vh - 300px);
         min-height: 420px;
         max-height: 620px;
         align-items: stretch;
@@ -240,10 +240,10 @@
       }
       .dt-hero-wish:hover           { transform: scale(1.1); }
       .dt-hero-body                 { background: #fff; padding: 14px 18px 16px; flex-shrink: 0; }
-      .dt-hero-name                 { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; line-height: 1.15; }
-      .dt-hero-desc                 { font-size: 12.5px; color: #555; margin-bottom: 10px; line-height: 1.5; }
+      .dt-hero-name                 { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 5px; line-height: 1.15; }
+      .dt-hero-desc                 { font-size: 13.5px; color: #555; margin-bottom: 10px; line-height: 1.5; }
       .dt-hero-price-row            { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-      .dt-hero-price-current        { font-size: 24px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
+      .dt-hero-price-current        { font-size: 26px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
       .dt-hero-price-original       { font-size: 13px; color: #999; text-decoration: line-through; font-weight: 500; }
       .dt-hero-badge                { background: var(--orange-light); color: var(--orange); font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
       .dt-hero-stats                { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; }
@@ -442,7 +442,7 @@
     <div class="dt-header">
       <div class="dt-title-block">
         <div class="dt-title">
-          <svg class="dt-title-icon" width="38" height="38" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg>
+          <svg class="dt-title-icon" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg>
           Customer <span>Favorites</span>
         </div>
         <p class="dt-subtitle">The products shoppers love most — trusted brands, everyday value, and fast-moving essentials.</p>
