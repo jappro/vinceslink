@@ -209,7 +209,7 @@
         gap: 16px;
         height: calc(100vh - 300px);
         min-height: 420px;
-        max-height: 620px;
+        max-height: 618px;
         align-items: stretch;
       }
 
@@ -269,13 +269,14 @@
       .dt-arrow:hover     { background: var(--orange); border-color: var(--orange); }
       .dt-arrow:hover svg { stroke: #fff; }
       .dt-arrow svg       { width: 13px; height: 13px; stroke: #555; transition: stroke 0.15s; }
+      .dt-arrow:disabled  { opacity: 0.35; cursor: default; pointer-events: none; }
 
       /* ── Continuous 2-row column-flow grid ── */
       .dt-grid {
         display: grid;
         grid-template-rows: 1fr 1fr;
         grid-auto-flow: column;
-        grid-auto-columns: calc((100% - 28px) / 3);
+        grid-auto-columns: calc((100% - 28px) / 3.5);
         gap: 12px;
         overflow: hidden;
         flex: 1;
@@ -502,8 +503,8 @@
       <!-- Right: arrows + grid -->
       <div class="dt-right">
         <div class="dt-scroll-controls" id="dt-scroll-controls">
-          <button class="dt-arrow" onclick="scrollTrack(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <button class="dt-arrow" onclick="scrollTrack(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <button class="dt-arrow" id="dt-arrow-prev" onclick="scrollTrack(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="dt-arrow" id="dt-arrow-next" onclick="scrollTrack(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
         <div class="dt-grid" id="dt-grid">
           
@@ -555,6 +556,7 @@
       document.getElementById('dt-grid').classList.toggle('scrollable', viewAllActive);
       document.getElementById('dt-scroll-controls').classList.toggle('visible', viewAllActive);
       btn.classList.toggle('active', viewAllActive);
+      updateArrowState();
     }
 
     /* ── DESKTOP: Arrow scroll (2-card step) ── */
@@ -563,6 +565,18 @@
       const card = grid.querySelector('.dt-small-card:not(.vacant)');
       if (!card) return;
       grid.scrollBy({ left: dir * (card.offsetWidth + 12) * 2, behavior: 'smooth' });
+    }
+
+    /* ── DESKTOP: Disable arrows at scroll boundaries ── */
+    function updateArrowState() {
+      const grid = document.getElementById('dt-grid');
+      const prev = document.getElementById('dt-arrow-prev');
+      const next = document.getElementById('dt-arrow-next');
+      if (!grid || !prev || !next) return;
+
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      prev.disabled = grid.scrollLeft <= 1;
+      next.disabled = grid.scrollLeft >= maxScroll - 1;
     }
 
     /* ── DESKTOP: Tab active-class map ── */
