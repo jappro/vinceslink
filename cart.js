@@ -164,7 +164,26 @@
     renderCartPanel();
   }
 
+  /* ---------- CONFETTI BURST (for .card__plus buttons that have it) ---------- */
+  function fireConfetti(btn) {
+    const card = btn.closest('.card, .dt-small-card, .dt-hero-card, .card-shell, .product-card');
+    if (!card) return;
+    const confettiEl = card.querySelector('.confetti-wrap');
+    if (!confettiEl) return;
+
+    confettiEl.style.left = (btn.offsetLeft + btn.offsetWidth / 2) + 'px';
+    confettiEl.style.top = (btn.offsetTop + btn.offsetHeight / 2) + 'px';
+    confettiEl.classList.remove('burst');
+    void confettiEl.offsetWidth; // restart animation
+    confettiEl.classList.add('burst');
+    setTimeout(() => confettiEl.classList.remove('burst'), 900);
+  }
+
   /* ---------- TOGGLE HANDLER FOR HEART / PLUS BUTTONS ---------- */
+  // cart.js is the SINGLE source of truth for the .added / .liked class.
+  // Do not let any other script (e.g. an old initCartBtn) also toggle these
+  // classes on the same button — two listeners racing to toggle the same
+  // class is exactly what causes the button to silently flip back off.
   function handleToggleClick(btn) {
     const id = btn.dataset.productId;
     if (!id) return; // safety: button without an id does nothing to the cart
@@ -186,6 +205,7 @@
       // First-ever interaction this session: dismiss bait state silently
       if (isBaitState()) markSessionStarted();
       addItem(id, name, price);
+      if (btn.classList.contains('card__plus')) fireConfetti(btn);
     }
 
     syncButtonsForId(id, !alreadyIn);
