@@ -1,0 +1,213 @@
+/* =====================================================
+   VINCESLINK SUPERSTORE — CART STYLES
+   Pair with cart.js. Add this <link> or <style> block
+   into superstore.html, ideally near your other modal CSS.
+   ===================================================== */
+
+/* ---------- Overlay (shared by intro / refresh / cart panel backdrop) ---------- */
+.vl-cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vl-cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---------- Cart slide-in panel ---------- */
+.vl-cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(380px, 92vw);
+  background: #fff;
+  z-index: 9999;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.12);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.vl-cart-panel.open {
+  transform: translateX(0);
+}
+
+.vl-cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+}
+.vl-cart-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0019A8;
+}
+.vl-cart-close {
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+}
+
+.vl-cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 20px;
+}
+
+.vl-cart-empty {
+  color: #777;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.vl-cart-row {
+  display: grid;
+  grid-template-columns: 20px 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 13.5px;
+}
+.vl-cart-sn { color: #999; font-size: 12px; }
+.vl-cart-name { color: #222; }
+.vl-cart-price { color: #0019A8; font-weight: 600; white-space: nowrap; }
+.vl-cart-price small { color: #888; font-weight: 400; }
+
+.vl-cart-qty-controls {
+  display: flex;
+  gap: 4px;
+}
+.vl-qty-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vl-qty-btn:hover { background: #f0f0f0; }
+
+.vl-cart-footer {
+  border-top: 1px solid #eee;
+  padding: 14px 20px 20px;
+}
+.vl-add-more-btn {
+  width: 100%;
+  background: none;
+  border: 1px dashed #0019A8;
+  color: #0019A8;
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 13.5px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.vl-cart-total {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #222;
+}
+.vl-order-btn {
+  width: 100%;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.vl-order-btn:hover { background: #1ebe5b; }
+
+/* ---------- Intro / refresh popups ---------- */
+.vl-intro-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 26px 24px;
+  max-width: 340px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.vl-intro-box h3 {
+  margin: 0 0 10px;
+  color: #0019A8;
+  font-size: 18px;
+}
+.vl-intro-box p {
+  margin: 0 0 18px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.vl-intro-ok-btn {
+  background: #0019A8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.vl-refresh-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.vl-keep-btn, .vl-fresh-btn {
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.vl-keep-btn { background: #0019A8; color: #fff; }
+.vl-fresh-btn { background: #f1f1f1; color: #333; }
+
+/* ---------- Toast (fade-in confirmation) ---------- */
+.vl-cart-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #222;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  max-width: 90vw;
+  text-align: center;
+}
+.vl-cart-toast.vl-toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
