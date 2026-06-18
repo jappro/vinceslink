@@ -1384,6 +1384,7 @@
       --purple:       #7b1fa2;
     }
 
+    /* -— NEW HOT PICKS CSS ADDED -- */
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -2313,8 +2314,8 @@
       <!-- Right: arrows + grid -->
       <div class="dt-right">
         <div class="dt-scroll-controls" id="dt-scroll-controls">
-          <button class="dt-arrow" onclick="scrollTrack(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 9 6"/></svg></button>
-          <button class="dt-arrow" onclick="scrollTrack(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollHotPicks(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 9 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollHotPicks(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
         <div class="dt-grid" id="dt-grid">
           <div class="dt-small-card"><div class="dt-small-inner"><div class="dt-small-image" style="background:#fff0e6;"><div class="dt-small-flame"><svg width="22" height="22" viewBox="0 0 100 112" fill="none"><path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112ZM50 105C43 105 38 100 38 94C38 88 43 83 50 80C57 83 62 88 62 94C62 100 57 105 50 105Z"/></svg></div><img src="images/business/Superstore/hots/indomie-noodles.jpg" alt="Indomie Noodles"/><button class="dt-small-wish" data-product-id="indomie-noodles"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path class="heart-path" d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.04L12 21.35Z" stroke="var(--orange)" stroke-width="2"/></svg></button></div><div class="dt-small-body-wrap"><div class="dt-small-body"><div class="dt-small-name">Indomie Noodles</div><div class="dt-small-desc">Chicken flavour · Quick cook · 70g</div><div class="dt-small-price-row"><div class="dt-small-price-left"><span class="dt-small-price">₦1,200</span><span class="dt-small-orig">₦1,500</span></div><span class="dt-small-badge" style="background:#fff0e6;color:var(--orange);">20% OFF</span></div></div></div></div></div>
@@ -2772,9 +2773,96 @@
     return shell;
   }
 
-  /* Hot deals */
-  const hotGrid = document.getElementById('hot-grid');
-  data.hot.forEach((p, i) => hotGrid.appendChild(makeHotCard(p, i)));
+  /* --- HOT PICKS NEW JS ADDED --- */
+  /* ── MOBILE: See all / See less ── */
+  function toggleExpand(btn) {
+    const row = btn.closest('.category-section-hot').querySelector('.product-row-hot');
+    const isExpanded = row.classList.toggle('expanded');
+    btn.classList.toggle('is-expanded', isExpanded);
+    btn.childNodes[0].textContent = isExpanded ? 'See less ' : 'See all ';
+    if (!isExpanded) row.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+
+  /* ── DESKTOP: View All toggle ── */
+  let viewAllActive = false;
+  function toggleViewAll(btn) {
+    viewAllActive = !viewAllActive;
+    document.getElementById('dt-grid').classList.toggle('scrollable', viewAllActive);
+    document.getElementById('dt-scroll-controls').classList.toggle('visible', viewAllActive);
+    btn.classList.toggle('active', viewAllActive);
+    updateArrowState();
+  }
+
+  /* ── DESKTOP: Arrow scroll for category grids (2-card step) ── */
+  function scrollTrack(dir) {
+    const grid = document.getElementById('dt-grid');
+    const card = grid.querySelector('.dt-small-card:not(.vacant)');
+    if (!card) return;
+    grid.scrollBy({ left: dir * (card.offsetWidth + 12) * 2, behavior: 'smooth' });
+  }
+
+  /* ── DESKTOP: Arrow scroll for Hot Picks ── */
+  function scrollHotPicks(dir) {
+    const grid = document.getElementById('dt-grid');
+    const card = grid.querySelector('.dt-small-card:not(.vacant)');
+    if (!card) return;
+    grid.scrollBy({ left: dir * (card.offsetWidth + 12) * 2, behavior: 'smooth' });
+  }
+
+  /* ── DESKTOP: Disable arrows at scroll boundaries ── */
+  function updateArrowState() {
+    const grid = document.getElementById('dt-grid');
+    const prev = document.getElementById('dt-arrow-prev');
+    const next = document.getElementById('dt-arrow-next');
+    if (!grid || !prev || !next) return;
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    prev.disabled = grid.scrollLeft <= 1;
+    next.disabled = grid.scrollLeft >= maxScroll - 1;
+  }
+
+  /* ── DESKTOP: Tab active-class map ── */
+  const TAB_CLASSES = {
+    grocery:    'active',
+    beauty:     'active-pink',
+    refresh:    'active-teal',
+    essentials: 'active-green',
+  };
+
+  /* ── DESKTOP: Tab jump ── */
+  function jumpToCategory(cat, tabEl) {
+    document.querySelectorAll('.dt-tab').forEach(t => (t.className = 'dt-tab'));
+    tabEl.classList.add('dt-tab', TAB_CLASSES[cat]);
+    if (!viewAllActive) toggleViewAll(document.getElementById('dt-view-all-btn'));
+    const grid = document.getElementById('dt-grid');
+    const spy  = cat === 'grocery' ? null : document.getElementById('spy-' + cat);
+    if (!spy) { grid.scrollTo({ left: 0, behavior: 'smooth' }); return; }
+    const offset = grid.scrollLeft + spy.getBoundingClientRect().left - grid.getBoundingClientRect().left;
+    grid.scrollTo({ left: offset, behavior: 'smooth' });
+  }
+
+  /* ── DESKTOP: Scroll spy ── */
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('dt-grid');
+    if (!grid) return;
+    const anchors = [
+      { id: 'spy-beauty',     cat: 'beauty'     },
+      { id: 'spy-refresh',    cat: 'refresh'    },
+      { id: 'spy-essentials', cat: 'essentials' },
+    ];
+    grid.addEventListener('scroll', () => {
+      if (!viewAllActive) return;
+      const mid = grid.getBoundingClientRect().left + grid.offsetWidth * 0.4;
+      let active = 'grocery';
+      anchors.forEach(({ id, cat }) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().left <= mid) active = cat;
+      });
+      document.querySelectorAll('.dt-tab').forEach(t => {
+        t.className = 'dt-tab';
+        if (t.dataset.cat === active) t.classList.add('dt-tab', TAB_CLASSES[active]);
+      });
+    });
+  });
 
   /* Category grids */
   const grids = {
