@@ -90,7 +90,7 @@
   // restores state correctly after a page reload).
   function syncButtonsForId(id, isAdded) {
     const heartButtons = document.querySelectorAll(
-      `.btn-wishlist[data-product-id="${id}"], .dt-small-wish[data-product-id="${id}"], .dt-hero-wish[data-product-id="${id}"]`
+      `.btn-wishlist-hot[data-product-id="${id}"], .dt-small-wish[data-product-id="${id}"], .dt-hero-wish[data-product-id="${id}"]`
     );
     heartButtons.forEach(btn => btn.classList.toggle('liked', isAdded));
 
@@ -100,12 +100,12 @@
 
   function syncAllButtonsFromCart() {
     const allTrigger = document.querySelectorAll(
-      '.btn-wishlist[data-product-id], .dt-small-wish[data-product-id], .dt-hero-wish[data-product-id], .card__plus[data-product-id]'
+      '.btn-wishlist-hot[data-product-id], .dt-small-wish[data-product-id], .dt-hero-wish[data-product-id], .card__plus[data-product-id]'
     );
     allTrigger.forEach(btn => {
       const id = btn.dataset.productId;
       const inCart = !!findItem(id);
-      if (btn.classList.contains('btn-wishlist') || btn.classList.contains('dt-small-wish') || btn.classList.contains('dt-hero-wish')) {
+      if (btn.classList.contains('btn-wishlist-hot') || btn.classList.contains('dt-small-wish') || btn.classList.contains('dt-hero-wish')) {
         btn.classList.toggle('liked', inCart);
       } else {
         btn.classList.toggle('added', inCart);
@@ -166,7 +166,7 @@
 
   /* ---------- CONFETTI BURST (for .card__plus buttons that have it) ---------- */
   function fireConfetti(btn) {
-    const card = btn.closest('.card, .dt-small-card, .dt-hero-card, .card-shell, .product-card');
+    const card = btn.closest('.card-hot, .dt-small-card, .dt-hero-card, .card-shell, .product-card');
     if (!card) return;
     const confettiEl = card.querySelector('.confetti-wrap');
     if (!confettiEl) return;
@@ -188,11 +188,11 @@
     const id = btn.dataset.productId;
     if (!id) return; // safety: button without an id does nothing to the cart
 
-    const card = btn.closest('.card, .dt-small-card, .dt-hero-card, .card-shell, .product-card');
+    const card = btn.closest('.card-hot, .dt-small-card, .dt-hero-card, .card-shell, .product-card');
     if (!card) return;
 
-    const nameEl = card.querySelector('.product-name, .dt-small-name, .dt-hero-name');
-    const priceEl = card.querySelector('.price-current, .dt-small-price, .dt-hero-price-current');
+    const nameEl = card.querySelector('.product-name-hot, .dt-small-name, .dt-hero-name');
+    const priceEl = card.querySelector('.price-current-hot, .dt-small-price, .dt-hero-price-current');
 
     const name = nameEl ? nameEl.textContent.trim() : 'Product';
     const price = priceEl ? parsePrice(priceEl.textContent) : 0;
@@ -213,7 +213,7 @@
 
   function wireTriggerButtons() {
     document.querySelectorAll(
-      '.btn-wishlist[data-product-id], .dt-small-wish[data-product-id], .dt-hero-wish[data-product-id], .card__plus[data-product-id]'
+      '.btn-wishlist-hot[data-product-id], .dt-small-wish[data-product-id], .dt-hero-wish[data-product-id], .card__plus[data-product-id]'
     ).forEach(btn => {
       // Avoid double-binding if this runs more than once
       if (btn.dataset.vlBound) return;
