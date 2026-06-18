@@ -1525,234 +1525,225 @@
     }
 
     /* =====================================================
-       DESKTOP LAYOUT (≥ 1024px)
-    ===================================================== */
-    @media (min-width: 1024px) {
-      .mobile-section  { display: none; }
-      .desktop-section {
-        display: block;
-        width: 100%;
-        padding: 32px 40px 40px;
-      }
+   DESKTOP LAYOUT (≥ 1024px) — scoped to .hot-picks-section
+===================================================== */
+@media (min-width: 1024px) {
+  .hot-picks-section .mobile-section  { display: none; }
+  .hot-picks-section .desktop-section {
+    display: block;
+    width: 100%;
+    padding: 32px 40px 40px;
+  }
 
-      /* Header */
-      .dt-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
-      .dt-title-block { display: flex; flex-direction: column; gap: 4px; }
-      .dt-title { display: flex; align-items: center; gap: 12px; font-size: 38px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
-      .dt-title span { color: var(--orange); }
-      .dt-title-icon { width: 38px; height: 38px; flex-shrink: 0; }
-      .dt-subtitle { font-size: 14px; color: #444; margin-left: 50px; }
-      .dt-view-all {
-        display: inline-flex; align-items: center; gap: 8px;
-        border: 1.5px solid var(--orange); border-radius: 24px;
-        padding: 9px 18px; color: var(--orange);
-        font-size: 13.5px; font-weight: 600;
-        cursor: pointer; background: none; font-family: inherit;
-        transition: background 0.2s, color 0.2s; white-space: nowrap; margin-top: 4px;
-      }
-      .dt-view-all:hover, .dt-view-all.active { background: var(--orange); color: #fff; }
-      .dt-view-all svg { width: 15px; height: 15px; }
+  /* Header */
+  .hot-picks-section .dt-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+  .hot-picks-section .dt-title-block { display: flex; flex-direction: column; gap: 4px; }
+  .hot-picks-section .dt-title { display: flex; align-items: center; gap: 12px; font-size: 38px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
+  .hot-picks-section .dt-title span { color: var(--orange); }
+  .hot-picks-section .dt-title-icon { width: 38px; height: 38px; flex-shrink: 0; }
+  .hot-picks-section .dt-subtitle { font-size: 14px; color: #444; margin-left: 50px; }
+  .hot-picks-section .dt-view-all {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--orange); border-radius: 24px;
+    padding: 9px 18px; color: var(--orange);
+    font-size: 13.5px; font-weight: 600;
+    cursor: pointer; background: none; font-family: inherit;
+    transition: background 0.2s, color 0.2s; white-space: nowrap; margin-top: 4px;
+  }
+  .hot-picks-section .dt-view-all:hover,
+  .hot-picks-section .dt-view-all.active { background: var(--orange); color: #fff; }
+  .hot-picks-section .dt-view-all svg { width: 15px; height: 15px; }
 
-      /* Tabs */
-      .dt-tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 1.5px solid #efefef; }
-      .dt-tab {
-        display: flex; align-items: center; gap: 7px;
-        padding: 8px 16px 10px; border-radius: 10px 10px 0 0;
-        font-size: 13.5px; font-weight: 700; color: #555;
-        cursor: pointer; border: 1.5px solid transparent;
-        background: none; font-family: inherit;
-        position: relative; bottom: -1.5px;
-        transition: color 0.2s, background 0.2s;
-      }
-      .dt-tab svg { width: 16px; height: 16px; opacity: 0.5; transition: opacity 0.2s; }
-      .dt-tab.active       { background: var(--orange-light); color: var(--orange); border-color: #efefef; border-bottom-color: var(--orange-light); }
-      .dt-tab.active-pink  { background: #fce4f3; color: var(--pink);  border-color: #efefef; border-bottom-color: #fce4f3; }
-      .dt-tab.active-teal  { background: #f3e5f5; color: var(--teal);  border-color: #efefef; border-bottom-color: #f3e5f5; }
-      .dt-tab.active-green { background: #e8f5e9; color: var(--green); border-color: #efefef; border-bottom-color: #e8f5e9; }
-      .dt-tab.active svg, .dt-tab.active-pink svg,
-      .dt-tab.active-teal svg, .dt-tab.active-green svg { opacity: 1; }
+  /* Tabs */
+  .hot-picks-section .dt-tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 1.5px solid #efefef; }
+  .hot-picks-section .dt-tab {
+    display: flex; align-items: center; gap: 7px;
+    padding: 8px 16px 10px; border-radius: 10px 10px 0 0;
+    font-size: 13.5px; font-weight: 700; color: #555;
+    cursor: pointer; border: 1.5px solid transparent;
+    background: none; font-family: inherit;
+    position: relative; bottom: -1.5px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .hot-picks-section .dt-tab svg { width: 16px; height: 16px; opacity: 0.5; transition: opacity 0.2s; }
+  .hot-picks-section .dt-tab.active       { background: var(--orange-light); color: var(--orange); border-color: #efefef; border-bottom-color: var(--orange-light); }
+  .hot-picks-section .dt-tab.active-pink  { background: #fce4f3; color: var(--pink);  border-color: #efefef; border-bottom-color: #fce4f3; }
+  .hot-picks-section .dt-tab.active-teal  { background: #f3e5f5; color: var(--teal);  border-color: #efefef; border-bottom-color: #f3e5f5; }
+  .hot-picks-section .dt-tab.active-green { background: #e8f5e9; color: var(--green); border-color: #efefef; border-bottom-color: #e8f5e9; }
+  .hot-picks-section .dt-tab.active svg,
+  .hot-picks-section .dt-tab.active-pink svg,
+  .hot-picks-section .dt-tab.active-teal svg,
+  .hot-picks-section .dt-tab.active-green svg { opacity: 1; }
 
-      /* ── Main layout ── */
-      .dt-main {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 16px;
-        /* Fit within viewport: 100vh minus header(~80px) + tabs(~60px) + section padding(~72px) */
-        height: calc(100vh - 260px);
-        min-height: 420px;
-        max-height: 620px;
-        align-items: stretch;
-      }
+  /* ── Main layout ── */
+  .hot-picks-section .dt-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 16px;
+    height: calc(100vh - 260px);
+    min-height: 420px;
+    max-height: 620px;
+    align-items: stretch;
+  }
 
-      /* ── Hero card ── */
-      .dt-hero-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 5px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-        display: flex; flex-direction: column;
-        height: 100%;
-        transition: box-shadow 0.2s, transform 0.2s;
-        overflow: hidden;
-      }
-      .dt-hero-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.13); transform: translateY(-2px); }
-      .dt-hero-inner {
-        border-radius: 16px; overflow: hidden;
-        display: flex; flex-direction: column; flex: 1; min-height: 0;
-      }
-      .dt-hero-image {
-        position: relative; width: 100%;
-        flex: 1; overflow: hidden; min-height: 0;
-      }
-      .dt-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .dt-hero-flame {
-        position: absolute; top: 12px; left: 12px;
-        width: 40px; height: 40px; background: #fff; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.12); z-index: 2;
-      }
-      .dt-hero-flame svg { width: 20px; height: 20px; }
-      .dt-hero-wish {
-        position: absolute; bottom: 12px; right: 12px;
-        width: 36px; height: 36px; background: rgba(255,255,255,0.92);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.12); cursor: pointer; border: none;
-        backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
-      }
-      .dt-hero-wish:hover { transform: scale(1.1); }
-      /* Hero body — fixed height, compact */
-      .dt-hero-body { background: #fff; padding: 14px 18px 16px; flex-shrink: 0; }
-      .dt-hero-name { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; line-height: 1.15; }
-      .dt-hero-desc { font-size: 12.5px; color: #555; margin-bottom: 10px; line-height: 1.5; }
-      .dt-hero-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-      .dt-hero-price-current { font-size: 24px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
-      .dt-hero-price-original { font-size: 13px; color: #999; text-decoration: line-through; font-weight: 500; }
-      .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
-      .dt-hero-stats { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; }
-      .dt-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #666; font-weight: 500; flex: 1; justify-content: center; }
-      .dt-stat:not(:last-child) { border-right: 1px solid #f0f0f0; }
-      .dt-stat svg { width: 14px; height: 14px; flex-shrink: 0; }
-      .dt-stat-value { color: #1a1a1a; font-weight: 700; font-size: 13px; }
-      .dt-stat.bestseller { color: var(--orange); font-weight: 700; }
+  /* ── Hero card ── */
+  .hot-picks-section .dt-hero-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    display: flex; flex-direction: column;
+    height: 100%;
+    transition: box-shadow 0.2s, transform 0.2s;
+    overflow: hidden;
+  }
+  .hot-picks-section .dt-hero-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.13); transform: translateY(-2px); }
+  .hot-picks-section .dt-hero-inner {
+    border-radius: 16px; overflow: hidden;
+    display: flex; flex-direction: column; flex: 1; min-height: 0;
+  }
+  .hot-picks-section .dt-hero-image {
+    position: relative; width: 100%;
+    flex: 1; overflow: hidden; min-height: 0;
+  }
+  .hot-picks-section .dt-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hot-picks-section .dt-hero-flame {
+    position: absolute; top: 12px; left: 12px;
+    width: 40px; height: 40px; background: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12); z-index: 2;
+  }
+  .hot-picks-section .dt-hero-flame svg { width: 20px; height: 20px; }
+  .hot-picks-section .dt-hero-wish {
+    position: absolute; bottom: 12px; right: 12px;
+    width: 36px; height: 36px; background: rgba(255,255,255,0.92);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12); cursor: pointer; border: none;
+    backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
+  }
+  .hot-picks-section .dt-hero-wish:hover { transform: scale(1.1); }
 
-      /* ── Right side ── */
-      .dt-right {
-        display: flex; flex-direction: column; gap: 8px;
-        min-width: 0; height: 100%;
-      }
+  /* Hero body */
+  .hot-picks-section .dt-hero-body { background: #fff; padding: 14px 18px 16px; flex-shrink: 0; }
+  .hot-picks-section .dt-hero-name { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; line-height: 1.1; }
+  .hot-picks-section .dt-hero-desc { font-size: 12.5px; color: #555; margin-bottom: 10px; line-height: 1.5; }
+  .hot-picks-section .dt-hero-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .hot-picks-section .dt-hero-price-current { font-size: 24px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
+  .hot-picks-section .dt-hero-price-original { font-size: 13px; color: #999; text-decoration: line-through; font-weight: 500; }
+  .hot-picks-section .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+  .hot-picks-section .dt-hero-stats { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; }
+  .hot-picks-section .dt-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #666; font-weight: 500; flex: 1; justify-content: center; }
+  .hot-picks-section .dt-stat:not(:last-child) { border-right: 1px solid #f0f0f0; }
+  .hot-picks-section .dt-stat svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .hot-picks-section .dt-stat-value { color: #1a1a1a; font-weight: 700; font-size: 13px; }
+  .hot-picks-section .dt-stat.bestseller { color: var(--orange); font-weight: 700; }
 
-      /* Arrow controls */
-      .dt-scroll-controls { display: none; justify-content: flex-end; gap: 8px; }
-      .dt-scroll-controls.visible { display: flex; }
-      .dt-arrow {
-        width: 34px; height: 34px; border-radius: 50%;
-        border: 1.5px solid #e0e0e0; background: #fff;
-        display: flex; align-items: center; justify-content: center;
-        cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        transition: background 0.15s, border-color 0.15s;
-      }
-      .dt-arrow:hover { background: var(--orange); border-color: var(--orange); }
-      .dt-arrow:hover svg { stroke: #fff; }
-      .dt-arrow svg { width: 13px; height: 13px; stroke: #555; transition: stroke 0.15s; }
+  /* ── Right side ── */
+  .hot-picks-section .dt-right {
+    display: flex; flex-direction: column; gap: 8px;
+    min-width: 0; height: 100%;
+  }
 
-      /* ── THE GRID ── */
-      .dt-grid {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-auto-flow: column;
-        grid-auto-columns: calc((100% - 28px) / 3);
-        gap: 12px;
-        overflow: hidden;
-        flex: 1;
-        min-height: 0;
-      }
-      .dt-grid.scrollable {
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .dt-grid.scrollable::-webkit-scrollbar { display: none; }
-      .dt-grid.scrollable .dt-small-card { scroll-snap-align: start; }
+  /* Arrow controls */
+  .hot-picks-section .dt-scroll-controls { display: none; justify-content: flex-end; gap: 8px; }
+  .hot-picks-section .dt-scroll-controls.visible { display: flex; }
+  .hot-picks-section .dt-arrow {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1.5px solid #e0e0e0; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .hot-picks-section .dt-arrow:hover { background: var(--orange); border-color: var(--orange); }
+  .hot-picks-section .dt-arrow:hover svg { stroke: #fff; }
+  .hot-picks-section .dt-arrow svg { width: 13px; height: 13px; stroke: #555; transition: stroke 0.15s; }
 
-      /* Vacant slot */
-      .dt-small-card.vacant {
-        background: transparent; box-shadow: none; pointer-events: none; visibility: hidden;
-      }
+  /* ── The Grid ── */
+  .hot-picks-section .dt-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 28px) / 3);
+    gap: 12px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+  }
+  .hot-picks-section .dt-grid.scrollable {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hot-picks-section .dt-grid.scrollable::-webkit-scrollbar { display: none; }
+  .hot-picks-section .dt-grid.scrollable .dt-small-card { scroll-snap-align: start; }
 
-      /* ── Small card ── */
-      .dt-small-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 4px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        display: flex; flex-direction: column;
-        cursor: pointer; overflow: hidden; min-width: 0;
-        transition: box-shadow 0.2s, transform 0.2s;
-      }
-      .dt-small-card:hover:not(.vacant) { box-shadow: 0 8px 24px rgba(0,0,0,0.13); transform: translateY(-2px); }
+  /* Vacant slot */
+  .hot-picks-section .dt-small-card.vacant {
+    background: transparent; box-shadow: none; pointer-events: none; visibility: hidden;
+  }
 
-      .dt-small-inner {
-        border-radius: 13px; overflow: hidden;
-        display: flex; flex-direction: column; flex: 1; min-height: 0;
-      }
+  /* ── Small card ── */
+  .hot-picks-section .dt-small-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    display: flex; flex-direction: column;
+    cursor: pointer; overflow: hidden; min-width: 0;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .hot-picks-section .dt-small-card:hover:not(.vacant) { box-shadow: 0 8px 24px rgba(0,0,0,0.13); transform: translateY(-2px); }
+  .hot-picks-section .dt-small-inner {
+    border-radius: 13px; overflow: hidden;
+    display: flex; flex-direction: column; flex: 1; min-height: 0;
+  }
+  .hot-picks-section .dt-small-image {
+    position: relative; width: 100%;
+    flex: 1; overflow: hidden; min-height: 0;
+  }
+  .hot-picks-section .dt-small-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hot-picks-section .dt-small-flame {
+    position: absolute; top: 7px; left: 7px;
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center; z-index: 2;
+  }
+  .hot-picks-section .dt-small-flame svg { width: 16px; height: 16px; }
+  .hot-picks-section .dt-small-wish {
+    position: absolute; bottom: 7px; right: 7px;
+    width: 26px; height: 26px; background: rgba(255,255,255,0.92);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer; border: none;
+    backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
+  }
+  .hot-picks-section .dt-small-wish:hover  { transform: scale(1.08); }
+  .hot-picks-section .dt-small-wish:active { transform: scale(0.92); }
+  .hot-picks-section .dt-small-wish svg { width: 11px; height: 11px; }
+  .hot-picks-section .dt-small-body-wrap { position: relative; background: #fff; flex-shrink: 0; }
+  .hot-picks-section .dt-small-body-wrap::before {
+    content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px;
+    background: linear-gradient(to bottom, transparent, #ffffff); pointer-events: none;
+  }
+  .hot-picks-section .dt-small-body   { padding: 6px 8px 8px; background: #fff; }
+  .hot-picks-section .dt-small-name   { font-size: 12px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 2px; }
+  .hot-picks-section .dt-small-desc   { font-size: 10px; color: #888; margin-bottom: 5px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .hot-picks-section .dt-small-price-row  { display: flex; align-items: center; justify-content: space-between; }
+  .hot-picks-section .dt-small-price-left { display: flex; flex-direction: column; gap: 1px; }
+  .hot-picks-section .dt-small-price  { font-size: 13.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
+  .hot-picks-section .dt-small-orig   { font-size: 9.5px; color: #999; text-decoration: line-through; font-weight: 500; }
+  .hot-picks-section .dt-small-badge  { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 20px; white-space: nowrap; }
+}
 
-      .dt-small-image {
-        position: relative; width: 100%;
-        flex: 1; overflow: hidden; min-height: 0;
-      }
-      .dt-small-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-      .dt-small-flame {
-        position: absolute; top: 7px; left: 7px;
-        width: 20px; height: 20px;
-        display: flex; align-items: center; justify-content: center; z-index: 2;
-      }
-      .dt-small-flame svg { width: 16px; height: 16px; }
-
-      .dt-small-wish {
-        position: absolute; bottom: 7px; right: 7px;
-        width: 26px; height: 26px; background: rgba(255,255,255,0.92);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer; border: none;
-        backdrop-filter: blur(6px); z-index: 2; transition: transform 0.15s;
-      }
-      .dt-small-wish:hover  { transform: scale(1.08); }
-      .dt-small-wish:active { transform: scale(0.92); }
-      .dt-small-wish svg { width: 11px; height: 11px; }
-
-      .dt-small-body-wrap { position: relative; background: #fff; flex-shrink: 0; }
-      .dt-small-body-wrap::before {
-        content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px;
-        background: linear-gradient(to bottom, transparent, #ffffff); pointer-events: none;
-      }
-
-      .dt-small-body   { padding: 6px 8px 8px; background: #fff; }
-      .dt-small-name   { font-size: 12px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 2px; }
-      .dt-small-desc   { font-size: 10px; color: #888; margin-bottom: 5px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-      .dt-small-price-row  { display: flex; align-items: center; justify-content: space-between; }
-      .dt-small-price-left { display: flex; flex-direction: column; gap: 1px; }
-      .dt-small-price  { font-size: 13.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
-      .dt-small-orig   { font-size: 9.5px; color: #999; text-decoration: line-through; font-weight: 500; }
-      .dt-small-badge  { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 20px; white-space: nowrap; }
-    }
-
-    /* ── Wider screens: show more columns automatically ── */
-    @media (min-width: 1400px) {
-      .dt-grid {
-        grid-auto-columns: calc((100% - 42px) / 3.5);
-      }
-    }
-    @media (min-width: 1600px) {
-      .dt-grid {
-        grid-auto-columns: calc((100% - 56px) / 4);
-      }
-    }
-    @media (min-width: 1920px) {
-      .dt-grid {
-        grid-auto-columns: calc((100% - 70px) / 4.5);
-      }
-    }
+/* ── Wider screens: show more columns automatically ── */
+@media (min-width: 1400px) {
+  .hot-picks-section .dt-grid { grid-auto-columns: calc((100% - 42px) / 3.5); }
+}
+@media (min-width: 1600px) {
+  .hot-picks-section .dt-grid { grid-auto-columns: calc((100% - 56px) / 4); }
+}
+@media (min-width: 1920px) {
+  .hot-picks-section .dt-grid { grid-auto-columns: calc((100% - 70px) / 4.5); }
+}
     
   </style>
 </head>
