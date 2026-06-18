@@ -100,140 +100,14 @@
       .nav-signup-btn { padding: 8px 10px; }
     }
 
-
-
     /* ── BENTO GRID ── */
-    .bento-section {
-      padding: 0 48px 64px;
-      background: var(--bg);
-    }
-    .bento-inner { max-width: 1280px; margin: 0 auto; }
-    .bento-label {
-      font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 16px;
-    }
-
-    .bento-grid { display: flex; flex-direction: column; gap: 16px; }
-
-    /* Row 1: Provisions (wide ~56%) + Articles (~44%) — tall */
-    .bento-row1 {
-      display: grid;
-      grid-template-columns: 2.8fr 2.2fr;
-      gap: 16px;
-    }
-    .bento-row1 .bento-tile { height: 220px; }
-
-    /* Row 2: Cosmetics (medium) + Wines (wider) + Medicine (narrow) */
-    .bento-row2 {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr 0.7fr;
-      gap: 16px;
-    }
-    .bento-row2 .bento-tile { height: 200px; }
-
-    /* Tile — flex row: text left, image right, always touching */
-    .bento-tile {
-      border-radius: 18px;
-      padding: 0;
-      overflow: hidden;
-      display: flex; flex-direction: row;
-      align-items: stretch;
-      cursor: pointer;
-      transition: transform 0.22s, box-shadow 0.22s;
-      text-decoration: none;
-      position: relative;
-    }
-    .bento-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .bento-tile:hover .tile-img-wrap img { transform: scale(1.06); }
-
-    /* Text zone — left side, natural width, padded */
-    .tile-content {
-      display: flex; flex-direction: column;
-      justify-content: flex-end; gap: 4px;
-      padding: 20px 16px 20px 20px;
-      flex: 0 0 auto;
-      width: 48%;
-      position: relative; z-index: 2;
-    }
-
-    /* Image zone — fills remaining space, always right-flush */
-    .tile-img-wrap {
-      flex: 1 1 0;
-      min-width: 0;
-      overflow: hidden;
-      border-radius: 0 18px 18px 0;
-      position: relative;
-    }
-    .tile-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      object-position: center top;
-      transition: transform 0.4s ease;
-    }
-
-    /* Text — NO background overlay, plain bold text on tile colour */
-    .tile-name {
-      font-family: 'DM Sans', sans-serif; font-weight: 700;
-      font-size: 1.1rem; color: var(--text); line-height: 1.25;
-      display: block; background: none; padding: 0;
-    }
-    .tile-desc {
-      font-size: 0.85rem; color: var(--text-muted);
-      line-height: 1.45; margin-bottom: 10px;
-      display: block; background: none; padding: 0;
-    }
-
-    .tile-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 14px; border-radius: 8px; border: none;
-      font-family: 'DM Sans', sans-serif; font-weight: 600;
-      font-size: 0.78rem; cursor: pointer;
-      text-decoration: none; width: fit-content;
-      transition: opacity 0.2s, transform 0.15s;
-      position: relative; z-index: 2; /* always above image */
-      margin-top: 4px;
-    }
-    .tile-btn:hover { opacity: 0.85; transform: scale(0.97); }
-    /* Dashed placeholder shown when no image */
-    .tile-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 6px;
-      border: 2px dashed rgba(0,0,0,0.18);
-      border-radius: 10px;
-      font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      color: rgba(0,0,0,0.28); text-align: center; padding: 8px;
-    }
-    .tile-img-placeholder .ph-icon { font-size: 1.6rem; opacity: 0.35; }
-
-    /* Tile background gradients */
-    .tile-provisions { background: linear-gradient(135deg, #fff8e8 0%, #ffe8b0 100%); }
-    .tile-articles   { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
-    .tile-cosmetics  { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); }
-    .tile-wines      { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
-    .tile-medicine   { background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); }
-
-
-    .tile-provisions .tile-btn { background: var(--orange); color: #fff; }
-    .tile-articles   .tile-btn { background: var(--blue);   color: #fff; }
-    .tile-cosmetics  .tile-btn { background: var(--pink);   color: #fff; }
-    .tile-wines      .tile-btn { background: var(--wine);   color: #fff; }
-    .tile-medicine   .tile-btn { background: var(--teal);   color: #fff; }
+   /* REMOVED */
 
     /* ── SECTION DIVIDER ── */
     .section-divider {
       height: 1px; background: var(--card-border);
       margin: 0 48px;
     }
-
-    /* ── HOT DEALS ── */
-    .hot-deals {
-      padding: 64px 48px;
-      background: var(--bg-alt);
-    }
-    .hot-deals-inner { max-width: 1280px; margin: 0 auto; }
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--orange-light); color: var(--orange);
@@ -248,19 +122,6 @@
       letter-spacing: -0.01em; line-height: 1.15;
     }
     .section-subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.68; }
-
-    /* ── HOT DEALS GRID (vertical, bigger cards) ── */
-    .hot-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 900px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px)  { .hot-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .hot-grid .product-card .product-img { aspect-ratio: 4/3; }
-    .hot-grid .product-card .product-name { font-size: 0.95rem; }
-    .hot-grid .product-card .product-desc { font-size: 0.8rem; }
 
     /* ── CATEGORY PRODUCT SCROLL TRACK (2-row × horizontal) ── */
     .product-scroll-wrapper { position: relative; }
@@ -2379,8 +2240,9 @@
       </div>
   
     </div><!-- /dt-main -->
+  
   </div><!-- /desktop-section -->
-
+  
 </section>
 
 <div class="section-divider"></div>
