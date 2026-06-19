@@ -2820,11 +2820,18 @@
 
   /* ── CHIPS SYNC ── */
 function setActiveChip(targetId) {
+  const classMap = {
+    'hot-picks-section':  'active-hots',
+    'provisions-section': 'active-provisions',
+    'articles-section':   'active-articles',
+    'cosmetics-section':  'active-cosmetics',
+    'wines-section':      'active-wines',
+    'medicine-section':   'active-medicine',
+  };
   document.querySelectorAll('.cat-chip').forEach(c => {
     c.className = 'cat-chip';
     if (c.dataset.target === targetId) {
-      if (targetId === 'hot-picks-section') c.classList.add('active-hots');
-      else c.classList.add('active-' + targetId.replace('-section',''));
+      c.classList.add(classMap[targetId] || 'active-provisions');
       c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
     }
   });
