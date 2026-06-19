@@ -2621,24 +2621,6 @@
     return card;
   }
 
-  function initCartBtn(btn, confettiEl) {
-    function pos() {
-      confettiEl.style.left = (btn.offsetLeft + btn.offsetWidth/2) + 'px';
-      confettiEl.style.top  = (btn.offsetTop  + btn.offsetHeight/2) + 'px';
-    }
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const added = btn.classList.toggle('added');
-      if (added) {
-        pos();
-        confettiEl.classList.remove('burst');
-        void confettiEl.offsetWidth;
-        confettiEl.classList.add('burst');
-        setTimeout(() => confettiEl.classList.remove('burst'), 900);
-      }
-    });
-  }
-
   function makeCatCard(item, imgKey, index) {
     const uid = item.productId;
     const shell = document.createElement('div');
@@ -2703,11 +2685,6 @@
       </div>
     `;
     shell.appendChild(card);
-    setTimeout(() => {
-      const btn = card.querySelector(`#cart-ss-${uid}`);
-      const conf = card.querySelector(`#conf-ss-${uid}`);
-      if (btn && conf) initCartBtn(btn, conf);
-    }, 0);
     return shell;
   }
 
