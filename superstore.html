@@ -435,6 +435,7 @@
     }
     .cat-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
     .cat-chip:hover { opacity: 0.8; }
+    .cat-chip.active-hots { background: #E8532A; color: #fff; border-color: #E8532A; }
     .cat-chip.active-provisions  { background: var(--orange); color: #fff; border-color: var(--orange); }
     .cat-chip.active-articles    { background: var(--blue);   color: #fff; border-color: var(--blue); }
     .cat-chip.active-cosmetics   { background: var(--pink);   color: #fff; border-color: var(--pink); }
@@ -2051,6 +2052,12 @@
 <!-- CATEGORY CHIPS -->
 <div class="chips-bar" id="chipsBar">
   <div class="chips-bar-inner">
+    <button class="cat-chip" data-target="hot-picks-section" onclick="chipClick('hot-picks-section',this)">
+      <svg viewBox="0 0 100 112" fill="none" style="width:14px;height:14px;">
+        <path fill="#E8532A" fill-rule="evenodd" d="M50 112C26 112 10 95 10 75C10 58 18 47 28 38C25 48 29 57 35 61C33 48 38 33 47 20C47 33 53 41 50 53C55 45 57 35 54 22C64 33 72 48 67 62C73 57 76 48 73 37C83 47 90 60 90 75C90 95 74 112 50 112Z"/>
+      </svg>
+      Hots
+    </button>
     <button class="cat-chip" data-target="provisions-section" onclick="chipClick('provisions-section',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       Provisions
