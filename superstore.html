@@ -1406,7 +1406,7 @@
     width: 100%;
     height: auto;
     padding: 32px 40px 48px;
-    min-height: 620px; /* lock the section height */
+    min-height: 720px;
   }
 
   /* Header */
@@ -1454,9 +1454,9 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 16px;
-    height: 580px; /* fixed height instead of calc */
-    min-height: 580px;
-    max-height: 580px;
+    height: 640px;
+    min-height: 640px;
+    max-height: 640px;
     align-items: stretch;
   }
 
@@ -1498,32 +1498,30 @@
   .hot-picks-section .dt-hero-wish:hover { transform: scale(1.1); }
 
   /* Hero body */
-  .hot-picks-section .dt-hero-body { background: #fff; padding: 14px 18px 16px; flex-shrink: 0; }
-  .hot-picks-section .dt-hero-name { font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; line-height: 1.1; }
-  .hot-picks-section .dt-hero-desc { font-size: 12.5px; color: #555; margin-bottom: 10px; line-height: 1.5; }
+  .hot-picks-section .dt-hero-body { background: #fff; padding: 16px 18px 18px; flex-shrink: 0; }
+  .hot-picks-section .dt-hero-name { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; line-height: 1.15; }
+  .hot-picks-section .dt-hero-desc { font-size: 14px; color: #555; margin-bottom: 12px; line-height: 1.55; }
   .hot-picks-section .dt-hero-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-  .hot-picks-section .dt-hero-price-current { font-size: 24px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
-  .hot-picks-section .dt-hero-price-original { font-size: 13px; color: #999; text-decoration: line-through; font-weight: 500; }
-  .hot-picks-section .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+  .hot-picks-section .dt-hero-price-current { font-size: 26px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.5px; }
+  .hot-picks-section .dt-hero-price-original { font-size: 14px; color: #999; text-decoration: line-through; font-weight: 500; }
+  .hot-picks-section .dt-hero-badge { background: var(--orange-light); color: var(--orange); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
   .hot-picks-section .dt-hero-stats { display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; }
-  .hot-picks-section .dt-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #666; font-weight: 500; flex: 1; justify-content: center; }
+  .hot-picks-section .dt-stat { display: flex; align-items: center; gap: 5px; font-size: 13px; color: #666; font-weight: 500; flex: 1; justify-content: center; }
   .hot-picks-section .dt-stat:not(:last-child) { border-right: 1px solid #f0f0f0; }
   .hot-picks-section .dt-stat svg { width: 14px; height: 14px; flex-shrink: 0; }
-  .hot-picks-section .dt-stat-value { color: #1a1a1a; font-weight: 700; font-size: 13px; }
+  .hot-picks-section .dt-stat-value { color: #1a1a1a; font-weight: 700; font-size: 14px; }
   .hot-picks-section .dt-stat.bestseller { color: var(--orange); font-weight: 700; }
 
-  /* ════════════════════════════════===============
-       RIGHT SIDE
-    ════════════════════════════════================ */
+  /* ── Right side ── */
   .hot-picks-section .dt-right {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-  height: 580px;
-  max-height: 580px;
-  overflow: hidden;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    height: 640px;
+    max-height: 640px;
+    overflow: hidden;
+  }
 
   /* Arrow controls */
   .hot-picks-section .dt-scroll-controls { display: none; justify-content: flex-end; gap: 8px; }
@@ -1541,17 +1539,17 @@
 
   /* ── The Grid ── */
   .hot-picks-section .dt-grid {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 28px) / 3);
-  gap: 12px;
-  overflow: hidden;
-  flex: 1;
-  min-height: 0;
-  height: 100%;
-  max-height: 572px;
-}
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 28px) / 3);
+    gap: 12px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    max-height: 632px;
+  }
   .hot-picks-section .dt-grid.scrollable {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1607,14 +1605,16 @@
     content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px;
     background: linear-gradient(to bottom, transparent, #ffffff); pointer-events: none;
   }
-  .hot-picks-section .dt-small-body   { padding: 6px 8px 8px; background: #fff; }
-  .hot-picks-section .dt-small-name   { font-size: 12px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.15; margin-bottom: 2px; }
-  .hot-picks-section .dt-small-desc   { font-size: 10px; color: #888; margin-bottom: 5px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* ── Small card text — improved readability ── */
+  .hot-picks-section .dt-small-body  { padding: 8px 10px 10px; background: #fff; }
+  .hot-picks-section .dt-small-name  { font-size: 13.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.2px; line-height: 1.2; margin-bottom: 3px; }
+  .hot-picks-section .dt-small-desc  { font-size: 11.5px; color: #666; margin-bottom: 6px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .hot-picks-section .dt-small-price-row  { display: flex; align-items: center; justify-content: space-between; }
   .hot-picks-section .dt-small-price-left { display: flex; flex-direction: column; gap: 1px; }
-  .hot-picks-section .dt-small-price  { font-size: 13.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
-  .hot-picks-section .dt-small-orig   { font-size: 9.5px; color: #999; text-decoration: line-through; font-weight: 500; }
-  .hot-picks-section .dt-small-badge  { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 20px; white-space: nowrap; }
+  .hot-picks-section .dt-small-price { font-size: 14.5px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.4px; line-height: 1.1; }
+  .hot-picks-section .dt-small-orig  { font-size: 10.5px; color: #999; text-decoration: line-through; font-weight: 500; }
+  .hot-picks-section .dt-small-badge { font-size: 9.5px; font-weight: 700; padding: 2px 6px; border-radius: 20px; white-space: nowrap; }
 }
 
 /* ── Wider screens: show more columns automatically ── */
