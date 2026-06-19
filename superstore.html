@@ -2827,11 +2827,18 @@ function chipClick(sectionId, chipEl) {
   window.scrollTo({ top, behavior: 'smooth' });
 }
 function setActiveChip(targetId) {
+  const classMap = {
+    'hot-picks-section':  'active-hots',
+    'provisions-section': 'active-provisions',
+    'articles-section':   'active-articles',
+    'cosmetics-section':  'active-cosmetics',
+    'wines-section':      'active-wines',
+    'medicine-section':   'active-medicine',
+  };
   document.querySelectorAll('.cat-chip').forEach(c => {
     c.className = 'cat-chip';
     if (c.dataset.target === targetId) {
-      const cat = targetId.replace('-section','').replace('-picks','');
-      c.classList.add('active-' + cat);
+      c.classList.add(classMap[targetId] || 'active-provisions');
       c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
     }
   });
@@ -2841,6 +2848,17 @@ const chipObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) setActiveChip(e.target.id); });
 }, { rootMargin: '-130px 0px -55% 0px' });
 chipSections.forEach(id => { const el = document.getElementById(id); if (el) chipObs.observe(el); });
+
+/* ── FADE IN ON SCROLL ── */
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade-in-section').forEach(el => fadeObserver.observe(el));
 
 /* ── FADE IN ON SCROLL ── */
 const fadeObserver = new IntersectionObserver((entries) => {
