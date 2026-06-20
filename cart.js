@@ -17,7 +17,7 @@
   'use strict';
 
   /* ---------- CONFIG ---------- */
-  const WHATSAPP_NUMBER = '2340000000000'; // TODO: replace with real customer service number, no + or spaces
+  const WHATSAPP_NUMBER = '2349078683552'; // Vinceslink Superstore customer service
   const STORAGE_KEY = 'vl_cart';
   const SESSION_FLAG_KEY = 'vl_cart_session_started'; // tracks whether intro popup was dismissed this "session"
 
