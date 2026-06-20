@@ -101,7 +101,7 @@
     }
 
     /* ── BENTO GRID ── */
-   /* REMOVED */
+   /* REMOVED AND REPLACED WITH NEW BENTO GRID CSS BELOW*/
 
     /* ── SECTION DIVIDER ── */
     .section-divider {
@@ -192,7 +192,7 @@
     .cat-section.alt { background: var(--bg-alt); } /* same — no alternating */
     .cat-section-inner { max-width: 1280px; margin: 0 auto; }
 
-    /* Hot Deals dark mode — fully dark bg + dark card borders */
+    /* Hot Deals dark mode !!REMOVED!! — fully dark bg + dark card borders */
 
     /* ── DISCLAIMER ── */
     /* ── MEDICINE DISCLAIMER — LIQUID GLASS ── */
@@ -648,6 +648,40 @@
     font-size: 10px;
     max-width: 100px;
   }
+}
+
+    /* ── PRODUCT SCROLL TRACK — wraps each category's row of cards ── */
+.product-scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.product-track {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px 4px 20px 4px;
+  width: 100%;
+  --card-w: 300px;
+}
+.product-track::-webkit-scrollbar { display: none; }
+
+.product-track .card-shell {
+  flex: 0 0 var(--card-w);
+  height: calc(var(--card-w) * 1.372);
+}
+
+/* Tablet card width */
+@media (max-width: 1024px) {
+  .product-track { --card-w: 280px; }
+}
+/* Mobile card width */
+@media (max-width: 600px) {
+  .product-track { --card-w: 260px; }
 }
     
     /* Category colours via CSS vars */
