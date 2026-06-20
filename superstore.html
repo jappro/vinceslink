@@ -498,46 +498,6 @@
       to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .bento-section { padding: 0 24px 48px; }
-      .bento-row1 { grid-template-columns: 1fr 1fr; }
-      .bento-row1 .bento-tile { height: 190px; }
-      /* tile-content width controls text:image ratio on tablet */
-      .bento-row1 .bento-tile .tile-content { width: 46%; }
-      .bento-row2 .bento-tile { height: 175px; }
-      .bento-row2 .bento-tile .tile-content { width: 48%; }
-      /* Medicine narrowest — give image more room */
-      .bento-row2 .bento-tile:nth-child(3) .tile-content { width: 44%; }
-      .hot-deals { padding: 48px 24px; }
-      .cat-section { padding: 48px 24px; }
-      .store-section { padding: 48px 24px 64px; }
-    }
-    @media (max-width: 600px) {
-      .bento-row1 { grid-template-columns: 1fr; }
-      /* On single column, tiles are wide — give text less width so image gets good space */
-      .bento-row1 .bento-tile { height: 160px; }
-      .bento-row1 .bento-tile .tile-content { width: 42%; padding: 16px 12px 16px 16px; }
-      .bento-row2 { grid-template-columns: 1fr 1fr; }
-      .bento-row2 .bento-tile:last-child { grid-column: span 2; }
-      .bento-row2 .bento-tile { height: 145px; }
-      .bento-row2 .bento-tile .tile-content { width: 48%; padding: 14px 10px 14px 14px; }
-      /* Medicine spans full width — text:image more balanced */
-      .bento-row2 .bento-tile:nth-child(3) .tile-content { width: 40%; }
-      .hero-btns { flex-direction: column; }
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-      /* Smaller tile-name on mobile */
-      .tile-name { font-size: 0.95rem; }
-      .tile-desc { font-size: 0.78rem; margin-bottom: 8px; }
-      .tile-btn { font-size: 0.72rem; padding: 6px 11px; }
-    }
-    @media (max-width: 400px) {
-      .bento-row2 { grid-template-columns: 1fr; }
-      .bento-row2 .bento-tile:last-child { grid-column: span 1; }
-      .bento-row2 .bento-tile .tile-content { width: 45%; }
-    }
-
-
     /* ── CARD-SHELL — matches JS makeCatCard() output ── */
     .card-shell {
       background: #ffffff;
@@ -577,8 +537,8 @@
     }
     /* + / ✅ button */
     .card__plus {
-      position: absolute; top: 10px; right: 12px;
-      width: 36px; height: 36px; background: #fff;
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; background: #fff;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; z-index: 20;
@@ -597,8 +557,8 @@
       position: absolute;
       transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .icon-plus  { opacity: 1; transform: scale(1) rotate(0deg); }
-    .icon-check { opacity: 0; transform: scale(0.4) rotate(-30deg); }
+    .icon-plus  { width: 18px; height: 18px; opacity: 1; transform: scale(1) rotate(0deg); }
+    .icon-check { width: 20px; height: 20px; opacity: 0; transform: scale(0.4) rotate(-30deg); }
     .card__plus.added .icon-plus  { opacity: 0; transform: scale(0.4) rotate(45deg); }
     .card__plus.added .icon-check { opacity: 1; transform: scale(1) rotate(0deg); }
     /* Confetti */
@@ -683,6 +643,42 @@
     .card-shell .card__cta:hover { opacity: 0.85; transform: translateY(-1px); }
     .card-shell .card__cta svg { width: 14px; height: 14px; flex-shrink: 0; }
 
+    /* ── DESKTOP (default, ≥1025px) — already set above ── */
+
+    /* ── TABLET (601px – 1024px) ── */
+    @media (max-width: 1024px) {
+    .card__plus {
+      top: 12px;
+      right: 12px;
+      width: 30px;
+      height: 30px;
+    }
+    .card-shell .card__title {
+      font-size: 0.95rem;
+    }
+    .card-shell .card__desc {
+      font-size: 11px;
+      max-width: 120px;
+    }
+    }
+
+/* ── MOBILE (≤600px) ── */
+@media (max-width: 600px) {
+  .card__plus {
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+  }
+  .card-shell .card__title {
+    font-size: 0.85rem;
+  }
+  .card-shell .card__desc {
+    font-size: 10px;
+    max-width: 100px;
+  }
+}
+    
     /* Category colours via CSS vars */
     .cat-provisions  { --cat-light:#fff1e0; --cat-mid:var(--orange); --cat-strip:#cc6a1f; --cat-price:var(--orange); --cat-btn:var(--orange); }
     .cat-articles    { --cat-light:#dce6ff; --cat-mid:var(--blue);   --cat-strip:#0029a3; --cat-price:var(--blue);   --cat-btn:var(--blue); }
