@@ -634,41 +634,7 @@
     .cat-cosmetics   { --cat-light:#fce4ec; --cat-mid:var(--pink);   --cat-strip:#c0156a; --cat-price:var(--pink);   --cat-btn:var(--pink); }
     .cat-wines       { --cat-light:#f3e5f5; --cat-mid:var(--wine);   --cat-strip:#5a1478; --cat-price:var(--wine);   --cat-btn:var(--wine); }
     .cat-medicine    { --cat-light:#d6f7fa; --cat-mid:var(--teal);   --cat-strip:#007a8a; --cat-price:var(--teal);   --cat-btn:var(--teal); }
-
-    /* Product track — horizontal scroll of card-shells */
-    .product-track {
-      display: flex;
-      flex-direction: row;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding: 8px 4px 20px 20px;
-      --card-w: 300px;
-    }
-    .product-track::-webkit-scrollbar { display: none; }
-    .product-track .card-shell {
-      flex: 0 0 var(--card-w);
-      height: calc(var(--card-w) * 1.372);
-    }
-    @media (max-width: 1024px) { .product-track { --card-w: 280px; } }
-    @media (max-width: 600px)  { .product-track { --card-w: 260px; padding-left: 16px; } }
-
-    /* ── CATEGORY COLOR ACCENTS (hot-deals) ── */
-    .cat-provisions  .price-current { color: var(--orange); }
-    .cat-provisions  .shop-btn      { background: var(--orange); color: #fff; }
-    .cat-cosmetics   .price-current { color: var(--pink); }
-    .cat-cosmetics   .shop-btn      { background: var(--pink); color: #fff; }
-    .cat-wines       .price-current { color: var(--wine); }
-    .cat-wines       .shop-btn      { background: var(--wine); color: #fff; }
-    .cat-articles    .price-current { color: var(--blue); }
-    .cat-articles    .shop-btn      { background: var(--blue); color: #fff; }
-    .cat-medicine    .price-current { color: var(--teal); }
-    .cat-medicine    .shop-btn      { background: var(--teal); color: #fff; }
-    .hot-deals       .price-current { color: var(--orange); }
-    .hot-deals       .shop-btn      { background: var(--orange); color: #fff; }
-
+    
     /* ════════════════════════════════
        NAVBAR
     ════════════════════════════════ */
