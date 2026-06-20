@@ -100,99 +100,44 @@
       .nav-signup-btn { padding: 8px 10px; }
     }
 
-    /* ── BENTO GRID ── */
-   /* REMOVED AND REPLACED WITH NEW BENTO GRID CSS BELOW*/
-
     /* ── SECTION DIVIDER ── */
-    .section-divider {
-      height: 1px; background: var(--card-border);
-      margin: 0 48px;
-    }
-    .section-eyebrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--orange-light); color: var(--orange);
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: 'Inter', sans-serif; font-weight: 800;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      color: var(--text); margin-bottom: 6px;
-      letter-spacing: -0.01em; line-height: 1.15;
-    }
-    .section-subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.68; }
+.section-divider {
+  height: 1px; background: var(--card-border);
+  margin: 0 48px;
+}
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--orange-light); color: var(--orange);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--text); margin-bottom: 6px;
+  letter-spacing: -0.01em; line-height: 1.15;
+}
+.section-subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.68; }
 
-    .scroll-controls { display: flex; gap: 8px; }
-    .scroll-btn {
-      width: 36px; height: 36px; border-radius: 8px;
-      border: 1.5px solid var(--blue);
-      background: var(--card); color: var(--blue);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s; box-shadow: var(--shadow); flex-shrink: 0;
-    }
-    .scroll-btn:hover { background: var(--blue); color: #fff; opacity: 1; }
-    .scroll-btn svg { width: 16px; height: 16px; }
+.scroll-controls { display: flex; gap: 8px; }
+.scroll-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1.5px solid var(--blue);
+  background: var(--card); color: var(--blue);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; box-shadow: var(--shadow); flex-shrink: 0;
+}
+.scroll-btn:hover { background: var(--blue); color: #fff; opacity: 1; }
+.scroll-btn svg { width: 16px; height: 16px; }
 
-    .product-card {
-      background: var(--card);
-      border: 1.5px solid var(--card-border);
-      border-radius: 14px; overflow: hidden;
-      box-shadow: var(--shadow-card);
-      transition: transform 0.22s, box-shadow 0.22s;
-      display: flex; flex-direction: column;
-      position: relative;
-    }
-    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-
-    .hot-badge {
-      position: absolute; top: 10px; left: 10px;
-      background: var(--orange); color: #fff;
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
-      text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
-      z-index: 2;
-    }
-
-    .product-img {
-      width: 100%; aspect-ratio: 1;
-      background: var(--bg-alt);
-      outline: 2px dashed var(--card-border);
-      outline-offset: -8px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-      font-size: 0.65rem; color: var(--card-border); letter-spacing: 0.04em;
-    }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .product-img .img-ph { position: absolute; font-size: 0.65rem; color: var(--card-border); }
-
-    .product-body { padding: 12px 12px 14px; display: flex; flex-direction: column; flex: 1; gap: 4px; }
-    .product-name {
-      font-family: 'Inter', sans-serif; font-weight: 700;
-      font-size: 1rem; color: var(--text); line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-    .product-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; }
-    .product-pricing { display: flex; align-items: center; gap: 7px; margin-top: 6px; }
-    .price-current { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; }
-    .price-old { font-size: 0.86rem; color: var(--text-muted); text-decoration: line-through; }
-    .shop-btn {
-      margin-top: 10px; padding: 8px 0; border: none; border-radius: 8px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
-      cursor: pointer; width: 100%;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .shop-btn:hover  { opacity: 0.85; transform: scale(0.98); }
-    .shop-btn:active { transform: scale(0.95); }
-
-    /* ── CATEGORY SECTION WRAPPER ── */
-    .cat-section {
-      padding: 64px 48px;
-      background: var(--bg-alt);   /* always F5F7FA light / #333 dark */
-    }
-    .cat-section.alt { background: var(--bg-alt); } /* same — no alternating */
-    .cat-section-inner { max-width: 1280px; margin: 0 auto; }
-
-    /* Hot Deals dark mode !!REMOVED!! — fully dark bg + dark card borders */
+/* ── CATEGORY SECTION WRAPPER ── */
+.cat-section {
+  padding: 64px 48px;
+  background: var(--bg-alt);
+}
+.cat-section.alt { background: var(--bg-alt); }
+.cat-section-inner { max-width: 1280px; margin: 0 auto; }
 
     /* ── DISCLAIMER ── */
     /* ── MEDICINE DISCLAIMER — LIQUID GLASS ── */
@@ -249,7 +194,6 @@
       background: radial-gradient(circle, rgba(0,51,204,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
-
 
     .disclaimer-icon-wrap {
       width: 46px; height: 46px;
