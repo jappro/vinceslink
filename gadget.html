@@ -2063,6 +2063,7 @@
 
         const imgPath = `images/gadgets/${key}/${key}-${i}.jpg`;
         const data = (productData[key] && productData[key][i-1]) || {};
+        const pId       = data.productId || uid;
         const pName     = data.name     || `${cat.name} ${i}`;
         const pTag      = data.tag      || 'Product Tag';
         const pDesc     = data.desc     || 'Description';
@@ -2099,7 +2100,7 @@
             </svg>
 
             <!-- + button -->
-            <button class="card__plus" aria-label="Add to cart" id="cartBtn-${uid}">
+            <button class="card__plus" aria-label="Add to cart" id="cartBtn-${uid}" data-product-id="${pId}">
               <svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <line x1="10" y1="3" x2="10" y2="17" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
                 <line x1="3" y1="10" x2="17" y2="10" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
@@ -2145,11 +2146,6 @@
 
         shell.appendChild(card);
         track.appendChild(shell);
-
-        // Wire up cart button after DOM insert
-        const cartBtn = card.querySelector(`#cartBtn-${uid}`);
-        const confettiEl = card.querySelector(`#confetti-${uid}`);
-        initCartBtn(cartBtn, confettiEl);
       }
     });
   }
