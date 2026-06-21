@@ -191,8 +191,8 @@
     const card = btn.closest('.card-hot, .dt-small-card, .dt-hero-card, .card-shell, .product-card');
     if (!card) return;
 
-    const nameEl = card.querySelector('.product-name-hot, .dt-small-name, .dt-hero-name, .card__title');
-    const priceEl = card.querySelector('.price-current-hot, .dt-small-price, .dt-hero-price-current, .card__price-new');
+    const nameEl = card.querySelector('.product-name-hot, .dt-small-name, .dt-hero-name, .card__title, .product-name');
+    const priceEl = card.querySelector('.price-current-hot, .dt-small-price, .dt-hero-price-current, .card__price-new, .price-current');
 
     const name = nameEl ? nameEl.textContent.trim() : 'Product';
     const price = priceEl ? parsePrice(priceEl.textContent) : 0;
