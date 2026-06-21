@@ -2150,8 +2150,8 @@
       <!-- Right: arrows + grid -->
       <div class="dt-right">
         <div class="dt-scroll-controls" id="dt-scroll-controls">
-          <button class="dt-arrow" onclick="scrollHotPicks(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 9 6"/></svg></button>
-          <button class="dt-arrow" onclick="scrollHotPicks(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollDtGrid(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 9 6"/></svg></button>
+          <button class="dt-arrow" onclick="scrollDtGrid(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
 
         <!-- The one continuous grid — 2 rows, column flow -->
@@ -2622,7 +2622,7 @@
   }
 
   /* ── DESKTOP: Arrow scroll for category grids (2-card step) ── */
-  function scrollTrack(dir) {
+  function scrollDtGrid(dir) {
     const grid = document.getElementById('dt-grid');
     const card = grid.querySelector('.dt-small-card:not(.vacant)');
     if (!card) return;
