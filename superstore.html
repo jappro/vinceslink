@@ -948,7 +948,7 @@
     }
 
     /* ═══════════════════════════════════════════
-       YOUR BENTO GRID CSS
+       NEW BENTO GRID CSS
     ═══════════════════════════════════════════ */
     .gold { color: var(--orange); }
 
@@ -1076,24 +1076,81 @@
     }
 
     /* Desktop row 1 */
-    @media (min-width: 1025px) {
-      .bento-grid__row-1 { width: 100%; padding: 0 24px; }
-      .row-1__track { display: flex; flex-direction: row; gap: 16px; align-items: stretch; }
-      .category-card--provisions, .category-card--household { flex: 0 0 32.5%; width: 32.5%; }
-      .category-card--beauty { flex: 0 0 35%; width: 35%; }
-      .category-card { position: relative; border-radius: 16px; overflow: visible; background-color: #fdf6ee; display: flex; flex-direction: column; cursor: pointer; }
-      .category-card__image { width: 100%; height: 220px; border-radius: 16px 16px 0 0; overflow: hidden; flex-shrink: 0; }
-      .category-card__icon-wrap { position: absolute; top: auto; bottom: calc(100% - 200px); transform: none; left: 20px; width: 44px; height: 44px; border-radius: 50%; background-color: #fff; border: 1.5px solid #e8e0d8; display: flex; align-items: center; justify-content: center; z-index: 2; flex-shrink: 0; }
-      .category-card__icon-wrap svg { width: 20px; height: 20px; }
-      .category-card--provisions .category-card__icon-wrap svg { stroke: #e07b2a; }
-      .category-card--household  .category-card__icon-wrap svg { stroke: #3aaa6e; }
-      .category-card--beauty     .category-card__icon-wrap svg { stroke: #d4607a; }
-      .category-card__body { position: relative; background-color: #fdf6ee; border-radius: 0 0 16px 16px; padding: 28px 16px 16px 20px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-      .category-card__title { font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0; line-height: 1.2; }
-      .category-card__desc  { font-size: 13px; color: #7a7068; line-height: 1.5; margin: 0; }
-      .category-card__chevron { position: absolute; right: 16px; bottom: 16px; width: 32px; height: 32px; border-radius: 50%; background-color: #fff; border: 1.5px solid #e8e0d8; display: flex; align-items: center; justify-content: center; }
-      .category-card__chevron svg { width: 14px; height: 14px; stroke: #1a1a1a; }
-    }
+@media (min-width: 1025px) {
+  .bento-grid__row-1 { width: 100%; padding: 0; }
+  .row-1__track { display: flex; flex-direction: row; gap: 16px; align-items: stretch; }
+  .category-card--provisions, .category-card--household { flex: 0 0 32.5%; width: 32.5%; }
+  .category-card--beauty { flex: 0 0 35%; width: 35%; }
+  .category-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    height: 340px;
+    max-height: 340px;
+  }
+  .category-card__image {
+    width: 100%;
+    flex: 0 0 55%;
+    border-radius: 18px 18px 0 0;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .category-card__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .category-card__icon-wrap {
+    position: absolute;
+    top: calc(55% - 22px);
+    left: 20px;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1.5px solid #e8e0d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  }
+  .category-card__icon-wrap svg { width: 20px; height: 20px; }
+  .category-card--provisions .category-card__icon-wrap svg { stroke: var(--orange); }
+  .category-card--household  .category-card__icon-wrap svg { stroke: var(--green); }
+  .category-card--beauty     .category-card__icon-wrap svg { stroke: var(--pink); }
+  .category-card__body {
+    position: relative;
+    background-color: #fff;
+    border-radius: 0 0 18px 18px;
+    padding: 28px 16px 16px 20px;
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow: hidden;
+  }
+  .category-card__title { font-size: 17px; font-weight: 800; color: #1a1a1a; margin: 0; line-height: 1.2; }
+  .category-card__desc  { font-size: 13px; color: #7a7068; line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .category-card__chevron {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1.5px solid #e8e0d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .category-card__chevron svg { width: 14px; height: 14px; stroke: #1a1a1a; }
+}
 
     /* ═══ ROW 2 ═══ */
     .bento-grid__row-2 { width: 100%; }
