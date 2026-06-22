@@ -768,9 +768,10 @@
       display: flex; align-items: center; justify-content: center;
     }
     
-    nav.scrolled-light {
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
+    .nav-center a.active-nav-link {
+  color: var(--orange);
+  font-weight: 700;
+}
 
     /* ════════════════════════════════
        HERO
@@ -2423,15 +2424,25 @@
     track.scrollTo({ left: target, behavior: 'smooth' });
   }
 
-  /* ── NAVBAR SCROLL STATE ── */
-const mainNavbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    mainNavbar.classList.add('scrolled-light');
-  } else {
-    mainNavbar.classList.remove('scrolled-light');
-  }
-}, { passive: true });
+  /* ── DESKTOP NAV LINK SCROLL SYNC ── */
+const navLinks = document.querySelectorAll('.nav-center a');
+const navSections = ['provisions-section','articles-section','cosmetics-section','wines-section','medicine-section'];
+
+function setActiveNavLink(targetId) {
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href').replace('#', '');
+    link.classList.toggle('active-nav-link', href === targetId);
+  });
+}
+
+const navLinkObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) setActiveNavLink(e.target.id); });
+}, { rootMargin: '-130px 0px -55% 0px' });
+
+navSections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) navLinkObs.observe(el);
+});
 
   /* ── PRODUCT DATA ── */
   const data = {
