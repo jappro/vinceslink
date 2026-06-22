@@ -767,6 +767,9 @@
       width: 16px; height: 16px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
     }
+    
+    nav.scrolled-light .nav-brand { color: var(--text); }
+    nav.scrolled-light .nav-brand span { color: var(--blue); }
 
     /* ════════════════════════════════
        HERO
@@ -1553,7 +1556,7 @@
     </svg>
   </button>
 
-  <a href="https://vinceslink.com" class="nav-mobile-logo">
+  <a href="#hero-superstore" class="nav-mobile-logo">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--blue)">
       <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
       <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -1564,7 +1567,7 @@
     </div>
   </a>
 
-  <a href="https://vinceslink.com" class="logo">
+  <a href="#hero-superstore" class="logo">
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--blue)">
       <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
       <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -2418,6 +2421,16 @@
       : Math.max(track.scrollLeft - step, 0);
     track.scrollTo({ left: target, behavior: 'smooth' });
   }
+
+  /* ── NAVBAR SCROLL STATE ── */
+const mainNavbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    mainNavbar.classList.add('scrolled-light');
+  } else {
+    mainNavbar.classList.remove('scrolled-light');
+  }
+}, { passive: true });
 
   /* ── PRODUCT DATA ── */
   const data = {
