@@ -540,7 +540,7 @@
       align-items: center;
       justify-content: center;
       padding: 40px 0;
-      overflow: hidden;
+      overflow: visible;
     }
 
     /* Square rainbow ring-light — sits behind the iPhone */
@@ -586,36 +586,7 @@
       max-width: 420px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 20px 48px rgba(0,80,255,0.30))
-              drop-shadow(0 4px 20px rgba(0,0,0,0.55));
-      /* Tune these CSS vars per breakpoint to reposition/resize */
-      --iphone-scale: 1;
-      --iphone-offset-x: 0px;
-      --iphone-offset-y: 0px;
-      transform: scale(var(--iphone-scale))
-                 translate(var(--iphone-offset-x), var(--iphone-offset-y));
-      transform-origin: center center;
-    }
-    @media (max-width: 1024px) {
-      .sub-iphone-img {
-        --iphone-scale: 0.95;
-        --iphone-offset-x: 0px;
-        --iphone-offset-y: 0px;
-      }
-    }
-    @media (max-width: 768px) {
-      .sub-iphone-img {
-        --iphone-scale: 0.90;
-        --iphone-offset-x: 0px;
-        --iphone-offset-y: 0px;
-      }
-    }
-    @media (max-width: 480px) {
-      .sub-iphone-img {
-        --iphone-scale: 0.85;
-        --iphone-offset-x: 0px;
-        --iphone-offset-y: 0px;
-      }
+      overflow: hidden;
     }
 
     /* ── RIGHT: cards + tagline ── */
