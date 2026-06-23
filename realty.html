@@ -195,7 +195,15 @@
     }
     .btn-view-more:hover { background: var(--blue); color: white; }
 
-    .scroll-nav-btns { display: flex; gap: 8px; }
+    .below-top-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.scroll-nav-btns {
+  display: none; gap: 8px; align-items: center;
+}
+.scroll-nav-btns.visible { display: flex; }
+    
     .scroll-nav-btn {
       width: 38px; height: 38px; border-radius: 50%;
       border: 1.5px solid var(--border);
@@ -823,28 +831,15 @@
 </section>
 
 <!-- ── AVAILABLE PROPERTIES ── -->
-<section class="section available-section" id="available">
-  <div class="section-inner">
-    <div class="section-head">
-      <h2 class="section-title">Available Properties</h2>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="scroll-nav-btns">
-          <button class="scroll-nav-btn" id="scrollLeftBtn" onclick="scrollLiveTrack(-1)" aria-label="Scroll left">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="scroll-nav-btn" id="scrollRightBtn" onclick="scrollLiveTrack(1)" aria-label="Scroll right">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-        <button class="btn-view-more" id="viewMoreBtn" onclick="toggleViewMore()">View More &nbsp;›</button>
-      </div>
-    </div>
+<div class="section-head">
+  <h2 class="section-title">Available Properties</h2>
+</div>
 
-    <!-- Top row: 2 large cards -->
-    <div class="props-grid-top" id="top-grid">
+<!-- Top row: 2 large cards -->
+  <div class="props-grid-top" id="top-grid">
 
       <!-- PROPERTY 1 — Full data -->
-      <div class="prop-card fade-up" data-id="p1">
+    <div class="prop-card fade-up" data-id="p1">
         <div class="prop-img-wrap">
           <img src="images/realty/prop-1.jpg" alt="Property 1"/>
           <div class="live-badge"><div class="live-dot"></div> Live Property</div>
@@ -881,6 +876,19 @@
       <div class="expanded-wrap" id="expand-top"></div>
 
     </div><!-- /top-grid -->
+
+  <!-- Buttons row: scroll-nav left, view-more right -->
+<div class="below-top-row">
+  <div class="scroll-nav-btns" id="scrollNavBtns">
+    <button class="scroll-nav-btn" id="scrollLeftBtn" onclick="scrollLiveTrack(-1)" aria-label="Scroll left">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="scroll-nav-btn" id="scrollRightBtn" onclick="scrollLiveTrack(1)" aria-label="Scroll right">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+  <button class="btn-view-more" id="viewMoreBtn" onclick="toggleViewMore()">View More &nbsp;›</button>
+</div>
 
     <!-- Bottom row: horizontal scroll track (P3-P5, and P6-P8 after View More) -->
     <div class="props-scroll-outer" id="scroll-outer">
@@ -1499,6 +1507,7 @@
         track.insertAdjacentHTML('beforeend', makeScrollCard(id));
       });
       btn.innerHTML = 'View Less &nbsp;‹';
+      document.getElementById('scrollNavBtns').classList.add('visible');
       setTimeout(() => {
         // Scroll track to end to reveal new cards
         track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
@@ -1509,6 +1518,7 @@
       collapseAll();
       track.querySelectorAll('[data-id="p6"],[data-id="p7"],[data-id="p8"]').forEach(c => c.remove());
       btn.innerHTML = 'View More &nbsp;›';
+      document.getElementById('scrollNavBtns').classList.remove('visible');
       setTimeout(updateScrollNavState, 80);
     }
   }
