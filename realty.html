@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -9,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="icon" href="images/copy_35B30140-AB4E-4E82-BAC2-9E39BF61C95E.png">
   <style>
     :root {
       --blue:        #0033CC;
@@ -33,738 +31,752 @@
       --radius-sm:   10px;
     }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--white);
-  color: var(--text);
-  overflow-x: hidden;
-  line-height: 1.7;
-  font-size: 1.02rem;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
 
-/* ── NAV ── */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  height: 72px;
-  display: flex; align-items: center;
-  padding: 0 48px;
-  justify-content: space-between;
-}
-.nav-brand {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none;
-}
-.nav-logo {
-  width: 44px; height: 44px; border-radius: 50%;
-  overflow: hidden; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.nav-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.nav-brand-name {
-  font-family: 'DM Sans', sans-serif; font-weight: 600;
-  font-size: 1.05rem; color: var(--text); letter-spacing: 0;
-}
-.nav-links {
-  display: flex; align-items: center; gap: 36px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 0.95rem; font-weight: 500; color: var(--text-mid);
-  text-decoration: none; transition: color 0.2s;
-  position: relative;
-}
-.nav-links a:hover { color: var(--blue); }
-.nav-links a.active { color: var(--blue); }
-.nav-links a.active::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 2px; background: var(--blue); border-radius: 2px;
-}
-.nav-cta {
-  padding: 10px 24px; background: var(--orange); color: white;
-  border-radius: 50px; font-size: 0.88rem; font-weight: 600;
-  text-decoration: none; transition: background 0.2s, transform 0.15s;
-  white-space: nowrap;
-}
-.nav-cta:hover { background: var(--orange-dark); transform: scale(1.03); }
-.nav-right { display: flex; align-items: center; gap: 32px; }
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex; align-items: center;
+      padding: 0 48px;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 44px; height: 44px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-brand-name {
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: 1.05rem; color: var(--text); letter-spacing: 0;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.95rem; font-weight: 500; color: var(--text-mid);
+      text-decoration: none; transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--blue); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--blue); border-radius: 2px;
+    }
+    .nav-cta {
+      padding: 10px 24px; background: var(--orange); color: white;
+      border-radius: 50px; font-size: 0.88rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--orange-dark); transform: scale(1.03); }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
 
-/* ── HERO ── */
-.hero {
-  position: relative; width: 100%;
-  min-height: 88vh;
-  display: flex; align-items: center;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0; z-index: 0;
-  background: #1a2744;
-}
-.hero-bg img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: block; opacity: 0.92;
-}
-/* Left-to-right dark gradient overlay */
-.hero-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(
-    to right,
-    rgba(10,22,40,0.58) 0%,
-    rgba(10,22,40,0.35) 45%,
-    rgba(10,22,40,0.08) 72%,
-    rgba(10,22,40,0.0) 100%
-  );
-}
-.hero-inner {
-  position: relative; z-index: 2;
-  max-width: 1280px; margin: 0 auto;
-  padding: 0 64px; width: 100%;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; padding: 6px 16px; border-radius: 50px;
-  margin-bottom: 28px;
-  animation: fadeInUp 0.6s ease both;
-}
-.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); display: inline-block; }
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700; font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 1.05; letter-spacing: -0.02em;
-  color: white; margin-bottom: 24px;
-  max-width: 560px;
-  animation: fadeInUp 0.6s ease 0.1s both;
-}
-.hero-cred {
-  font-size: 1.08rem; color: rgba(255,255,255,0.78);
-  line-height: 1.78; max-width: 480px;
-  margin-bottom: 40px;
-  animation: fadeInUp 0.6s ease 0.2s both;
-}
-.hero-cred strong { color: white; font-weight: 500; }
-.hero-btns {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  animation: fadeInUp 0.6s ease 0.3s both;
-}
-.btn-hero-primary {
-  padding: 15px 32px; background: var(--blue); color: white;
-  border-radius: 50px; font-size: 0.95rem; font-weight: 600;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  font-family: 'DM Sans', sans-serif;
-}
-.btn-hero-primary:hover { background: var(--blue-dark); transform: scale(1.03); }
-.btn-hero-secondary {
-  padding: 15px 32px; background: var(--orange); color: white;
-  border-radius: 50px; font-size: 0.95rem; font-weight: 600;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  font-family: 'DM Sans', sans-serif;
-}
-.btn-hero-secondary:hover { background: var(--orange-dark); transform: scale(1.03); }
+    /* ── HERO ── */
+    .hero {
+      position: relative; width: 100%;
+      min-height: 88vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: #1a2744;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block; opacity: 0.92;
+    }
+    /* Left-to-right dark gradient overlay */
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to right,
+        rgba(10,22,40,0.58) 0%,
+        rgba(10,22,40,0.35) 45%,
+        rgba(10,22,40,0.08) 72%,
+        rgba(10,22,40,0.0) 100%
+      );
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 64px; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 50px;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s ease both;
+    }
+    .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); display: inline-block; }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.05; letter-spacing: -0.02em;
+      color: white; margin-bottom: 24px;
+      max-width: 560px;
+      animation: fadeInUp 0.6s ease 0.1s both;
+    }
+    .hero-cred {
+      font-size: 1.08rem; color: rgba(255,255,255,0.78);
+      line-height: 1.78; max-width: 480px;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+    .hero-cred strong { color: white; font-weight: 500; }
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.3s both;
+    }
+    .btn-hero-primary {
+      padding: 15px 32px; background: var(--blue); color: white;
+      border-radius: 50px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-hero-primary:hover { background: var(--blue-dark); transform: scale(1.03); }
+    .btn-hero-secondary {
+      padding: 15px 32px; background: var(--orange); color: white;
+      border-radius: 50px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-hero-secondary:hover { background: var(--orange-dark); transform: scale(1.03); }
 
-/* ── SECTION COMMON ── */
-.section { padding: 88px 48px; }
-.section-inner { max-width: 1280px; margin: 0 auto; }
-.section-head {
-  display: flex; align-items: flex-start;
-  justify-content: space-between; margin-bottom: 48px;
-  gap: 16px; flex-wrap: wrap; align-items: center;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem);
-  color: var(--text); letter-spacing: -0.02em; line-height: 1.1;
-}
-.btn-view-more {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 22px; border: 1.5px solid var(--blue);
-  border-radius: 50px; color: var(--blue); font-size: 0.88rem;
-  font-weight: 600; text-decoration: none; cursor: pointer;
-  background: transparent; font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s, color 0.2s; white-space: nowrap;
-}
-.btn-view-more:hover { background: var(--blue); color: white; }
+    /* ── SECTION COMMON ── */
+    .section { padding: 88px 48px; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-head {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 48px;
+      gap: 16px; flex-wrap: wrap; align-items: center;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--text); letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .btn-view-more {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border: 1.5px solid var(--blue);
+      border-radius: 50px; color: var(--blue); font-size: 0.88rem;
+      font-weight: 600; text-decoration: none; cursor: pointer;
+      background: transparent; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .btn-view-more:hover { background: var(--blue); color: white; }
 
-/* ── AVAILABLE PROPERTIES ── */
-.available-section { background: var(--bg); }
-.props-grid-top {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 28px; margin-bottom: 28px;
-}
-/* Horizontal scroll track for bottom cards */
-.props-scroll-outer {
-  position: relative;
-  margin-bottom: 0;
-}
-.props-scroll-track {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: 12px;
-  cursor: grab;
-}
-.props-scroll-track:active { cursor: grabbing; }
-.props-scroll-track::-webkit-scrollbar { display: none; }
-.props-scroll-track .prop-card {
-  flex: 0 0 calc(33.33% - 14px); /* 3 visible on desktop */
-  scroll-snap-align: start;
-  min-width: 0;
-}
-.props-scroll-track.scroll-locked {
-  overflow-x: hidden;
-  cursor: default;
-}
-/* Expand panel below scroll track */
-.scroll-expand-wrap {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
-  opacity: 0;
-}
-.scroll-expand-wrap.open { max-height: 900px; opacity: 1; }
-@media (max-width: 900px) {
-  .props-scroll-track .prop-card { flex: 0 0 calc(50% - 10px); }
-}
-@media (max-width: 600px) {
-  .props-scroll-track .prop-card { flex: 0 0 85vw; }
-}
+    .scroll-nav-btns { display: flex; gap: 8px; }
+    .scroll-nav-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.85rem;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      box-shadow: var(--shadow-sm);
+    }
+    .scroll-nav-btn:hover { background: var(--blue); color: white; border-color: var(--blue); }
+    .scroll-nav-btn:disabled { opacity: 0.35; cursor: default; }
+    .scroll-nav-btn:disabled:hover { background: var(--white); color: var(--blue); border-color: var(--border); }
+    @media (max-width: 600px) {
+      .scroll-nav-btn { width: 34px; height: 34px; font-size: 0.78rem; }
+    }
 
-/* ── PROPERTY CARD ── */
-.prop-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
-  border: 1px solid var(--border);
-}
-.prop-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-.prop-card.sold-card { opacity: 0.92; }
-.prop-img-wrap {
-  position: relative;
-  width: 100%; padding-top: 92%;
-  background: #dde3ed; overflow: hidden;
-}
-.prop-img-wrap img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform 0.4s ease;
-}
-.prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
-.prop-img-wrap.small { padding-top: 88%; }
+    /* ── AVAILABLE PROPERTIES ── */
+    .available-section { background: var(--bg); }
+    .props-grid-top {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; margin-bottom: 28px;
+    }
+    /* Horizontal scroll track for bottom cards */
+    .props-scroll-outer {
+      position: relative;
+      margin-bottom: 0;
+    }
+    .props-scroll-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 12px;
+      cursor: grab;
+    }
+    .props-scroll-track:active { cursor: grabbing; }
+    .props-scroll-track::-webkit-scrollbar { display: none; }
+    .props-scroll-track .prop-card {
+      flex: 0 0 calc(33.33% - 14px); /* 3 visible on desktop */
+      scroll-snap-align: start;
+      min-width: 0;
+    }
+    .props-scroll-track.scroll-locked {
+      overflow-x: hidden;
+      cursor: default;
+    }
+    /* Expand panel below scroll track */
+    .scroll-expand-wrap {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
+      opacity: 0;
+    }
+    .scroll-expand-wrap.open { max-height: 900px; opacity: 1; }
+    @media (max-width: 900px) {
+      .props-scroll-track .prop-card { flex: 0 0 calc(50% - 10px); }
+    }
+    @media (max-width: 600px) {
+      .props-scroll-track .prop-card { flex: 0 0 85vw; }
+    }
 
-/* Badge */
-.live-badge {
-  position: absolute; top: 14px; left: 14px; z-index: 2;
-  display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(22,163,74,0.92); color: white;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
-  padding: 5px 12px; border-radius: 50px;
-  backdrop-filter: blur(6px);
-}
-.live-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: white;
-  box-shadow: 0 0 0 0 rgba(255,255,255,0.6);
-  animation: pulse 1.8s infinite;
-}
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
-  70%  { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
-  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-}
-.sold-badge {
-  position: absolute; top: 14px; left: 14px; z-index: 2;
-  background: var(--red); color: white;
-  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 14px; border-radius: 6px;
-}
+    /* ── PROPERTY CARD ── */
+    .prop-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1px solid var(--border);
+    }
+    .prop-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .prop-card.sold-card { opacity: 0.92; }
+    .prop-img-wrap {
+      position: relative;
+      width: 100%; padding-top: 92%;
+      background: #dde3ed; overflow: hidden;
+    }
+    .prop-img-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.4s ease;
+    }
+    .prop-card:hover .prop-img-wrap img { transform: scale(1.04); }
+    .prop-img-wrap.small { padding-top: 88%; }
 
-/* Card body */
-.prop-body { padding: 28px 26px 28px; }
-.prop-price {
-  font-family: 'DM Sans', sans-serif; font-weight: 700;
-  font-size: 1.28rem; color: var(--text);
-  margin-bottom: 6px; letter-spacing: 0; font-style: normal;
-}
-.prop-card.sold-card .prop-price { color: var(--text-mid); }
-.prop-location {
-  display: flex; align-items: center; gap: 6px;
-  color: var(--green); font-size: 0.97rem; font-weight: 500;
-  margin-bottom: 10px;
-}
-.prop-location i { font-size: 0.78rem; }
-.prop-desc {
-  font-size: 1rem; color: var(--text-muted);
-  line-height: 1.72; margin-bottom: 18px;
-}
-/* Small card desc */
-.props-grid-bottom .prop-desc { font-size: 0.95rem; margin-bottom: 14px; }
+    /* Badge */
+    .live-badge {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(22,163,74,0.92); color: white;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 5px 12px; border-radius: 50px;
+      backdrop-filter: blur(6px);
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.6);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+      70%  { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .sold-badge {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      background: var(--red); color: white;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px; border-radius: 6px;
+    }
 
-/* Card buttons */
-.prop-btns { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
-.btn-explore {
-  padding: 9px 16px; background: var(--blue); color: white;
-  border-radius: 50px; font-size: 0.82rem; font-weight: 600;
-  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s; text-align: center;
-  display: flex; align-items: center; justify-content: center; gap: 5px;
-  white-space: nowrap;
-}
-.btn-explore:hover { background: var(--blue-dark); }
-.btn-book-now {
-  padding: 7px 13px; background: var(--orange); color: white;
-  border-radius: 50px; font-size: 0.74rem; font-weight: 600;
-  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.btn-book-now:hover { background: var(--orange-dark); }
-.btn-details {
-  padding: 9px 16px;
-  background: transparent; color: var(--blue);
-  border: 1.5px solid var(--blue);
-  border-radius: 50px; font-size: 0.82rem; font-weight: 600;
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s, color 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 5px;
-  white-space: nowrap;
-}
-.btn-details:hover { background: var(--blue-light); }
-.btn-sold-muted {
-  width: 100%; padding: 7px 13px;
-  background: #F1F3F7; color: var(--text-muted);
-  border-radius: 50px; font-size: 0.74rem; font-weight: 500;
-  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s;
-}
-.btn-sold-muted:hover { background: #E5E9F0; }
+    /* Card body */
+    .prop-body { padding: 28px 26px 28px; }
+    .prop-price {
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
+      font-size: 1.28rem; color: var(--text);
+      margin-bottom: 6px; letter-spacing: 0; font-style: normal;
+    }
+    .prop-card.sold-card .prop-price { color: var(--text-mid); }
+    .prop-location {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--green); font-size: 0.97rem; font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .prop-location i { font-size: 0.78rem; }
+    .prop-desc {
+      font-size: 1rem; color: var(--text-muted);
+      line-height: 1.72; margin-bottom: 18px;
+    }
+    /* Small card desc */
+    .props-grid-bottom .prop-desc { font-size: 0.95rem; margin-bottom: 14px; }
+
+    /* Card buttons */
+    .prop-btns { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
+    .btn-explore {
+      padding: 9px 16px; background: var(--blue); color: white;
+      border-radius: 50px; font-size: 0.82rem; font-weight: 600;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      white-space: nowrap;
+    }
+    .btn-explore:hover { background: var(--blue-dark); }
+    .btn-book-now {
+      padding: 7px 13px; background: var(--orange); color: white;
+      border-radius: 50px; font-size: 0.74rem; font-weight: 600;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-book-now:hover { background: var(--orange-dark); }
+    .btn-details {
+      padding: 9px 16px;
+      background: transparent; color: var(--blue);
+      border: 1.5px solid var(--blue);
+      border-radius: 50px; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, color 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      white-space: nowrap;
+    }
+    .btn-details:hover { background: var(--blue-light); }
+    .btn-sold-muted {
+      width: 100%; padding: 7px 13px;
+      background: #F1F3F7; color: var(--text-muted);
+      border-radius: 50px; font-size: 0.74rem; font-weight: 500;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-sold-muted:hover { background: #E5E9F0; }
 
 
-/* ── EXPANDED PROPERTY VIEW ── */
-.expanded-wrap {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
-  opacity: 0;
-  grid-column: 1 / -1;
-}
-.expanded-wrap.open {
-  max-height: 900px; opacity: 1;
-}
-.expanded-inner {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
-  margin: 4px 0 8px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 0; overflow: hidden;
-}
-/* Left */
-.exp-left { padding: 28px; border-right: 1px solid var(--border); }
-.exp-main-img {
-  width: 100%; aspect-ratio: 16/10;
-  border-radius: var(--radius-sm); overflow: hidden;
-  background: #dde3ed; margin-bottom: 14px;
-}
-.exp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.exp-thumbs { display: flex; gap: 10px; }
-.exp-thumb {
-  flex: 1; aspect-ratio: 4/3;
-  border-radius: 8px; overflow: hidden;
-  background: #dde3ed; cursor: pointer;
-  border: 2px solid transparent; transition: border-color 0.2s;
-}
-.exp-thumb:hover { border-color: var(--blue); }
-.exp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* Right */
-.exp-right { padding: 32px 32px 28px; display: flex; flex-direction: column; }
-.exp-price {
-  font-family: 'DM Sans', sans-serif; font-weight: 700;
-  font-size: 1.65rem; color: var(--text);
-  letter-spacing: 0; margin-bottom: 8px;
-}
-.exp-location {
-  display: flex; align-items: center; gap: 6px;
-  color: var(--green); font-size: 0.9rem; font-weight: 500;
-  margin-bottom: 6px;
-}
-/* Units/title row for special properties */
-.exp-meta {
-  display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
-}
-.exp-meta-chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--blue-light); color: var(--blue);
-  font-size: 0.78rem; font-weight: 600; padding: 4px 12px;
-  border-radius: 50px; letter-spacing: 0.02em;
-}
-.exp-divider { height: 1px; background: var(--border); margin: 16px 0; }
-.exp-desc { flex: 1; overflow-y: auto; }
-.exp-desc p {
-  font-size: 0.98rem; color: var(--text-mid);
-  line-height: 1.82; margin-bottom: 18px;
-}
-.exp-desc p:last-child { margin-bottom: 0; }
-.exp-address {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: 0.92rem; color: var(--text-muted);
-  margin-top: 20px; padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.exp-address i { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
-.exp-bottom {
-  display: flex; justify-content: flex-end; margin-top: 20px;
-}
-.btn-show-less {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 22px; border: 1.5px solid var(--border);
-  border-radius: 50px; color: var(--blue); font-size: 0.85rem;
-  font-weight: 600; background: white; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.btn-show-less:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); }
+    /* ── EXPANDED PROPERTY VIEW ── */
+    .expanded-wrap {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
+      opacity: 0;
+      grid-column: 1 / -1;
+    }
+    .expanded-wrap.open {
+      max-height: 900px; opacity: 1;
+    }
+    .expanded-inner {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      margin: 4px 0 8px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; overflow: hidden;
+    }
+    /* Left */
+    .exp-left { padding: 28px; border-right: 1px solid var(--border); }
+    .exp-main-img {
+      width: 100%; aspect-ratio: 16/10;
+      border-radius: var(--radius-sm); overflow: hidden;
+      background: #dde3ed; margin-bottom: 14px;
+    }
+    .exp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .exp-thumbs { display: flex; gap: 10px; }
+    .exp-thumb {
+      flex: 1; aspect-ratio: 4/3;
+      border-radius: 8px; overflow: hidden;
+      background: #dde3ed; cursor: pointer;
+      border: 2px solid transparent; transition: border-color 0.2s;
+    }
+    .exp-thumb:hover { border-color: var(--blue); }
+    .exp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Right */
+    .exp-right { padding: 32px 32px 28px; display: flex; flex-direction: column; }
+    .exp-price {
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
+      font-size: 1.65rem; color: var(--text);
+      letter-spacing: 0; margin-bottom: 8px;
+    }
+    .exp-location {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--green); font-size: 0.9rem; font-weight: 500;
+      margin-bottom: 6px;
+    }
+    /* Units/title row for special properties */
+    .exp-meta {
+      display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .exp-meta-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.78rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 50px; letter-spacing: 0.02em;
+    }
+    .exp-divider { height: 1px; background: var(--border); margin: 16px 0; }
+    .exp-desc { flex: 1; overflow-y: auto; }
+    .exp-desc p {
+      font-size: 0.98rem; color: var(--text-mid);
+      line-height: 1.82; margin-bottom: 18px;
+    }
+    .exp-desc p:last-child { margin-bottom: 0; }
+    .exp-address {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.92rem; color: var(--text-muted);
+      margin-top: 20px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .exp-address i { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
+    .exp-bottom {
+      display: flex; justify-content: flex-end; margin-top: 20px;
+    }
+    .btn-show-less {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border: 1.5px solid var(--border);
+      border-radius: 50px; color: var(--blue); font-size: 0.85rem;
+      font-weight: 600; background: white; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .btn-show-less:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); }
 
-/* ── SOLD SECTION ── */
-.sold-section { background: var(--bg); }
-.sold-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.sold-grid .prop-img-wrap { padding-top: 92%; }
+    /* ── SOLD SECTION ── */
+    .sold-section { background: var(--bg); }
+    .sold-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .sold-grid .prop-img-wrap { padding-top: 92%; }
 
-/* ── FORM VALIDATION ALERT ── */
-.form-alert {
-  position: fixed; top: 88px; left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  background: white;
-  border-left: 4px solid var(--red);
-  border-radius: 12px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.16), 0 2px 8px rgba(220,38,38,0.12);
-  padding: 16px 22px 16px 18px;
-  display: flex; align-items: center; gap: 14px;
-  font-size: 0.97rem; color: var(--text-mid); font-weight: 500;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1),
-              transform 0.35s cubic-bezier(0.22,1,0.36,1);
-  z-index: 9999; min-width: 300px; max-width: 92vw;
-  white-space: normal;
-}
-.form-alert.show {
-  opacity: 1; transform: translateX(-50%) translateY(0);
-}
-.form-alert-icon {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: #fee2e2; color: var(--red);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.88rem; flex-shrink: 0;
-}
-.form-alert-text { flex: 1; line-height: 1.55; font-size: 0.95rem; }
+    /* ── FORM VALIDATION ALERT ── */
+    .form-alert {
+      position: fixed; top: 88px; left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: white;
+      border-left: 4px solid var(--red);
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.16), 0 2px 8px rgba(220,38,38,0.12);
+      padding: 16px 22px 16px 18px;
+      display: flex; align-items: center; gap: 14px;
+      font-size: 0.97rem; color: var(--text-mid); font-weight: 500;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      z-index: 9999; min-width: 300px; max-width: 92vw;
+      white-space: normal;
+    }
+    .form-alert.show {
+      opacity: 1; transform: translateX(-50%) translateY(0);
+    }
+    .form-alert-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #fee2e2; color: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem; flex-shrink: 0;
+    }
+    .form-alert-text { flex: 1; line-height: 1.55; font-size: 0.95rem; }
 
-/* shake animation on invalid fields */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%       { transform: translateX(-6px); }
-  40%       { transform: translateX(6px); }
-  60%       { transform: translateX(-4px); }
-  80%       { transform: translateX(4px); }
-}
-.input-wrap.invalid {
-  border-color: var(--red);
-  box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
-  animation: shake 0.4s ease;
-}
+    /* shake animation on invalid fields */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%       { transform: translateX(-6px); }
+      40%       { transform: translateX(6px); }
+      60%       { transform: translateX(-4px); }
+      80%       { transform: translateX(4px); }
+    }
+    .input-wrap.invalid {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+      animation: shake 0.4s ease;
+    }
 
-/* ── TOAST ── */
-.toast {
-  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-lg);
-  padding: 14px 22px;
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.88rem; color: var(--text-mid); font-weight: 500;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 999; white-space: nowrap;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast i { color: var(--text-muted); font-size: 1rem; }
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      padding: 14px 22px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--text-mid); font-weight: 500;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 999; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast i { color: var(--text-muted); font-size: 1rem; }
 
-/* ── BOOK CONSULTATION ── */
-.consult-section { background: var(--white); }
-.consult-sub {
-  font-size: 1.08rem; color: var(--text-muted);
-  margin-bottom: 44px; max-width: 560px; line-height: 1.75;
-}
-.consult-card {
-  background: var(--bg-card);
-  border-radius: 20px;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
-  display: grid; grid-template-columns: 1fr 1fr;
-  overflow: hidden;
-}
-/* Form side */
-.consult-form-wrap { padding: 44px 44px 40px; }
-.form-group { margin-bottom: 22px; }
-.form-group label {
-  display: block; font-size: 0.95rem; font-weight: 600;
-  color: var(--text-mid); margin-bottom: 8px;
-}
-.form-group label .req { color: var(--red); margin-left: 2px; }
-.form-group label .opt {
-  font-weight: 400; color: var(--text-muted); font-size: 0.78rem;
-}
-.input-wrap {
-  display: flex; align-items: center;
-  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
-  background: white; overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.input-wrap:focus-within {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(0,51,204,0.08);
-}
-.input-icon {
-  width: 44px; display: flex; align-items: center; justify-content: center;
-  color: var(--border); font-size: 0.9rem; flex-shrink: 0;
-}
-.input-wrap input, .input-wrap select, .input-wrap textarea {
-  flex: 1; border: none; outline: none; padding: 13px 14px 13px 0;
-  font-family: 'DM Sans', sans-serif; font-size: 1rem;
-  color: var(--text); background: transparent;
-}
-.input-wrap select {
-  cursor: pointer;
-  background: white;
-  -webkit-appearance: none;
-  appearance: none;
-  color: var(--text);
-}
-.input-wrap select option {
-  background: white;
-  color: var(--text);
-  font-size: 1rem;
-}
-/* Custom dropdown arrow */
-.select-wrap {
-  position: relative;
-}
-.select-wrap::after {
-  content: '';
-  position: absolute; right: 14px; top: 50%;
-  transform: translateY(-50%);
-  width: 0; height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid var(--text-muted);
-  pointer-events: none;
-}
-.input-wrap textarea { resize: none; height: 100px; padding-top: 12px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.budget-prefix {
-  padding: 12px 0 12px 14px;
-  font-size: 0.9rem; color: var(--text-muted); font-weight: 500;
-}
-.btn-submit {
-  width: 100%; padding: 15px;
-  background: var(--blue); color: white;
-  border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
-  cursor: pointer; transition: background 0.2s, transform 0.15s;
-  margin-top: 8px; letter-spacing: 0.01em;
-}
-.btn-submit:hover { background: var(--blue-dark); transform: scale(1.01); }
-/* Image side */
-.consult-img-wrap {
-  position: relative; overflow: hidden;
-  min-height: 500px;
-}
-.consult-img-wrap img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
+    /* ── BOOK CONSULTATION ── */
+    .consult-section { background: var(--white); }
+    .consult-sub {
+      font-size: 1.08rem; color: var(--text-muted);
+      margin-bottom: 44px; max-width: 560px; line-height: 1.75;
+    }
+    .consult-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    /* Form side */
+    .consult-form-wrap { padding: 44px 44px 40px; }
+    .form-group { margin-bottom: 22px; }
+    .form-group label {
+      display: block; font-size: 0.95rem; font-weight: 600;
+      color: var(--text-mid); margin-bottom: 8px;
+    }
+    .form-group label .req { color: var(--red); margin-left: 2px; }
+    .form-group label .opt {
+      font-weight: 400; color: var(--text-muted); font-size: 0.78rem;
+    }
+    .input-wrap {
+      display: flex; align-items: center;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      background: white; overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-wrap:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,51,204,0.08);
+    }
+    .input-icon {
+      width: 44px; display: flex; align-items: center; justify-content: center;
+      color: var(--border); font-size: 0.9rem; flex-shrink: 0;
+    }
+    .input-wrap input, .input-wrap select, .input-wrap textarea {
+      flex: 1; border: none; outline: none; padding: 13px 14px 13px 0;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem;
+      color: var(--text); background: transparent;
+    }
+    .input-wrap select {
+      cursor: pointer;
+      background: white;
+      -webkit-appearance: none;
+      appearance: none;
+      color: var(--text);
+    }
+    .input-wrap select option {
+      background: white;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    /* Custom dropdown arrow */
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap::after {
+      content: '';
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--text-muted);
+      pointer-events: none;
+    }
+    .input-wrap textarea { resize: none; height: 100px; padding-top: 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .budget-prefix {
+      padding: 12px 0 12px 14px;
+      font-size: 0.9rem; color: var(--text-muted); font-weight: 500;
+    }
+    .btn-submit {
+      width: 100%; padding: 15px;
+      background: var(--blue); color: white;
+      border: none; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
+      margin-top: 8px; letter-spacing: 0.01em;
+    }
+    .btn-submit:hover { background: var(--blue-dark); transform: scale(1.01); }
+    /* Image side */
+    .consult-img-wrap {
+      position: relative; overflow: hidden;
+      min-height: 500px;
+    }
+    .consult-img-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
 
-/* Success message */
-.form-success {
-  display: none; text-align: center; padding: 48px 24px;
-}
-.form-success.show { display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.success-icon {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: #dcfce7; display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem; color: var(--green);
-}
-.success-title {
-  font-family: 'Syne', sans-serif; font-weight: 700;
-  font-size: 1.2rem; color: var(--text);
-}
-.success-sub { font-size: 0.9rem; color: var(--text-muted); }
+    /* Success message */
+    .form-success {
+      display: none; text-align: center; padding: 48px 24px;
+    }
+    .form-success.show { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .success-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: #dcfce7; display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: var(--green);
+    }
+    .success-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.2rem; color: var(--text);
+    }
+    .success-sub { font-size: 0.9rem; color: var(--text-muted); }
 
-/* ── COMING SOON MODAL ── */
-.modal-backdrop {
-  position: fixed; inset: 0; z-index: 900;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.25s ease;
-  padding: 20px;
-}
-.modal-backdrop.open { opacity: 1; pointer-events: all; }
-.modal-box {
-  background: white; border-radius: 20px;
-  padding: 40px 32px 32px;
-  max-width: 380px; width: 100%;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-  transform: translateY(16px) scale(0.97);
-  transition: transform 0.25s ease;
-  position: relative;
-}
-.modal-backdrop.open .modal-box { transform: translateY(0) scale(1); }
-.modal-emoji { font-size: 2.2rem; margin-bottom: 12px; }
-.modal-title {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: 1.3rem; color: var(--blue); margin-bottom: 12px;
-}
-.modal-body {
-  font-size: 0.92rem; color: var(--text-muted);
-  line-height: 1.65; margin-bottom: 24px;
-}
-.modal-got-it {
-  padding: 12px 36px; background: var(--blue); color: white;
-  border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700;
-  cursor: pointer; transition: background 0.2s;
-}
-.modal-got-it:hover { background: var(--blue-dark); }
+    /* ── COMING SOON MODAL ── */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 900;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 20px;
+    }
+    .modal-backdrop.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: white; border-radius: 20px;
+      padding: 40px 32px 32px;
+      max-width: 380px; width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+    .modal-backdrop.open .modal-box { transform: translateY(0) scale(1); }
+    .modal-emoji { font-size: 2.2rem; margin-bottom: 12px; }
+    .modal-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.3rem; color: var(--blue); margin-bottom: 12px;
+    }
+    .modal-body {
+      font-size: 0.92rem; color: var(--text-muted);
+      line-height: 1.65; margin-bottom: 24px;
+    }
+    .modal-got-it {
+      padding: 12px 36px; background: var(--blue); color: white;
+      border: none; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .modal-got-it:hover { background: var(--blue-dark); }
 
-/* ── HAMBURGER MOBILE NAV ── */
-.hamburger-btn {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.hamburger-btn span {
-  display: block; width: 24px; height: 2px;
-  background: var(--text); border-radius: 2px;
-  transition: all 0.3s ease;
-}
-.mobile-nav {
-  display: none; position: fixed; inset: 0; z-index: 800;
-  background: white; flex-direction: column;
-  padding: 0;
-}
-.mobile-nav.open { display: flex; }
-.mobile-nav-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 24px; border-bottom: 1px solid var(--border);
-}
-.mobile-nav-close {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1.5px solid var(--border); background: none;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; color: var(--text-mid);
-}
-.mobile-nav-links {
-  flex: 1; display: flex; flex-direction: column;
-  padding: 24px; gap: 4px;
-}
-.mobile-nav-links a {
-  display: block; padding: 14px 16px;
-  font-size: 1.05rem; font-weight: 500; color: var(--text-mid);
-  text-decoration: none; border-radius: var(--radius-sm);
-  transition: background 0.15s, color 0.15s;
-}
-.mobile-nav-links a:hover { background: var(--bg); color: var(--blue); }
-.mobile-nav-back {
-  margin: 0 24px 32px;
-  display: flex; align-items: center; gap: 8px;
-  padding: 13px 20px; border-radius: 50px;
-  background: var(--bg); color: var(--text-mid);
-  text-decoration: none; font-size: 0.9rem; font-weight: 600;
-  border: 1.5px solid var(--border);
-  transition: background 0.2s, border-color 0.2s;
-}
-.mobile-nav-back:hover { background: var(--border); }
-.mobile-nav-back i { font-size: 0.82rem; }
+    /* ── HAMBURGER MOBILE NAV ── */
+    .hamburger-btn {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger-btn span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 800;
+      background: white; flex-direction: column;
+      padding: 0;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav-close {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid var(--border); background: none;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--text-mid);
+    }
+    .mobile-nav-links {
+      flex: 1; display: flex; flex-direction: column;
+      padding: 24px; gap: 4px;
+    }
+    .mobile-nav-links a {
+      display: block; padding: 14px 16px;
+      font-size: 1.05rem; font-weight: 500; color: var(--text-mid);
+      text-decoration: none; border-radius: var(--radius-sm);
+      transition: background 0.15s, color 0.15s;
+    }
+    .mobile-nav-links a:hover { background: var(--bg); color: var(--blue); }
+    .mobile-nav-back {
+      margin: 0 24px 32px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 13px 20px; border-radius: 50px;
+      background: var(--bg); color: var(--text-mid);
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      border: 1.5px solid var(--border);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .mobile-nav-back:hover { background: var(--border); }
+    .mobile-nav-back i { font-size: 0.82rem; }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--text); color: rgba(255,255,255,0.5);
-  padding: 28px 48px; text-align: center;
-  font-size: 0.82rem;
-}
-footer strong { color: rgba(255,255,255,0.85); }
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.5);
+      padding: 28px 48px; text-align: center;
+      font-size: 0.82rem;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-up {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
-              transform 0.55s cubic-bezier(0.22,1,0.36,1);
-}
-.fade-up.visible { opacity: 1; transform: translateY(0); }
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
-  /* scroll track handles its own sizing */
-  nav { padding: 0 24px; }
-  .nav-links { gap: 20px; }
-}
-@media (max-width: 900px) {
-  .section { padding: 64px 24px; }
-  .props-grid-top { grid-template-columns: 1fr; }
-  .sold-grid { grid-template-columns: 1fr; }
-  .expanded-inner { grid-template-columns: 1fr; }
-  .exp-left { border-right: none; border-bottom: 1px solid var(--border); }
-  .consult-card { grid-template-columns: 1fr; }
-  .consult-img-wrap { min-height: 280px; }
-  .hero-inner { padding: 0 28px; }
-}
-@media (max-width: 600px) {
-  nav { padding: 0 16px; }
-  .nav-links { display: none; }
-  .hamburger-btn { display: flex; }
-  .nav-cta { display: inline-flex; font-size: 0.78rem; padding: 8px 14px; }
-  .props-grid-bottom { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
-  .consult-form-wrap { padding: 28px 20px; }
-  .section { padding: 52px 16px; }
-}
-
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      /* scroll track handles its own sizing */
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+    }
+    @media (max-width: 900px) {
+      .section { padding: 64px 24px; }
+      .props-grid-top { grid-template-columns: 1fr; }
+      .sold-grid { grid-template-columns: 1fr; }
+      .expanded-inner { grid-template-columns: 1fr; }
+      .exp-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .consult-card { grid-template-columns: 1fr; }
+      .consult-img-wrap { min-height: 280px; }
+      .hero-inner { padding: 0 28px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hamburger-btn { display: flex; }
+      .props-grid-bottom { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+      .consult-form-wrap { padding: 28px 20px; }
+      .section { padding: 52px 16px; }
+    }
   </style>
 </head>
 <body>
 
 <!-- ── NAV ── -->
-
 <nav>
   <a href="#" class="nav-brand">
     <div class="nav-logo">
@@ -781,7 +793,6 @@ footer strong { color: rgba(255,255,255,0.85); }
     <li><a href="#consultation">Book Consultation</a></li>
   </ul>
   <div class="nav-right">
-    <button class="nav-cta" onclick="openComingSoon()" style="border:none;cursor:pointer;">Sign Up</button>
     <button class="hamburger-btn" id="hamburgerBtn" onclick="openMobileNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -789,10 +800,9 @@ footer strong { color: rgba(255,255,255,0.85); }
 </nav>
 
 <!-- ── HERO ── -->
-
 <section class="hero" id="home">
   <div class="hero-bg">
-    <img src="images/business/Realty/hom img.jpg" alt="Luxury Property"/>
+    <img src="images/realty/hero-bg.jpg" alt="Luxury Property"/>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
@@ -801,7 +811,7 @@ footer strong { color: rgba(255,255,255,0.85); }
     </div>
     <h1>Find Your Dream Property</h1>
     <p class="hero-cred">
-      Vinceslink Realty operates in partnership with <strong>KGL Realty Pro Ltd.</strong>,
+      Vinceslink Realty operates in partnership with <strong>PWAN &amp; KGL Realty Pro Ltd.</strong>,
       connecting verified buyers with officially listed properties and ensuring
       structured, transparent transactions.
     </p>
@@ -813,124 +823,131 @@ footer strong { color: rgba(255,255,255,0.85); }
 </section>
 
 <!-- ── AVAILABLE PROPERTIES ── -->
-
 <section class="section available-section" id="available">
   <div class="section-inner">
     <div class="section-head">
       <h2 class="section-title">Available Properties</h2>
-      <button class="btn-view-more" id="viewMoreBtn" onclick="toggleViewMore()">View More &nbsp;›</button>
-    </div>
-
-<!-- Top row: 2 large cards -->
-<div class="props-grid-top" id="top-grid">
-
-  <!-- PROPERTY 1 — Full data -->
-  <div class="prop-card fade-up" data-id="p1">
-    <div class="prop-img-wrap">
-      <img src="images/business/Realty/721a5bb8-d99f-47c3-958c-8df22bee18a5.jpeg" alt="Property 1"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦250,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Ketu Ajelogo, Alapere – Lagos</div>
-      <p class="prop-desc">4-Bedroom Luxury Terrace Duplex with BQ – premium finishes, serene environment, close to the airport and Lagos hotspots.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p1', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Luxury Duplex – Ketu Ajelogo')">Book Now</button>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="scroll-nav-btns">
+          <button class="scroll-nav-btn" id="scrollLeftBtn" onclick="scrollLiveTrack(-1)" aria-label="Scroll left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-nav-btn" id="scrollRightBtn" onclick="scrollLiveTrack(1)" aria-label="Scroll right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <button class="btn-view-more" id="viewMoreBtn" onclick="toggleViewMore()">View More &nbsp;›</button>
       </div>
     </div>
-  </div>
 
-  <!-- PROPERTY 2 -->
-  <div class="prop-card fade-up" data-id="p2">
-    <div class="prop-img-wrap">
-      <img src="images/business/Realty/Property 2a.jpg" alt="Property 2"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦300,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i>Seagate Estate</div>
-      <p class="prop-desc">3 UNITS OF 2 BEDROOMS MAISONETTE & 3 UNITS OF 3BEDROOM PENTHOUSE.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p2', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 2')">Book Now</button>
+    <!-- Top row: 2 large cards -->
+    <div class="props-grid-top" id="top-grid">
+
+      <!-- PROPERTY 1 — Full data -->
+      <div class="prop-card fade-up" data-id="p1">
+        <div class="prop-img-wrap">
+          <img src="images/realty/prop-1.jpg" alt="Property 1"/>
+          <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦250,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Ketu Ajelogo, Alapere – Lagos</div>
+          <p class="prop-desc">4-Bedroom Luxury Terrace Duplex with BQ – premium finishes, serene environment, close to the airport and Lagos hotspots.</p>
+          <div class="prop-btns">
+            <button class="btn-explore" onclick="toggleExpand('p1', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+            <button class="btn-book-now" onclick="scrollToConsult('Luxury Duplex – Ketu Ajelogo')">Book Now</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- EXPANDED PANEL (spans both columns) -->
-  <div class="expanded-wrap" id="expand-top"></div>
-
-</div><!-- /top-grid -->
-
-<!-- Bottom row: horizontal scroll track (P3-P5, and P6-P8 after View More) -->
-<div class="props-scroll-outer" id="scroll-outer">
-<div class="props-scroll-track" id="bottom-grid">
-
-  <!-- PROPERTY 3 -->
-  <div class="prop-card fade-up" data-id="p3">
-    <div class="prop-img-wrap small">
-      <img src="images/realty/prop-3.jpg" alt="Property 3"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p3', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 3')">Book Now</button>
+      <!-- PROPERTY 2 -->
+      <div class="prop-card fade-up" data-id="p2">
+        <div class="prop-img-wrap">
+          <img src="images/realty/prop-2.jpg" alt="Property 2"/>
+          <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-explore" onclick="toggleExpand('p2', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+            <button class="btn-book-now" onclick="scrollToConsult('Property 2')">Book Now</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- PROPERTY 4 -->
-  <div class="prop-card fade-up" data-id="p4">
-    <div class="prop-img-wrap small">
-      <img src="images/realty/prop-4.jpg" alt="Property 4"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p4', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 4')">Book Now</button>
+      <!-- EXPANDED PANEL (spans both columns) -->
+      <div class="expanded-wrap" id="expand-top"></div>
+
+    </div><!-- /top-grid -->
+
+    <!-- Bottom row: horizontal scroll track (P3-P5, and P6-P8 after View More) -->
+    <div class="props-scroll-outer" id="scroll-outer">
+    <div class="props-scroll-track" id="bottom-grid">
+
+      <!-- PROPERTY 3 -->
+      <div class="prop-card fade-up" data-id="p3">
+        <div class="prop-img-wrap small">
+          <img src="images/realty/prop-3.jpg" alt="Property 3"/>
+          <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-explore" onclick="toggleExpand('p3', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+            <button class="btn-book-now" onclick="scrollToConsult('Property 3')">Book Now</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- PROPERTY 5 -->
-  <div class="prop-card fade-up" data-id="p5">
-    <div class="prop-img-wrap small">
-      <img src="images/realty/prop-5.jpg" alt="Property 5"/>
-      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-explore" onclick="toggleExpand('p5', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('Property 5')">Book Now</button>
+      <!-- PROPERTY 4 -->
+      <div class="prop-card fade-up" data-id="p4">
+        <div class="prop-img-wrap small">
+          <img src="images/realty/prop-4.jpg" alt="Property 4"/>
+          <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-explore" onclick="toggleExpand('p4', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+            <button class="btn-book-now" onclick="scrollToConsult('Property 4')">Book Now</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-</div><!-- /bottom-grid scroll track -->
+      <!-- PROPERTY 5 -->
+      <div class="prop-card fade-up" data-id="p5">
+        <div class="prop-img-wrap small">
+          <img src="images/realty/prop-5.jpg" alt="Property 5"/>
+          <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-explore" onclick="toggleExpand('p5', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+            <button class="btn-book-now" onclick="scrollToConsult('Property 5')">Book Now</button>
+          </div>
+        </div>
+      </div>
 
-<!-- Expand panel below the scroll track — for bottom cards -->
-<div class="scroll-expand-wrap" id="expand-bottom"></div>
+    </div><!-- /bottom-grid scroll track -->
 
-<!-- Extra cards P6-P8 — injected into scroll track by JS on View More -->
-</div><!-- /scroll-outer -->
+    <!-- Expand panel below the scroll track — for bottom cards -->
+    <div class="scroll-expand-wrap" id="expand-bottom"></div>
 
+    <!-- Extra cards P6-P8 — injected into scroll track by JS on View More -->
+    </div><!-- /scroll-outer -->
   </div>
 </section>
 
 <!-- ── SOLD PROPERTIES ── -->
-
 <section class="section sold-section" id="sold">
   <div class="section-inner">
     <div class="section-head">
@@ -938,61 +955,59 @@ footer strong { color: rgba(255,255,255,0.85); }
     </div>
     <div class="sold-grid">
 
-  <!-- SOLD 1 -->
-  <div class="prop-card sold-card fade-up" data-id="s1">
-    <div class="prop-img-wrap">
-      <img src="images/business/Realty/Sold 1a.jpg" alt="Sold Property 1"/>
-      <div class="sold-badge">SOLD</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+      <!-- SOLD 1 -->
+      <div class="prop-card sold-card fade-up" data-id="s1">
+        <div class="prop-img-wrap">
+          <img src="images/realty/sold-1.jpg" alt="Sold Property 1"/>
+          <div class="sold-badge">SOLD</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- SOLD 2 -->
-  <div class="prop-card sold-card fade-up" data-id="s2">
-    <div class="prop-img-wrap">
-      <img src="images/business/Realty/Sold 1b.jpg" alt="Sold Property 2"/>
-      <div class="sold-badge">SOLD</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+      <!-- SOLD 2 -->
+      <div class="prop-card sold-card fade-up" data-id="s2">
+        <div class="prop-img-wrap">
+          <img src="images/realty/sold-2.jpg" alt="Sold Property 2"/>
+          <div class="sold-badge">SOLD</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- SOLD 3 -->
-  <div class="prop-card sold-card fade-up" data-id="s3">
-    <div class="prop-img-wrap">
-      <img src="images/business/Realty/Sold 1c.jpg" alt="Sold Property 3"/>
-      <div class="sold-badge">SOLD</div>
-    </div>
-    <div class="prop-body">
-      <div class="prop-price">₦00,000,000</div>
-      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
-      <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
-      <div class="prop-btns">
-        <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+      <!-- SOLD 3 -->
+      <div class="prop-card sold-card fade-up" data-id="s3">
+        <div class="prop-img-wrap">
+          <img src="images/realty/sold-3.jpg" alt="Sold Property 3"/>
+          <div class="sold-badge">SOLD</div>
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">₦00,000,000</div>
+          <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> Location</div>
+          <p class="prop-desc">You should write two lines description here for this sold property listing.</p>
+          <div class="prop-btns">
+            <button class="btn-sold-muted" onclick="showToast()">Book Now</button>
+          </div>
+        </div>
       </div>
+
     </div>
-  </div>
-
-</div>
-
   </div>
 </section>
 
 <!-- ── BOOK CONSULTATION ── -->
-
 <section class="section consult-section" id="consultation">
   <div class="section-inner">
     <div class="section-head" style="margin-bottom:12px;">
@@ -1000,123 +1015,109 @@ footer strong { color: rgba(255,255,255,0.85); }
     </div>
     <p class="consult-sub">Fill out the form below to get in touch with us and schedule a consultation to discuss your real estate needs.</p>
 
-<div class="consult-card fade-up">
-  <!-- Form -->
-  <div class="consult-form-wrap">
-    <div id="consult-form">
-      <div class="form-group">
-        <label>Full Name <span class="req">*</span></label>
-        <div class="input-wrap">
-          <div class="input-icon"><i class="fas fa-user"></i></div>
-          <input type="text" placeholder="" id="f-name" required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Phone Number <span class="req">*</span></label>
-        <div class="input-wrap">
-          <div class="input-icon"><i class="fas fa-phone"></i></div>
-          <input type="tel" placeholder="" id="f-phone" required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Alt. Phone Number <span class="opt">(Optional)</span></label>
-        <div class="input-wrap">
-          <div class="input-icon"><i class="fas fa-phone"></i></div>
-          <input type="tel" placeholder=""/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Email Address <span class="req">*</span></label>
-        <div class="input-wrap">
-          <div class="input-icon"><i class="fas fa-envelope"></i></div>
-          <input type="email" placeholder="" id="f-email" required/>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Interested Property <span class="req">*</span></label>
-          <div class="select-wrap">
-          <div class="input-wrap">
-            <div class="input-icon"><i class="fas fa-home"></i></div>
-            <select id="f-property" onchange="handlePropertySelect(this)">
-              <option value="" disabled selected>Select Property of Interest</option>
-              <option>Luxury Duplex – Ketu Ajelogo</option>
-              <option>Property 2</option>
-              <option>Property 3</option>
-              <option>Property 4</option>
-              <option>Property 5</option>
-              <option>Property 6</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          </div><!-- /select-wrap -->
-          <!-- Revealed when "Other" is selected -->
-          <div id="other-prop-wrap" style="display:none; margin-top:10px;">
+    <div class="consult-card fade-up">
+      <!-- Form -->
+      <div class="consult-form-wrap">
+        <div id="consult-form">
+          <div class="form-group">
+            <label>Full Name <span class="req">*</span></label>
             <div class="input-wrap">
-              <div class="input-icon"><i class="fas fa-pencil-alt"></i></div>
-              <input type="text" id="f-property-other" placeholder="Describe what you're looking for…"/>
+              <div class="input-icon"><i class="fas fa-user"></i></div>
+              <input type="text" placeholder="" id="f-name" required/>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Budget <span class="opt">(Optional)</span></label>
-          <div class="input-wrap">
-            <span class="budget-prefix">₦</span>
-            <input type="text" placeholder=""/>
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <div class="input-wrap">
+              <div class="input-icon"><i class="fas fa-phone"></i></div>
+              <input type="tel" placeholder="" id="f-phone" required/>
+            </div>
           </div>
+          <div class="form-group">
+            <label>Alt. Phone Number <span class="opt">(Optional)</span></label>
+            <div class="input-wrap">
+              <div class="input-icon"><i class="fas fa-phone"></i></div>
+              <input type="tel" placeholder=""/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address <span class="req">*</span></label>
+            <div class="input-wrap">
+              <div class="input-icon"><i class="fas fa-envelope"></i></div>
+              <input type="email" placeholder="" id="f-email" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Interested Property <span class="req">*</span></label>
+              <div class="select-wrap">
+              <div class="input-wrap">
+                <div class="input-icon"><i class="fas fa-home"></i></div>
+                <select id="f-property" onchange="handlePropertySelect(this)">
+                  <option value="" disabled selected>Select Property of Interest</option>
+                  <option>Luxury Duplex – Ketu Ajelogo</option>
+                  <option>Property 2</option>
+                  <option>Property 3</option>
+                  <option>Property 4</option>
+                  <option>Property 5</option>
+                  <option>Property 6</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              </div><!-- /select-wrap -->
+              <!-- Revealed when "Other" is selected -->
+              <div id="other-prop-wrap" style="display:none; margin-top:10px;">
+                <div class="input-wrap">
+                  <div class="input-icon"><i class="fas fa-pencil-alt"></i></div>
+                  <input type="text" id="f-property-other" placeholder="Describe what you're looking for…"/>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Budget <span class="opt">(Optional)</span></label>
+              <div class="input-wrap">
+                <span class="budget-prefix">₦</span>
+                <input type="text" placeholder=""/>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <div class="input-wrap">
+              <textarea placeholder="Your message..."></textarea>
+            </div>
+          </div>
+          <button class="btn-submit" onclick="submitForm()">Book Consultation</button>
+        </div>
+        <!-- Success state -->
+        <div class="form-success" id="form-success">
+          <div class="success-icon">✓</div>
+          <div class="success-title">Consultation request sent successfully.</div>
+          <p class="success-sub">Our team will reach out to you shortly to confirm your appointment.</p>
         </div>
       </div>
-      <div class="form-group">
-        <label>Message</label>
-        <div class="input-wrap">
-          <textarea placeholder="Your message..."></textarea>
-        </div>
+      <!-- Image -->
+      <div class="consult-img-wrap">
+        <img src="images/realty/consult-bg.jpg" alt="Luxury Interior"/>
       </div>
-      <button class="btn-submit" onclick="submitForm()">Book Consultation</button>
     </div>
-    <!-- Success state -->
-    <div class="form-success" id="form-success">
-      <div class="success-icon">✓</div>
-      <div class="success-title">Consultation request sent successfully.</div>
-      <p class="success-sub">Our team will reach out to you shortly to confirm your appointment.</p>
-    </div>
-  </div>
-  <!-- Image -->
-  <div class="consult-img-wrap">
-    <img src="images/business/Realty/footr img.jpg" alt="Luxury Interior"/>
-  </div>
-</div>
-
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-
 <footer>
-  <strong>Vinceslink Realty</strong> &nbsp;·&nbsp; In partnership with PWAN & KGL Realty Pro Ltd.
+  <strong>Vinceslink Realty</strong> &nbsp;·&nbsp; In partnership with PWAN &amp; KGL Realty Pro Ltd.
   &nbsp;·&nbsp; © 2026 All rights reserved.
-  &nbsp;·&nbsp; <a href="vinceslink.com" style="color:rgba(255,255,255,0.5);text-decoration:none;">Back to Vinceslink</a>
+  &nbsp;·&nbsp; <a href="https://vinceslink.com" style="color:rgba(255,255,255,0.5);text-decoration:none;">Back to Vinceslink</a>
   <br/><br/>
   Built with 🤍 by <a href="https://jappro.github.io/portfolio/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.75);text-decoration:underline;text-underline-offset:3px;">Japheth</a>
 </footer>
 
-<!-- ── COMING SOON MODAL ── -->
-
-<div class="modal-backdrop" id="comingSoonModal" onclick="closeComingSoon(event)">
-  <div class="modal-box">
-    <div class="modal-emoji">🚀</div>
-    <div class="modal-title">Coming Soon!</div>
-    <p class="modal-body">This feature will be available when our platform launches. Stay tuned for updates.</p>
-    <button class="modal-got-it" onclick="closeComingSoonBtn()">Got it!</button>
-  </div>
-</div>
-
 <!-- ── MOBILE NAV ── -->
-
 <div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-head">
     <div class="nav-brand" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
-      <div class="nav-logo"><img src="/images/logo.png" alt="Logo"/></div>
+      <div class="nav-logo"><img src="images/IMG_0509.jpeg" alt="Logo"/></div>
       <span style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;color:var(--text);">Vinceslink Realty</span>
     </div>
     <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
@@ -1127,20 +1128,18 @@ footer strong { color: rgba(255,255,255,0.85); }
     <a href="#sold" onclick="closeMobileNav()">Sold Properties</a>
     <a href="#consultation" onclick="closeMobileNav()">Book Consultation</a>
   </div>
-  <a href="vinceslink.com" class="mobile-nav-back">
+  <a href="https://vinceslink.com" class="mobile-nav-back">
     <i class="fas fa-arrow-left"></i> Back to Vinceslink
   </a>
 </div>
 
 <!-- ── FORM VALIDATION ALERT ── -->
-
 <div class="form-alert" id="formAlert">
   <div class="form-alert-icon"><i class="fas fa-exclamation"></i></div>
   <div class="form-alert-text" id="formAlertText">Please fill in all required fields.</div>
 </div>
 
 <!-- ── TOAST ── -->
-
 <div class="toast" id="toast">
   <i class="fas fa-info-circle"></i> This property has already been sold.
 </div>
@@ -1162,14 +1161,14 @@ footer strong { color: rgba(255,255,255,0.85); }
         'Whether you\'re relocating, investing, or simply treating yourself to the Lagos lifestyle, this duplex delivers the perfect balance of luxury, location, and long-term value.'
       ],
       address: 'Ketu Ajelogo, Alapere, Lagos, Nigeria',
-      thumbs: ['images/business/Realty/2a43d91b-cf5c-4a24-ab1c-392487bcd8d6.jpeg','images/business/Realty/e472c0e4-d5b3-49c9-b1f4-77b988e20d06.jpeg','images/business/Realty/ed690d2e-afae-4771-9c3c-2d70928982ca.jpeg']
+      thumbs: ['images/realty/prop-1a.jpg','images/realty/prop-1b.jpg','images/realty/prop-1c.jpg']
     },
     p2: {
       price: '₦00,000,000',
       location: 'Location',
       meta: [],
       paragraphs: [
-        '3 UNITS OF 2 BEDROOMS MAISONETTE & 3 UNITS OF 3BEDROOM PENTHOUSE. All Rooms Ensuite, Visitor\'s Toilet, Walk-In-Closets, BQs, Posh Terraces with Panoramic View Sliding Glass Doors, through which the spaces get well lit and ventilated, Fitted Kitchens. All spaces are spacious with High Head Room.\ Luxury at it\'s best, (The Maisonette comes with 2 Large Living Rooms).',
+        'Description paragraph 1 — Introduce property and estate type. Replace with full property description when database is ready.',
         'Description paragraph 2 — Interior features (living room, lighting, layout). Replace with actual details when database is ready.',
         'Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing. Replace with actual details when database is ready.',
         'Description paragraph 4 — Lifestyle value (security, accessibility, prestige). Replace with actual details when database is ready.'
@@ -1205,7 +1204,7 @@ footer strong { color: rgba(255,255,255,0.85); }
       price: '₦00,000,000', location: 'Location', meta: [],
       paragraphs: ['Description paragraph 1 — Introduce property and estate type.','Description paragraph 2 — Interior features (living room, lighting, layout).','Description paragraph 3 — Kitchen, bedrooms, bathrooms, finishing.','Description paragraph 4 — Lifestyle value (security, accessibility, prestige).'],
       address: 'Full property address, City, State, Nigeria',
-      thumbs: ['images/business/Realty/Sold 1b.jpg','images/business/Realty/Sold 1c.jpg','images/business/Realty/Sold 1d.jpg']
+      thumbs: ['images/realty/prop-7a.jpg','images/realty/prop-7b.jpg','images/realty/prop-7c.jpg']
     },
     p8: {
       price: '₦00,000,000', location: 'Location', meta: [],
@@ -1443,6 +1442,30 @@ footer strong { color: rgba(255,255,255,0.85); }
     }, 4000);
   }
 
+  /* ── SCROLL NAV BUTTONS for live properties track ── */
+  function scrollLiveTrack(dir) {
+    const track = document.getElementById('bottom-grid');
+    const card = track.querySelector('.prop-card');
+    const cardWidth = card ? card.offsetWidth + 20 : track.clientWidth * 0.85;
+    track.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+  }
+  function updateScrollNavState() {
+    const track = document.getElementById('bottom-grid');
+    const leftBtn = document.getElementById('scrollLeftBtn');
+    const rightBtn = document.getElementById('scrollRightBtn');
+    if (!track || !leftBtn || !rightBtn) return;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    leftBtn.disabled = track.scrollLeft <= 2;
+    rightBtn.disabled = track.scrollLeft >= maxScroll - 2;
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('bottom-grid');
+    if (track) {
+      track.addEventListener('scroll', updateScrollNavState, { passive: true });
+      updateScrollNavState();
+    }
+  });
+
   /* ── VIEW MORE — inject P6-P8 into scroll track ── */
   let extraVisible = false;
 
@@ -1479,30 +1502,19 @@ footer strong { color: rgba(255,255,255,0.85); }
       setTimeout(() => {
         // Scroll track to end to reveal new cards
         track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+        updateScrollNavState();
       }, 80);
     } else {
       // Remove injected cards
       collapseAll();
       track.querySelectorAll('[data-id="p6"],[data-id="p7"],[data-id="p8"]').forEach(c => c.remove());
       btn.innerHTML = 'View More &nbsp;›';
+      setTimeout(updateScrollNavState, 80);
     }
   }
 
-  /* ── COMING SOON MODAL ── */
-  function openComingSoon() {
-    document.getElementById('comingSoonModal').classList.add('open');
-  }
-  function closeComingSoon(e) {
-    if (e.target === document.getElementById('comingSoonModal')) {
-      document.getElementById('comingSoonModal').classList.remove('open');
-    }
-  }
-  function closeComingSoonBtn() {
-    document.getElementById('comingSoonModal').classList.remove('open');
-  }
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      document.getElementById('comingSoonModal').classList.remove('open');
       closeMobileNav();
     }
   });
@@ -1542,6 +1554,5 @@ footer strong { color: rgba(255,255,255,0.85); }
     });
   });
 </script>
-
 </body>
 </html>
