@@ -176,7 +176,7 @@ flex-shrink: 0;
   height: 34px;
   min-width: 34px;     /* prevents flex from squishing it */
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 50%
 }
 
 .logo-text {
@@ -770,6 +770,10 @@ RESPONSIVE
   transform: translateY(-3px);
 }
 
+  .btn-glass:hover::after {
+  left: 120%;
+}
+    
 .btn-glass .arrow {
   margin-left: 6px;
   transition: transform 0.3s ease;
