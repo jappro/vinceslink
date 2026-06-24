@@ -543,14 +543,17 @@
       overflow: visible;
     }
 
-    /* Square rainbow ring-light — the actual containing box for the image */
+    /* Ring-light box — now slightly taller than wide instead of a perfect square.
+       aspect-ratio: width / height. 1/1.15 means height is 15% more than width.
+       Nudge this value up (1/1.2, 1/1.25...) for more height, or back toward
+       1/1 for less, until it looks right. */
     .sub-ring-box {
       position: relative;
       width: 68%;
-      aspect-ratio: 1;
+      aspect-ratio: 1 / 1.15;
       border-radius: 28px;
       z-index: 0;
-      overflow: hidden; /* hard clip stays — image can scale up without spilling out */
+      overflow: hidden;
       background:
         linear-gradient(#06081e, #06081e) padding-box,
         conic-gradient(
@@ -575,25 +578,19 @@
       to   { filter: hue-rotate(360deg); }
     }
 
-    /* iPhone image — scaled up slightly to close the side gaps left by contain */
+    /* iPhone image — same fill + zoom logic as before, now filling a taller box */
     .sub-iphone-img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      /* Nudge: scale up to fill more of the box width-wise.
-         Since overflow:hidden on the parent, any excess that
-         pushes past the box edges gets clipped cleanly instead
-         of spilling out — tune this value up/down as needed. */
       transform: scale(1.18);
       transform-origin: center center;
       z-index: 2;
       filter: drop-shadow(0 20px 48px rgba(0,80,255,0.30))
               drop-shadow(0 4px 20px rgba(0,0,0,0.55));
     }
-
-
 
     /* ── RIGHT: cards + tagline ── */
     .sub-hero-right {
