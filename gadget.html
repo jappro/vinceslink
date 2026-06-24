@@ -543,15 +543,14 @@
       overflow: visible;
     }
 
-    /* Square rainbow ring-light — sits behind the iPhone */
+    /* Square rainbow ring-light — now the actual containing box for the image */
     .sub-ring-box {
-      position: absolute;
-      /* Square: equal width/height based on the column */
+      position: relative; /* was absolute — now a real layout box the image sits inside */
       width: 68%;
       aspect-ratio: 1;
       border-radius: 28px;
       z-index: 0;
-      /* Rainbow border using conic-gradient */
+      overflow: hidden; /* hard clip: nothing can spill past this box anymore */
       background:
         linear-gradient(#06081e, #06081e) padding-box,
         conic-gradient(
@@ -565,12 +564,10 @@
           #0066ff
         ) border-box;
       border: 2.5px solid transparent;
-      /* Glowing bloom */
       box-shadow:
         0 0 40px rgba(0,100,255,0.45),
         0 0 90px rgba(140,0,255,0.25),
         0 0 140px rgba(255,50,200,0.12);
-      /* Slowly spin the rainbow */
       animation: ringRotate 6s linear infinite;
     }
     @keyframes ringRotate {
@@ -578,45 +575,18 @@
       to   { filter: hue-rotate(360deg); }
     }
 
-    /* iPhone PNG — floats above ring, transparent bg shows through */
+    /* iPhone image — now sized to fill the ring box exactly, not its own arbitrary size */
     .sub-iphone-img {
-      position: relative;
-      z-index: 2;
+      position: absolute;
+      inset: 0; /* stretch to fill .sub-ring-box's padding-box exactly */
       width: 100%;
-      max-width: 420px;
-      height: auto;
-      object-fit: contain;
+      height: 100%;
+      object-fit: contain; /* shows the full composition, no cropping */
+      z-index: 2;
       filter: drop-shadow(0 20px 48px rgba(0,80,255,0.30))
               drop-shadow(0 4px 20px rgba(0,0,0,0.55));
-      /* Tune these CSS vars per breakpoint to reposition/resize */
-      --iphone-scale: 1;
-      --iphone-offset-x: 0px;
-      --iphone-offset-y: 0px;
-      transform: scale(var(--iphone-scale))
-                 translate(var(--iphone-offset-x), var(--iphone-offset-y));
-      transform-origin: center center;
     }
-    @media (max-width: 1024px) {
-      .sub-iphone-img {
-        --iphone-scale: 0.95;
-        --iphone-offset-x: 0px;
-        --iphone-offset-y: 0px;
-      }
-    }
-    @media (max-width: 768px) {
-      .sub-iphone-img {
-        --iphone-scale: 0.90;
-        --iphone-offset-x: 0px;
-        --iphone-offset-y: 0px;
-      }
-    }
-    @media (max-width: 480px) {
-      .sub-iphone-img {
-        --iphone-scale: 0.85;
-        --iphone-offset-x: 0px;
-        --iphone-offset-y: 0px;
-      }
-    }
+
 
     /* ── RIGHT: cards + tagline ── */
     .sub-hero-right {
@@ -1624,13 +1594,13 @@
 
     <!-- LEFT — iPhone floating over square rainbow ring-light -->
     <div class="sub-hero-left">
-      <!-- Square rainbow ring behind the phones -->
-      <div class="sub-ring-box"></div>
-      <!-- PNG with transparent bg floats freely on top -->
-      <img src="images/business/Gadget/image 24.jpg"
-           alt="Featured Gadgets"
-           class="sub-iphone-img"
-           onerror="this.style.opacity='0.15'"/>
+      <!-- Square rainbow ring — now contains the image directly -->
+      <div class="sub-ring-box">
+        <img src="images/business/Gadget/image 24.jpg"
+             alt="Featured Gadgets"
+             class="sub-iphone-img"
+             onerror="this.style.opacity='0.15'"/>
+      </div>
     </div>
 
     <!-- RIGHT — Popular Right Now + tagline -->
