@@ -533,15 +533,17 @@
     }
     .exp-desc p:last-child { margin-bottom: 0; }
     .exp-address {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 0.92rem; color: var(--text-muted);
-      margin-top: 20px; padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.92rem; color: var(--text-muted);
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
     .exp-address i { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
     .exp-bottom {
-      display: flex; justify-content: flex-end; margin-top: 20px;
-    }
+  display: flex; justify-content: flex-end; margin-top: 20px;
+  flex-shrink: 0;
+}
     .btn-show-less {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 10px 22px; border: 1.5px solid var(--border);
