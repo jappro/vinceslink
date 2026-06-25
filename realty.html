@@ -507,7 +507,26 @@
       border-radius: 50px; letter-spacing: 0.02em;
     }
     .exp-divider { height: 1px; background: var(--border); margin: 16px 0; }
-    .exp-desc { flex: 1; overflow-y: auto; }
+    .exp-desc {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 260px;
+  padding-right: 8px; /* prevents text touching the scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue) transparent;
+}
+
+/* Webkit scrollbar styling */
+.exp-desc::-webkit-scrollbar {
+  width: 4px;
+}
+.exp-desc::-webkit-scrollbar-track {
+  background: transparent;
+}
+.exp-desc::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-radius: 4px;
+}
     .exp-desc p {
       font-size: 0.98rem; color: var(--text-mid);
       line-height: 1.82; margin-bottom: 18px;
