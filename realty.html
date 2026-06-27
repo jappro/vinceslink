@@ -293,9 +293,10 @@
     }
     /* Horizontal scroll track for bottom cards */
     .props-scroll-outer {
-      position: relative;
-      margin-bottom: 0;
-    }
+  position: relative;
+  margin-bottom: 0;
+  overflow: visible;
+}
     .props-scroll-track {
       display: flex;
       gap: 20px;
@@ -319,12 +320,14 @@
     }
     /* Expand panel below scroll track */
     .scroll-expand-wrap {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
-      opacity: 0;
-    }
-    .scroll-expand-wrap.open { max-height: 900px; opacity: 1; }
-    @media (max-width: 900px) {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
+  opacity: 0;
+}
+.scroll-expand-wrap.open { 
+  max-height: 9999px; 
+  opacity: 1; 
+}
       .props-scroll-track .prop-card { flex: 0 0 calc(50% - 10px); }
     }
     @media (max-width: 600px) {
