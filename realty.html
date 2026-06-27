@@ -583,6 +583,33 @@
       }
     }
 
+    /* ── SHARE BUTTON ── */
+.btn-share {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 22px; border: 1.5px solid var(--border);
+  border-radius: 50px; color: var(--blue); font-size: 0.85rem;
+  font-weight: 600; background: white; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.btn-share:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); }
+.btn-share svg { width: 15px; height: 15px; stroke: var(--blue); }
+
+/* ── COPY TOAST ── */
+.copy-toast {
+  position: fixed; bottom: 30px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1a1a1a; color: #fff;
+  padding: 10px 22px; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 500;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 99999;
+}
+.copy-toast.copy-toast-show {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+
     /* ── VIDEO TOAST ── */
 .exp-video-toast {
   position: absolute;
@@ -1602,14 +1629,62 @@
           <span>${d.address}</span>
         </div>
         <div class="exp-bottom">
-          <button class="btn-show-less" onclick="collapseAll()">
-            <i class="fas fa-compress-alt"></i> Show Less
-          </button>
-        </div>
-      </div>
-    </div>`;
+  <button class="btn-share" onclick="shareProperty('${id}', '${d.location}')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </svg>
+    Share
+  </button>
+  <button class="btn-show-less" onclick="collapseAll()">
+    <i class="fas fa-compress-alt"></i> Show Less
+  </button>
+</div>`;
 }
 
+  function shareProperty(id, location) {
+  const url = `https://vinceslink.com/realty?property=${id}`;
+  if (navigator.share) {
+    navigator.share({
+      title: `Vinceslink Realty — ${location}`,
+      text: `Check out this property at ${location} on Vinceslink Realty!`,
+      url: url
+    });
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      showCopyToast('Link copied to clipboard!');
+    });
+  }
+}
+
+  /* ——— SHARE PROPERTY JS ——— */
+function showCopyToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'copy-toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  requestAnimationFrame(() => t.classList.add('copy-toast-show'));
+  setTimeout(() => {
+    t.classList.remove('copy-toast-show');
+    setTimeout(() => t.remove(), 400);
+  }, 2500);
+}
+
+  /* AUTO OPEN PROPERTY FROM URL */
+  document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const propId = params.get('property');
+  if (propId && propData[propId]) {
+    const btn = document.querySelector(`[data-id="${propId}"] .btn-explore`);
+    if (btn) {
+      setTimeout(() => {
+        btn.click();
+      }, 600);
+    }
+  }
+});
+  
   /* ── VIDEO TOAST CYCLE ── */
 const toastMessages = [
   { svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>', text: 'Watch property video' },
