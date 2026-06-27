@@ -582,6 +582,136 @@
         opacity: 1;
       }
     }
+
+    /* ── VIDEO TOAST ── */
+.exp-video-toast {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.exp-video-toast.exp-toast-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.exp-toast-inner {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem; font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s;
+}
+.exp-toast-inner:hover { background: rgba(0,0,0,0.88); }
+.exp-toast-icon {
+  width: 16px; height: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.exp-toast-icon svg { width: 14px; height: 14px; stroke: #fff; }
+
+/* ── BLANK PREVIEW (no thumbs, has video) ── */
+.exp-main-blank {
+  background: #0f172a !important;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.exp-blank-play {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; padding: 20px; text-align: center;
+}
+.exp-blank-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.exp-blank-play:hover .exp-blank-icon { background: rgba(255,255,255,0.22); }
+.exp-blank-icon svg { width: 28px; height: 28px; stroke: #fff; }
+.exp-blank-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.5; max-width: 200px; }
+.exp-blank-sub { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+/* ── NO THUMBS MESSAGE ── */
+.exp-no-thumbs {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 12px;
+  background: #f8faff;
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-size: 0.82rem; line-height: 1.5;
+}
+.exp-no-thumbs svg { width: 20px; height: 20px; flex-shrink: 0; stroke: var(--blue); }
+
+/* ── VIDEO MODAL ── */
+.video-modal-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.4s ease;
+  padding: 20px;
+}
+.video-modal-overlay.video-modal-open { background: rgba(0,0,0,0.82); }
+.video-modal-box {
+  background: #fff; border-radius: 16px;
+  width: 100%; max-width: 720px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+  transform: translateY(24px);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.video-modal-overlay.video-modal-open .video-modal-box { transform: translateY(0); }
+.video-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.video-modal-title { font-weight: 700; font-size: 1rem; color: var(--text); }
+.video-modal-close {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid var(--border); background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s;
+}
+.video-modal-close:hover { background: #f1f3f7; }
+.video-modal-close svg { width: 14px; height: 14px; }
+.video-modal-body { padding: 20px; background: #000; position: relative; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+.video-modal-foot {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: flex-end;
+}
+.video-download-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 20px; border-radius: 50px;
+  background: var(--blue); color: #fff;
+  font-size: 0.84rem; font-weight: 600;
+  text-decoration: none; transition: background 0.2s;
+}
+.video-download-btn:hover { background: var(--blue-dark); }
+.video-download-btn svg { width: 15px; height: 15px; }
+
+/* ── SPINNER ── */
+.video-spinner {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 40px;
+}
+.video-spinner p { color: rgba(255,255,255,0.6); font-size: 0.88rem; }
+.spinner-ring {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.15);
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
     
     /* ── SOLD SECTION ── */
     .sold-section { background: var(--bg); }
@@ -1379,42 +1509,202 @@
   let currentOpen = null;
 
   function buildExpandHTML(id) {
-    const d = propData[id];
-    const metaHTML = d.meta.map(m =>
-      `<div class="exp-meta-chip"><i class="${m.icon}"></i> ${m.label}</div>`
-    ).join('');
-    const parasHTML = d.paragraphs.map(p => `<p>${p}</p>`).join('');
-    const thumbsHTML = d.thumbs.map((t,i) =>
+  const d = propData[id];
+  const hasVideo  = d.video && d.video.trim() !== '';
+  const hasThumbs = d.thumbs && d.thumbs.length > 0;
+
+  const metaHTML = d.meta.map(m =>
+    `<div class="exp-meta-chip"><i class="${m.icon}"></i> ${m.label}</div>`
+  ).join('');
+  const parasHTML = d.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+  /* ── Main image area ── */
+  let mainImgHTML = '';
+  if (hasThumbs) {
+    mainImgHTML = `
+      <div class="exp-main-img" id="exp-main-${id}">
+        <img src="${d.thumbs[0]}" alt="Main image" onerror="this.style.display='none'"/>
+        ${hasVideo ? `
+        <div class="exp-video-toast" id="exp-toast-${id}">
+          <div class="exp-toast-inner" onclick="openVideoModal('${d.video}')">
+            <div class="exp-toast-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <span class="exp-toast-text"></span>
+          </div>
+        </div>` : ''}
+      </div>`;
+  } else if (hasVideo) {
+    mainImgHTML = `
+      <div class="exp-main-img exp-main-blank" id="exp-main-${id}">
+        <div class="exp-blank-play" onclick="openVideoModal('${d.video}')">
+          <div class="exp-blank-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+          <p class="exp-blank-text">No photos yet — but the video tour tells it all.</p>
+          <span class="exp-blank-sub">Tap to watch</span>
+        </div>
+        <div class="exp-video-toast" id="exp-toast-${id}">
+          <div class="exp-toast-inner" onclick="openVideoModal('${d.video}')">
+            <div class="exp-toast-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <span class="exp-toast-text"></span>
+          </div>
+        </div>
+      </div>`;
+  } else {
+    mainImgHTML = `
+      <div class="exp-main-img" id="exp-main-${id}">
+        <img src="${d.thumbs[0]}" alt="Main image" onerror="this.style.display='none'"/>
+      </div>`;
+  }
+
+  /* ── Thumbnails area ── */
+  let thumbsHTML = '';
+  if (hasThumbs) {
+    thumbsHTML = d.thumbs.map((t,i) =>
       `<div class="exp-thumb" onclick="swapMain(this,'${t}')">
         <img src="${t}" alt="Thumbnail ${i+1}" onerror="this.parentElement.style.opacity='0.3'"/>
        </div>`
     ).join('');
-    return `
-      <div class="expanded-inner">
-        <div class="exp-left">
-          <div class="exp-main-img" id="exp-main-${id}">
-            <img src="${d.thumbs[0]}" alt="Main image" onerror="this.style.display='none'"/>
-          </div>
-          <div class="exp-thumbs">${thumbsHTML}</div>
-        </div>
-        <div class="exp-right">
-          <div class="exp-price">${d.price}</div>
-          <div class="exp-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> ${d.location}</div>
-          ${metaHTML ? `<div class="exp-meta">${metaHTML}</div>` : '<div style="height:12px"></div>'}
-          <div class="exp-divider"></div>
-          <div class="exp-desc">${parasHTML}</div>
-          <div class="exp-address">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>${d.address}</span>
-          </div>
-          <div class="exp-bottom">
-            <button class="btn-show-less" onclick="collapseAll()">
-              <i class="fas fa-compress-alt"></i> Show Less
-            </button>
-          </div>
-        </div>
+  } else if (hasVideo) {
+    thumbsHTML = `
+      <div class="exp-no-thumbs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+        <span>No photos available — watch the property video to explore this listing.</span>
       </div>`;
   }
+
+  return `
+    <div class="expanded-inner">
+      <div class="exp-left">
+        ${mainImgHTML}
+        <div class="exp-thumbs">${thumbsHTML}</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-price">${d.price}</div>
+        <div class="exp-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> ${d.location}</div>
+        ${metaHTML ? `<div class="exp-meta">${metaHTML}</div>` : '<div style="height:12px"></div>'}
+        <div class="exp-divider"></div>
+        <div class="exp-desc">${parasHTML}</div>
+        <div class="exp-address">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>${d.address}</span>
+        </div>
+        <div class="exp-bottom">
+          <button class="btn-show-less" onclick="collapseAll()">
+            <i class="fas fa-compress-alt"></i> Show Less
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
+  /* ── VIDEO TOAST CYCLE ── */
+const toastMessages = [
+  { svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>', text: 'Watch property video' },
+  { svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>', text: "You'll love what you see" },
+  { svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M10 8l6 4-6 4V8z" fill="currentColor"/></svg>', text: "Don't miss this one" },
+];
+let toastInterval = null;
+let toastIndex = 0;
+
+function startToastCycle(id) {
+  const toast = document.getElementById(`exp-toast-${id}`);
+  if (!toast) return;
+  toastIndex = 0;
+
+  function showNext() {
+    const msg = toastMessages[toastIndex % toastMessages.length];
+    const textEl = toast.querySelector('.exp-toast-text');
+    const iconEl = toast.querySelector('.exp-toast-icon');
+    // Fade out
+    toast.classList.remove('exp-toast-visible');
+    setTimeout(() => {
+      textEl.textContent = msg.text;
+      iconEl.innerHTML = msg.svg;
+      // Fade in
+      toast.classList.add('exp-toast-visible');
+      toastIndex++;
+    }, 600);
+  }
+
+  showNext();
+  toastInterval = setInterval(showNext, 4000);
+}
+
+function stopToastCycle() {
+  if (toastInterval) { clearInterval(toastInterval); toastInterval = null; }
+}
+
+/* ── VIDEO MODAL ── */
+function openVideoModal(src) {
+  stopToastCycle();
+  // Create modal
+  const modal = document.createElement('div');
+  modal.className = 'video-modal-overlay';
+  modal.id = 'videoModal';
+  modal.innerHTML = `
+    <div class="video-modal-box">
+      <div class="video-modal-head">
+        <span class="video-modal-title">Property Video Tour</span>
+        <button class="video-modal-close" onclick="closeVideoModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="video-modal-body">
+        <div class="video-spinner" id="videoSpinner">
+          <div class="spinner-ring"></div>
+          <p>Loading video tour...</p>
+        </div>
+        <video
+          id="propVideo"
+          controls
+          playsinline
+          style="display:none;width:100%;border-radius:10px;"
+          oncanplay="document.getElementById('videoSpinner').style.display='none';this.style.display='block';"
+        >
+          <source src="${src}" type="video/mp4"/>
+          <source src="${src}" type="video/quicktime"/>
+          Your browser does not support this video format.
+        </video>
+      </div>
+      <div class="video-modal-foot">
+        <a href="${src}" download target="_blank" class="video-download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Video
+        </a>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  requestAnimationFrame(() => modal.classList.add('video-modal-open'));
+  // Close on backdrop click
+  modal.addEventListener('click', e => { if (e.target === modal) closeVideoModal(); });
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  if (!modal) return;
+  const video = document.getElementById('propVideo');
+  if (video) { video.pause(); video.src = ''; }
+  modal.classList.remove('video-modal-open');
+  setTimeout(() => modal.remove(), 400);
+}
 
   function toggleExpand(id, btn) {
     const card = btn.closest('.prop-card');
@@ -1431,6 +1721,7 @@
       // Top grid: use old expand-top panel (spans both columns)
       const panel = document.getElementById('expand-top');
       panel.innerHTML = buildExpandHTML(id);
+      startToastCycle(id);
       requestAnimationFrame(() => {
         panel.classList.add('open');
         setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
@@ -1441,6 +1732,7 @@
       const track = document.getElementById('bottom-grid');
       panel.innerHTML = buildExpandHTML(id);
       track.classList.add('scroll-locked');
+      startToastCycle(id);
       requestAnimationFrame(() => {
         panel.classList.add('open');
         setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
@@ -1454,6 +1746,8 @@
   }
 
   function collapseAll(reset = true) {
+    stopToastCycle();
+    closeVideoModal();
     // Close expand panels
     ['expand-top','expand-bottom'].forEach(pid => {
       const p = document.getElementById(pid);
