@@ -2012,56 +2012,58 @@ function closeVideoModal() {
   let extraVisible = false;
 
   function makeScrollCard(id) {
-    const d = propData[id];
-    const num = id.replace('p','');
-    return `<div class="prop-card fade-up visible" data-id="${id}">
-      <div class="prop-img-wrap small">
-        <img src="images/realty/prop-${num}.jpg" alt="Property ${num}"/>
-        <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+  const d = propData[id];
+  return `<div class="prop-card fade-up visible" data-id="${id}">
+    <div class="prop-img-wrap small">
+      <img src="${d.image}" alt="${d.location}"/>
+      <div class="live-badge"><div class="live-dot"></div> Live Property</div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-price">${d.price}</div>
+      <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> ${d.location}</div>
+      <p class="prop-desc">${d.desc}</p>
+      <div class="prop-btns">
+        <button class="btn-explore" onclick="toggleExpand('${id}', this)"><i class="fas fa-expand-alt"></i> View Property</button>
+        <button class="btn-book-now" onclick="scrollToConsult('${d.location}')">Book Now</button>
       </div>
-      <div class="prop-body">
-        <div class="prop-price">${d.price}</div>
-        <div class="prop-location"><i class="fas fa-circle" style="color:var(--green);font-size:0.6rem"></i> ${d.location}</div>
-        <p class="prop-desc">You should write two lines description here for this property listing.</p>
-        <div class="prop-btns">
-          <button class="btn-explore" onclick="toggleExpand('${id}', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-          <button class="btn-book-now" onclick="scrollToConsult('Property ${num}')">Book Now</button>
-        </div>
-      </div>
-    </div>`;
-  }
+    </div>
+  </div>`;
+}
 
   function toggleViewMore() {
-    const track = document.getElementById('bottom-grid');
-    const btn = document.getElementById('viewMoreBtn');
-    extraVisible = !extraVisible;
-    if (extraVisible) {
-      // Inject P6, P7, P8 as extra cards in the scroll track
-      ['p6','p7','p8'].forEach(id => {
-        track.insertAdjacentHTML('beforeend', makeScrollCard(id));
-      });
-      btn.innerHTML = 'View Less &nbsp;‹';
-      document.getElementById('scrollNavBtns').classList.add('visible');
-      setTimeout(() => {
-        // Scroll track to end to reveal new cards
-        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
-        updateScrollNavState();
-      }, 80);
-    } else {
-      // Remove injected cards
-      collapseAll();
-      track.querySelectorAll('[data-id="p6"],[data-id="p7"],[data-id="p8"]').forEach(c => c.remove());
-      btn.innerHTML = 'View More &nbsp;›';
-      document.getElementById('scrollNavBtns').classList.remove('visible');
-      setTimeout(updateScrollNavState, 80);
-    }
-  }
+  const track = document.getElementById('bottom-grid');
+  const btn = document.getElementById('viewMoreBtn');
+  extraVisible = !extraVisible;
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closeMobileNav();
-    }
-  });
+  if (extraVisible) {
+    // Inject P6–P11 — only renders cards that exist in propData
+    ['p6','p7','p8','p9','p10','p11'].forEach(id => {
+      if (propData[id]) {
+        track.insertAdjacentHTML('beforeend', makeScrollCard(id));
+      }
+    });
+    btn.innerHTML = 'View Less &nbsp;‹';
+    document.getElementById('scrollNavBtns').classList.add('visible');
+    setTimeout(() => {
+      track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      updateScrollNavState();
+    }, 80);
+
+  } else {
+    // Remove all injected cards
+    collapseAll();
+    track.querySelectorAll('[data-id="p6"],[data-id="p7"],[data-id="p8"],[data-id="p9"],[data-id="p10"],[data-id="p11"]').forEach(c => c.remove());
+    btn.innerHTML = 'View More &nbsp;›';
+    document.getElementById('scrollNavBtns').classList.remove('visible');
+    setTimeout(updateScrollNavState, 80);
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeMobileNav();
+  }
+});
 
   /* ── MOBILE NAV ── */
   function openMobileNav() {
