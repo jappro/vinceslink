@@ -1739,7 +1739,14 @@ function stopToastCycle() {
 /* ── VIDEO MODAL ── */
 function openVideoModal(src) {
   stopToastCycle();
-  // Create modal
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    window.open(src, '_blank');
+    return;
+  }
+
+  // Desktop modal code stays exactly the same below
   const modal = document.createElement('div');
   modal.className = 'video-modal-overlay';
   modal.id = 'videoModal';
@@ -1766,7 +1773,6 @@ function openVideoModal(src) {
           oncanplay="document.getElementById('videoSpinner').style.display='none';this.style.display='block';"
         >
           <source src="${src}" type="video/mp4"/>
-          <source src="${src}" type="video/quicktime"/>
           Your browser does not support this video format.
         </video>
       </div>
@@ -1783,7 +1789,6 @@ function openVideoModal(src) {
     </div>`;
   document.body.appendChild(modal);
   requestAnimationFrame(() => modal.classList.add('video-modal-open'));
-  // Close on backdrop click
   modal.addEventListener('click', e => { if (e.target === modal) closeVideoModal(); });
 }
 
