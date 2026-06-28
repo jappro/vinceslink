@@ -1338,7 +1338,12 @@
                   <option>AyHomes Luxury Bungalow</option>
                   <option>Toluwani Gardens</option>
                   <option>THE LEGACY ESTATE (Land)</option>
-                  <option>Property 6</option>
+                  <option>Wonder Court – Awoyaya Ajah</option>
+                  <option>Camberwall Advantage 5 Annex – Lekki Phase 1</option>
+                  <option>Oak Ville Estate – Mowe Ofada</option>
+                  <option>Alpha Garden City Resort – Ibadan</option>
+                  <option>Chafford 100 – Abeokuta</option>
+                  <option>Zylus Court Extension – Bogije Lekki</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -2133,7 +2138,8 @@ function closeVideoModal() {
   /* ── VIEW MORE — inject P6-P8 into scroll track ── */
   let extraVisible = false;
 
-  function makeScrollCard(id) {
+  /* ── BUILD SCROLL CARD (P6–P11) ── */
+function makeScrollCard(id) {
   const d = propData[id];
   return `<div class="prop-card fade-up visible" data-id="${id}">
     <div class="prop-img-wrap small">
@@ -2146,7 +2152,7 @@ function closeVideoModal() {
       <p class="prop-desc">${d.desc}</p>
       <div class="prop-btns">
         <button class="btn-explore" onclick="toggleExpand('${id}', this)"><i class="fas fa-expand-alt"></i> View Property</button>
-        <button class="btn-book-now" onclick="scrollToConsult('${d.location}')">Book Now</button>
+        <button class="btn-book-now" onclick="scrollToConsult('${d.consultName}')">Book Now</button>
       </div>
     </div>
   </div>`;
