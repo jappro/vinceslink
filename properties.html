@@ -447,6 +447,61 @@
     }
     .btn-sold-muted:hover { background: #E5E9F0; }
 
+    /* Top grid cards — fixed height 60/40 split */
+.props-grid-top .prop-card {
+  height: 580px;
+}
+.props-grid-top .prop-img-wrap {
+  height: 60%;
+  padding-top: 0;
+}
+.props-grid-top .prop-body {
+  height: 40%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.props-grid-top .prop-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Bottom scroll track cards — fixed height 60/40 split */
+.props-scroll-track .prop-card {
+  height: 480px;
+}
+.props-scroll-track .prop-img-wrap {
+  height: 60%;
+  padding-top: 0;
+}
+.props-scroll-track .prop-body {
+  height: 40%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.props-scroll-track .prop-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .props-grid-top .prop-card { height: 520px; }
+  .props-scroll-track .prop-card { height: 440px; }
+}
+
+@media (max-width: 480px) {
+  .props-grid-top .prop-card { height: 480px; }
+  .props-scroll-track .prop-card { height: 400px; }
+}
+
     /* ── EXPANDED PROPERTY VIEW ── */
     .expanded-wrap {
       max-height: 0; overflow: hidden;
