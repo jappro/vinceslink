@@ -1645,25 +1645,23 @@
 
   function shareProperty(id, location) {
   const url = `https://vinceslink.com/properties?property=${id}`;
-  console.log('shareProperty called', id, url);
-  console.log('navigator.share available:', !!navigator.share);
-  
-  if (navigator.share) {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile && navigator.share) {
     navigator.share({
       title: `Vinceslink Realty — ${location}`,
       text: `Check out this property at ${location} on Vinceslink Realty!`,
       url: url
+    }).catch(() => {
+      // fallback if share fails on mobile
+      showCopyToast('Link copied to clipboard!');
     });
   } else {
-    console.log('trying clipboard...');
     navigator.clipboard.writeText(url)
-      .then(() => {
-        console.log('clipboard success');
-        showCopyToast('Link copied to clipboard!');
-      })
-      .catch(e => {
-        console.log('clipboard failed:', e);
-        showCopyToast('Link copied to clipboard!');
+      .then(() => showCopyToast('Link copied to clipboard!'))
+      .catch(() => {
+        // Final fallback — manual copy
+        prompt('Copy this link:', url);
       });
   }
 }
