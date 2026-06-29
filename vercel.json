@@ -9,6 +9,16 @@
         }
       ],
       "destination": "/shop.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "properties.vinceslink.com"
+        }
+      ],
+      "destination": "/properties.html"
     }
   ],
   "routes": [
@@ -21,6 +31,16 @@
         }
       ],
       "dest": "/shop.html"
+    },
+    {
+      "src": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "properties.vinceslink.com"
+        }
+      ],
+      "dest": "/properties.html"
     }
   ]
 }
