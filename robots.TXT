@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /cm.html
+Disallow: /data.html
+Disallow: /ops.html
+Disallow: /smm.html
+
+Sitemap: https://japheth.name.ng/sitemap.xml
